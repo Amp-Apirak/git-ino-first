@@ -20,18 +20,18 @@
         /* การลบข้อมูล */
         if (isset($_GET['id'])) {
 
-            $result = $conn->query("DELETE FROM user WHERE user=" . $_GET['id']);
+            $result = $conn->query("DELETE FROM user WHERE id=" . $_GET['id']);
 
             if ($result) {
                 // <!-- sweetalert -->
                 echo '<script>
                         setTimeout(function(){
                             swal({
-                                title: "Delectd Successfully!",
-                                text: "Thank You . ",
+                                title: "Successfully!",
+                                text: "Delect Infomation Complatrd.",
                                 type:"success"
                             }, function(){
-                                window.location = "conatct.php";
+                                window.location = "account.php";
                             })
                         },1000);
                     </script>';
@@ -41,11 +41,11 @@
                 echo '<script>
                         setTimeout(function(){
                             swal({
-                                title: "Can Not Delectd Successfully!",
-                                text: "Checking Your Data",
+                                title: "Can Not Successfully!",
+                                text: "Type again",
                                 type:"warning"
                             }, function(){
-                                window.location = "conatct_is.php";
+                                window.location = "account.php";
                             })
                         },1000);
                     </script>';
@@ -293,15 +293,15 @@
                                     <tbody>
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
-                                            <td><?php echo $res_search["username"]; ?></td>
-                                            <td><?php echo $res_search["fullname"]; ?></td>
-                                            <td><?php echo $res_search["team"];?></td>
-                                            <td><?php echo $res_search["position"];?></td>
-                                            <td><?php echo $res_search["role"];?></td>
-                                            <td><?php echo $res_search["tel"]; ?></td>
-                                            <td><?php echo $res_search["email"]; ?></td>
-                                            <td><?php echo $res_search["user_crt"]; ?></td>
-                                            <td><?php echo $res_search["user_staff"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["username"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["fullname"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["team"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["position"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["role"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["tel"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["email"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["user_crt"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["user_staff"]; ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
                                                     data-target="#modal-lg<?php echo $res_search["id"]; ?>">
@@ -416,11 +416,11 @@
                                                         <!----------------------------- end Modal Edit user --------------------------------->
 
 
-                                                <a href="#" class="btn btn-danger btn-sm"><i
+                                                <a href="account.php?id=<?php echo $res_search["id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i
                                                         class="fas fa-trash"></i></a>
 
 
-                                                        
+
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -583,5 +583,7 @@
     </div>
     <!-- /.modal -->
     <!----------------------------- end Modal Add user --------------------------------->
+
+    
 
 

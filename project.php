@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INOvation Management</title>
+    <title>INO | Project</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -16,70 +16,48 @@
     <?php include ("../ino/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
-
-
-    <style type="text/css">
-    a:link {
-        color: black;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: palevioletred;
-        text-decoration: none;
-    }
-
-    a:visited {
-        color: black;
-        text-decoration: none;
-    }
-    </style>
-
-
-
     <?php
-    /* การลบข้อมูล */
-    if (isset($_GET['id'])) {
+        /* การลบข้อมูล */
+        if (isset($_GET['id'])) {
 
-        $result = $conn->query("DELETE FROM tb_project WHERE project_id=" . $_GET['id']);
+            $result = $conn->query("DELETE FROM project INNER JOIN estime  WHERE project_id=" . $_GET['projecr_id']);
 
-        if ($result) {
-            // <!-- sweetalert -->
-            echo '<script>
-                    setTimeout(function(){
-                        swal({
-                            title: "Delectd Successfully!",
-                            text: "Thank You . ",
-                            type:"success"
-                        }, function(){
-                            window.location = "project.php";
-                        })
-                    },1000);
-                </script>';
-            // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-        } else {
-            // <!-- sweetalert -->
-            echo '<script>
-                    setTimeout(function(){
-                        swal({
-                            title: "Can Not Delectd Successfully!",
-                            text: "Checking Your Data",
-                            type:"warning"
-                        }, function(){
-                            window.location = "project.php";
-                        })
-                    },1000);
-                </script>';
-            // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+            if ($result) {
+                // <!-- sweetalert -->
+                echo '<script>
+                        setTimeout(function(){
+                            swal({
+                                title: "Successfully!",
+                                text: "Delect Infomation Complatrd.",
+                                type:"success"
+                            }, function(){
+                                window.location = "account.php";
+                            })
+                        },1000);
+                    </script>';
+                // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+            } else {
+                // <!-- sweetalert -->
+                echo '<script>
+                        setTimeout(function(){
+                            swal({
+                                title: "Can Not Successfully!",
+                                text: "Type again",
+                                type:"warning"
+                            }, function(){
+                                window.location = "account.php";
+                            })
+                        },1000);
+                    </script>';
+            //     echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+            }
         }
-    }
-    /* การลบข้อมูล */
+        /* การลบข้อมูล */
     ?>
-
-
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -102,113 +80,86 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
-
-
                         <!-- Start ค้นหาและ ดึงข้อมูล -->
                         <?php
-    $search = "";
-    $tb_position = "";
-    $tb_group = "";
-    $tb_status = "";
-    $tb_staff = "";
-    $tb_createdate = "";
-    $search_backup = "";
-    $tb_position_backup = "";
-    $tb_group_backup = "";
-    $tb_status_backup = "";
-    $tb_staff_backup = "";
-    $tb_createdate_backup = "";
+                                    $search = "";
+                                    $project_name = "";
+                                    $project_product = "";
+                                    $project_status = "";
 
-    $_sql_position = "SELECT DISTINCT project_line FROM tb_project";
-    $_sql_group = "SELECT DISTINCT project_team FROM tb_project";
-    $_sql_status = "SELECT DISTINCT project_sub  FROM tb_project";
-    $_sql_staff = "SELECT DISTINCT project_status  FROM tb_project";
-    $_sql_createdate = "SELECT DISTINCT project_date  FROM tb_project";
+                                    $search_backup = "";
+                                    $project_name_backup = "";
+                                    $project_product_backup = "";
+                                    $project_status_backup = "";
+                        
+                                    $_sql_project_name = "SELECT DISTINCT project_name FROM project ";
+                                    $_sql_project_product = "SELECT DISTINCT project_product FROM project ";
+                                    $_sql_project_status = "SELECT DISTINCT project_status  FROM project ";
 
-    $query_position = mysqli_query($conn, $_sql_position);
-    $query_group = mysqli_query($conn, $_sql_group);
-    $query_status = mysqli_query($conn, $_sql_status);
-    $query_staff = mysqli_query($conn, $_sql_staff);
-    $query_createdate = mysqli_query($conn, $_sql_createdate);
+                                    $query_project_name = mysqli_query($conn, $_sql_project_name);
+                                    $query_project_product = mysqli_query($conn, $_sql_project_product);
+                                    $query_project_status = mysqli_query($conn, $_sql_project_status);
 
-    $_sql = "SELECT * FROM tb_project";
-    $_where = "";
-    if (isset($_POST['search'])) {
+                                    $_sql = "SELECT * FROM project INNER JOIN estime ON project.project_id = estime.project_id";
+                                    $_where = "";
 
-        $search = $_POST['searchservice'];
-        $tb_position = $_POST['project_line'];
-        $tb_group = $_POST['project_cate'];
-        $tb_status = $_POST['project_sub'];
-        $tb_staff = $_POST['project_staff'];
-        $tb_createdate = $_POST['project_date'];
-        $search_backup = $_POST['search_backup'];
-        $tb_position_backup = $_POST['project_line_backup'];
-        $tb_group_backup = $_POST['project_cate_backup'];
-        $tb_status_backup = $_POST['project_sub_backup'];
-        $tb_staff_backup = $_POST['project_staff_backup'];
-        $tb_createdate_backup = $_POST['project_date_backup'];
-        //print_r($_sqlCount);
+                                        if (isset($_POST['search'])) {
 
-        if ($search != $search_backup || $tb_position != $tb_position_backup || $tb_group != $tb_group_backup || $tb_status  != $tb_status_backup || $tb_staff  != $tb_staff_backup || $tb_createdate  != $tb_createdate_backup )
-        
-        if (!empty($search)) {
-            $_where = $_where . " WHERE project_line LIKE '%$search%'OR project_cate LIKE '%$search%' OR project_sub LIKE '%$search%' OR project_name LIKE '%$search%' OR project_detail LIKE '%$search%' OR project_cost LIKE '%$search%'
-            OR project_staff LIKE '%$search%' OR project_link LIKE '%$search%'
-            OR contact_name LIKE '%$search%' OR contact_company LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_email LIKE '%$search%' OR contact_phone LIKE '%$search%'
-            OR contact_detail LIKE '%$search%' ";
-        }
-        if ($tb_position != "") {
-            if (empty($_where)) {
-                $_where = $_where . " WHERE project_line = '$tb_position' ";
-            } else {
-                $_where = $_where . " AND project_line = '$tb_position'";
-            }
-        }
-        if ($tb_group != "") {
-            if (empty($_where)) {
-                $_where = $_where . " WHERE project_team = '$tb_group' ";
-            } else {
-                $_where = $_where . " AND project_team = '$tb_group'";
-            }
-        }
-        if ($tb_status != "") {
-            if (empty($_where)) {
-                $_where = $_where . " WHERE project_sub = '$tb_status' ";
-            } else {
-                $_where = $_where . " AND  project_sub = '$tb_status'"; 
-            }
-        }
-        if ($tb_staff != "") {
-            if (empty($_where)) {
-                $_where = $_where . " WHERE project_status = '$tb_staff' ";
-            } else {
-                $_where = $_where . " AND project_status = '$tb_staff'";
-            }
-        }
-        if ($tb_createdate != "") {
-            if (empty($_where)) {
-                $_where = $_where . " WHERE project_date = '$tb_createdate' ";
-            } else {
-                $_where = $_where . " AND project_date = '$tb_createdate'";
-            }
-        }
-    }
-    
+                                            $search = $_POST['searchservice'];
+                                            $project_name = $_POST['project_name'];
+                                            $project_product = $_POST['project_product'];
+                                            $project_status = $_POST['project_status'];
 
-    $_sql = $_sql . $_where . "" . " ORDER BY project_id DESC ";
-    $query_search = mysqli_query($conn, $_sql);
-// print_r($search);
-// print_r($query_search);
-    // print_r($_sql);
-    ?>
+                                            $search_backup = $_POST['search_backup'];
+                                            $project_name_backup = $_POST['project_name_backup'];
+                                            $project_product_backup = $_POST['project_product_backup'];
+                                            $project_status_backup = $_POST['project_status_backup'];
+
+                                        // print_r($_sqlCount);
+
+                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_status  != $project_status_backup )
+                                        
+                                            if (!empty($search)) {
+                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR project_name LIKE '%$search%' OR project_product LIKE '%$search%' 
+                                                OR email LIKE '%$search%' OR project_status LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
+                                            }
+                                            if ($project_name != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_name = '$project_name' ";
+                                                } else {
+                                                    $_where = $_where . " AND project_name = '$project_name'";
+                                                }
+                                            }
+                                            if ($project_product != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_product = '$project_product' ";
+                                                } else {
+                                                    $_where = $_where . " AND project_product = '$project_product'";
+                                                }
+                                            }
+                                            if ($project_status != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_status = '$project_status' ";
+                                                } else {
+                                                    $_where = $_where . " AND  project_status = '$project_status'"; 
+                                                }
+                                            }
+
+                                        }
+                                        
+
+                                    $query_search = mysqli_query($conn, $_sql .$_where); 
+                                // print_r($query_search);
+                                ?>
+
                         <section class="content">
                             <div class="row">
+
                                 <div class="col-md-12">
                                     <div class="card card-outline card-info">
                                         <div class="card-header ">
                                             <h3 class="card-title font1">
-                                                ค้นหา
+                                                Search
                                             </h3>
                                         </div>
                                         <div class="card-body">
@@ -223,26 +174,18 @@
                                                                 id="search_backup" name="search_backup"
                                                                 value="<?php echo $search; ?>">
                                                             <input type="hidden" class="form-control "
-                                                                id="project_line_backup" name="project_line_backup"
-                                                                value="<?php echo $tb_position; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_cate_backup" name="project_cate_backup"
-                                                                value="<?php echo $tb_group; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_sub_backup" name="project_sub_backup"
-                                                                value="<?php echo $tb_status; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_staff_backup" name="project_staff_backup"
-                                                                value="<?php echo $tb_staff; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_date_backup" name="project_date_backup"
-                                                                value="<?php echo $tb_createdate; ?>">
+                                                                id="project_name_backup" name="project_name_backup"
+                                                                value="<?php echo $project_name; ?>">
+                                                            <input type="hidden" class="form-control " id="project_product_backup"
+                                                                name="project_product_backup" value="<?php echo $project_product; ?>">
+                                                            <input type="hidden" class="form-control " id="project_status_backup"
+                                                                name="project_status_backup" value="<?php echo $project_status; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group ">
                                                             <button type="submit" class="btn btn-primary" id="search"
-                                                                name="search">ค้นหา</button>
+                                                                name="search">Search</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-5">
@@ -251,712 +194,286 @@
                                                 <div class="row">
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>ผลิตภัณฑ์</label>
-                                                            <select class="custom-select select2" name="project_line">
-                                                                <option value="">เลือก</option>
-                                                                <?php while ($r = mysqli_fetch_array($query_position)) { ?>
-                                                                <option value="<?php echo $r["project_line"]; ?>"
-                                                                    <?php if ($r['project_line'] == $tb_position) : ?>
+                                                            <label>Project</label>
+                                                            <select class="custom-select select2" name="project_name">
+                                                                <option value="">Select</option>
+                                                                <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
+                                                                <option value="<?php echo $r["project_name"]; ?>"
+                                                                    <?php if ($r['project_name'] == $project_name) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $r["project_line"]; ?></option>
+                                                                    <?php echo $r["project_name"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>ทีม</label>
-                                                            <select class="custom-select select2" name="project_cate">
-                                                                <option value="">เลือก</option>
-                                                                <?php while ($rg = mysqli_fetch_array($query_group)) { ?>
-                                                                <option value="<?php echo $rg["project_team"]; ?>"
-                                                                    <?php if ($rg['project_team'] == $tb_group) : ?>
+                                                            <label>Product</label>
+                                                            <select class="custom-select select2" name="project_product">
+                                                                <option value="">Select</option>
+                                                                <?php while ($rg = mysqli_fetch_array($query_project_product)) { ?>
+                                                                <option value="<?php echo $rg["project_product"]; ?>"
+                                                                    <?php if ($rg['project_product'] == $project_product) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rg["project_team"]; ?></option>
+                                                                    <?php echo $rg["project_product"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>จังหวัด</label>
-                                                            <select class="custom-select select2" name="project_sub">
-                                                                <option value="">เลือก</option>
-                                                                <?php while ($re = mysqli_fetch_array($query_status)) { ?>
-                                                                <option value="<?php echo $re["project_sub"]; ?>"
-                                                                    <?php if ($re['project_sub'] == $tb_status) : ?>
+                                                            <label>Status</label>
+                                                            <select class="custom-select select2" name="project_status">
+                                                                <option value="">Select</option>
+                                                                <?php while ($re = mysqli_fetch_array($query_project_status)) { ?>
+                                                                <option value="<?php echo $re["project_status"]; ?>"
+                                                                    <?php if ($re['project_status'] == $project_status) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $re["project_sub"]; ?></option>
+                                                                    <?php echo $re["project_status"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>สถานะ</label>
-                                                            <select class="custom-select select2" name="project_staff">
-                                                                <option value="">เลือก</option>
-                                                                <?php while ($rt = mysqli_fetch_array($query_staff)) { ?>
-                                                                <option value="<?php echo $rt["project_status"]; ?>"
-                                                                    <?php if ($rt['project_status'] == $tb_staff) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rt["project_status"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>วันที่สร้าง</label>
-                                                            <select class="custom-select select2" name="project_date">
-                                                                <option value="">เลือก</option>
-                                                                <?php while ($rl = mysqli_fetch_array($query_createdate)) { ?>
-                                                                <option value="<?php echo $rl["project_date"]; ?>"
-                                                                    <?php if ($rl['project_date'] == $tb_createdate) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rl["project_date"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
+                                                </div>
                                             </form>
                                         </div>
                                         <div class="card-footer">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                 </div>
+
                         </section>
 
-
-
                         <div class="col-md-12 pb-3">
-                            <a href="project_is.php" class="btn btn-success btn-sm float-right">เพิ่มข้อมูล<i
-                                    class=""></i></a>
+                            <a href="account_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
+                                data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
 
 
-                            <!-- Main content -->
-                            <section class="content">
-
-                                <!-- Default box -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Projects</h3>
-
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                                title="Collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove"
-                                                title="Remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <table class="table table-striped projects">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 1%">
-                                                        #
-                                                    </th>
-                                                    <th style="width: 20%">
-                                                        Project Name
-                                                    </th>
-                                                    <th style="width: 30%">
-                                                        Team Members
-                                                    </th>
-                                                    <th>
-                                                        Project Progress
-                                                    </th>
-                                                    <th style="width: 8%" class="text-center">
-                                                        Status
-                                                    </th>
-                                                    <th style="width: 20%">
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar2.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 57%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            57% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar2.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="47" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 47%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            47% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar2.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 77%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            77% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar2.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 60%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            60% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar5.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 12%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            12% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar2.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 35%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            35% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar5.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 87%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            87% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 77%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            77% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        #
-                                                    </td>
-                                                    <td>
-                                                        <a>
-                                                            AdminLTE v3
-                                                        </a>
-                                                        <br />
-                                                        <small>
-                                                            Created 01.01.2019
-                                                        </small>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar3.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar4.png">
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <img alt="Avatar" class="table-avatar"
-                                                                    src="../../dist/img/avatar5.png">
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar"
-                                                                aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 77%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            77% Complete
-                                                        </small>
-                                                    </td>
-                                                    <td class="project-state">
-                                                        <span class="badge badge-success">Success</span>
-                                                    </td>
-                                                    <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
-                                                            <i class="fas fa-folder">
-                                                            </i>
-                                                            View
-                                                        </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container-fluid">
+                                    <h3 class="card-title">Project Management</h3>
                                 </div>
-                                <!-- /.card -->
+                            </div>
 
-                            </section>
-                            <!-- /.content -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Price/Unit</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">QTY</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales No Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost No Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Meaning</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
+                                        <tr id="myTable">
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_price"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_qty"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_sales_novat"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_sales"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_cost_novat"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_es_gp"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_gp"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_pot"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_mean"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_es_sales"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_remark"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_bg"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
+                                            
+                                            <td>
+                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
+                                                    data-target="#modal-lg">
+                                                    <i class="fas fa-pencil-alt"></i></a>
 
 
+                                                        <!----------------------------- start Modal Edit user ------------------------------->
+                                                        <div class="modal fade" id="modal-lg">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Add User</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="account_edit.php" method="POST" enctype="multipart/form-data">
+                                                                            <div class="card-body">
+                                                                                <div class="form-group">
+                                                                                    <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                                                                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" value="<?php echo $res_search["fullname"]; ?>"
+                                                                                        required>
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                                <div class="form-group">
+                                                                                    <label for="project_name">Position<span class="text-danger">*</span></label>
+                                                                                    <input type="text" name="project_name" class="form-control" id="project_name" placeholder="" value="<?php echo $res_search["project_name"]; ?>"
+                                                                                        required>
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                                <div class="form-group">
+                                                                                    <label>Team<span class="text-danger">*</span></label> 
+                                                                                    <select class="form-control select2" name="project_product" value="<?php echo $res_search["project_product"]; ?>" required style="width: 100%;"> 
+                                                                                        <option selected="selected"><?php echo $res_search["project_product"]; ?></option>
+                                                                                        <option>Innovation</option>
+                                                                                        <option>Infrastructure</option>
+                                                                                        <option>Projecting</option>
+                                                                                        <option>Stock</option>
+                                                                                        <option>Service Solution</option>
+                                                                                        <option>Service bank</option>
+                                                                                    </select>
+
+                                                                                    <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>" 
+                                                                                        class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                                                                    <input type="hidden" name="user_staff" class="form-control"
+                                                                                        value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
+                                                                                        <input type="hidden" name="id" class="form-control"
+                                                                                        value="<?php echo $res_search["id"]; ?>" placeholder="">
+
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                                <div class="form-group">
+                                                                                    <label>Role<span class="text-danger">*</span></label>
+                                                                                    <select class="form-control select2" name="project_status" value="<?php echo $res_search["project_status"]; ?>" required style="width: 100%;">
+                                                                                        <option selected="selected"><?php echo $res_search["project_status"]; ?></option>
+                                                                                        <option>Administrator</option>
+                                                                                        <option>Engineer</option>
+                                                                                        <option>Viewer</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleInputEmail1">Phone Number</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                                                        </div>
+                                                                                        <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $res_search["tel"]; ?>"
+                                                                                            data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                                                                    </div>
+                                                                                    <!-- /.input group -->
+                                                                                </div>
+
+                                                                                <p>
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleInputEmail1">Email</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                                                        </div>
+                                                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $res_search["email"]; ?>"
+                                                                                            required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleInputEmail1">Username</label>
+                                                                                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" value="<?php echo $res_search["username"]; ?>"
+                                                                                        placeholder="">
+                                                                                </div>
+                                                                                <!-- /.form-group -->
+
+                                                                            </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-between">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                                <!-- /.modal-content -->
+                                                            </div>
+                                                            <!-- /.modal-dialog -->
+                                                        </div>
+                                                        <!----------------------------- end Modal Edit user --------------------------------->
+
+
+                                                <a href="account.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i
+                                                        class="fas fa-trash"></i></a>
+
+
+
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                        <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Price/Unit</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">QTY</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales No Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost No Vat</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Meaning</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
@@ -974,3 +491,123 @@
     $("#myTable tr").highlight();
     </script>
     <!-- highlight -->
+
+
+
+
+    <!----------------------------- start Modal Add user ------------------------------->
+    <div class="modal fade" id="editbtn">
+        <div class="modal-dialog editbtn">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="account_add.php" method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
+                                    required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="project_name">Position<span class="text-danger">*</span></label>
+                                <input type="text" name="project_name" class="form-control" id="project_name" placeholder=""
+                                    required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Team<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="project_product" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>Innovation</option>
+                                    <option>Infrastructure</option>
+                                    <option>Projecting</option>
+                                    <option>Stock</option>
+                                    <option>Service Solution</option>
+                                    <option>Service bank</option>
+                                </select>
+
+                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
+                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                <input type="hidden" name="user_staff" class="form-control"
+                                    value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
+
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Role<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="project_status" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>Administrator</option>
+                                    <option>Engineer</option>
+                                    <option>Viewer</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="tel" id="tel"
+                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+                            <p>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
+                                    placeholder="">
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
+                                    placeholder="">
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!----------------------------- end Modal Add user --------------------------------->
+
+    
+
+

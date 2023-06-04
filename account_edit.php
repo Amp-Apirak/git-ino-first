@@ -7,6 +7,7 @@
  <!-- sweetalert -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
+
  <!-- เพิ่มข้อมูล -->
  <?php
     if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
@@ -30,29 +31,28 @@
 
         $result = $conn->query($sql);
 
-         print_r($result);
-        if ($result>0) {
+        //  print_r($result);
+        if ($result) {
             // <!-- sweetalert -->
             echo '<script>
-                setTimeout(function() {
-                swal({
-                        title: "You have completed the "edit information" item.",
-                        text: "Updated the information successfully",
-                        type: "success"
-                    }, function() {
-                        window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
-                        });
-                        }, 1000);
+            setTimeout(function() {
+            swal({
+                    title: "You have completed the edit information item",
+                    text: "Updated the information successfully",
+                    type: "success"
+                }, function() {
+                    window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+                    });
+                    }, 1000);
                 </script>';
-        }else{
-            echo '<script>
-                setTimeout(function() {
-                swal({
-                        title: "Failed to edit data!",
-                        text: "Please make a new list.",
-                        type: "warning"
-                    }, function() {
-                        window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+    }else{
+        echo '<script>
+            setTimeout(function() {
+            swal({
+                    title: "Failed to edit data",
+                    type: "error"
+            }, function() {
+                    window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
                     });
                     }, 1000);
                 </script>';

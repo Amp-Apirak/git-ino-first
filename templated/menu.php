@@ -73,7 +73,7 @@
 
                             <li class="nav-item">
                                 <a href="remind.php" class="nav-link <?php if($menu=="Remind"){echo "active";} ?>">
-                                    <i class="nav-icon fa fa-star"></i>
+                                    <i class="nav-icon fa fa-bell"></i>
                                     <p>
                                         Remind
                                         <span class="right badge badge-danger">New</span>

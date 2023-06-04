@@ -303,10 +303,10 @@
                                             <td><?php echo $res_search["user_crt"]; ?></td>
                                             <td><?php echo $res_search["user_staff"]; ?></td>
                                             <td>
-                                                <a href="account_edit.php?id=<?php echo $res_search["id"]; ?>"
-                                                    class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="#"class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lgg">
+                                                <i class="fas fa-pencil-alt"></i></a>
                                                 <a href="#" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-trash"></i></a>
+                                                class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -467,3 +467,116 @@
     </div>
     <!-- /.modal -->
     <!----------------------------- end Modal Add user --------------------------------->
+
+    <!----------------------------- start Modal Edit user ------------------------------->
+    <div class="modal fade" id="modal-lgg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="account_add.php" method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
+                                    required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="position">Position<span class="text-danger">*</span></label>
+                                <input type="text" name="position" class="form-control" id="position"
+                                    placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Team<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="team" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>Innovation</option>
+                                    <option>Infrastructure</option>
+                                    <option>Accounting</option>
+                                    <option>Stock</option>
+                                    <option>Service Solution</option>
+                                    <option>Service bank</option>
+                                </select>
+
+                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
+                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                <input type="hidden" name="user_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>"
+                                    placeholder="" >
+                                    
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Role<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="role" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>Administrator</option>
+                                    <option>Engineer</option>
+                                    <option>Viewer</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="tel" id="tel"
+                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+                            <p>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" name="email"  id="email" placeholder="Email"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
+                                    placeholder="">
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
+                                    placeholder="">
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+                    
+                </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                        </div>                       
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!----------------------------- end Modal Edit user --------------------------------->

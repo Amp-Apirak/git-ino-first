@@ -19,6 +19,14 @@
     </style>
 <!-- highlight -->
 
+<!----------------------------- start Time ------------------------------->
+    <?php
+        date_default_timezone_set('asia/bangkok');
+        $date = date('Y/m/d');
+        $time = date("H:i:s", "1359780799");
+    ?>
+<!----------------------------- start Time ------------------------------->
+
 
 
 <!-- Google Font: Source Sans Pro -->

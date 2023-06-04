@@ -86,19 +86,31 @@
                                     $project_name = "";
                                     $project_product = "";
                                     $project_status = "";
+                                    $project_staff = "";
+                                    $project_quarter = "";
+                                    $project_up_status = "";
 
                                     $search_backup = "";
                                     $project_name_backup = "";
                                     $project_product_backup = "";
                                     $project_status_backup = "";
+                                    $project_staff_backup = "";
+                                    $project_quarter_backup = "";
+                                    $project_up_status_backup = "";
                         
                                     $_sql_project_name = "SELECT DISTINCT project_name FROM project ";
                                     $_sql_project_product = "SELECT DISTINCT project_product FROM project ";
                                     $_sql_project_status = "SELECT DISTINCT project_status  FROM project ";
+                                    $_sql_project_staff = "SELECT DISTINCT project_staff  FROM project ";
+                                    $_sql_project_quarter = "SELECT DISTINCT project_quarter  FROM project ";
+                                    $_sql_project_up_status = "SELECT DISTINCT project_up_status  FROM project ";
 
                                     $query_project_name = mysqli_query($conn, $_sql_project_name);
                                     $query_project_product = mysqli_query($conn, $_sql_project_product);
                                     $query_project_status = mysqli_query($conn, $_sql_project_status);
+                                    $query_project_staff = mysqli_query($conn, $_sql_project_staff);
+                                    $query_project_quarter = mysqli_query($conn, $_sql_project_quarter);
+                                    $query_project_up_status = mysqli_query($conn, $_sql_project_up_status);
 
                                     $_sql = "SELECT * FROM project";
                                     $_where = "";
@@ -109,19 +121,26 @@
                                             $project_name = $_POST['project_name'];
                                             $project_product = $_POST['project_product'];
                                             $project_status = $_POST['project_status'];
+                                            $project_staff = $_POST['project_staff'];
+                                            $project_quarter = $_POST['project_quarter'];
+                                            $project_up_status = $_POST['project_up_status'];
 
                                             $search_backup = $_POST['search_backup'];
                                             $project_name_backup = $_POST['project_name_backup'];
                                             $project_product_backup = $_POST['project_product_backup'];
                                             $project_status_backup = $_POST['project_status_backup'];
+                                            $project_staff_backup = $_POST['project_staff_backup'];
+                                            $project_quarter_backup = $_POST['project_quarter_backup'];
+                                            $project_up_status_backup = $_POST['project_up_status_backup'];
 
                                         // print_r($_sqlCount);
 
-                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_status  != $project_status_backup )
+                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_status  != $project_status_backup 
+                                            || $project_staff  != $project_staff_backup || $project_quarter  != $project_quarter_backup || $project_up_status  != $project_up_status_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR project_name LIKE '%$search%' OR project_product LIKE '%$search%' 
-                                                OR email LIKE '%$search%' OR project_status LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
+                                                $_where = $_where . " WHERE project_name  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
+                                                OR project_mean LIKE '%$search%' OR project_remark LIKE '%$search%' OR project_up_status LIKE '%$search%' OR project_status LIKE '%$search%' OR project_staff LIKE '%$search%'";
                                             }
                                             if ($project_name != "") {
                                                 if (empty($_where)) {
@@ -142,6 +161,27 @@
                                                     $_where = $_where . " WHERE project_status = '$project_status' ";
                                                 } else {
                                                     $_where = $_where . " AND  project_status = '$project_status'"; 
+                                                }
+                                            }
+                                            if ($project_staff != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_staff = '$project_staff' ";
+                                                } else {
+                                                    $_where = $_where . " AND  project_staff = '$project_staff'"; 
+                                                }
+                                            }
+                                            if ($project_quarter != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_quarter = '$project_quarter' ";
+                                                } else {
+                                                    $_where = $_where . " AND  project_quarter = '$project_quarter'"; 
+                                                }
+                                            }
+                                            if ($project_up_status != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE project_up_status = '$project_up_status' ";
+                                                } else {
+                                                    $_where = $_where . " AND  project_up_status = '$project_up_status'"; 
                                                 }
                                             }
 
@@ -293,22 +333,14 @@
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-group ">
-                                                            <input type="text" class="form-control " id="searchservice"
-                                                                name="searchservice" value="<?php echo $search; ?>"
-                                                                placeholder="ค้นหา...">
-                                                            <input type="hidden" class="form-control "
-                                                                id="search_backup" name="search_backup"
-                                                                value="<?php echo $search; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_name_backup" name="project_name_backup"
-                                                                value="<?php echo $project_name; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_product_backup"
-                                                                name="project_product_backup"
-                                                                value="<?php echo $project_product; ?>">
-                                                            <input type="hidden" class="form-control "
-                                                                id="project_status_backup" name="project_status_backup"
-                                                                value="<?php echo $project_status; ?>">
+                                                            <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>" placeholder="ค้นหา...">
+                                                            <input type="hidden" class="form-control " id="search_backup" name="search_backup" value="<?php echo $search; ?>">
+                                                            <input type="hidden" class="form-control " id="project_name_backup" name="project_name_backup" value="<?php echo $project_name; ?>">
+                                                            <input type="hidden" class="form-control " id="project_product_backup" name="project_product_backup" value="<?php echo $project_product; ?>">
+                                                            <input type="hidden" class="form-control " id="project_status_backup" name="project_status_backup" value="<?php echo $project_status; ?>">
+                                                            <input type="hidden" class="form-control " id="project_staff_backup" name="project_staff_backup" value="<?php echo $project_staff; ?>">
+                                                            <input type="hidden" class="form-control " id="project_quarter_backup" name="project_quarter_backup" value="<?php echo $project_quarter; ?>">
+                                                            <input type="hidden" class="form-control " id="project_up_status_backup" name="project_up_status_backup" value="<?php echo $project_up_status; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -364,7 +396,49 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label>Creater</label>
+                                                            <select class="custom-select select2" name="project_staff">
+                                                                <option value="">Select</option>
+                                                                <?php while ($rd = mysqli_fetch_array($query_project_staff)) { ?>
+                                                                <option value="<?php echo $rd["project_staff"]; ?>"
+                                                                    <?php if ($rd['project_staff'] == $project_staff) : ?>
+                                                                    selected="selected" <?php endif; ?>>
+                                                                    <?php echo $rd["project_staff"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label>Quarter</label>
+                                                            <select class="custom-select select2" name="project_quarter">
+                                                                <option value="">Select</option>
+                                                                <?php while ($rf = mysqli_fetch_array($query_project_quarter)) { ?>
+                                                                <option value="<?php echo $rf["project_quarter"]; ?>"
+                                                                    <?php if ($rf['project_quarter'] == $project_quarter) : ?>
+                                                                    selected="selected" <?php endif; ?>>
+                                                                    <?php echo $rf["project_quarter"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label>Update Status</label>
+                                                            <select class="custom-select select2" name="project_up_status">
+                                                                <option value="">Select</option>
+                                                                <?php while ($rh = mysqli_fetch_array($query_project_up_status)) { ?>
+                                                                <option value="<?php echo $rh["project_up_status"]; ?>"
+                                                                    <?php if ($rh['project_up_status'] == $project_up_status) : ?>
+                                                                    selected="selected" <?php endif; ?>>
+                                                                    <?php echo $rh["project_up_status"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                
                                                 </div>
                                             </form>
                                         </div>
@@ -413,13 +487,12 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action
-                                            </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </thead>
 
@@ -427,7 +500,7 @@
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="project_view.php?id=<?php echo $res_search["project_id"]; ?>"><?php echo $res_search["project_product"]; ?></a></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_price"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_qty"];?></td>
@@ -472,12 +545,12 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>

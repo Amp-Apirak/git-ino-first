@@ -8,16 +8,12 @@
     </div>
 </footer>
 
-<!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-<!-- Control sidebar content goes here -->
-  </aside>
-<!-- /.control-sidebar 
 
--->
+<!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark"></aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
   <script src="../ino/code/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -37,14 +33,10 @@
   <script src="../ino/code/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- sweetalert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.min.js"></script>
-
 <!-- Toastr -->
   <script src="../ino/code/plugins/toastr/toastr.min.js"></script>
-
 <!-- Select2 -->
   <script src="../ino/code/plugins/select2/js/select2.full.min.js"></script>
-
-
 <!-- date-range-picker -->
   <script src="../ino/code/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- InputMask -->
@@ -66,10 +58,8 @@
   <script src="../ino/code/plugins/dropzone/min/dropzone.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
   <script src="../ino/code/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
 <!-- bs-custom-file-input -->
   <script src="../ino/code/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
 <!-- Summernote -->
   <script src="../ino/code/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- CodeMirror -->

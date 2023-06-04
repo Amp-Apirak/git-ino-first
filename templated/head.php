@@ -28,9 +28,28 @@
 <!----------------------------- start Time ------------------------------->
 
 
+    <style type="text/css">
+    a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: palevioletred;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    </style>
 
 
 
+
+<!-- lightbox -->
+<link rel="stylesheet" href="../ino/code/dist/css/lightbox.min.css">
 <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->

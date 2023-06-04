@@ -100,7 +100,7 @@
                                     $query_project_product = mysqli_query($conn, $_sql_project_product);
                                     $query_project_status = mysqli_query($conn, $_sql_project_status);
 
-                                    $_sql = "SELECT * FROM project INNER JOIN estime ON project.project_id = estime.project_id";
+                                    $_sql = "SELECT * FROM project";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
@@ -152,6 +152,132 @@
                                 // print_r($query_search);
                                 ?>
 
+                        <?php if ($_SESSION["role"] == "Administrator") { ?>
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <!-- Small boxes (Stat box) -->
+                                <div class="row">
+
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-info">
+
+                                            <!-- Qeury Count All Service -->
+                                            <?php 
+                                                                $query2 = "SELECT COUNT(`project_name`) as AMP FROM project ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $result = mysqli_query($conn, $query1);
+                                                                $rs = mysqli_fetch_array($result);
+                                                                $a = $rs['AMP'];
+                                                        ?>
+
+                                            <div class="inner">
+                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+
+                                                <p>Project Name</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+
+                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
+
+
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-warning">
+
+                                            <!-- Qeury Count All Service -->
+                                            <?php 
+                                                                $query2 = "SELECT COUNT(`project_product`) as AMP FROM project ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $result = mysqli_query($conn, $query1);
+                                                                $rs = mysqli_fetch_array($result);
+                                                                $a = $rs['AMP'];
+                                                        ?>
+
+                                            <div class="inner">
+                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+
+                                                <p>Product/Solution</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+
+                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
+
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-success">
+
+                                            <!-- Qeury Count All Service -->
+                                            <?php 
+                                                                $query2 = "SELECT SUM(`project_es_sales`) as AMP FROM project ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $result = mysqli_query($conn, $query1);
+                                                                $rs = mysqli_fetch_array($result);
+                                                                $a = $rs['AMP'];
+                                                        ?>
+
+                                            <div class="inner">
+                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+
+                                                <p>Estimated Sales</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+
+                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
+
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-danger">
+
+                                            <!-- Qeury Count All Service -->
+                                            <?php 
+                                                            
+                                                            $query = "SELECT SUM(`project_es_gp`) as AMP FROM project ";
+                                                            $query1 = $query . $_where . "" . " ORDER BY project_id DESC ";
+                                                            $result = mysqli_query($conn, $query1);
+                                                            $ls = mysqli_fetch_array($result);   
+                                                            $a = $ls['AMP'];                               
+                                                        ?>
+
+                                            <div class="inner">
+                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+
+                                                <p>Estimated GP</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-pie-graph"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                </div>
+
+                                <!-- ------------------------------------------------------------------------------------------------------------------ -->
+                            </div><!-- /.container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                        <?php } ?>
+
                         <section class="content">
                             <div class="row">
 
@@ -176,10 +302,13 @@
                                                             <input type="hidden" class="form-control "
                                                                 id="project_name_backup" name="project_name_backup"
                                                                 value="<?php echo $project_name; ?>">
-                                                            <input type="hidden" class="form-control " id="project_product_backup"
-                                                                name="project_product_backup" value="<?php echo $project_product; ?>">
-                                                            <input type="hidden" class="form-control " id="project_status_backup"
-                                                                name="project_status_backup" value="<?php echo $project_status; ?>">
+                                                            <input type="hidden" class="form-control "
+                                                                id="project_product_backup"
+                                                                name="project_product_backup"
+                                                                value="<?php echo $project_product; ?>">
+                                                            <input type="hidden" class="form-control "
+                                                                id="project_status_backup" name="project_status_backup"
+                                                                value="<?php echo $project_status; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -209,7 +338,8 @@
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
                                                             <label>Product</label>
-                                                            <select class="custom-select select2" name="project_product">
+                                                            <select class="custom-select select2"
+                                                                name="project_product">
                                                                 <option value="">Select</option>
                                                                 <?php while ($rg = mysqli_fetch_array($query_project_product)) { ?>
                                                                 <option value="<?php echo $rg["project_product"]; ?>"
@@ -248,12 +378,14 @@
 
                         </section>
 
+                        <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="col-md-12 pb-3">
-                            <a href="project_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
-                                data-target="#editbtn"> Add <i class=""></i></a>
+                            <a href="project_add.php" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
                         </div><br>
+                        <?php } ?>
 
 
+                        <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="card">
                             <div class="card-header">
                                 <div class="container-fluid">
@@ -264,7 +396,6 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
-
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
@@ -282,12 +413,13 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action
+                                            </th>
                                         </tr>
                                     </thead>
 
@@ -310,130 +442,14 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_remark"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_bg"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["es_month"]; ?></td>
-                                            
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
+
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
-                                                    data-target="#modal-lg">
-                                                    <i class="fas fa-pencil-alt"></i></a>
-
-
-                                                        <!----------------------------- start Modal Edit user ------------------------------->
-                                                        <div class="modal fade" id="modal-lg">
-                                                            <div class="modal-dialog modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Add User</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form action="project_edit.php" method="POST" enctype="multipart/form-data">
-                                                                            <div class="card-body">
-                                                                                <div class="form-group">
-                                                                                    <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                                                                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" value="<?php echo $res_search["fullname"]; ?>"
-                                                                                        required>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="project_name">Position<span class="text-danger">*</span></label>
-                                                                                    <input type="text" name="project_name" class="form-control" id="project_name" placeholder="" value="<?php echo $res_search["project_name"]; ?>"
-                                                                                        required>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label>Team<span class="text-danger">*</span></label> 
-                                                                                    <select class="form-control select2" name="project_product" value="<?php echo $res_search["project_product"]; ?>" required style="width: 100%;"> 
-                                                                                        <option selected="selected"><?php echo $res_search["project_product"]; ?></option>
-                                                                                        <option>Innovation</option>
-                                                                                        <option>Infrastructure</option>
-                                                                                        <option>Projecting</option>
-                                                                                        <option>Stock</option>
-                                                                                        <option>Service Solution</option>
-                                                                                        <option>Service bank</option>
-                                                                                    </select>
-
-                                                                                    <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>" 
-                                                                                        class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                                                                    <input type="hidden" name="user_staff" class="form-control"
-                                                                                        value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-                                                                                        <input type="hidden" name="id" class="form-control"
-                                                                                        value="<?php echo $res_search["id"]; ?>" placeholder="">
-
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label>Role<span class="text-danger">*</span></label>
-                                                                                    <select class="form-control select2" name="project_status" value="<?php echo $res_search["project_status"]; ?>" required style="width: 100%;">
-                                                                                        <option selected="selected"><?php echo $res_search["project_status"]; ?></option>
-                                                                                        <option>Administrator</option>
-                                                                                        <option>Engineer</option>
-                                                                                        <option>Viewer</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Phone Number</label>
-                                                                                    <div class="input-group">
-                                                                                        <div class="input-group-prepend">
-                                                                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                                                        </div>
-                                                                                        <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $res_search["tel"]; ?>"
-                                                                                            data-inputmask='"mask": "(999) 999-9999"' data-mask required>
-                                                                                    </div>
-                                                                                    <!-- /.input group -->
-                                                                                </div>
-
-                                                                                <p>
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Email</label>
-                                                                                    <div class="input-group">
-                                                                                        <div class="input-group-prepend">
-                                                                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                                                        </div>
-                                                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $res_search["email"]; ?>"
-                                                                                            required>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Username</label>
-                                                                                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" value="<?php echo $res_search["username"]; ?>"
-                                                                                        placeholder="">
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                            </div>
-
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-between">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                        <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
-                                                                    </div>
-                                                                    </form>
-                                                                </div>
-                                                                <!-- /.modal-content -->
-                                                            </div>
-                                                            <!-- /.modal-dialog -->
-                                                        </div>
-                                                        <!----------------------------- end Modal Edit user --------------------------------->
-
-
-                                                <a href="project.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i
-                                                        class="fas fa-trash"></i></a>
-
-
-
+                                                <a href="project_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="project.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -441,7 +457,7 @@
 
                                     <tfoot>
                                         <tr>
-                                        <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Price/Unit</th>
@@ -456,12 +472,12 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -470,12 +486,78 @@
                         </div>
                         <!-- /.card -->
 
+
+                        <!-------------------------------- User Role ---------------------------------------------->
+                        <?php }else{ ?>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container-fluid">
+                                    <h3 class="card-title">Project Management</h3>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">ProjectName</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
+                                        <tr id="myTable">
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_remark"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
+                                        </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">ProjectName</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <?php } ?>
+
                     </div>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
         </section>
         <!-- /.content -->
+
+
     </div>
     <!-- /.content-wrapper -->
 
@@ -517,14 +599,15 @@
 
                             <div class="form-group">
                                 <label for="project_name">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="project_name" class="form-control" id="project_name" placeholder=""
-                                    required>
+                                <input type="text" name="project_name" class="form-control" id="project_name"
+                                    placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
                                 <label>Team<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_product" required style="width: 100%;">
+                                <select class="form-control select2" name="project_product" required
+                                    style="width: 100%;">
                                     <option selected="selected">Select</option>
                                     <option>Innovation</option>
                                     <option>Infrastructure</option>
@@ -544,7 +627,8 @@
 
                             <div class="form-group">
                                 <label>Role<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_status" required style="width: 100%;">
+                                <select class="form-control select2" name="project_status" required
+                                    style="width: 100%;">
                                     <option selected="selected">Select</option>
                                     <option>Administrator</option>
                                     <option>Engineer</option>
@@ -607,7 +691,3 @@
     </div>
     <!-- /.modal -->
     <!----------------------------- end Modal Add user --------------------------------->
-
-    
-
-

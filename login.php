@@ -70,7 +70,7 @@
         $_SESSION['team'] = $row['team'];
 
         //เช็คว่ามีตัวแปร session อะไรบ้าง
-        print_r($result);
+        // print_r($result);
 
         // exit();
         echo '<script>

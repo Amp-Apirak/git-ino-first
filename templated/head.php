@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <?php 
-    if(!isset($_SESSION["user_id"])){
+    if(!isset($_SESSION["id"])){
         Header("Location: login.php");
     }else{?>
 
@@ -38,7 +38,6 @@
   <link rel="stylesheet" href="../ino/code/plugins/toastr/toastr.min.css">
 <!-- sweetalert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-
 <!-- daterange picker -->
   <link rel="stylesheet" href="../ino/code/plugins/daterangepicker/daterangepicker.css">
 <!-- iCheck for checkboxes and radio inputs -->
@@ -116,6 +115,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">15 Notifications</span>
+
                         <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item">
                                 <i class="fas fa-envelope mr-2"></i> 4 new messages
@@ -133,16 +133,20 @@
                                 <i class="fas fa-file mr-2"></i> 3 new reports
                                 <span class="float-right text-muted text-sm">2 days</span>
                             </a>
+
                         <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
+
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
             </ul>
+            
         </nav>
         <!-- /.navbar -->
         <?php } ?>

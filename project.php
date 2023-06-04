@@ -31,7 +31,7 @@
                                 text: "Delect Infomation Complatrd.",
                                 type:"success"
                             }, function(){
-                                window.location = "account.php";
+                                window.location = "project.php";
                             })
                         },1000);
                     </script>';
@@ -45,7 +45,7 @@
                                 text: "Type again",
                                 type:"warning"
                             }, function(){
-                                window.location = "account.php";
+                                window.location = "project.php";
                             })
                         },1000);
                     </script>';
@@ -249,7 +249,7 @@
                         </section>
 
                         <div class="col-md-12 pb-3">
-                            <a href="account_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
+                            <a href="project_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
                                 data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
 
@@ -313,7 +313,7 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["es_month"]; ?></td>
                                             
                                             <td>
                                                 <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
@@ -332,7 +332,7 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form action="account_edit.php" method="POST" enctype="multipart/form-data">
+                                                                        <form action="project_edit.php" method="POST" enctype="multipart/form-data">
                                                                             <div class="card-body">
                                                                                 <div class="form-group">
                                                                                     <label for="fullname">Full Name<span class="text-danger">*</span></label>
@@ -429,7 +429,7 @@
                                                         <!----------------------------- end Modal Edit user --------------------------------->
 
 
-                                                <a href="account.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i
+                                                <a href="project.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i
                                                         class="fas fa-trash"></i></a>
 
 
@@ -506,7 +506,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="account_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="project_add.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="fullname">Full Name<span class="text-danger">*</span></label>

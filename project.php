@@ -112,7 +112,7 @@
                                     $query_project_quarter = mysqli_query($conn, $_sql_project_quarter);
                                     $query_project_up_status = mysqli_query($conn, $_sql_project_up_status);
 
-                                    $_sql = "SELECT * FROM project";
+                                    $_sql = "SELECT * FROM project INNER JOIN contact On (project.project_id = contact.project_id)";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
@@ -490,6 +490,11 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
@@ -517,6 +522,11 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
 
@@ -548,6 +558,11 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
@@ -582,6 +597,11 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                         </tr>
@@ -597,6 +617,11 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
                                         </tr>
@@ -613,6 +638,11 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                         </tr>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2023 at 08:48 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Jun 07, 2023 at 07:12 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,16 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `contact` (
   `contact_id` int(11) NOT NULL COMMENT 'รหัส',
   `project_id` int(11) NOT NULL,
-  `contact_fullname` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
-  `contact_position` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง',
-  `contact_agency` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หน่วยงาน',
-  `contact_tel` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '้เบอร',
-  `contact_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'อิเมล',
-  `contact_detail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียดบริษัทและธุรกิจ',
-  `contact_company` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'บริษัท',
-  `contact_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ลูกค้า,พนักงาน,หุ่นส่วน',
+  `contact_fullname` text NOT NULL COMMENT 'ชื่อ-สกุล',
+  `contact_position` text NOT NULL COMMENT 'ตำแหน่ง',
+  `contact_agency` varchar(200) NOT NULL COMMENT 'หน่วยงาน',
+  `contact_tel` varchar(25) NOT NULL COMMENT '้เบอร',
+  `contact_email` varchar(50) NOT NULL COMMENT 'อิเมล',
+  `contact_detail` varchar(255) NOT NULL COMMENT 'รายละเอียดบริษัทและธุรกิจ',
+  `contact_company` varchar(255) NOT NULL COMMENT 'บริษัท',
+  `contact_type` varchar(255) NOT NULL COMMENT 'ลูกค้า,พนักงาน,หุ่นส่วน',
   `contact_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `contact_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
+  `contact_staff` text NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -58,15 +58,15 @@ INSERT INTO `contact` (`contact_id`, `project_id`, `contact_fullname`, `contact_
 CREATE TABLE `doc` (
   `doc_id` int(11) NOT NULL COMMENT 'รหัส',
   `doc_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `doc_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `doc_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
   `task_id` int(11) NOT NULL COMMENT 'โปรเจคย่อย',
-  `doc_type` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ประเภอเอกสาร',
-  `doc_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อเอกสาร',
-  `doc_file` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แนบเอกสาร',
-  `doc_link` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แนบลิงค์',
-  `doc_remark` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียดเพิ่มเติม',
-  `doc_status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะเอกสาร'
+  `doc_type` varchar(45) NOT NULL COMMENT 'ประเภอเอกสาร',
+  `doc_name` varchar(100) NOT NULL COMMENT 'ชื่อเอกสาร',
+  `doc_file` varchar(100) NOT NULL COMMENT 'แนบเอกสาร',
+  `doc_link` varchar(200) NOT NULL COMMENT 'แนบลิงค์',
+  `doc_remark` varchar(200) NOT NULL COMMENT 'รายละเอียดเพิ่มเติม',
+  `doc_status` varchar(45) NOT NULL COMMENT 'สถานะเอกสาร'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -78,7 +78,7 @@ CREATE TABLE `doc` (
 CREATE TABLE `estime` (
   `id_es` int(11) NOT NULL,
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
-  `es_month` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เดือน',
+  `es_month` text NOT NULL COMMENT 'เดือน',
   `es_cost` int(11) NOT NULL COMMENT 'ในเดือนนั้น',
   `es_year` int(11) NOT NULL COMMENT 'ปี'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -94,14 +94,27 @@ INSERT INTO `estime` (`id_es`, `project_id`, `es_month`, `es_cost`, `es_year`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `folder_doc`
+--
+
+CREATE TABLE `folder_doc` (
+  `folder_id` int(11) NOT NULL COMMENT 'รหัส',
+  `folder_name` varchar(255) NOT NULL COMMENT 'ชื่อโฟร์เดอร์',
+  `folder_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
+  `folder_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `project`
 --
 
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
-  `project_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รหัสผู้ใช้งาน',
-  `project_product` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Project Name',
-  `project_brand` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Product/Solution',
+  `project_name` varchar(50) NOT NULL COMMENT 'รหัสผู้ใช้งาน',
+  `project_product` varchar(100) NOT NULL COMMENT 'Project Name',
+  `project_brand` varchar(100) NOT NULL COMMENT 'Product/Solution',
   `project_es` int(11) NOT NULL COMMENT 'Brand',
   `project_price` int(11) NOT NULL COMMENT 'Price/Unit',
   `project_qty` int(11) NOT NULL COMMENT 'QTY',
@@ -111,15 +124,15 @@ CREATE TABLE `project` (
   `project_es_gp` int(11) NOT NULL COMMENT 'Es.GP',
   `project_gp` int(11) NOT NULL COMMENT '% GP',
   `project_pot` int(11) NOT NULL COMMENT '% Potential',
-  `project_mean` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Meaning',
+  `project_mean` text NOT NULL COMMENT 'Meaning',
   `project_es_sales` int(11) NOT NULL COMMENT 'Estimated Sales',
-  `project_remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Remark',
-  `project_bg` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'BG',
-  `project_up_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Win,Lost',
-  `project_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ',
-  `project_quarter` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไตรมาส',
+  `project_remark` varchar(255) NOT NULL COMMENT 'Remark',
+  `project_bg` varchar(255) NOT NULL COMMENT 'BG',
+  `project_up_status` varchar(100) NOT NULL COMMENT 'Win,Lost',
+  `project_status` varchar(100) NOT NULL COMMENT 'สถานะ',
+  `project_quarter` varchar(50) NOT NULL COMMENT 'ไตรมาส',
   `project_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `project_staff` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
+  `project_staff` varchar(50) NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -141,12 +154,12 @@ CREATE TABLE `remind` (
   `task_id` int(11) NOT NULL COMMENT 'โปรเจคย่อย',
   `sub_id` int(11) NOT NULL COMMENT 'ชื่อเอกสาร',
   `remind_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `remind_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
-  `remind_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อ',
-  `remind_detail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอีดย',
-  `remind_file` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไฟล์แนบ',
+  `remind_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
+  `remind_name` varchar(100) NOT NULL COMMENT 'หัวข้อ',
+  `remind_detail` varchar(255) NOT NULL COMMENT 'รายละเอีดย',
+  `remind_file` varchar(100) NOT NULL COMMENT 'ไฟล์แนบ',
   `remind_date` datetime NOT NULL COMMENT 'วันที่กำหนด',
-  `remind_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
+  `remind_status` varchar(100) NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -159,13 +172,13 @@ CREATE TABLE `sub_task` (
   `sub_id` int(11) NOT NULL COMMENT 'รหัส',
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
   `sub_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `sub_staff` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อผู้สร้าง',
-  `sub_tpye` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ประเภทเอกสาร',
-  `sub_name` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อชื่อ',
-  `sub_file` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เอกสาร',
-  `sub_link` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แนบลิงค์',
+  `sub_staff` varchar(45) NOT NULL COMMENT 'ชื่อผู้สร้าง',
+  `sub_tpye` text NOT NULL COMMENT 'ประเภทเอกสาร',
+  `sub_name` text NOT NULL COMMENT 'หัวข้อชื่อ',
+  `sub_file` varchar(100) NOT NULL COMMENT 'เอกสาร',
+  `sub_link` varchar(100) NOT NULL COMMENT 'แนบลิงค์',
   `sub_remark` int(200) NOT NULL COMMENT 'รายละเอียด',
-  `sub_status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
+  `sub_status` varchar(45) NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -178,10 +191,10 @@ CREATE TABLE `task_project` (
   `task_id` int(11) NOT NULL COMMENT 'รหัส',
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
   `task_crt` datetime NOT NULL COMMENT 'วันที่สรัาง',
-  `task_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
-  `task_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อ',
-  `task_detail` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียด',
-  `task_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
+  `task_staff` text NOT NULL COMMENT 'ผู้สร้าง',
+  `task_name` varchar(200) NOT NULL COMMENT 'หัวข้อ',
+  `task_detail` varchar(200) NOT NULL COMMENT 'รายละเอียด',
+  `task_status` varchar(100) NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -192,16 +205,16 @@ CREATE TABLE `task_project` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL COMMENT 'รหัส',
-  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อเข้าใช้งานระบบ',
-  `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รหัสผ่าน',
-  `fullname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'อิเมล',
-  `tel` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เบอร์',
+  `username` varchar(50) NOT NULL COMMENT 'ชื่อเข้าใช้งานระบบ',
+  `password` varchar(50) NOT NULL COMMENT 'รหัสผ่าน',
+  `fullname` varchar(100) NOT NULL COMMENT 'ชื่อ-สกุล',
+  `email` varchar(100) NOT NULL COMMENT 'อิเมล',
+  `tel` varchar(20) NOT NULL COMMENT 'เบอร์',
   `user_crt` datetime NOT NULL COMMENT 'วันส้ราง',
-  `user_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
-  `role` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'บทบาท',
-  `team` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ทีม',
-  `position` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง'
+  `user_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
+  `role` varchar(100) NOT NULL COMMENT 'บทบาท',
+  `team` varchar(100) NOT NULL COMMENT 'ทีม',
+  `position` varchar(100) NOT NULL COMMENT 'ตำแหน่ง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -237,6 +250,12 @@ ALTER TABLE `doc`
 --
 ALTER TABLE `estime`
   ADD PRIMARY KEY (`id_es`);
+
+--
+-- Indexes for table `folder_doc`
+--
+ALTER TABLE `folder_doc`
+  ADD PRIMARY KEY (`folder_id`);
 
 --
 -- Indexes for table `project`
@@ -289,6 +308,12 @@ ALTER TABLE `doc`
 --
 ALTER TABLE `estime`
   MODIFY `id_es` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `folder_doc`
+--
+ALTER TABLE `folder_doc`
+  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส';
 
 --
 -- AUTO_INCREMENT for table `project`

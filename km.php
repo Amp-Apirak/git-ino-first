@@ -25,9 +25,52 @@
     <!----------------------------- start Time ------------------------------->
 
     <?php
+
+        
+
         $_sql = "SELECT * FROM folder_doc";
         $query = mysqli_query($conn, $_sql);
-        if(isset($_POST) )
+        if(isset($_POST) && !empty($_POST)){
+            //echo $_POST['folder_name'];
+            //print_r($_POST);
+        $folder_name = $_POST['folder_name'];
+        $folder_staff = $_POST['folder_staff'];
+
+
+        $target = 'file/';
+        if(!file_exists($target.$folder_name)){
+                if(mkdir($target.$folder_name, 0777, true)){
+                    $sql =  "INSERT INTO `folder_doc` ( `folder_name`,`folder_staff`)  VALUES ('$folder_name', '$folder_staff')";
+                    $result = $conn->query($sql);
+                    if($result){
+                        echo '<script>
+                            setTimeout(function() {
+                            swal({
+                                    title: "สมัครสมาชิกสำเร็จ",
+                                    text: "",
+                                    type: "success"
+                                }, function() {
+                                    window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+                                    });
+                                    }, 1000);
+                                </script>';
+                    }else{
+                        echo '<script>
+                            setTimeout(function() {
+                            swal({
+                                    title: "เกิดข้อผิดพลาด",
+                                    type: "error"
+                            }, function() {
+                                    window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+                                    });
+                                    }, 1000);
+                                </script>';
+                    }
+                }
+            }else{
+                echo 'xxxxxxxxxxxxxxxxx';
+            }
+        }
     ?>
 
 
@@ -64,25 +107,15 @@
                                     <form action="#" method="POST" enctype="multipart/form-data">
                                         <div class="card-body"> 
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">ชื่อผลิตภัณฑ์<span
+                                                <label for="exampleInputEmail1">Folder Name<span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="project_line" class="form-control"
+                                                <input type="text" name="folder_name" class="form-control"
                                                     id="exampleInputEmail1" placeholder="ตัวอย่าง : KIN-YOO-DEE" required>
+                                                    <input type="hidden" class="form-control "
+                                                                id="folder_staff" name="folder_staff"
+                                                                value="<?php echo ($_SESSION['fullname']);?>">
                                             </div>
                                             <!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label for="exampleInputFile">File input</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                        <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"  class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                                        <input type="hidden" name="contact_staff" class="form-control"  value="<?php echo ($_SESSION['fullname']);?>" placeholder="">                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             <!-- /.form-group -->
 
                                               <!-- Date range -->
                                             <div class="form-group mt-5">

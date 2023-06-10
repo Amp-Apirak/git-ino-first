@@ -25,9 +25,6 @@
     <!----------------------------- start Time ------------------------------->
 
     <?php
-
-        
-
         $_sql = "SELECT * FROM folder_doc";
         $query = mysqli_query($conn, $_sql);
         if(isset($_POST) && !empty($_POST)){
@@ -104,23 +101,23 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Project descriptions</h3>
                                     </div>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
-                                        <div class="card-body"> 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Folder Name<span class="text-danger">*</span></label>
-                                                    <input type="text" name="folder_name" class="form-control" id="exampleInputEmail1" placeholder="ตัวอย่าง : KIN-YOO-DEE" required>
-                                                    <input type="hidden" class="form-control " id="folder_staff" name="folder_staff" value="<?php echo ($_SESSION['fullname']);?>">
-                                            </div>
-                                            <!-- /.form-group -->
+                                        <form action="#" method="POST" enctype="multipart/form-data">
+                                            <div class="card-body"> 
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Folder Name<span class="text-danger">*</span></label>
+                                                        <input type="text" name="folder_name" class="form-control" id="exampleInputEmail1" placeholder="ตัวอย่าง : KIN-YOO-DEE" required>
+                                                        <input type="hidden" class="form-control " id="folder_staff" name="folder_staff" value="<?php echo ($_SESSION['fullname']);?>">
+                                                </div>
+                                                <!-- /.form-group -->
 
-                                              <!-- Date range -->
-                                            <div class="form-group mt-5">
-                                                <button type="submit" name="submit" value="submit"
-                                                    class="btn btn-success">Save</button>
+                                                <!-- Date range -->
+                                                <div class="form-group mt-5">
+                                                    <button type="submit" name="submit" value="submit"
+                                                        class="btn btn-success">Save</button>
+                                                </div>
+                                                <!-- /.form group -->
                                             </div>
-                                            <!-- /.form group -->
-
-                                        </div>
+                                        </form>
                                         <div class="card-footer">
                                             Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
                                             examples and information about

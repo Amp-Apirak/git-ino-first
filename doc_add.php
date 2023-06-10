@@ -3,9 +3,9 @@
 <?php $menu = "document"; ?>
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>INO | Add Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INO | Add Document</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -50,47 +50,30 @@
                     <div class="col-12">
                         <!-- เพิ่มข้อมูล -->
                         <?php
-                            if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+                        if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
 
-                                $project_date  = $_POST['project_date']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
-                                $project_line = $_POST['project_line'];
-                                $project_cate = $_POST['project_cate'];
-                                $project_sub = $_POST['project_sub'];
-                                $project_name = $_POST['project_name'];
-                                $project_detail = $_POST['project_detail'];
-                                $project_cost = $_POST['project_cost'];
-                                $project_staff = $_POST['project_staff'];
-                                $project_link = $_POST['project_link'];
+                            $folder_name  = $_POST['folder_name']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+                            $doc_crt = $_POST['doc_crt'];
+                            $doc_staff = $_POST['doc_staff'];
+                            $task_name = $_POST['task_name'];
+                            $doc_type = $_POST['doc_type'];
+                            $doc_name = $_POST['doc_name'];
+                            $doc_link = $_POST['doc_link'];
+                            $doc_remark = $_POST['doc_remark'];
+                            $doc_status = $_POST['doc_status'];
+                            $project_name = $_POST['project_name'];
 
-                                $project_start = $_POST['project_start'];
-                                $project_end = $_POST['project_end'];
-                                $project_pay = $_POST['project_pay'];
-                                $project_status = $_POST['project_status'];
-                                $project_in = $_POST['project_in'];
-                                $project_team = $_POST['project_team'];
 
-                                $contact_name = $_POST['contact_name'];
-                                $contact_company = $_POST['contact_company'];
-                                $contact_position = $_POST['contact_position'];
-                                $contact_email = $_POST['contact_email'];
-                                $contact_phone = $_POST['contact_phone'];
-                                $contact_detail = $_POST['contact_detail'];
 
-                                $sale_name = $_POST['sale_name'];
-                                $sale_company = $_POST['sale_company'];
-                                $sale_position = $_POST['sale_position'];
-                                $sale_email = $_POST['sale_email'];
-                                $sale_phone = $_POST['sale_phone'];
-                                $sale_detail = $_POST['sale_detail'];
 
-                                // print_r($_POST);
-                                $sql =  "INSERT INTO `tb_project` (`project_id`, `project_date`,`project_line`, `project_cate`, `project_sub`, `project_name`, `project_detail`, `project_cost`, `project_staff`,`project_link`, `contact_name`, `contact_company`, `contact_position`, `contact_email`, `contact_phone`,`contact_detail`, `sale_name`, `sale_company`, `sale_position`, `sale_email`, `sale_phone`, `sale_detail`, `project_start`, `project_end`, `project_pay`, `project_status`, `project_in`, `project_team`) 
-                                VALUES (NULL, '$project_date', '$project_line', '$project_cate', '$project_sub', '$project_name', '$project_detail', '$project_cost', '$project_staff', '$project_link', '$contact_name', '$contact_company', '$contact_position', '$contact_email', '$contact_phone', '$contact_detail', '$sale_name', '$sale_company', '$sale_position', '$sale_email', '$sale_phone', '$sale_detail', '$project_start', '$project_end', '$project_pay', '$project_status', '$project_in', '$project_team')";
+                            print_r($_POST);
+                            //$sql =  "INSERT INTO `doc` (`folder_name`,`doc_crt`, `doc_staff`, `task_name`, `doc_type`, `doc_name`, `doc_file`, `doc_link`,`doc_remark`, `project_name`) 
+                            //VALUES ('$folder_name', '$doc_crt', '$doc_staff', '$task_name', '$doc_type', '$doc_name', '$doc_file', '$doc_link', '$doc_remark', '$project_name')";
 
-                                $result = $conn->query($sql);
+                            $result = $conn->query($sql);
 
-                                //  print_r($sql);
-                                if ($result) {
+                            //  print_r($sql);
+                            if ($result) {
                                 // <!-- sweetalert -->
                                 echo '<script>
                                         setTimeout(function(){
@@ -104,9 +87,9 @@
                                         },1000);
                                     </script>';
                                 // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-                                } else {
-                                    // <!-- sweetalert -->
-                                    echo '<script>
+                            } else {
+                                // <!-- sweetalert -->
+                                echo '<script>
                                             setTimeout(function(){
                                                 swal({
                                                     title: "Can Not Save Successfully!",
@@ -117,9 +100,9 @@
                                                 })
                                             },1000);
                                         </script>';
-                                    // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-                                }
+                                // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
                             }
+                        }
                         // echo '<pre>';
                         // print_r($_POST);
                         // print_r($_FILES);
@@ -129,7 +112,7 @@
                         <!-- เพิ่มข้อมูล -->
                         <div class="row">
                             <!-- /.col (left) -->
-                            <div class="col-md-12">
+                            <div class="col-md-12 mx-auto">
                                 <div class="card card-primary">
                                     <div class="card-header">
                                         <h3 class="card-title">Document descriptions</h3>
@@ -139,61 +122,68 @@
 
                                         <div class="card-body">
                                             <?php
-                                                $project_name = "";
-                                                $_sql_project_name = "SELECT DISTINCT project_name FROM project";
-                                                $query_project_name = mysqli_query($conn, $_sql_project_name);
+                                            $project_name = "";
+                                            $_sql_project_name = "SELECT DISTINCT project_name FROM project";
+                                            $query_project_name = mysqli_query($conn, $_sql_project_name);
                                             ?>
-                                            
+
                                             <div class="form-group">
                                                 <label>Project name</label>
-                                                    <select class="custom-select select2" name="project_name">
-                                                        <option selected="selected"></option>
-                                                            <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
-                                                                <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
-                                                             <?php } ?>
-                                                    </select>
-                                                <input type="hidden" name="project_crt" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <select class="custom-select select2" name="project_name">
+                                                    <option selected="selected"></option>
+                                                    <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
+                                                        <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <input type="hidden" name="doc_crt" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                                <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                             </div>
                                             <!-- /.form-group -->
 
                                             <?php
-                                                $task_name = "";
-                                                $_sql_task_name = "SELECT DISTINCT task_name FROM task_project";
-                                                $query_task_name = mysqli_query($conn, $_sql_task_name);
+                                            $task_name = "";
+                                            $_sql_task_name = "SELECT DISTINCT task_name FROM task_project";
+                                            $query_task_name = mysqli_query($conn, $_sql_task_name);
                                             ?>
-                                        
+
                                             <div class="form-group">
                                                 <label>Task Project</label>
-                                                    <select class="custom-select select2" name="task_name">
-                                                        <option selected="selected"></option>
-                                                            <?php while ($r = mysqli_fetch_array($query_task_name)) { ?>
-                                                                <option value="<?php echo $r["task_name"]; ?>" <?php if ($r['task_name'] == $task_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["task_name"]; ?></option>
-                                                             <?php } ?>
-                                                    </select>
-                                                <input type="hidden" name="project_crt" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <select class="custom-select select2" name="task_name">
+                                                    <option selected="selected"></option>
+                                                    <?php while ($r = mysqli_fetch_array($query_task_name)) { ?>
+                                                        <option value="<?php echo $r["task_name"]; ?>" <?php if ($r['task_name'] == $task_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["task_name"]; ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                             <!-- /.form-group -->
 
                                             <?php
-                                                $folder_name = "";
-                                                $_sql_folder_name = "SELECT DISTINCT folder_name FROM folder_doc";
-                                                $query_folder_name = mysqli_query($conn, $_sql_folder_name);
+                                            $folder_name = "";
+                                            $_sql_folder_name = "SELECT DISTINCT folder_name FROM folder_doc";
+                                            $query_folder_name = mysqli_query($conn, $_sql_folder_name);
                                             ?>
-                                        
-                                            <div class="form-group">
-                                                <label>Folder <span class="text-danger">*</span></label>
-                                                    <select class="custom-select select2" name="folder_name">
-                                                    <option selected="selected"></option>
+
+                                            <div class="row">
+                                                <div class="col col-10">
+                                                    <div class="form-group">
+                                                        <label>Folder <span class="text-danger">*</span></label>
+                                                        <select class="custom-select select2 " width="" name="folder_name">
+                                                            <option selected="selected"></option>
                                                             <?php while ($r = mysqli_fetch_array($query_folder_name)) { ?>
                                                                 <option value="<?php echo $r["folder_name"]; ?>" <?php if ($r['folder_name'] == $folder_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["folder_name"]; ?></option>
-                                                             <?php } ?>
-                                                    </select>
-
-                                                    <div class="input-group-append"><span class="input-group-text">Upload</span></div>
-                                                <input type="hidden" name="doc_crt" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                                <input type="hidden" name="doc_staff" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                    <!-- /.form-group-->
+                                                </div>
+                                                <div class="col col-2">
+                                                    <div class="form-group">
+                                                        <label>Add <i class="nav-icon fas fa-plus style=" color: #1f5d09;></i></label><br>
+                                                        <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn"> <i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                                                    <!-- /.form-group-->
+                                                </div>
                                             </div>
-                                            <!-- /.form-group-->
 
                                             <div class="form-group">
                                                 <label>Type <span class="text-danger">*</span></label>
@@ -211,7 +201,7 @@
 
                                             <div class="form-group">
                                                 <label>Status<span class="text-danger">*</span></label>
-                                                <select class="form-control select2" name="doc_type"  style="width: 100%;">
+                                                <select class="form-control select2" name="doc_status" style="width: 100%;">
                                                     <option selected="selected"></option>
                                                     <option>Complated</option>
                                                     <option>Wait Approve</option>
@@ -226,10 +216,22 @@
                                             </div>
                                             <!-- /.form-group -->
 
+
+                                            <div class="form-group">
+                                                <label for="doc_file">File input</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="doc_file" name="doc_file">
+                                                    <label class="custom-file-label" for="doc_file">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <!-- /.form-group -->
+
+
+
                                             <!-- textarea -->
                                             <div class="form-group">
                                                 <label>Document descriptions</label>
-                                                <textarea class="form-control" name="doc_remark" id="project_detail" rows="12" placeholder="อธิบายโครงการ "></textarea>
+                                                <textarea class="form-control" name="doc_remark" id="doc_remark" rows="6" placeholder="remark "></textarea>
                                             </div>
 
                                             <div class="form-group">
@@ -238,44 +240,24 @@
                                             </div>
                                             <!-- /.form-group -->
 
-
-                                            <div class="form-group">
-                                                <label>ผู้ดูแลโครงการ<span class="text-danger">*</span></label>
-                                                <select class="form-control select2" name="project_staff" required
-                                                    style="width: 100%;">
-                                                    <option selected="selected">คุณภัทราอร อมรโอภาคุณ</option>
-                                                    <option>คุณภัทราอร อมรโอภาคุณ</option>
-                                                    <option>คุณอภิรักษ์ บางพุก</option>
-                                                    <option>คุณธีรชาติ ติยพงศ์พัฒนา </option>
-                                                    <option>คุณโอฬาร สินธุพันธุ์</option>
-                                                    <option>คุณผาณิต เผ่าพันธ์</option>
-                                                </select>
+                                            <!-- Date range -->
+                                            <div class="form-group mt-5">
+                                                <button type="submit" name="submit" value="submit" class="btn btn-success"> Save </button>
                                             </div>
-                                            <!-- /.form-group -->
+                                            <!-- /.form group -->
 
-                                            <div class="form-group">
-                                                <label>ทีม</label>
-                                                <select class="form-control select2" name="project_team" 
-                                                    style="width: 100%;" >
-                                                    <option selected="selected">Innovation</option>
-                                                    <option>Services</option>
-                                                    <option>Innovation</option>
-                                                    <option>Sale Maketing</option>
-                                                    <option>Infrastructure</option>
-                                                </select>
-                                            </div>
-                                            <!-- /.form-group -->
+
 
                                         </div>
 
+                                    </form>
 
-
-                                        <div class="card-footer">
-                                            Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
-                                            examples and information about
-                                            the plugin.
-                                        </div>
-                                        <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
+                                        examples and information about
+                                        the plugin.
+                                    </div>
+                                    <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
                                 <!-- /.card -->
@@ -303,6 +285,88 @@
     <script src="code/dist/js/highlight.js"></script>
 
     <script>
-    $("#myTable tr").highlight();
+        $("#myTable tr").highlight();
     </script>
     <!-- highlight -->
+
+    <!----------------------------- start Modal Add user ------------------------------->
+
+    <?php
+    $_sql = "SELECT * FROM folder_doc";
+    $query = mysqli_query($conn, $_sql);
+    if (isset($_POST) && !empty($_POST)) {
+        //echo $_POST['folder_name'];
+        //print_r($_POST);
+        $folder_name = $_POST['folder_name'];
+        $folder_staff = $_POST['folder_staff'];
+
+
+        $target = 'file/';
+        if (!file_exists($target . $folder_name)) {
+            if (mkdir($target . $folder_name, 0777, true)) {
+                $sql =  "INSERT INTO `folder_doc` ( `folder_name`,`folder_staff`)  VALUES ('$folder_name', '$folder_staff')";
+                $result = $conn->query($sql);
+                // if($result){
+                //     echo '<script>
+                //         setTimeout(function() {
+                //         swal({
+                //                 title: "สมัครสมาชิกสำเร็จ",
+                //                 text: "",
+                //                 type: "success"
+                //             }, function() {
+                //                 window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+                //                 });
+                //                 }, 1000);
+                //             </script>';
+                // }else{
+                //     echo '<script>
+                //         setTimeout(function() {
+                //         swal({
+                //                 title: "เกิดข้อผิดพลาด",
+                //                 type: "error"
+                //         }, function() {
+                //                 window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
+                //                 });
+                //                 }, 1000);
+                //             </script>';
+                // }
+            }
+        } else {
+            echo 'xxxxxxxxxxxxxxxxx';
+        }
+    }
+    ?>
+
+
+    <div class="modal fade" id="editbtn">
+        <div class="modal-dialog editbtn">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Folder Name</label>
+                                <input type="text" name="folder_name" class="form-control" id="Folder Name" placeholder="Folder Name" required>
+                                <input type="hidden" class="form-control " id="folder_staff" name="folder_staff" value="<?php echo ($_SESSION['fullname']); ?>">
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!----------------------------- end Modal Add user --------------------------------->

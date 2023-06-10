@@ -267,24 +267,15 @@
 
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Username
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Full
-                                                Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Team
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Position
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Role
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Email
-                                            </th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create
-                                                Date</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater
-                                            </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Username </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Full Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Team</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Position </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Role </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Email </th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create  Date</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater </th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action
                                             </th>
                                         </tr>
@@ -303,9 +294,7 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["user_crt"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["user_staff"]; ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
-                                                    data-target="#modal-lg<?php echo $res_search["id"]; ?>">
-                                                    <i class="fas fa-pencil-alt"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg<?php echo $res_search["id"]; ?>"> <i class="fas fa-pencil-alt"></i></a>
 
 
                                                         <!----------------------------- start Modal Edit user ------------------------------->

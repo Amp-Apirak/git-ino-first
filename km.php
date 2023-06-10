@@ -107,13 +107,9 @@
                                     <form action="#" method="POST" enctype="multipart/form-data">
                                         <div class="card-body"> 
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Folder Name<span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" name="folder_name" class="form-control"
-                                                    id="exampleInputEmail1" placeholder="ตัวอย่าง : KIN-YOO-DEE" required>
-                                                    <input type="hidden" class="form-control "
-                                                                id="folder_staff" name="folder_staff"
-                                                                value="<?php echo ($_SESSION['fullname']);?>">
+                                                <label for="exampleInputEmail1">Folder Name<span class="text-danger">*</span></label>
+                                                    <input type="text" name="folder_name" class="form-control" id="exampleInputEmail1" placeholder="ตัวอย่าง : KIN-YOO-DEE" required>
+                                                    <input type="hidden" class="form-control " id="folder_staff" name="folder_staff" value="<?php echo ($_SESSION['fullname']);?>">
                                             </div>
                                             <!-- /.form-group -->
 

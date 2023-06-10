@@ -352,8 +352,7 @@
                                                         class="fas fa-eye"></i></a>
                                                 <a href="#" class="btn btn-info btn-sm"><i
                                                         class="fas fa-pencil-alt"></i></a>
-                                                <a href="employee.php?id=<?php echo $res_search["id_employee"]; ?>" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-trash"></i></a>
+                                                <a href="employee.php?id=<?php echo $res_search["id_employee"]; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                             </td>
 
                                         </tr>

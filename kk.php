@@ -25,68 +25,43 @@
     <!----------------------------- start Time ------------------------------->
 
 
-
-    <?php
-
-    $test_d = $_POST['test_d'];
-
     
-    $target_dir = "../ino/file/$test_d/";
-    $target_file = $target_dir . basename($_FILES["test_name"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    <?php
+        
+    if (isset($_POST['submit'])) {
+        $test_d = $_POST['test_d'];
 
-    // Check if image file is a actual image or fake image
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["test_name"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
+        $target_dir = "../ino/file/$test_d/";
+        $target_file = $target_dir . basename($_FILES["file_upfile"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // printf($imageFileType);
+        
+        // Check if $uploadOk is set to 0 by an error
+        if ($imageFileType == "") {
+            echo "Sorry, your file was not uploaded.";
+        }else{
+
+      
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+
         }
+        
+
+
+        $file_upfile = $_FILES['file_upfile']['name'];
+        $file_tmp = $_FILES['file_upfile']['tmp_name'];
+
+        move_uploaded_file($file_tmp, "../ino/file/$test_d/$file_upfile");
     }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($_FILES["test_name"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
-    ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["test_name"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["test_name"]["name"])) . " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
-
-
-
-
-
+}
 
     ?>
+
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -132,7 +107,7 @@
 
                                             <div class="form-group">
                                                 <label>Folder <span class="text-danger">*</span></label>
-                                                <select class="custom-select select2 " width="" name="test_d"  id="test_d">
+                                                <select class="custom-select select2 " width="" name="test_d" id="test_d">
                                                     <option selected="selected"></option>
                                                     <?php while ($r = mysqli_fetch_array($query_folder_name)) { ?>
                                                         <option value="<?php echo $r["folder_name"]; ?>" <?php if ($r['folder_name'] == $folder_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["folder_name"]; ?></option>
@@ -144,12 +119,11 @@
                                             <div class="form-group">
                                                 <label for="test_name">File input</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="test_name" name="test_name">
+                                                    <input type="file" class="custom-file-input" id="file_upfile" name="file_upfile">
                                                     <label class="custom-file-label" for="test_name">Choose file</label>
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->
-
 
                                             <!-- Date range -->
                                             <div class="form-group mt-5">

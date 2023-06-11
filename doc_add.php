@@ -31,12 +31,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Open Document</h1>
+                        <h1>Add Document</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active">Open Document</li>
+                            <li class="breadcrumb-item active">Add Document</li>
                         </ol>
                     </div>
                 </div>
@@ -48,66 +48,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <!-- เพิ่มข้อมูล -->
-                        <?php
-                        if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
-
-                            $folder_name  = $_POST['folder_name']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
-                            $doc_crt = $_POST['doc_crt'];
-                            $doc_staff = $_POST['doc_staff'];
-                            $task_name = $_POST['task_name'];
-                            $doc_type = $_POST['doc_type'];
-                            $doc_name = $_POST['doc_name'];
-                            $doc_link = $_POST['doc_link'];
-                            $doc_remark = $_POST['doc_remark'];
-                            $doc_status = $_POST['doc_status'];
-                            $project_name = $_POST['project_name'];
-
-
-
-
-                            print_r($_POST);
-                            //$sql =  "INSERT INTO `doc` (`folder_name`,`doc_crt`, `doc_staff`, `task_name`, `doc_type`, `doc_name`, `doc_file`, `doc_link`,`doc_remark`, `project_name`) 
-                            //VALUES ('$folder_name', '$doc_crt', '$doc_staff', '$task_name', '$doc_type', '$doc_name', '$doc_file', '$doc_link', '$doc_remark', '$project_name')";
-
-                            $result = $conn->query($sql);
-
-                            //  print_r($sql);
-                            if ($result) {
-                                // <!-- sweetalert -->
-                                echo '<script>
-                                        setTimeout(function(){
-                                            swal({
-                                                title: "Save Successfully!",
-                                                text: "Thank You . ",
-                                                type:"success"
-                                            }, function(){
-                                                window.location = "project.php";
-                                            })
-                                        },1000);
-                                    </script>';
-                                // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-                            } else {
-                                // <!-- sweetalert -->
-                                echo '<script>
-                                            setTimeout(function(){
-                                                swal({
-                                                    title: "Can Not Save Successfully!",
-                                                    text: "Checking Your Data",
-                                                    type:"warning"
-                                                }, function(){
-                                                    window.location = "project_is.php";
-                                                })
-                                            },1000);
-                                        </script>';
-                                // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-                            }
-                        }
-                        // echo '<pre>';
-                        // print_r($_POST);
-                        // print_r($_FILES);
-                        // echo '</pre>';
-                        ?>
 
                         <!-- เพิ่มข้อมูล -->
                         <div class="row">
@@ -118,7 +58,7 @@
                                         <h3 class="card-title">Document descriptions</h3>
                                     </div>
 
-                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                    <form action="doc_add1.php" method="POST" enctype="multipart/form-data">
 
                                         <div class="card-body">
                                             <?php
@@ -135,7 +75,6 @@
                                                         <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
                                                     <?php } ?>
                                                 </select>
-                                                <input type="hidden" name="doc_crt" value="<?php echo $date; ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                                 <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                             </div>
                                             <!-- /.form-group -->
@@ -218,10 +157,10 @@
 
 
                                             <div class="form-group">
-                                                <label for="doc_file">File input</label>
+                                                <label for="file_upfile">File input</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="doc_file" name="doc_file">
-                                                    <label class="custom-file-label" for="doc_file">Choose file</label>
+                                                    <input type="file" class="custom-file-input" id="file_upfile" name="file_upfile">
+                                                    <label class="custom-file-label" for="file_upfile">Choose file</label>
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->
@@ -299,37 +238,53 @@
         //print_r($_POST);
         $folder_name = $_POST['folder_name'];
         $folder_staff = $_POST['folder_staff'];
-
-
         $target = 'file/';
+        $target_file = $target . basename($_FILES["folder_name"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        print_r($target_file);
+        if (file_exists($target_file)) {
+            echo '<script>
+            setTimeout(function() {
+            swal({
+                    title: "Your folder name is duplicate.",
+                    text: "",
+                    type: "error"
+                }, function() {
+                    window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                    });
+                    }, 1000);
+                </script>';
+        }
+
         if (!file_exists($target . $folder_name)) {
             if (mkdir($target . $folder_name, 0777, true)) {
                 $sql =  "INSERT INTO `folder_doc` ( `folder_name`,`folder_staff`)  VALUES ('$folder_name', '$folder_staff')";
                 $result = $conn->query($sql);
-                // if($result){
-                //     echo '<script>
-                //         setTimeout(function() {
-                //         swal({
-                //                 title: "สมัครสมาชิกสำเร็จ",
-                //                 text: "",
-                //                 type: "success"
-                //             }, function() {
-                //                 window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
-                //                 });
-                //                 }, 1000);
-                //             </script>';
-                // }else{
-                //     echo '<script>
-                //         setTimeout(function() {
-                //         swal({
-                //                 title: "เกิดข้อผิดพลาด",
-                //                 type: "error"
-                //         }, function() {
-                //                 window.location = "account.php"; //หน้าที่ต้องการให้กระโดดไป
-                //                 });
-                //                 }, 1000);
-                //             </script>';
-                // }
+                if ($result) {
+                    echo '<script>
+                        setTimeout(function() {
+                        swal({
+                                title: "Folder saved successfully.",
+                                text: "",
+                                type: "success"
+                            }, function() {
+                                window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                });
+                                }, 1000);
+                            </script>';
+                } else {
+                    echo '<script>
+                        setTimeout(function() {
+                        swal({
+                                title: "Please check the input.",
+                                type: "error"
+                        }, function() {
+                                window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                });
+                                }, 1000);
+                            </script>';
+                }
             }
         } else {
             echo 'xxxxxxxxxxxxxxxxx';

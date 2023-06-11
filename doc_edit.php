@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INO | Add Document</title>
+    <title>INO | Edit Document</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -24,6 +24,95 @@
     ?>
     <!----------------------------- start Time ------------------------------->
 
+
+
+    <!-- เพิ่มข้อมูล -->
+    <?php
+    
+    if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+
+        $folder_name  = $_POST['folder_name']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+        $doc_staff = $_POST['doc_staff'];
+        $task_name = $_POST['task_name'];
+        $doc_type = $_POST['doc_type'];
+        $doc_name = $_POST['doc_name'];
+        $doc_link = $_POST['doc_link'];
+        $doc_remark = $_POST['doc_remark'];
+        $doc_status = $_POST['doc_status'];
+        $project_name = $_POST['project_name'];
+
+
+        $folder_name = $_POST['folder_name'];
+
+        $target_dir = "../ino/file/$folder_name/";
+        $target_file = $target_dir . basename($_FILES["file_upfile"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // printf($imageFileType);
+        $file_upfile = $_FILES['file_upfile']['name'];
+        $file_tmp = $_FILES['file_upfile']['tmp_name'];
+        move_uploaded_file($file_tmp, "../ino/file/$folder_name/$file_upfile");
+
+
+
+
+        $sql =  "UPDATE `doc` SET `folder_name` = '$folder_name', `doc_staff` = '$doc_staff', `task_name` = '$task_name', 
+                            `doc_type` = '$doc_type', `doc_name` = '$doc_name', `doc_link` = '$doc_link', `doc_remark` = '$doc_remark', 
+                            `file_upfile` = '$file_upfile', `doc_status` = '$doc_status' , `project_name` = '$project_name' WHERE doc_id=" . $_GET['id'];
+        $result = $conn->query($sql);
+
+
+        //print_r($sql);
+
+        if ($result) {
+            // <!-- sweetalert -->
+            echo '<script>
+                        setTimeout(function(){
+                            swal({
+                                title: "Save data successfully",
+                                text: "Thank You . ",
+                                type:"success"
+                            }, function(){
+                                window.location = "document.php";
+                            })
+                        },1000);
+                   </script>';
+            // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+            
+        } else {
+            // <!-- sweetalert -->
+            echo '<script>
+                        setTimeout(function(){
+                            swal({
+                                title: "Can Not Save Successfully!",
+                                text: "Checking Your Data",
+                                type:"warning"
+                            }, function(){
+                                window.location = "doc_add.php";
+                            })
+                        },1000);
+                  </script>';
+            // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+        }
+    }
+    // echo '<pre>';
+    // print_r($_POST);
+    // print_r($_FILES);
+    // echo '</pre>';
+
+
+    /* แสดงข้อมูล */
+    $rs = $conn->query("SELECT * FROM doc WHERE doc_id=" . $_GET['id']);
+    /* ประกาศตัวแปลเก็บค่า เชื่อมต่อฐานข้อมูล อ่าน/เขียนค่าข้อมูล เรียกตารางออกมา โดยมีเงื่อนไข = การรับค่า Get ID มาจาก Form ที่มีการเขึยน form_edit-a.php?id_p=<?=$sr->id_p;?>
+   */
+    $rr = $rs->fetch_object()
+
+       
+    ?>
+
+
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -31,12 +120,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Document</h1>
+                        <h1>Edit Document</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active">Add Document</li>
+                            <li class="breadcrumb-item active">Edit Document</li>
                         </ol>
                     </div>
                 </div>
@@ -58,7 +147,7 @@
                                         <h3 class="card-title">Document descriptions</h3>
                                     </div>
 
-                                    <form action="doc_add1.php" method="POST" enctype="multipart/form-data">
+                                    <form action="#" method="POST" enctype="multipart/form-data">
 
                                         <div class="card-body">
                                             <?php
@@ -70,7 +159,7 @@
                                             <div class="form-group">
                                                 <label>Project name</label>
                                                 <select class="custom-select select2" name="project_name">
-                                                    <option selected="selected"></option>
+                                                    <option selected="selected"><?= $rr->project_name; ?></option>
                                                     <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
                                                         <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
                                                     <?php } ?>
@@ -88,7 +177,7 @@
                                             <div class="form-group">
                                                 <label>Task Project</label>
                                                 <select class="custom-select select2" name="task_name">
-                                                    <option selected="selected"></option>
+                                                    <option selected="selected"><?= $rr->task_name; ?></option>
                                                     <?php while ($r = mysqli_fetch_array($query_task_name)) { ?>
                                                         <option value="<?php echo $r["task_name"]; ?>" <?php if ($r['task_name'] == $task_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["task_name"]; ?></option>
                                                     <?php } ?>
@@ -103,22 +192,15 @@
                                             ?>
 
                                             <div class="row">
-                                                <div class="col col-10">
+                                                <div class="col col-12">
                                                     <div class="form-group">
                                                         <label>Folder <span class="text-danger">*</span></label>
                                                         <select class="custom-select select2 " width="" name="folder_name">
-                                                            <option selected="selected"></option>
+                                                            <option selected="selected"><?= $rr->folder_name; ?></option>
                                                             <?php while ($r = mysqli_fetch_array($query_folder_name)) { ?>
                                                                 <option value="<?php echo $r["folder_name"]; ?>" <?php if ($r['folder_name'] == $folder_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["folder_name"]; ?></option>
                                                             <?php } ?>
                                                         </select>
-                                                    </div>
-                                                    <!-- /.form-group-->
-                                                </div>
-                                                <div class="col col-2">
-                                                    <div class="form-group">
-                                                        <label>Add <i class="nav-icon fas fa-plus style=" color: #1f5d09;></i></label><br>
-                                                        <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn"> <i class="fas fa-pencil-alt"></i></a>
                                                     </div>
                                                     <!-- /.form-group-->
                                                 </div>
@@ -127,7 +209,7 @@
                                             <div class="form-group">
                                                 <label>Type <span class="text-danger">*</span></label>
                                                 <select class="form-control select2" name="doc_type" style="width: 100%;">
-                                                    <option selected="selected"></option>
+                                                    <option selected="selected"><?= $rr->doc_type; ?></option>
                                                     <option>Word</option>
                                                     <option>Excel</option>
                                                     <option>Presentation</option>
@@ -141,7 +223,7 @@
                                             <div class="form-group">
                                                 <label>Status<span class="text-danger">*</span></label>
                                                 <select class="form-control select2" name="doc_status" style="width: 100%;">
-                                                    <option selected="selected"></option>
+                                                    <option selected="selected"><?= $rr->doc_status; ?></option>
                                                     <option>Complated</option>
                                                     <option>Wait Approve</option>
                                                     <option>Process</option>
@@ -151,7 +233,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Document Name<span class="text-danger">*</span></label>
-                                                <input type="text" name="doc_name" class="form-control" id="exampleInputEmail1" placeholder="Document Name" required>
+                                                <input type="text" name="doc_name" value="<?= $rr->doc_name; ?>" class="form-control" id="exampleInputEmail1" placeholder="Document Name" required>
                                             </div>
                                             <!-- /.form-group -->
 
@@ -159,8 +241,10 @@
                                             <div class="form-group">
                                                 <label for="file_upfile">File input <span class="text-danger"> (upload-max-filesize 20M*)</span></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="file_upfile" name="file_upfile">
-                                                    <label class="custom-file-label" for="file_upfile">Choose file</label>
+                                                    <input type="file" class="custom-file-input" id="file_upfile" name="file_upfile" >
+                                                    <label class="custom-file-label" for="file_upfile"><?= $rr->file_upfile; ?></label>
+
+                                                    <input type="hidden" class="form-control " id="file_upfile" name="file_upfile" value="<?= $rr->file_upfile; ?>">
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->
@@ -170,12 +254,12 @@
                                             <!-- textarea -->
                                             <div class="form-group">
                                                 <label>Document descriptions</label>
-                                                <textarea class="form-control" name="doc_remark" id="doc_remark" rows="6" placeholder="remark "></textarea>
+                                                <textarea class="form-control" name="doc_remark" id="doc_remark" rows="6" placeholder="remark "><?= $rr->doc_remark; ?></textarea>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Link Form Drive</label>
-                                                <input type="text" name="doc_link" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive">
+                                                <input type="text" name="doc_link" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive" value="<?= $rr->doc_link; ?>">
                                             </div>
                                             <!-- /.form-group -->
 
@@ -228,100 +312,3 @@
     </script>
     <!-- highlight -->
 
-    <!----------------------------- start Modal Add user ------------------------------->
-
-    <?php
-    $_sql = "SELECT * FROM folder_doc";
-    $query = mysqli_query($conn, $_sql);
-    if (isset($_POST) && !empty($_POST)) {
-        //echo $_POST['folder_name'];
-        //print_r($_POST);
-        $folder_name = $_POST['folder_name'];
-        $folder_staff = $_POST['folder_staff'];
-        $target = 'file/';
-        $target_file = $target . basename($_FILES["folder_name"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        print_r($target_file);
-        if (file_exists($target_file)) {
-            echo '<script>
-            setTimeout(function() {
-            swal({
-                    title: "Your folder name is duplicate.",
-                    text: "",
-                    type: "error"
-                }, function() {
-                    window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
-                    });
-                    }, 1000);
-                </script>';
-        }
-
-        if (!file_exists($target . $folder_name)) {
-            if (mkdir($target . $folder_name, 0777, true)) {
-                $sql =  "INSERT INTO `folder_doc` ( `folder_name`,`folder_staff`)  VALUES ('$folder_name', '$folder_staff')";
-                $result = $conn->query($sql);
-                if ($result) {
-                    echo '<script>
-                        setTimeout(function() {
-                        swal({
-                                title: "Folder saved successfully.",
-                                text: "",
-                                type: "success"
-                            }, function() {
-                                window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
-                                });
-                                }, 1000);
-                            </script>';
-                } else {
-                    echo '<script>
-                        setTimeout(function() {
-                        swal({
-                                title: "Please check the input.",
-                                type: "error"
-                        }, function() {
-                                window.location = "doc_add.php"; //หน้าที่ต้องการให้กระโดดไป
-                                });
-                                }, 1000);
-                            </script>';
-                }
-            }
-        } else {
-            echo 'xxxxxxxxxxxxxxxxx';
-        }
-    }
-    ?>
-
-
-    <div class="modal fade" id="editbtn">
-        <div class="modal-dialog editbtn">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add User</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="POST" enctype="multipart/form-data">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Folder Name</label>
-                                <input type="text" name="folder_name" class="form-control" id="Folder Name" placeholder="Folder Name" required>
-                                <input type="hidden" class="form-control " id="folder_staff" name="folder_staff" value="<?php echo ($_SESSION['fullname']); ?>">
-                            </div>
-                            <!-- /.form-group -->
-                        </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
-                </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <!----------------------------- end Modal Add user --------------------------------->

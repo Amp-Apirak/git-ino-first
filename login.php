@@ -76,8 +76,8 @@
         echo '<script>
                     setTimeout(function() {
                         swal({
-                            title: "เข้าสู่ระบบสำเร็จ",
-                            text: "ยินดีตอนรับ เข้าใช้งานระบบ Sale Service ",
+                            title: "Login success.",
+                            text: "Welcome to login Sale Service. ",
                             type: "success"
                         }, function() {
                             window.location = "index.php"; //หน้าที่ต้องการให้กระโดดไป
@@ -92,8 +92,8 @@
         echo '<script>
                         setTimeout(function() {
                         swal({
-                            title: "เกิดข้อผิดพลาด",
-                            text: "Username หรือ Password ไม่ถูกต้อง ลองใหม่อีกครั้ง",
+                            title: "Oop.....!",
+                            text: "Invalid username or password, please try again.",
                             type: "warning"
                         }, function() {
                             window.location = "login.php"; //หน้าที่ต้องการให้กระโดดไป

@@ -273,6 +273,7 @@
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document status</th>
+                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Link</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Action
@@ -287,14 +288,15 @@
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["task_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["folder_name"];?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_type"];?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_name"];?></td>
+                                                <td scope="col" class="text-nowrap  " height="" width=""><a target ="_blank" href="file/<?php echo $res_search["folder_name"]; ?>/<?php echo $res_search["file_upfile"];?>"><?php echo $res_search["doc_name"];?></a></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_remark"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_status"]; ?></td>
+                                                <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_link"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_crt"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_staff"]; ?></td>
                                                 <td>
-                                                    <a href="doc.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-info btn-sm "> <i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="doc.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                    <a href="doc_edit.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-info btn-sm "> <i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="document.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -309,6 +311,7 @@
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document status</th>
+                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Link</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Action

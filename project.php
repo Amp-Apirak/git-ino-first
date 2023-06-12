@@ -112,7 +112,7 @@
                                     $query_project_quarter = mysqli_query($conn, $_sql_project_quarter);
                                     $query_project_up_status = mysqli_query($conn, $_sql_project_up_status);
 
-                                    $_sql = "SELECT * FROM project INNER JOIN contact On (project.project_id = contact.project_id)";
+                                    $_sql = "SELECT * FROM project LEFT JOIN contact On (project.project_id = contact.project_id)";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {

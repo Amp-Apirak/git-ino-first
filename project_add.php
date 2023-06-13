@@ -153,8 +153,8 @@
                                             <div class="form-group">
                                                 <label>Project Name</label>
                                                 <input type="text" name="project_name" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                                <input type="hidden" name="project_staff" value="<?php echo ($_SESSION['fullname']);?>" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                                <input type="hidden" name="contact_staff" value="<?php echo ($_SESSION['fullname']);?>" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                <input type="hidden" name="project_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                <input type="hidden" name="contact_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control" id="exampleInputEmail1" placeholder="" required>
                                             </div>
 
 
@@ -178,7 +178,7 @@
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Price</label>
-                                                        <input type="text" name="project_price" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                        <input type="text" name="project_price" class="form-control" id="price" placeholder="" required>
                                                     </div>
 
                                                 </div>
@@ -193,23 +193,41 @@
                                                 </div>
                                             </div>
 
+
+
                                             <div class="row">
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Sales No Vat</label>
-                                                        <input type="text" name="project_sales_novat" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                        <input type="text" name="project_sales_novat" class="form-control" id="salvn" placeholder="" required>
                                                     </div>
                                                 </div>
+
+                                                <script type="text/javascript">
+                                                    function sum() {
+                                                        var txtFirstNumberValue = document.getElementById('txt1').value;
+                                                        var txtSecondNumberValue = document.getElementById('txt2').value;
+                                                        var txtthdNumberValue = document.getElementById('txt3').value;
+                                                        var result =
+                                                            parseInt(txtFirstNumberValue) +
+                                                            parseInt(txtSecondNumberValue);
+                                                        if (!isNaN(result)) {
+                                                            document.getElementById('txt3').value = result;
+                                                        }
+                                                    }
+                                                </script>
+
+
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Sales Vat</label>
-                                                        <input type="text" name="project_sales" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                        <input type="text" name="project_sales" class="form-control" id="txt1" onkeyup="sum();"  value="" placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Cost No Vat</label>
-                                                        <input type="text" name="project_cost_novat" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                        <input type="text" name="project_cost_novat" class="form-control" id="txt2"  onkeyup="sum();" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,7 +236,7 @@
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Estimated GP (%)</label>
-                                                        <input type="text" name="project_es_gp" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                                        <input type="text" name="project_es_gp" class="form-control" id="txt3"  placeholder="" required>
                                                     </div>
 
                                                 </div>

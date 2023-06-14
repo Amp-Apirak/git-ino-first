@@ -174,29 +174,36 @@
                                             </div>
 
                                             <script type="text/javascript">
-                                                    function sum1() {
-                                                        var txtFirstNumber1Value = document.getElementById('price').value;
-                                                        var txtSecondNumber1Value = document.getElementById('qty').value;
-                                                        var txtthdNumber1Value = document.getElementById('salvn').value;
-                                                        var result =
-                                                            parseInt(txtFirstNumber1Value)+
-                                                            parseInt(txtSecondNumber1Value);
+                                                function sum1() {
+                                                    var txtone = document.getElementById('price').value;
+                                                    var txttwo = document.getElementById('qty').value;
+                                                    var txttree = document.getElementById('salvn').value;
+                                                    var txtfour = document.getElementById('vat').value;
+                                                    var result =
+                                                        parseInt(txtone) *
+                                                        parseInt(txttwo);
 
+                                                    if (!isNaN(result)) {
+                                                        document.getElementById('salvn').value = result;
                                                         
-                                                        if (!isNaN(result)) {
-                                                            document.getElementById('salvn').value = result;
-
-                                                        
-                                                        }
                                                     }
-                                                </script>
+
+                                                    var result1 =
+                                                    result - (result * 0.07);
+                                                        // parseInt(txtfour);
+
+                                                    if (!isNaN(result)) {
+                                                        document.getElementById('svat').value = result1;
+                                                    }
+                                                }
+                                            </script>
 
 
                                             <div class="row">
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Price</label>
-                                                        <input type="text" name="project_price" class="form-control" id="price" onkeyup="sum1();"placeholder="" required>
+                                                        <input type="text" name="project_price" class="form-control" id="price" onkeyup="sum1();"  placeholder="" required>
                                                     </div>
 
                                                 </div>
@@ -217,31 +224,15 @@
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Sales No Vat</label>
-                                                        <input type="text" name="project_sales_novat" class="form-control" id="salvn" onkeyup="sum1();" placeholder="" required>
-                                                        <input type="hidden" name="project_sales_novat" class="form-control" id="vat" value="0.07" onkeyup="vat();" placeholder="" required>
+                                                        <input type="text" name="project_sales_novat" class="form-control" id="salvn" onkeyup="sum1();" style="background-color:#F8F8FF"  placeholder="" required>
+                                                        <input type="hidden" name="project_sales_novat" class="form-control" id="vat" value="0.07" onkeyup="sum1();" placeholder="" required>
                                                     </div>
                                                 </div>
-
-                                                <script type="text/javascript">
-                                                    function vat() {
-                                                        var txtFirstNumberValue = document.getElementById('salvn').value;
-                                                        var txtSecondNumberValue = document.getElementById('vat').value;
-                                                        var txtthdNumberValue = document.getElementById('svat').value;
-                                                        var result =
-                                                            parseInt(txtFirstNumberValue)+
-                                                            parseInt(txtSecondNumberValue);
-                                                        if (!isNaN(result)) {
-                                                            document.getElementById('svat').value = result;
-                                                            
-                                                        }
-                                                    }
-                                                </script>
-
 
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Sales Vat</label>
-                                                        <input type="text" name="project_sales" class="form-control" id="svat" onkeyup="vat();"  value="" placeholder="" required>
+                                                        <input type="text" name="project_sales" class="form-control" id="svat" onkeyup="sum1();" value="" style="background-color:#F8F8FF" placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col col-4">
@@ -256,7 +247,7 @@
                                                 <div class="col col-4">
                                                     <div class="form-group">
                                                         <label>Estimated GP (%)</label>
-                                                        <input type="text" name="project_es_gp" class="form-control" id="txt3"  placeholder="" required>
+                                                        <input type="text" name="project_es_gp" class="form-control" id="txt3" placeholder="" required>
                                                     </div>
 
                                                 </div>
@@ -373,7 +364,7 @@
                                             <div class="col col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Full Name</label>
-                                                    <input type="text" name="contact_fullname" class="form-control" id="exampleInputEmail1" placeholder="">
+                                                    <input type="text" name="contact_fullname" class="form-control" id="exampleInputEmail1" placeholder="ชื่อ-สกุล">
                                                 </div>
                                                 <!-- /.form-group -->
                                             </div>
@@ -386,7 +377,7 @@
                                             <div class="col col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Province</label>
-                                                    <input type="text" name="contact_province" class="form-control" id="exampleInputEmail1" placeholder="">
+                                                    <input type="text" name="contact_province" class="form-control" id="exampleInputEmail1" placeholder="จังหวัด">
                                                 </div>
                                                 <!-- /.form-group -->
 

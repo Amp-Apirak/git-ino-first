@@ -288,7 +288,7 @@
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["task_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["folder_name"];?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_type"];?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><a target ="_blank" href="file/<?php echo $res_search["folder_name"]; ?>/<?php echo $res_search["file_upfile"];?>"><?php echo $res_search["doc_name"];?></a></td>
+                                                <td scope="col" class="text-nowrap  " height="" width=""><a target ="_blank" href="file/<?php echo $res_search["folder_name"]; ?>/<?php echo $res_search["file_upfile"];?>"><?php echo $res_search["doc_name"];?>  &nbsp;  <i class="nav-icon fa fa-folder-open"></i></a></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_remark"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_status"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_link"]; ?></td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2023 at 11:39 AM
+-- Generation Time: Jun 14, 2023 at 02:28 PM
 -- Server version: 5.7.42-log
 -- PHP Version: 8.2.7
 
@@ -38,9 +38,19 @@ CREATE TABLE `contact` (
   `contact_detail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียดบริษัทและธุรกิจ',
   `contact_company` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'บริษัท',
   `contact_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ลูกค้า,พนักงาน,หุ่นส่วน',
-  `contact_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `contact_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
+  `contact_crt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'วันที่สร้าง',
+  `contact_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `contact_province` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'จังหวัด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`contact_id`, `project_id`, `contact_fullname`, `contact_position`, `contact_agency`, `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_crt`, `contact_staff`, `contact_province`) VALUES
+(2, 1, 'Apirak Bangpuk', 'Presale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 16:49:07', 'Apirak Bangpuk', 'Bangkok'),
+(3, 1, 'Apirak Bangpuk', 'Presale', 'Point IT1', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
+(4, 1, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok');
 
 -- --------------------------------------------------------
 
@@ -139,16 +149,17 @@ CREATE TABLE `project` (
   `project_up_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Win,Lost',
   `project_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ',
   `project_quarter` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไตรมาส',
-  `project_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `project_staff` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
+  `project_crt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'วันที่สร้าง',
+  `project_staff` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `contact_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้รับผิดชอบ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `project_name`, `project_product`, `project_brand`, `project_es`, `project_price`, `project_qty`, `project_sales_novat`, `project_sales`, `project_cost_novat`, `project_es_gp`, `project_gp`, `project_pot`, `project_mean`, `project_es_sales`, `project_remark`, `project_bg`, `project_up_status`, `project_status`, `project_quarter`, `project_crt`, `project_staff`) VALUES
-(1, 'Health Care', 'Health Care', 'KIN-YOO-DEE', 250000, 150000, 1, 250000, 250000, 250000, 250000, 250000, 250000, 'ไม่แน่ใจต้องใส่อะไร', 250000, 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'เสร็จสิ้น', '2023/1', '2023-06-04 15:39:46', 'apirak');
+INSERT INTO `project` (`project_id`, `project_name`, `project_product`, `project_brand`, `project_es`, `project_price`, `project_qty`, `project_sales_novat`, `project_sales`, `project_cost_novat`, `project_es_gp`, `project_gp`, `project_pot`, `project_mean`, `project_es_sales`, `project_remark`, `project_bg`, `project_up_status`, `project_status`, `project_quarter`, `project_crt`, `project_staff`, `contact_name`) VALUES
+(1, 'Health Care', 'Health Care', 'KIN-YOO-DEE', 250000, 150000, 1, 250000, 250000, 250000, 250000, 250000, 250000, 'ไม่แน่ใจต้องใส่อะไร', 250000, 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'เสร็จสิ้น', '2023/1', '2023-06-04 08:39:46', 'apirak', '0');
 
 -- --------------------------------------------------------
 
@@ -307,7 +318,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=2;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doc`
@@ -355,7 +366,7 @@ ALTER TABLE `task_project`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

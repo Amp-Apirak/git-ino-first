@@ -100,7 +100,7 @@
                                     $query_contact_agency = mysqli_query($conn, $_sql_contact_agency);
                                     $query_contact_type = mysqli_query($conn, $_sql_contact_type);
 
-                                    $_sql = "SELECT * FROM contact INNER JOIN project On (project.project_id = contact.project_id)";
+                                    $_sql = "SELECT * FROM contact ";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
@@ -453,60 +453,151 @@
 
 
 
-    <!----------------------------- start Modal Add user ------------------------------->
+  <!----------------------------- start Modal Add user ------------------------------->
+  <?php
+    if (isset($_POST['submit1'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+        /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+        $contact_fullname  = $_POST['contact_fullname'];
+        $contact_position  = $_POST['contact_position'];
+        $contact_agency = $_POST['contact_agency'];
+        $contact_tel = $_POST['contact_tel'];
+        $contact_email = $_POST['contact_email'];
+        $contact_detail = $_POST['contact_detail'];
+        $contact_company = $_POST['contact_company'];
+        $contact_type = $_POST['contact_type'];
+        $contact_staff = $_POST['contact_staff'];
+        $contact_province = sha1($_POST['contact_province']);
+
+        //print_r($_POST);
+        //check duplicat
+        $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel'";
+        $result = $conn->query($sql);
+        $num = mysqli_num_rows($result);
+
+        // print_r($result); 
+        // print_r($num);
+        //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
+        if ($num > 0) {
+            echo '<script>
+                        setTimeout(function() {
+                            swal({
+                                    title: "The data already exists in the system.!! ",  
+                                    text: "Please check the information again.",
+                                    type: "warning"
+                                }, function() {
+                                    window.location = "#"; //หน้าที่ต้องการให้กระโดดไป
+                                    });
+                                    }, 1000);
+                                </script>';
+        } else {
+            //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
+
+            //sql insert
+            $sql = "INSERT INTO `contact` ( `contact_fullname`,`contact_position`,`contact_agency`,
+                                        `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_staff`,
+                                        `contact_province`)
+                                    VALUES ('$contact_fullname','$contact_position','$contact_agency','$contact_tel', '$contact_email',
+                                        '$contact_detail', '$contact_company', '$contact_type', '$contact_staff', '$contact_province')";
+
+            $result = $conn->query($sql);
+            if ($result) {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Save data successfully",
+                                                        text: "",
+                                                        type: "success"
+                                                    }, function() {
+                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            } else {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Please check the information again.",
+                                                        type: "error"
+                                                }, function() {
+                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            }
+            $conn = null; //close connect db
+        } //else chk dup
+
+    } //isset 
+    //devbanban.com
+    ?>
+
     <div class="modal fade" id="editbtn">
         <div class="modal-dialog editbtn">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add User</h4>
+                    <h4 class="modal-title">Add Customer</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="contact_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="project_add.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
-                                    required>
+                                <label>Type<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_type" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>Staff</option>
+                                    <option>Customer</option>
+                                    <option>Partner</option>
+                                    <option>Sale</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_fullname">Full Name<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_fullname" class="form-control" id="contact_fullname" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
                                 <label for="contact_position">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder=""
-                                    required>
+                                <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
-                                <label>Team<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="contact_agency" required style="width: 100%;">
-                                    <option selected="selected">Select</option>
-                                    <option>Innovation</option>
-                                    <option>Infrastructure</option>
-                                    <option>Contacting</option>
-                                    <option>Stock</option>
-                                    <option>Service Solution</option>
-                                    <option>Service bank</option>
-                                </select>
-
-                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
-                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                <input type="hidden" name="user_staff" class="form-control"
-                                    value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-
+                                <label for="contact_company">Company<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_company" class="form-control" id="contact_company" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
-                                <label>Role<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="contact_type" required style="width: 100%;">
+                                <label>Agency<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_agency" class="form-control" id="contact_agency" placeholder="">
+
+
+                                <input type="hidden" name="contact_staff" class="form-control" value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
+
+                            </div>
+                            <!-- /.form-group -->
+
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4" placeholder=""></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Province<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_province" required style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Administrator</option>
-                                    <option>Engineer</option>
-                                    <option>Viewer</option>
+                                    <option>Staff</option>
+                                    <option>Customer</option>
+                                    <option>Partner</option>
+                                    <option>Sale</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -517,8 +608,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="tel" id="tel"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                    <input type="text" class="form-control" name="contact_tel" id="tel" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -530,23 +620,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
-                                        required>
+                                    <input type="email" class="form-control" name="contact_email" id="email" placeholder="Email" required>
                                 </div>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
                             </div>
                             <!-- /.form-group -->
 
@@ -555,7 +630,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                    <button type="submit1" name="submit1" value="submit1" class="btn btn-success">Save</button>
                 </div>
                 </form>
             </div>

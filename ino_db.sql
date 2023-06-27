@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 14, 2023 at 02:28 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 27, 2023 at 05:37 PM
 -- Server version: 5.7.42-log
--- PHP Version: 8.2.7
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `contact` (
   `contact_id` int(11) NOT NULL COMMENT 'รหัส',
-  `project_id` int(11) NOT NULL,
-  `contact_fullname` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
-  `contact_position` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง',
+  `contact_fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
+  `contact_position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง',
   `contact_agency` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หน่วยงาน',
   `contact_tel` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '้เบอร',
   `contact_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'อิเมล',
@@ -47,10 +46,10 @@ CREATE TABLE `contact` (
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`contact_id`, `project_id`, `contact_fullname`, `contact_position`, `contact_agency`, `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_crt`, `contact_staff`, `contact_province`) VALUES
-(2, 1, 'Apirak Bangpuk', 'Presale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 16:49:07', 'Apirak Bangpuk', 'Bangkok'),
-(3, 1, 'Apirak Bangpuk', 'Presale', 'Point IT1', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
-(4, 1, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok');
+INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `contact_agency`, `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_crt`, `contact_staff`, `contact_province`) VALUES
+(2, 'Apirak Bangpuk', 'Presale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 16:49:07', 'Apirak Bangpuk', 'Bangkok'),
+(3, 'Apirak Bangpuk', 'Presale', 'Point IT1', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
+(4, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok');
 
 -- --------------------------------------------------------
 
@@ -120,7 +119,9 @@ CREATE TABLE `folder_doc` (
 --
 
 INSERT INTO `folder_doc` (`folder_id`, `folder_name`, `folder_crt`, `folder_staff`) VALUES
-(14, '06/11/2023-Apirak', '2023-06-11 11:33:39', 'Apirak bangpuk');
+(14, '06/11/2023-Apirak', '2023-06-11 11:33:39', 'Apirak bangpuk'),
+(15, 'Amp', '2023-06-27 15:04:37', 'Apirak bangpuk'),
+(16, 'xzcxzc', '2023-06-27 15:05:12', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -318,7 +319,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=5;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `doc`
@@ -336,7 +337,7 @@ ALTER TABLE `estime`
 -- AUTO_INCREMENT for table `folder_doc`
 --
 ALTER TABLE `folder_doc`
-  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=15;
+  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `project`

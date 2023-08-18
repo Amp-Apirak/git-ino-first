@@ -548,6 +548,7 @@
     <!-- highlight -->
 
        <!----------------------------- start Modal Add user ------------------------------->
+       
      
        
 
@@ -574,7 +575,15 @@
                                             <div class="col col-12">
                                                 <div class="form-group">
                                                     <label>Period of sale</label>
-                                                    <input type="text" name="pip_ps" class="form-control" id="price" placeholder="">
+                                                    <select class="form-control select2" name="pip_ps" style="width: 100%;">
+                                                        <option selected="selected">Select</option>
+                                                        <option>ชำระงวดที่ 1</option>
+                                                        <option>ชำระงวดที่ 2</option>
+                                                        <option>ชำระงวดที่ 3</option>
+                                                        <option>ชำระงวดที่ 4</option>
+                                                        <option>ชำระงวดที่ 5</option>
+                                                        <option>ชำระงวดที่ 6</option>
+                                                    </select>
                                                     <input type="hidden" name="pip_id" value="<?php echo $res_search["pip_id"]; ?>" class="form-control" id="price" placeholder="">
                                                 </div>
                                             </div>

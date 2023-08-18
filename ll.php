@@ -1,76 +1,132 @@
 
-<?php
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            padding: 10px;
+            background: #ffffff;
+            text-align: center;
+            font-family: arial;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .label_div {
+            width: 80px;
+            float: left;
+            text-align: right;
+            padding-right: 10px;
+            line-height: 28px;
+        }
+
+        .form_content {
+            height: 30px;
+            float: left;
+        }
+
+        .form_content input {
+            height: 20px;
+            width: 200px;
+            padding: 3px;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            font-size: 14px;
+        }
+
+        .form_content ul {
+            width: 206px;
+            border: 1px solid #eaeaea;
+            position: absolute;
+            z-index: 9;
+            background: #f3f3f3;
+            list-style: none;
+        }
+
+        .form_content ul li {
+            padding: 2px;
+        }
+
+        .form_content ul li:hover {
+            background: #eaeaea;
+        }
+
+        #name_list {
+            display: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <?php
+
+    $conn = new mysqli('localhost', 'root', '1234', 'ino_db'); //ประกาศตัวแปล $conn เก็บค่า การเชื่อมต่อ 
+    if ($conn->connect_error) {  //ตรวจสอบเงื่อนไข ฐานข้อมูลเชื่อมต่อได้หรือไม่ หากไม่ให้แสดง error เป็นตัวเลข ออกมา
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $conn->Set_charset("utf8");
+
     
-//print_r($_POST); //ตรวจสอบมี input อะไรบ้าง และส่งอะไรมาบ้าง 
-//ถ้ามีค่าส่งมาจากฟอร์ม
-  if(isset($_POST['username']) && isset($_POST['user_email']) && isset($_POST['user_tel']) && isset($_POST['password']) ){
-  // sweet alert 
-  echo '
-  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
-  //ไฟล์เชื่อมต่อฐานข้อมูล
-  
-  require_once '../ino/connection/connection.php';
-  //ประกาศตัวแปรรับค่าจากฟอร์ม
-  $username = $_POST['username'];
-  $user_email = $_POST['user_email'];
-  $user_tel = $_POST['user_tel'];
-  $password = sha1($_POST['password']); //เก็บรหัสผ่านในรูปแบบ sha1 
+    
 
-  //check duplicat
-    $stmt = $conn->prepare("SELECT user_id FROM tb_user WHERE username = :username");
-    //$stmt->bindParam(':username', $username , PDO::PARAM_STR);
-    $stmt->execute(array(':username' => $username));
-    //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
-    if($stmt->rowCount() > 0){
-        echo '<script>
-                     setTimeout(function() {
-                      swal({
-                          title: "Username ซ้ำ !! ",  
-                          text: "กรุณาสมัครใหม่อีกครั้ง",
-                          type: "warning"
-                      }, function() {
-                          window.location = "regis.php"; //หน้าที่ต้องการให้กระโดดไป
-                      });
-                    }, 1000);
-              </script>';
-    }else{ //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
-            //sql insert
-            $stmt = $conn->prepare("INSERT INTO tb_user (username, user_email, user_tel, password)
-            VALUES (:username, :user_email, :user_tel, :password)");
-            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-            $stmt->bindParam(':user_email', $user_email , PDO::PARAM_STR);
-            $stmt->bindParam(':user_tel', $user_tel , PDO::PARAM_STR);
-            $stmt->bindParam(':password', $password , PDO::PARAM_STR);
-            $result = $stmt->execute();
-            if($result){
-                echo '<script>
-                     setTimeout(function() {
-                      swal({
-                          title: "สมัครสมาชิกสำเร็จ",
-                          text: "กรุณารอระบบ Login เข้าใช้งานระบบ Sale Service ",
-                          type: "success"
-                      }, function() {
-                          window.location = "login.php"; //หน้าที่ต้องการให้กระโดดไป
-                      });
-                    }, 1000);
-                </script>';
-            }else{
-               echo '<script>
-                     setTimeout(function() {
-                      swal({
-                          title: "เกิดข้อผิดพลาด",
-                          type: "error"
-                      }, function() {
-                          window.location = "regis.php"; //หน้าที่ต้องการให้กระโดดไป
-                      });
-                    }, 1000);
-                </script>';
+    $sql = "SELECT * FROM contact WHERE contact_fullname LIKE '%" . $_POST['keyword'] . "%' ORDER BY contact_fullname ASC LIMIT 0, 10";
+    $query = $conn->query($sql);
+
+    while ($arr = $query->fetch_assoc()) {
+        $name_search = str_replace($_POST['keyword'], '<b><font color="#417fe2">' . $_POST['keyword'] . '</font></b>', $arr['contact_fullname']);
+        echo '<li onclick="putValue(\'' . str_replace("'", "\'", $arr['contact_fullname']) . '\',\'' . str_replace("'", "\'", $arr['contact_position']) . '\',\'' . str_replace("'", "\'", $arr['contact_tel']) . '\')">' . $name_search . '</li>';
+    }
+    ?>
+
+    <form>
+        <div class="label_div">ชื่อ : </div>
+        <div class="form_content">
+            <input type="text" id="contact_fullname">
+            <ul id="name_list"></ul>
+        </div>
+        <div class="label_div">Email : </div>
+        <div class="form_content">
+            <input type="text" id="contact_position">
+        </div>
+        <div class="label_div">เบอร์โทร : </div>
+        <div class="form_content">
+            <input type="text" id="contact_tel">
+        </div>
+    </form>
+</body>
+
+</html>
+
+<script>
+    $(function() {
+        $('#contact_fullname').keyup(function() {
+            if ($(this).val().length >= 1) {
+                $.post('lm.php', {
+                    keyword: $('#contact_fullname').val()
+                }, function(data) {
+                    $('#name_list').show();
+                    $('#name_list').html(data);
+                });
+            } else {
+                $('#name_list').hide();
             }
-            $conn = null; //close connect db
-      } //else chk dup
-  } //isset 
-  //devbanban.com
-  ?>
+
+        });
+    });
+
+    function putValue(contact_fullname, contact_position, contact_tel) {
+        $('#contact_fullname').val(contact_fullname);
+        $('#contact_position').val(contact_position);
+        $('#contact_tel').val(contact_tel);
+        $('#name_list').hide();
+    }
+</script>

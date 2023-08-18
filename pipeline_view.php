@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $menu = "project"; ?>
+<?php $menu = "pipeline"; ?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INOvation | Project description</title>
+    <title>INOvation | Pipeline description</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -53,6 +53,7 @@
     }
     /* การลบข้อมูล */
     ?>
+
     <!----------------------------- start Project description ------------------------------->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -61,12 +62,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Project description</h1>
+                        <h1>Pipeline description</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Project description</li>
+                            <li class="breadcrumb-item active">Pipeline description</li>
                         </ol>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                         <!-- /.Get ID From -->
                         <?php
                         if (isset($_GET['id'])) {
-                            $_sql = "SELECT * FROM project INNER JOIN contact On (project.project_id = contact.project_id) WHERE project.project_id=" . $_GET['id'];
+                            $_sql = "SELECT * FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id) WHERE pip_id=" . $_GET['id'];
                             $query_search = mysqli_query($conn, $_sql);
                             // print_r($_sql);
                             // print_r($query_search);
@@ -107,17 +108,18 @@
                                                     <!-- class="img-circle elevation-2" -->
                                                 </i> Point IT
                                                 <small class="float-right">Date:
-                                                    <?php echo $res_search["project_crt"]; ?></small>
+                                                    <?php echo $res_search["pip_date"]; ?></small>
                                             </h4>
                                         </div>
                                         <!-- /.col -->
                                     </div>
                                     <!-- info row -->
+                                    <b>Project :</b> <?php echo $res_search["project_name"]; ?>
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col">
                                             From
                                             <address>
-                                                <strong><?php echo $res_search["project_staff"]; ?></strong><br>
+                                                <strong><?php echo $res_search["pip_staff"]; ?></strong><br>
                                                 19 ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ <br>
                                                 กรุงเทพมหานคร 10250 <br>
 
@@ -153,54 +155,97 @@
                                     <!-- Table row -->
                                     <div class="row">
                                         <div class="col-8 table-responsive">
-                                            Pipeline
+                                            
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">Price/Unit</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">Sales No Vat</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">Sales Vat</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">Estimated GP</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">% GP</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">% Potential</th>
-                                                        <th scope="col" class="text-nowrap  " height="" width="">Estimated Sales</th>
+                                                        <th scope="col" class="text-nowrap " height="" width="">Pipeline Descriptions</th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width="">ราคา(ไม่รวมภาษี)/บาท</th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width="">ภาษี</th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width="">ราคา(รวมภาษี)/บาท</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><?php echo number_format($res_search["project_price"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_sales_novat"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_sales"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_cost_novat"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_es_gp"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_gp"], 0); ?></td>
-                                                        <td><?php echo number_format($res_search["project_es_sales"], 0); ?></td>
-
+                                                        <th scope="row"><h6> ราคาเสนอขาย (Sale Price) </h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_salen"], 0); ?></td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_vat"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_sale"], 0); ?></td>
                                                     </tr>
+                                                    <tr>
+                                                        <th scope="row"><h6>ราคาต้นทุนโครงการ (Cost Price)</h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_costn"], 0); ?></td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_vat"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_cost"], 0); ?></td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <th scope="row"><h6>Gross Profit (GP)</h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_gp"], 0); ?></td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><h6>(% GP)</h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_gp2"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="text-nowrap " height="" width="">Estimate Potential</th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width=""> </th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width="">% Potential</th>
+                                                        <th scope="col" class="text-nowrap text-center  " height="" width="">ราคา/บาท</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row"><h6> Estimate Sale    </h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> </td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_p"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_ess"], 0); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><h6>Estimate Cost </h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> </td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_p"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_esc"], 0); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><h6>Estimate GP</h6></th>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> </td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_p"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_esp"], 0); ?></td>
+                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-4 table-responsive">
-                                            <div class="col col-12 mb-2">
-                                                <a href="account_add.php?id=<?php echo $res_search["project_id"]; ?>" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
+                                            <div class="col col-12 mb-5">
+                                                <a href="pipeline_add.php?id=<?php echo $res_search["pip_id"]; ?>" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
                                             </div>
 
-
-                                            Estimated Timeline
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Qty</th>
+                                                        <th>Period of sale</th>
                                                         <th>Month</th>
-                                                        <th>Cost#</th>
-                                                        <th>Year</th>
+                                                        <th>Period of sale (%)</th> 
                                                     </tr>
                                                 </thead>
+
                                                 <!-- /.Get ID From -->
                                                 <?php
                                                 if (isset($_GET['id'])) {
-                                                    $_sql = "SELECT * FROM estime  WHERE project_id=" . $_GET['id'];
+                                                    $_sql = "SELECT * FROM pip_period WHERE pip_id=" . $_GET['id'];
                                                     $query_search = mysqli_query($conn, $_sql);
                                                     // print_r($_sql);
                                                     // print_r($query_search);
@@ -209,11 +254,10 @@
 
                                                         <tbody>
                                                             <tr>
-                                                                <td><?php echo $res_search["id_es"]; ?></td>
-                                                                <td><?php echo $res_search["es_month"]; ?></td>
-                                                                <td><?php echo number_format($res_search["es_cost"], 0); ?></td>
-                                                                <td><?php echo $res_search["es_year"]; ?></td>
-
+                                                                <td><?php echo $res_search["pip_ps"]; ?></td>
+                                                                <td><?php echo $res_search["pip_month"]; ?></td>
+                                                                <td><?php echo number_format($res_search["pip_pst"], 0); ?></td>
+                                                                
                                                             </tr>
                                                         </tbody>
 
@@ -223,8 +267,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php
-                                            $query2 = "SELECT SUM(`es_cost`) as AMP FROM estime ";
-                                            $query1 = $query2 . "" . " ORDER BY id_es DESC ";
+                                            $query2 = "SELECT SUM(`pip_pst`) as AMP FROM pip_period ";
+                                            $query1 = $query2 . "" . " ORDER BY p_id DESC ";
                                             $result = mysqli_query($conn, $query1);
                                             $rs = mysqli_fetch_array($result);
                                             $a = $rs['AMP'];
@@ -245,6 +289,7 @@
                                         <!-- /.col -->
                                     </div>
                                     <!-- /.row -->
+                                    
 
                                     <div class="row">
                                         <!-- accepted payments column -->

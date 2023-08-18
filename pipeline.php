@@ -209,7 +209,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_name`) as AMP FROM project ";
+                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -238,7 +238,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_product`) as AMP FROM project ";
+                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -266,7 +266,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT SUM(`project_es_sales`) as AMP FROM project ";
+                                                                $query2 = "SELECT SUM(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -295,7 +295,7 @@
                                             <!-- Qeury Count All Service -->
                                             <?php 
                                                             
-                                                            $query = "SELECT SUM(`project_es_gp`) as AMP FROM project ";
+                                                            $query = "SELECT SUM(`project_m`) as AMP FROM project ";
                                                             $query1 = $query . $_where . "" . " ORDER BY project_id DESC ";
                                                             $result = mysqli_query($conn, $query1);
                                                             $ls = mysqli_fetch_array($result);   

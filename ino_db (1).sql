@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2023 at 05:35 AM
+-- Generation Time: Aug 18, 2023 at 01:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -113,7 +113,7 @@ CREATE TABLE `pipeline` (
   `project_name` varchar(255) NOT NULL COMMENT 'ชื่อโครงการ',
   `project_product` varchar(255) NOT NULL COMMENT 'ชื่อผลิตภัณฑ์',
   `project_brand` varchar(255) NOT NULL COMMENT 'แบรน์',
-  `pip_vat` int(11) NOT NULL COMMENT 'Vat',
+  `pip_vat` varchar(255) NOT NULL COMMENT 'Vat',
   `pip_salen` int(11) NOT NULL COMMENT 'ราคาขายไม่รวมภาษี Amount/Manaul',
   `pip_sale` int(11) NOT NULL COMMENT 'ราคาขายรวมภาษี',
   `pip_costn` int(11) NOT NULL COMMENT 'ราคาต้นทุนไม่รวมภาษี Amount/Manaul',
@@ -135,7 +135,28 @@ CREATE TABLE `pipeline` (
 --
 
 INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`, `pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_date`, `pip_staff`, `pip_ess`, `pip_esc`, `pip_esp`) VALUES
-(1, 'โครงการระบบยืนยันตัวตนพร้อมการวิเคราะห์ภายใบหน้า (Super Rich)', 'BIO IDM-eKYC', 'AI Platform', 7, 500000, 535000, 300000, 321000, 200000, 40, '0.10', 2, 'ประมาณโครงสร้างราคา', '0000-00-00 00:00:00', 'Apirak', 50000, 30000, 20000);
+(1, 'โครงการระบบยืนยันตัวตนพร้อมการวิเคราะห์ภายใบหน้า (Super Rich)', 'BIO IDM-eKYC', 'AI Platform', '7', 500000, 535000, 300000, 321000, 200000, 40, '0.10', 2, 'ประมาณโครงสร้างราคา', '0000-00-00 00:00:00', 'Apirak', 50000, 30000, 20000),
+(2, 'โครงการ นวัตกรรมบริการชุมชนเพื่อควบคุมการแพร่ระบาดเชื้อไวรัสโคโรน่า 2019 ย่านนวัตกรรมการแพทย์โยธี', 'EKYD', 'Point IT', '0.05', 5, 5, 0, 5, 5, 5, '0.30', 1, '5', '2023-08-17 04:57:05', 'Apirak bangpuk', 5, 5, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pip_docker`
+--
+
+CREATE TABLE `pip_docker` (
+  `docker_id` int(11) NOT NULL,
+  `docker_name` varchar(255) NOT NULL COMMENT 'ชื่อโครงการ',
+  `docker_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
+  `docker_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pip_docker`
+--
+
+INSERT INTO `pip_docker` (`docker_id`, `docker_name`, `docker_date`, `docker_staff`) VALUES
+(1, 'BIO IDM-eKYC', '2023-08-18 02:29:39', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -146,10 +167,44 @@ INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_br
 CREATE TABLE `pip_file` (
   `file_id` int(11) NOT NULL COMMENT 'Key',
   `pip_id` int(11) NOT NULL COMMENT 'เชื่อมข้อมูลโครกการ',
+  `docker_id` int(11) NOT NULL COMMENT 'แฟ้ม',
+  `type_id` int(11) NOT NULL COMMENT 'โฟรเดอร์',
   `file_name` varchar(255) NOT NULL COMMENT 'ชื่อไฟล์',
-  `file_type` varchar(255) NOT NULL COMMENT 'ชนิดของไฟล์',
-  `file_add` varchar(255) NOT NULL COMMENT 'patch'
+  `file_link` varchar(255) NOT NULL COMMENT 'Link Google Drive',
+  `file_r` varchar(255) NOT NULL COMMENT 'คำอธิบาย',
+  `file_status` varchar(255) NOT NULL COMMENT 'สถานะ',
+  `file_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
+  `file_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pip_file`
+--
+
+INSERT INTO `pip_file` (`file_id`, `pip_id`, `docker_id`, `type_id`, `file_name`, `file_link`, `file_r`, `file_status`, `file_date`, `file_staff`) VALUES
+(1, 1, 1, 1, 'รายงานการลงพื้นที่ เทศบาลนครนครรังสิต  จังหวัด ปทุมธานี 17082023', 'https://github.com/Amp-Apirak/ino/tree/dev-4', 'เพิ่มเติมอีกนิด', 'On Hold', '2023-08-18 02:49:08', 'Apirak Bangpuk'),
+(2, 2, 1, 1, 'รายงานการลงพื้นที่ เทศบาลนครนครรังสิต  ', 'https://github.com/Amp-Apirak/ino/tree/dev-4', 'เพิ่มเติมอีกนิด', 'On Hold', '2023-08-18 03:06:47', 'Apirak Bangpuk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pip_folder`
+--
+
+CREATE TABLE `pip_folder` (
+  `type_id` int(11) NOT NULL,
+  `docker_id` int(11) NOT NULL COMMENT 'Docker',
+  `type_name` varchar(255) NOT NULL COMMENT 'ชื่อโฟรเดอร์',
+  `type_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
+  `type_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pip_folder`
+--
+
+INSERT INTO `pip_folder` (`type_id`, `docker_id`, `type_name`, `type_date`, `type_staff`) VALUES
+(1, 1, '01', '2023-08-18 02:37:26', 'Apirak Bangpuk');
 
 -- --------------------------------------------------------
 
@@ -160,12 +215,21 @@ CREATE TABLE `pip_file` (
 CREATE TABLE `pip_period` (
   `p_id` int(11) NOT NULL COMMENT 'เลขไอดีของ period',
   `pip_id` int(11) NOT NULL COMMENT 'เลขไอดีของ Project',
-  `pip_name` varchar(255) NOT NULL COMMENT 'เชื่อมข้อมูลโครกการ',
-  `pip_ps` int(11) NOT NULL COMMENT 'งวดชำระเงิน (เพิ่มได้มากกว่า 1 )',
+  `pip_ps` varchar(255) NOT NULL COMMENT 'งวดชำระเงิน (เพิ่มได้มากกว่า 1 )',
+  `pip_month` varchar(255) NOT NULL COMMENT 'เดือน',
   `pip_pst` int(11) NOT NULL COMMENT 'งวดชำระเงิน (%) Amount/Manaul',
   `pip_psw` int(11) NOT NULL COMMENT 'คำนวณราคาขายจาก %',
   `pip_pssum` int(11) NOT NULL COMMENT 'รวมกันต้องได้ 100 % และเท่ากับราคาขาย '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pip_period`
+--
+
+INSERT INTO `pip_period` (`p_id`, `pip_id`, `pip_ps`, `pip_month`, `pip_pst`, `pip_psw`, `pip_pssum`) VALUES
+(1, 1, 'ชำระเงินงวดแรก', 'มกราคม', 20, 100000, 10000),
+(2, 1, 'ชำระเงินงวด 2', 'มิถุนายน', 20, 100000, 10000),
+(3, 2, 'ชำระเงินงวด 1', 'เมษายน', 50, 750000, 750000);
 
 -- --------------------------------------------------------
 
@@ -175,36 +239,23 @@ CREATE TABLE `pip_period` (
 
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
-  `project_name` varchar(50) NOT NULL COMMENT 'รหัสผู้ใช้งาน',
-  `project_product` varchar(100) NOT NULL COMMENT 'Project Name',
-  `project_brand` varchar(100) NOT NULL COMMENT 'Product/Solution',
-  `project_es` int(11) NOT NULL COMMENT 'Brand',
-  `project_price` int(11) NOT NULL COMMENT 'Price/Unit',
-  `project_qty` int(11) NOT NULL COMMENT 'QTY',
-  `project_sales_novat` int(11) NOT NULL COMMENT 'Sales No Vat',
-  `project_sales` int(11) NOT NULL COMMENT 'Sales Vat',
-  `project_cost_novat` int(11) NOT NULL COMMENT 'Cost No Vat',
-  `project_es_gp` int(11) NOT NULL COMMENT 'Es.GP',
-  `project_gp` int(11) NOT NULL COMMENT '% GP',
-  `project_pot` int(11) NOT NULL COMMENT '% Potential',
-  `project_mean` text NOT NULL COMMENT 'Meaning',
-  `project_es_sales` int(11) NOT NULL COMMENT 'Estimated Sales',
-  `project_remark` varchar(255) NOT NULL COMMENT 'Remark',
-  `project_bg` varchar(255) NOT NULL COMMENT 'BG',
-  `project_up_status` varchar(100) NOT NULL COMMENT 'Win,Lost',
-  `project_status` varchar(100) NOT NULL COMMENT 'สถานะ',
-  `project_quarter` varchar(50) NOT NULL COMMENT 'ไตรมาส',
-  `project_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `project_staff` varchar(50) NOT NULL COMMENT 'ผู้สร้าง',
-  `contact_name` varchar(255) NOT NULL COMMENT 'ผู้รับผิดชอบ'
+  `pip_id` int(11) NOT NULL COMMENT 'เชื่อมกับโปรเจคเนม',
+  `project_d` varchar(255) NOT NULL COMMENT 'รายละเอียดโครงการ',
+  `project_m` varchar(255) NOT NULL COMMENT 'ผู้รับผิดชอบโครงการ',
+  `project_u` varchar(255) NOT NULL COMMENT 'ทีม',
+  `project_status` varchar(255) NOT NULL COMMENT 'สถานะ',
+  `project_start` date NOT NULL COMMENT 'วันเริ่ม',
+  `project_end` date NOT NULL COMMENT 'วัันสิ้นสุด',
+  `project_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันสร้าง',
+  `project_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `project_name`, `project_product`, `project_brand`, `project_es`, `project_price`, `project_qty`, `project_sales_novat`, `project_sales`, `project_cost_novat`, `project_es_gp`, `project_gp`, `project_pot`, `project_mean`, `project_es_sales`, `project_remark`, `project_bg`, `project_up_status`, `project_status`, `project_quarter`, `project_crt`, `project_staff`, `contact_name`) VALUES
-(1, 'Health Care', 'Health Care', 'KIN-YOO-DEE', 250000, 150000, 1, 250000, 250000, 250000, 250000, 250000, 250000, 'ไม่แน่ใจต้องใส่อะไร', 250000, 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'ไม่แน่ใจต้องใส่อะไร', 'เสร็จสิ้น', '2023/1', '2023-06-04 08:39:46', 'apirak', '0');
+INSERT INTO `project` (`project_id`, `pip_id`, `project_d`, `project_m`, `project_u`, `project_status`, `project_start`, `project_end`, `project_crt`, `project_staff`) VALUES
+(1, 1, 'เพื่อสนับสนุนการทำงาน และร่วมปรึกษาหาลือ เพื่อพัฒนาระบบแพลตฟอร์ม ให้ตอบโจทย์การทำงานของของเจ้าหน้าที่ และกลุ่มเป้าหมายผู้ใช้งานอุปกรณ์แต่ละบ้าน ของเทศบาลนครนครรังสิต จังหวัดปทุมธานี', '2', '1,2,3', 'On Hold', '2023-08-18', '2023-08-31', '2023-08-18 04:35:08', 'Apirak Bangpuk');
 
 -- --------------------------------------------------------
 
@@ -326,10 +377,22 @@ ALTER TABLE `pipeline`
   ADD PRIMARY KEY (`pip_id`);
 
 --
+-- Indexes for table `pip_docker`
+--
+ALTER TABLE `pip_docker`
+  ADD PRIMARY KEY (`docker_id`);
+
+--
 -- Indexes for table `pip_file`
 --
 ALTER TABLE `pip_file`
   ADD PRIMARY KEY (`file_id`);
+
+--
+-- Indexes for table `pip_folder`
+--
+ALTER TABLE `pip_folder`
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indexes for table `pip_period`
@@ -393,19 +456,31 @@ ALTER TABLE `folder_doc`
 -- AUTO_INCREMENT for table `pipeline`
 --
 ALTER TABLE `pipeline`
-  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=2;
+  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pip_docker`
+--
+ALTER TABLE `pip_docker`
+  MODIFY `docker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pip_file`
 --
 ALTER TABLE `pip_file`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Key';
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Key', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pip_folder`
+--
+ALTER TABLE `pip_folder`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pip_period`
 --
 ALTER TABLE `pip_period`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ period';
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ period', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project`

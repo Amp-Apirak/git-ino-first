@@ -84,42 +84,38 @@
                         <?php
                                     $search = "";
                                     $project_name = "";
-                                    $project_product = "";
+                                    $project_m = "";
                                     $project_status = "";
                                     $project_staff = "";
-                                    $project_quarter = "";
-                                    $project_up_status = "";
+
 
                                     $search_backup = "";
                                     $project_name_backup = "";
-                                    $project_product_backup = "";
+                                    $project_m_backup = "";
                                     $project_status_backup = "";
                                     $project_staff_backup = "";
-                                    $project_quarter_backup = "";
-                                    $project_up_status_backup = "";
+
                         
-                                    $_sql_project_name = "SELECT DISTINCT project_name FROM project ";
-                                    $_sql_project_product = "SELECT DISTINCT project_product FROM project ";
+                                    $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline ";
+                                    $_sql_project_m = "SELECT DISTINCT project_m FROM project ";
                                     $_sql_project_status = "SELECT DISTINCT project_status  FROM project ";
                                     $_sql_project_staff = "SELECT DISTINCT project_staff  FROM project ";
-                                    $_sql_project_quarter = "SELECT DISTINCT project_quarter  FROM project ";
-                                    $_sql_project_up_status = "SELECT DISTINCT project_up_status  FROM project ";
+
 
                                     $query_project_name = mysqli_query($conn, $_sql_project_name);
-                                    $query_project_product = mysqli_query($conn, $_sql_project_product);
+                                    $query_project_m = mysqli_query($conn, $_sql_project_m);
                                     $query_project_status = mysqli_query($conn, $_sql_project_status);
                                     $query_project_staff = mysqli_query($conn, $_sql_project_staff);
-                                    $query_project_quarter = mysqli_query($conn, $_sql_project_quarter);
-                                    $query_project_up_status = mysqli_query($conn, $_sql_project_up_status);
 
-                                    $_sql = "SELECT * FROM project LEFT JOIN contact On (project.contact_name = contact.contact_fullname)";
+
+                                    $_sql = "SELECT * FROM project LEFT JOIN pipeline On (project.pip_id = pipeline.pip_id)";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
 
                                             $search = $_POST['searchservice'];
                                             $project_name = $_POST['project_name'];
-                                            $project_product = $_POST['project_product'];
+                                            $project_m = $_POST['project_m'];
                                             $project_status = $_POST['project_status'];
                                             $project_staff = $_POST['project_staff'];
                                             $project_quarter = $_POST['project_quarter'];
@@ -127,7 +123,7 @@
 
                                             $search_backup = $_POST['search_backup'];
                                             $project_name_backup = $_POST['project_name_backup'];
-                                            $project_product_backup = $_POST['project_product_backup'];
+                                            $project_m_backup = $_POST['project_m_backup'];
                                             $project_status_backup = $_POST['project_status_backup'];
                                             $project_staff_backup = $_POST['project_staff_backup'];
                                             $project_quarter_backup = $_POST['project_quarter_backup'];
@@ -135,11 +131,11 @@
 
                                         // print_r($_sqlCount);
 
-                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_status  != $project_status_backup 
+                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_m != $project_m_backup || $project_status  != $project_status_backup 
                                             || $project_staff  != $project_staff_backup || $project_quarter  != $project_quarter_backup || $project_up_status  != $project_up_status_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE project_name  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
+                                                $_where = $_where . " WHERE project_name  LIKE '%$search%' OR project_m LIKE '%$search%' OR project_brand LIKE '%$search%' 
                                                 OR project_mean LIKE '%$search%' OR project_remark LIKE '%$search%' OR project_up_status LIKE '%$search%' OR project_status LIKE '%$search%' OR project_staff LIKE '%$search%'";
                                             }
                                             if ($project_name != "") {
@@ -149,11 +145,11 @@
                                                     $_where = $_where . " AND project_name = '$project_name'";
                                                 }
                                             }
-                                            if ($project_product != "") {
+                                            if ($project_m != "") {
                                                 if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_product = '$project_product' ";
+                                                    $_where = $_where . " WHERE project_m = '$project_m' ";
                                                 } else {
-                                                    $_where = $_where . " AND project_product = '$project_product'";
+                                                    $_where = $_where . " AND project_m = '$project_m'";
                                                 }
                                             }
                                             if ($project_status != "") {
@@ -170,21 +166,6 @@
                                                     $_where = $_where . " AND  project_staff = '$project_staff'"; 
                                                 }
                                             }
-                                            if ($project_quarter != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_quarter = '$project_quarter' ";
-                                                } else {
-                                                    $_where = $_where . " AND  project_quarter = '$project_quarter'"; 
-                                                }
-                                            }
-                                            if ($project_up_status != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_up_status = '$project_up_status' ";
-                                                } else {
-                                                    $_where = $_where . " AND  project_up_status = '$project_up_status'"; 
-                                                }
-                                            }
-
                                         }
                                         
 
@@ -205,7 +186,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_name`) as AMP FROM project ";
+                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -234,7 +215,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_product`) as AMP FROM project ";
+                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -262,7 +243,7 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT SUM(`project_es_sales`) as AMP FROM project ";
+                                                                $query2 = "SELECT SUM(`project_m`) as AMP FROM project ";
                                                                 $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
@@ -291,7 +272,7 @@
                                             <!-- Qeury Count All Service -->
                                             <?php 
                                                             
-                                                            $query = "SELECT SUM(`project_es_gp`) as AMP FROM project ";
+                                                            $query = "SELECT SUM(`project_m`) as AMP FROM project ";
                                                             $query1 = $query . $_where . "" . " ORDER BY project_id DESC ";
                                                             $result = mysqli_query($conn, $query1);
                                                             $ls = mysqli_fetch_array($result);   
@@ -336,11 +317,10 @@
                                                             <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>" placeholder="ค้นหา...">
                                                             <input type="hidden" class="form-control " id="search_backup" name="search_backup" value="<?php echo $search; ?>">
                                                             <input type="hidden" class="form-control " id="project_name_backup" name="project_name_backup" value="<?php echo $project_name; ?>">
-                                                            <input type="hidden" class="form-control " id="project_product_backup" name="project_product_backup" value="<?php echo $project_product; ?>">
+                                                            <input type="hidden" class="form-control " id="project_m_backup" name="project_m_backup" value="<?php echo $project_m; ?>">
                                                             <input type="hidden" class="form-control " id="project_status_backup" name="project_status_backup" value="<?php echo $project_status; ?>">
                                                             <input type="hidden" class="form-control " id="project_staff_backup" name="project_staff_backup" value="<?php echo $project_staff; ?>">
-                                                            <input type="hidden" class="form-control " id="project_quarter_backup" name="project_quarter_backup" value="<?php echo $project_quarter; ?>">
-                                                            <input type="hidden" class="form-control " id="project_up_status_backup" name="project_up_status_backup" value="<?php echo $project_up_status; ?>">
+                                                    
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -371,13 +351,13 @@
                                                         <div class="form-group">
                                                             <label>Product</label>
                                                             <select class="custom-select select2"
-                                                                name="project_product">
+                                                                name="project_m">
                                                                 <option value="">Select</option>
-                                                                <?php while ($rg = mysqli_fetch_array($query_project_product)) { ?>
-                                                                <option value="<?php echo $rg["project_product"]; ?>"
-                                                                    <?php if ($rg['project_product'] == $project_product) : ?>
+                                                                <?php while ($rg = mysqli_fetch_array($query_project_m)) { ?>
+                                                                <option value="<?php echo $rg["project_m"]; ?>"
+                                                                    <?php if ($rg['project_m'] == $project_m) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rg["project_product"]; ?></option>
+                                                                    <?php echo $rg["project_m"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
@@ -410,35 +390,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Quarter</label>
-                                                            <select class="custom-select select2" name="project_quarter">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rf = mysqli_fetch_array($query_project_quarter)) { ?>
-                                                                <option value="<?php echo $rf["project_quarter"]; ?>"
-                                                                    <?php if ($rf['project_quarter'] == $project_quarter) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rf["project_quarter"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Update Status</label>
-                                                            <select class="custom-select select2" name="project_up_status">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rh = mysqli_fetch_array($query_project_up_status)) { ?>
-                                                                <option value="<?php echo $rh["project_up_status"]; ?>"
-                                                                    <?php if ($rh['project_up_status'] == $project_up_status) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rh["project_up_status"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                
+                                                                                                   
                                                 </div>
                                             </form>
                                         </div>
@@ -472,31 +424,12 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">No.</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Price/Unit</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">QTY</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales No Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost No Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Meaning</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Task Amount</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Completed Task</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Prograss</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </thead>
@@ -504,31 +437,12 @@
                                     <tbody>
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="project_view.php?id=<?php echo $res_search["project_id"]; ?>"><?php echo $res_search["project_product"]; ?></a></td>
+                                            <td scope="col" class="text-nowrap  " height="" width="">1</td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="project_view.php?id=<?php echo $res_search["project_id"]; ?>"><?php echo $res_search["pip_name"]; ?></a></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_price"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_qty"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_sales_novat"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_sales"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_cost_novat"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_es_gp"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_gp"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_pot"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_mean"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_es_sales"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_remark"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_bg"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
 
                                             <td>
                                                 <a href="project_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
@@ -540,31 +454,12 @@
 
                                     <tfoot>
                                         <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">No.</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Price/Unit</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">QTY</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales No Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sales Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost No Vat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Meaning</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Estimated Sales</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">BG</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Update Status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Task Amount</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Completed Task</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Prograss</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Status</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </tfoot>

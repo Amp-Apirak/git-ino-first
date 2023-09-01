@@ -73,12 +73,15 @@
                             $pip_ess = $_POST['pip_ess'];
                             $pip_esc = $_POST['pip_esc'];
                             $pip_esp = $_POST['pip_esp'];
+                            $status = $_POST['status'];
+                            $date_start = $_POST['date_start'];
+                            $date_end = $_POST['date_end'];
 
                             print_r($_POST);
 
 
-                            $sql =  "INSERT INTO `pipeline` (`pip_id`, `project_product`,`project_name`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`,`pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_staff`,`pip_ess`, `pip_esc`, `pip_esp`) 
-                                    VALUES (NULL, '$project_product', '$project_name', '$project_brand', '$pip_vat', '$pip_salen', '$pip_sale', '$	pip_costn', '$pip_cost', '$pip_gp', '$pip_gp2', '$pip_p', '$contact_id', '$pip_r', '$pip_staff', '$pip_ess', '$pip_esc', '$pip_esp')";
+                            $sql =  "INSERT INTO `pipeline` (`pip_id`, `project_product`,`project_name`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`,`pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_staff`,`pip_ess`, `pip_esc`, `pip_esp`, `status`, `date_start`, `date_end`) 
+                                    VALUES (NULL, '$project_product', '$project_name', '$project_brand', '$pip_vat', '$pip_salen', '$pip_sale', '$	pip_costn', '$pip_cost', '$pip_gp', '$pip_gp2', '$pip_p', '$contact_id', '$pip_r', '$pip_staff', '$pip_ess', '$pip_esc', '$pip_esp', '$status', '$date_start', '$date_end')";
 
                             $result = $conn->query($sql);
 
@@ -113,10 +116,6 @@
                                 // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
                             }
                         }
-
-
-
-
                         // echo '<pre>';
                         // print_r($_POST);
                         // print_r($_FILES);
@@ -130,59 +129,54 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Pipeline descriptions</h3>
                                     </div>
-
                                     <form action="#" method="POST" enctype="multipart/form-data">
-
                                         <div class="card-body">
-                                            <div class="form-group">
-                                                <label>Project Name <span class="text-danger">*</span></label>
-                                                <input type="text" name="project_name" class="form-control" id="exampleInputEmail1" placeholder="โครงการ..............." required>
-                                                <input type="hidden" name="pip_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label>Product<span class="text-danger">*</span></label>
-                                                <input type="text" name="project_product" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Brand<span class="text-danger">*</span></label>
-                                                <input type="text" name="project_brand" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                            </div>
 
                                             <div class="row">
                                                 <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Contact Number</label>
+                                                        <input type="text" name="con_number" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="">
+                                                    </div>
                                                 </div>
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Vat (%)<span class="text-danger">*</span></label>
-                                                        <select class="form-control select2" name="pip_vat"  required style="width: 100%;">
+                                                        <label>Status Project<span class="text-danger">*</span></label>
+                                                        <select class="form-control select2" name="status" required
+                                                            style="width: 100%;">
                                                             <option selected="selected">Select</option>
-                                                            <option value="0.00">0%</option>
-                                                            <option value="0.03">3%</option>
-                                                            <option value="0.05">5%</option>
-                                                            <option value="0.07">7%</option>
+                                                            <option value="">Wiating for approve</option>
+                                                            <option value="">On Process</option>
+                                                            <option value="">Close</option>
                                                         </select>
                                                     </div>
                                                     <!-- /.form-group -->
                                                 </div>
                                             </div>
 
-
+                                            <div class="form-group">
+                                                <label>Project Name <span class="text-danger">*</span></label>
+                                                <input type="text" name="project_name" class="form-control"
+                                                    id="exampleInputEmail1" placeholder="" required>
+                                                <input type="hidden" name="pip_staff"
+                                                    value="<?php echo ($_SESSION['fullname']); ?>" class="form-control"
+                                                    id="exampleInputEmail1" placeholder="" required>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Sales (No Vat)<span class="text-danger">*</span></label>
-                                                        <input type="text" name="pip_salen" required class="form-control"  placeholder="ระบุราคาขายโครงการ" required>
+                                                        <label>Product<span class="text-danger">*</span></label>
+                                                        <input type="text" name="project_product" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" required>
                                                     </div>
                                                 </div>
-
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Sales (Vat)</label>
-                                                        <input type="text" name="pip_sale" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
+                                                        <label>Brand<span class="text-danger">*</span></label>
+                                                        <input type="text" name="project_brand" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,43 +184,21 @@
                                             <div class="row">
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Cost (No Vat)<span class="text-danger">*</span></label>
-                                                        <input type="text" name="pip_costn" required class="form-control"  placeholder="ระบุราคาต้นทุนโครงการ" required>
+                                                        <label>Date Start Project<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="date" name="date_start" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" required>
                                                     </div>
-                                                </div>
-
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Cost (Vat)</label>
-                                                        <input type="text" name="pip_cost" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col col-6">
                                                 </div>
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>GP (No Vat)</label>
-                                                        <input type="text" name="pip_gp" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
+                                                        <label>Date End Project<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="date" name="date_end" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" required>
                                                     </div>
-                                                    <!-- /.form-group -->
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="col col-6">
-                                                </div>
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>GP (%)</label>
-                                                        <input type="text" name="pip_gp2" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
-                                                    </div>
-                                                    <!-- /.form-group -->
-                                                </div>
-                                            </div>
-
                                         </div>
                                         <div class="card-footer">
                                             Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
@@ -238,82 +210,7 @@
                                 <!-- /.card -->
 
 
-
-                            </div>
-                            <!-- /.col (right) -->
-
-                            <!-- /.col (left) -->
-                            <div class="col-md-6">
-
-
-                                <!-- /.col (left) -->
-                                <div class="card card-warning">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Estimate Potential</h3>
-                                    </div>
-                                    <div class="card-body">
-
-                                        <div class="row">
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>% Potential<span class="text-danger">*</span></label>
-                                                        <select class="form-control select2" name="pip_p"  required style="width: 100%;">
-                                                            <option selected="selected">Select</option>
-                                                            <option value="0.00">Lost (0%)</option>
-                                                            <option value="0.10">Quotation (10%)</option>
-                                                            <option value="0.30">Negotiation (30%)</option>
-                                                            <option value="0.50">Bidding (50%)</option>
-                                                            <option value="1">Win (100%)</option>
-                                                        </select>
-                                                    </div>
-                                                     <!-- /.form-group -->
-                                                </div>
-
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Es.Sale (No Vat)</label>
-                                                        <input type="text" name="pip_ess" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
-                                                    </div>
-                                                </div>
-                                         </div>
-                                         <div class="row">
-                                                <div class="col col-6">
-                                                </div>
-
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Es.Cost (No Vat)</label>
-                                                        <input type="text" name="pip_esc" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
-                                                    </div>
-                                                </div>
-                                         </div>
-                                         <div class="row">
-                                                <div class="col col-6">
-                                                </div>
-
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Es.Gp (No Vat)</label>
-                                                        <input type="text" name="pip_esp" class="form-control"  value="" style="background-color:#F8F8FF" placeholder="" >
-                                                    </div>
-                                                </div>
-                                         </div>
-                                          <!-- textarea -->
-                                        <div class="form-group">
-                                            <label>Remark</label>
-                                            <textarea class="form-control" name="pip_r" id="pip_r" rows="3" placeholder=""></textarea>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="card-footer">
-                                        Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
-                                        examples and information about
-                                        the plugin.
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
+                                <!-- /.Customer descriptions ----------------------------------------------------------------------->
 
                                 <div class="card card-success">
                                     <div class="card-header">
@@ -334,8 +231,10 @@
                                                     <select class="custom-select select2" name="contact_id">
                                                         <option value="">Select</option>
                                                         <?php while ($rg = mysqli_fetch_array($query_contact_fullname)) { ?>
-                                                            <option value="<?php echo $rg["contact_id"]; ?>" <?php if ($rg['contact_fullname'] == $contact_fullname) : ?> selected="selected" <?php endif; ?>>
-                                                                <?php echo $rg["contact_fullname"]; ?></option>
+                                                        <option value="<?php echo $rg["contact_id"]; ?>"
+                                                            <?php if ($rg['contact_fullname'] == $contact_fullname) : ?>
+                                                            selected="selected" <?php endif; ?>>
+                                                            <?php echo $rg["contact_fullname"]; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -345,7 +244,8 @@
                                             <div class="col col-4">
                                                 <div class="form-group">
                                                     <label>Add <i class=" style=" color: #1f5d09;></i></label><br>
-                                                    <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn"> <i class="nav-icon fas fa-plus"></i></a>
+                                                    <a href="#" class="btn btn-info btn-sm " data-toggle="modal"
+                                                        data-target="#editbtn"> <i class="nav-icon fas fa-plus"></i></a>
                                                 </div>
                                                 <!-- /.form-group-->
                                             </div>
@@ -354,13 +254,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Date range -->
-                                        <div class="form-group ">
-                                            <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
-                                        </div>
-                                        <!-- /.form group -->
-
-                                        </form>
 
                                     </div>
                                     <div class="card-footer">
@@ -371,7 +264,229 @@
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
+                            </div>
+                            <!-- /.col (right) -->
 
+
+                            <!-- /.Cost Project ----------------------------------------------------------------------->
+
+                            <script type="text/javascript">
+                            function sum() {
+                                var txtFirstNumberValue = document.getElementById('pip_salen').value;
+                                var txtSecondNumberValue = document.getElementById('pip_vat').value;
+                                var txtfNumberValue = document.getElementById('pip_costn').value;
+                                var txtfiNumberValue = document.getElementById('pip_cost').value;
+                                var txtthdNumberValue = document.getElementById('pip_sale').value;
+                                var txtsNumberValue = document.getElementById('pip_gp').value;
+                                var txtseNumberValue = document.getElementById('pip_gp2').value;
+
+                                var txtp = document.getElementById('pip_p').value;
+                                var txtess = document.getElementById('pip_ess').value;
+                                var txtesc = document.getElementById('pip_esc').value;
+                                var txtesp = document.getElementById('pip_esp').value;
+
+
+
+
+                                if (txtFirstNumberValue == ""  ) { txtthdNumberValue=0; }
+                                if (txtfNumberValue == ""  ) { txtfiNumberValue=0; }
+                                if (txtFirstNumberValue == ""  ) { txtsNumberValue=0; }
+                                if (txtfNumberValue == ""  ) { txtsNumberValue=0; }
+                                
+                                
+                                var result =
+                                    (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100)) + parseInt(txtFirstNumberValue) ;
+                                if (!isNaN(result)) {
+                                    document.getElementById('pip_sale').value = result;
+                                }
+                                var result1 =
+                                    (parseInt(txtfNumberValue) * (parseInt(txtSecondNumberValue)/100)) + parseInt(txtfNumberValue) ;
+                                if (!isNaN(result1)) {
+                                    document.getElementById('pip_cost').value = result1;
+                                }
+                                var resultt =
+                                    parseInt(txtFirstNumberValue) - parseInt(txtfNumberValue) ;
+                                if (!isNaN(resultt)) {
+                                    document.getElementById('pip_gp').value = resultt;
+                                }
+                                var result3 =
+                                    (parseInt(txtsNumberValue) / parseInt(txtFirstNumberValue))*100 ;
+                                if (!isNaN(result3)) {
+                                    document.getElementById('pip_gp2').value = result3;
+                                }
+
+
+                                var result4 =
+                                    parseInt(txtFirstNumberValue) * (parseInt(txtp)/100) ;
+                                if (!isNaN(result4)) {
+                                    document.getElementById('pip_ess').value = result4;
+                                }
+                                var result5 =
+                                    parseInt(txtfNumberValue) * (parseInt(txtp)/100) ;
+                                if (!isNaN(result5)) {
+                                    document.getElementById('pip_esc').value = result5;
+                                }
+                                var result6 =
+                                    parseInt(txtsNumberValue) * (parseInt(txtp)/100) ;
+                                if (!isNaN(result6)) {
+                                    document.getElementById('pip_esp').value = result6;
+                                }
+
+                            }
+                            </script>
+
+
+
+                            <!-- /.col (left) -->
+                            <div class="col-md-3">
+                                <!-- /.col (left) -->
+                                <div class="card card-warning">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Cost Project</h3>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col col">
+                                                <div class="form-group">
+                                                    <label>Vat (%)<span class="text-danger">*</span></label>
+                                                    <select class="form-control select2" name="pip_vat" id="pip_vat" onkeyup="sum();"
+                                                        required style="width: 100%;">
+                                                        <option selected="selected">Select</option>
+                                                        <option value="0">0%</option>
+                                                        <option value="3">3%</option>
+                                                        <option value="5">5%</option>
+                                                        <option value="7">7%</option>
+                                                    </select>
+                                                </div>
+                                                <!-- /.form-group -->
+
+                                                <div class="form-group">
+                                                    <label>Sales (No Vat)<span class="text-danger">*</span></label>
+                                                    <input type="int" name="pip_salen" id="pip_salen" onkeyup="sum();"  
+                                                        class="form-control" placeholder="ระบุราคาขายโครงการ" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Sales (Vat)</label>
+                                                    <input type="int" name="pip_sale" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_sale" readonly="readonly"
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Cost (No Vat)<span class="text-danger">*</span></label>
+                                                    <input type="int" name="pip_costn" id="pip_costn" required class="form-control" onkeyup="sum();"
+                                                        placeholder="ระบุราคาต้นทุนโครงการ" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Cost (Vat)</label>
+                                                    <input type="int" name="pip_cost" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_cost" 
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>GP (No Vat)</label>
+                                                    <input type="int" name="pip_gp" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_gp" 
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder=""> 
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>GP (%)</label>
+                                                    <input type="int" name="pip_gp2" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_gp2" 
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.card -->
+
+                            <!-- /.Cost Project ----------------------------------------------------------------------->
+
+                            <div class="col-md-3">
+                                <!-- /.col (left) -->
+                                <div class="card card-warning">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Estimate Potential</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col col">
+                                                <div class="form-group">
+                                                    <label>% Potential<span class="text-danger">*</span></label>
+                                                    <select class="form-control select2" name="pip_p" id="pip_p" required onkeyup="sum();"
+                                                        style="width: 100%;">
+                                                        <option selected="selected">Select</option>
+                                                        <option value="0">Lost (0%)</option>
+                                                        <option value="10">Quotation (10%)</option>
+                                                        <option value="30">Negotiation (30%)</option>
+                                                        <option value="50">Bidding (50%)</option>
+                                                        <option value="100">Win (100%)</option>
+                                                    </select>
+                                                </div>
+                                                <!-- /.form-group -->
+                                                <div class="form-group">
+                                                    <label>Es.Sale (No Vat)</label>
+                                                    <input type="text" name="pip_ess" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_ess" 
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Es.Cost (No Vat)</label>
+                                                    <input type="text" name="pip_esc" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_esc"  
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Es.Gp (No Vat)</label>
+                                                    <input type="text" name="pip_esp" class="form-control" value="" onkeyup="sum();"
+                                                        id="pip_esp" 
+                                                        
+                                                        style="background-color:#F8F8FF" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- textarea -->
+                                        <div class="form-group">
+                                            <label>Remark</label>
+                                            <textarea class="form-control" name="pip_r" id="pip_r" rows="4"
+                                                placeholder=""></textarea>
+                                        </div>
+
+
+
+                                        <!-- Date range -->
+                                        <div class="form-group ">
+                                            <button type="submit" name="submit" value="submit"
+                                                class="btn btn-success">Save</button>
+                                        </div>
+                                        <!-- /.form group -->
+                                    </div>
+
+                                    </form>
+                                    <div class="card-footer">
+                                        Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
+                                        examples and information about
+                                        the plugin.
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
                             </div>
                             <!-- /.card -->
                         </div>
@@ -396,7 +511,7 @@
     <script src="code/dist/js/highlight.js"></script>
 
     <script>
-        $("#myTable tr").highlight();
+    $("#myTable tr").highlight();
     </script>
     <!-- highlight -->
 
@@ -506,28 +621,33 @@
 
                             <div class="form-group">
                                 <label for="contact_fullname">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" name="contact_fullname" class="form-control" id="contact_fullname" placeholder="" required>
+                                <input type="text" name="contact_fullname" class="form-control" id="contact_fullname"
+                                    placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
                                 <label for="contact_position">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder="" required>
+                                <input type="text" name="contact_position" class="form-control" id="contact_position"
+                                    placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
                                 <label for="contact_company">Company<span class="text-danger">*</span></label>
-                                <input type="text" name="contact_company" class="form-control" id="contact_company" placeholder="" required>
+                                <input type="text" name="contact_company" class="form-control" id="contact_company"
+                                    placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
                                 <label>Agency<span class="text-danger">*</span></label>
-                                <input type="text" name="contact_agency" class="form-control" id="contact_agency" placeholder="">
+                                <input type="text" name="contact_agency" class="form-control" id="contact_agency"
+                                    placeholder="">
 
 
-                                <input type="hidden" name="contact_staff" class="form-control" value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
+                                <input type="hidden" name="contact_staff" class="form-control"
+                                    value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
 
                             </div>
                             <!-- /.form-group -->
@@ -535,13 +655,15 @@
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4" placeholder=""></textarea>
+                                <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4"
+                                    placeholder=""></textarea>
                             </div>
 
 
                             <div class="form-group">
                                 <label>Province<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="contact_province" required style="width: 100%;">
+                                <select class="form-control select2" name="contact_province" required
+                                    style="width: 100%;">
                                     <option selected="selected">Select</option>
                                     <option>Staff</option>
                                     <option>Customer</option>
@@ -557,7 +679,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="contact_tel" id="tel" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                    <input type="text" class="form-control" name="contact_tel" id="tel"
+                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -569,7 +692,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="email" class="form-control" name="contact_email" id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control" name="contact_email" id="email"
+                                        placeholder="Email" required>
                                 </div>
                             </div>
                             <!-- /.form-group -->

@@ -104,6 +104,15 @@
                             </li>
 
                             <li class="nav-item">
+                                <a href="service.php" class="nav-link <?php if($menu=="service"){echo "active";} ?>">
+                                    <i class="nav-icon fa fa-desktop"></i>
+                                    <p>
+                                        Service Job
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="document.php" class="nav-link <?php if($menu=="document"){echo "active";} ?>">
                                     <i class="nav-icon fa fa-folder-open"></i>
                                     <p>
@@ -123,6 +132,7 @@
                                     </p>
                                 </a>
                             </li>
+
 
 
                         </ul>

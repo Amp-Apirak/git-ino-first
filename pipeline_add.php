@@ -143,13 +143,13 @@
                                                 <div class="col col-6">
                                                     <div class="form-group">
                                                         <label>Status Project<span class="text-danger">*</span></label>
-                                                        <select class="form-control select2" name="status" required
+                                                        <select class="form-control select2" name="status" id="status" required
                                                             style="width: 100%;">
                                                             <option selected="selected">Select</option>
-                                                            <option value="">Wiating for approve</option>
-                                                            <option value="">On Process</option>
-                                                            <option value="">On-Hold</option>
-                                                            <option value="">Done</option>
+                                                            <option>Wiating for approve</option>
+                                                            <option>On Process</option>
+                                                            <option>On-Hold</option>
+                                                            <option>Done</option>
                                                         </select>
                                                     </div>
                                                     <!-- /.form-group -->

@@ -509,9 +509,21 @@
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
                                             <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?></a></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["status"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width="">
+                                                <?php
+                                                    if($res_search["status"] =='Wiating for approve'){
+                                                        echo "<span class='badge badge-secondary'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='On Process'){
+                                                        echo "<span class='badge badge-info'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='On-Hold'){
+                                                        echo "<span class='badge badge-warning'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='Done'){
+                                                        echo "<span class='badge badge-success'>{$res_search["status"]}</span>";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?></td> 
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_sale"], 0 );?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_costn"], 0 ); ?></td>

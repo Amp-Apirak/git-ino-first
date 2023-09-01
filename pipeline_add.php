@@ -148,7 +148,8 @@
                                                             <option selected="selected">Select</option>
                                                             <option value="">Wiating for approve</option>
                                                             <option value="">On Process</option>
-                                                            <option value="">Close</option>
+                                                            <option value="">On-Hold</option>
+                                                            <option value="">Done</option>
                                                         </select>
                                                     </div>
                                                     <!-- /.form-group -->
@@ -665,10 +666,83 @@
                                 <select class="form-control select2" name="contact_province" required
                                     style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Staff</option>
-                                    <option>Customer</option>
-                                    <option>Partner</option>
-                                    <option>Sale</option>
+                                    <option>กรุงเทพมหานคร</option>
+                                    <option>ปทุมธานี</option>
+                                    <option>สมุทรปราการ</option>
+                                    <option>อ่างทอง</option>
+                                    <option>สมุทรสาคร</option>
+                                    <option>สิงห์บุรี</option>
+                                    <option>นนทบุรี</option>
+                                    <option>ภูเก็ต</option>
+                                    <option>สมุทรสงคราม</option>
+                                    <option>นครราชสีมา</option>
+                                    <option>เชียงใหม่</option>
+                                    <option>กาญจนบุรี</option>
+                                    <option>ตาก</option>
+                                    <option>อุบลราชธานี</option>
+                                    <option>สุราษฎร์ธานี</option>
+                                    <option>ชัยภูมิ</option>
+                                    <option>แม่ฮ่องสอน</option>
+                                    <option>เพชรบูรณ์</option>
+                                    <option>ลำปาง</option>
+                                    <option>อุดรธานี</option>
+                                    <option>เชียงราย</option>
+                                    <option>น่าน</option>
+                                    <option>เลย</option>
+                                    <option>ขอนแก่น</option>
+                                    <option>พิษณุโลก</option>
+                                    <option>บุรีรัมย์</option>
+                                    <option>นครศรีธรรมราช</option>
+                                    <option>สกลนคร</option>
+                                    <option>นครสวรรค์</option>
+                                    <option>ศรีสะเกษ</option>
+                                    <option>กำแพงเพชร</option>
+                                    <option>ร้อยเอ็ด</option>
+                                    <option>สุรินทร์</option>
+                                    <option>อุตรดิตถ์</option>
+                                    <option>สงขลา</option>
+                                    <option>สระแก้ว</option>
+                                    <option>กาฬสินธุ์</option>
+                                    <option>อุทัยธานี</option>
+                                    <option>สุโขทัย</option>
+                                    <option>แพร่</option>
+                                    <option>ประจวบคีรีขันธ์</option>
+                                    <option>จันทบุรี</option>
+                                    <option>พะเยา</option>
+                                    <option>เพชรบุรี</option>
+                                    <option>ลพบุรี</option>
+                                    <option>ชุมพร</option>
+                                    <option>นครพนม</option>
+                                    <option>สุพรรณบุรี</option>
+                                    <option>ฉะเชิงเทรา</option>
+                                    <option>มหาสารคาม</option>
+                                    <option>ราชบุรี</option>
+                                    <option>ตรัง</option>
+                                    <option>ปราจีนบุรี</option>
+                                    <option>กระบี่</option>
+                                    <option>พิจิตร</option>
+                                    <option>ยะลา</option>
+                                    <option>ลำพูน</option>
+                                    <option>นราธิวาส</option>
+                                    <option>ชลบุรี</option>
+                                    <option>มุกดาหาร</option>
+                                    <option>บึงกาฬ</option>
+                                    <option>พังงา</option>
+                                    <option>ยโสธร</option>
+                                    <option>หนองบัวลำภู</option>
+                                    <option>สระบุรี</option>
+                                    <option>ระยอง</option>
+                                    <option>พัทลุง</option>
+                                    <option>ระนอง</option>
+                                    <option>อำนาจเจริญ</option>
+                                    <option>หนองคาย</option>
+                                    <option>ตราด</option>
+                                    <option>พระนครศรีอยุธยา</option>
+                                    <option>สตูล</option>
+                                    <option>ชัยนาท</option>
+                                    <option>นครปฐม</option>
+                                    <option>นครนายก</option>
+                                    <option>ปัตตานี</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->

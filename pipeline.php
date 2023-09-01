@@ -548,9 +548,9 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_staff"]; ?></td>
 
                                             <td>
-                                                <a href="pipeline_copy.php" class="btn btn-success btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-copy"></i></a>
-                                                <a href="pipeline_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="pipeline.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                <a href="pipeline_copy.php?id=<?php echo $res_search["pip_id"]; ?>&id_c=<?php echo $res_search["contact_id"]; ?>" class="btn btn-success btn-sm "><i class="fas fa-copy"></i></a>
+                                                <a href="pipeline_edit.php?id=<?php echo $res_search["pip_id"]; ?>&id_c=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm " ><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="pipeline.php?id=<?php echo $res_search["pip_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php } ?>

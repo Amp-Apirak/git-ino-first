@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2023 at 01:14 PM
+-- Generation Time: Sep 01, 2023 at 11:55 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -50,7 +50,9 @@ INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `co
 (1, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
 (2, 'Apirak Bangpuk', 'Presale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 16:49:07', 'Apirak Bangpuk', 'Bangkok'),
 (3, 'Apirak Bangpuk', 'Presale', 'Point IT1', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
-(4, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok');
+(4, 'Phattraorn Amornophakun', 'Pre Sale', 'Point IT', '08959583626', 'mauk@gmail.com', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ กรุงเทพมหานคร', 'บริษัท พอยท์ ไอที คอนซัลทิ่ง จำกัด ', 'Staff', '2023-06-12 17:07:39', 'Apirak Bangpuk', 'Bangkok'),
+(8, 'นายกเทศบาลเมืองป่าตอง', 'นายกเทศบาลเมืองป่าตอง', 'นายกเทศบาลเมืองป่าตอง', '(096) 659-9971', 'wiroot@eng.buu.ac.th', 'นายกเทศบาลเมืองป่าตอง', 'เทศบาลเมืองป่าตอง', 'Customer', '2023-09-01 09:50:35', 'Apirak bangpuk', '8598222918d3c6e513d63060cf55e2971ded729a'),
+(9, 'นายกเทศบาลเมืองรังสิต', 'นายกเทศบาลเมืองรังสิต', 'นายกเทศบาลเมืองรังสิต', '(096) 659-9111', 'apitak@gmail.com', 'นายกเทศบาลเมืองรังสิต', 'นายกเทศบาลเมืองรังสิต', 'Customer', '2023-09-01 09:52:38', 'Apirak bangpuk', '0e85749a6f40d4614b87411e141fe8109099bc4f');
 
 -- --------------------------------------------------------
 
@@ -127,16 +129,23 @@ CREATE TABLE `pipeline` (
   `pip_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง',
   `pip_ess` int(11) NOT NULL COMMENT 'ประมาณการขาย',
   `pip_esc` int(11) NOT NULL COMMENT 'ประมาณการต้นทุน',
-  `pip_esp` int(11) NOT NULL COMMENT 'ประมาณผลกำไร'
+  `pip_esp` int(11) NOT NULL COMMENT 'ประมาณผลกำไร',
+  `date_start` date NOT NULL COMMENT 'วันเริ่มโครงการ',
+  `date_end` date NOT NULL COMMENT 'วันสิ้นสุดโครงการ',
+  `status` varchar(255) NOT NULL COMMENT 'Win,Loss',
+  `con_number` varchar(255) NOT NULL COMMENT 'เลขที่สัญญา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pipeline`
 --
 
-INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`, `pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_date`, `pip_staff`, `pip_ess`, `pip_esc`, `pip_esp`) VALUES
-(1, 'โครงการระบบยืนยันตัวตนพร้อมการวิเคราะห์ภายใบหน้า (Super Rich)', 'BIO IDM-eKYC', 'AI Platform', '7', 500000, 535000, 300000, 321000, 200000, 40, '0.10', 2, 'ประมาณโครงสร้างราคา', '0000-00-00 00:00:00', 'Apirak', 50000, 30000, 20000),
-(2, 'โครงการ นวัตกรรมบริการชุมชนเพื่อควบคุมการแพร่ระบาดเชื้อไวรัสโคโรน่า 2019 ย่านนวัตกรรมการแพทย์โยธี', 'EKYD', 'Point IT', '0.05', 5, 5, 0, 5, 5, 5, '0.30', 1, '5', '2023-08-17 04:57:05', 'Apirak bangpuk', 5, 5, 5);
+INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`, `pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_date`, `pip_staff`, `pip_ess`, `pip_esc`, `pip_esp`, `date_start`, `date_end`, `status`, `con_number`) VALUES
+(1, 'โครงการระบบยืนยันตัวตนพร้อมการวิเคราะห์ภายใบหน้า (Super Rich)', 'BIO IDM-eKYC', 'AI Platform', '7', 500000, 535000, 300000, 321000, 200000, 40, '0.10', 2, 'ประมาณโครงสร้างราคา', '2023-09-01 03:49:15', 'Apirak', 50000, 30000, 20000, '2023-01-03', '2023-12-31', 'Win', ''),
+(2, 'โครงการ นวัตกรรมบริการชุมชนเพื่อควบคุมการแพร่ระบาดเชื้อไวรัสโคโรน่า 2019 ย่านนวัตกรรมการแพทย์โยธี', 'EKYD', 'Point IT', '0.05', 500000, 535000, 300000, 5321000, 200000, 5, '0.30', 1, '5', '2023-09-01 03:49:24', 'Apirak bangpuk', 5, 5, 5, '2023-09-01', '2024-12-18', 'Loss', ''),
+(3, 'โครงการ นวัตกรรมบริการชุมชนเพื่อควบคุมการแพร่ระบาดเชื้อไวรัสโคโรน่า 2019 ย่านนวัตกรรมการแพทย์โยธี', 'EKYD', 'Point IT', '0.03', 1000000, 1070000, 0, 535000, 500000, 50, '0.50', 1, '200000', '2023-09-01 07:10:12', 'Apirak bangpuk', 200000, 200000, 2023, '0000-00-00', '0000-00-00', '', ''),
+(4, 'KYD', 'EKYD', 'Point IT', '5', 1000000, 1050000, 0, 525000, 500000, 50, 'Select', 0, '', '2023-09-01 09:32:23', 'Apirak bangpuk', 0, 0, 0, '2023-09-01', '2023-09-01', '', ''),
+(5, 'โครงการ A', 'KYD', 'Emergency Platform', '7', 1000000, 1070000, 0, 535000, 500000, 50, '50', 1, 'นำล่องโครงการ', '2023-09-01 09:46:51', 'Apirak bangpuk', 500000, 250000, 250000, '2023-09-01', '2024-09-01', '', '');
 
 -- --------------------------------------------------------
 
@@ -438,7 +447,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=8;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `doc`
@@ -456,7 +465,7 @@ ALTER TABLE `folder_doc`
 -- AUTO_INCREMENT for table `pipeline`
 --
 ALTER TABLE `pipeline`
-  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=3;
+  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pip_docker`

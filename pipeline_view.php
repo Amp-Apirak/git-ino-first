@@ -142,11 +142,23 @@
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-sm-4 invoice-col">
-                                            <b>Invoice #007612</b><br>
+                                            <b>Contact Number : <?php echo $res_search["con_number"]; ?></b><br>
                                             <br>
-                                            <b>Order ID:</b> 4F3S8J<br>
-                                            <b>Payment Due:</b> 2/22/2014<br>
-                                            <b>Account:</b> 968-34567
+                                            <b>Status:</b> 
+                                                <?php
+                                                    if($res_search["status"] =='Wiating for approve'){
+                                                        echo "<span class='badge badge-secondary'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='On Process'){
+                                                        echo "<span class='badge badge-info'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='On-Hold'){
+                                                        echo "<span class='badge badge-warning'>{$res_search["status"]}</span>";
+                                                    }elseif($res_search["status"] =='Done'){
+                                                        echo "<span class='badge badge-success'>{$res_search["status"]}</span>";
+                                                    }
+                                                ?>
+                                            <br>
+                                            <b>Date Start:</b> <?php echo $res_search["date_start"]; ?><br>
+                                            <b>Date End:</b> <?php echo $res_search["date_end"]; ?>
 
 
                                             <div class="col col-12 mb-5">
@@ -186,13 +198,13 @@
                                                     
                                                     <tr>
                                                         <th scope="row"><h6>Gross Profit (GP)</h6></th>
-                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_gp"], 0); ?></td>
+                                                        <td scope="col" class="text-nowrap text-center badge-info" height="" width=""><b><?php echo number_format($res_search["pip_gp"], 0); ?></b></td>
                                                         <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
                                                         <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row"><h6>(% GP)</h6></th>
-                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""> <?php echo number_format($res_search["pip_gp2"], 0); ?> %</td>
+                                                        <td scope="col" class="text-nowrap text-center  " height="" width=""><b> <?php echo number_format($res_search["pip_gp2"], 0); ?> %</b></td>
                                                         <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
                                                         <td scope="col" class="text-nowrap text-center  " height="" width=""> - </td>
                                                     </tr>

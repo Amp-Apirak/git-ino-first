@@ -476,16 +476,18 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact No.</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Cost (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Cost (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Gross Profit (GP)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Es.Sale (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Es.Cost (No Vat)</th>
@@ -495,7 +497,7 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Start</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project End</th>
 
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
@@ -508,7 +510,10 @@
                                     <tbody>
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
+                                        <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["con_number"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?></a></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width="">
                                                 <?php
                                                     if($res_search["status"] =='Wiating for approve'){
@@ -523,8 +528,7 @@
                                                 ?>
                                             </td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_brand"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?></td> 
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_sale"], 0 );?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_costn"], 0 ); ?></td>
@@ -537,7 +541,6 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_r"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["date_start"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["date_end"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
@@ -555,16 +558,18 @@
 
                                     <tfoot>
                                         <tr>
-                                        <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact No.</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Cost (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Cost (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Gross Profit (GP)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Es.Sale (No Vat)</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Es.Cost (No Vat)</th>
@@ -574,7 +579,7 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Start</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project End</th>
 
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
+                                            
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>

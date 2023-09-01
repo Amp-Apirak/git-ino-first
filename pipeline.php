@@ -478,6 +478,7 @@
                                         <tr>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
@@ -497,7 +498,6 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
@@ -522,6 +522,7 @@
                                                     }
                                                 ?>
                                             </td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?></td> 
@@ -539,7 +540,6 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_date"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_staff"]; ?></td>
@@ -555,8 +555,9 @@
 
                                     <tfoot>
                                         <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
+                                        <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Stutus</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
@@ -576,7 +577,6 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>

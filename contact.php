@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INO | Contact</title>
 
+     <!-- highlight -->
+    <style>
+    .highlight {
+        background-color: #FFFF88;
+    }
+    </style>
+    <!-- highlight -->
+
 
     <!----------------------------- start header ------------------------------->
     <?php include ("../ino/templated/head.php");?>
@@ -120,8 +128,8 @@
                                             if ($search != $search_backup || $contact_type != $contact_type_backup || $contact_province != $contact_province_backup || $contact_staff  != $contact_staff_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR contact_type LIKE '%$search%' OR contact_province LIKE '%$search%' 
-                                                OR email LIKE '%$search%' OR contact_type LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
+                                                $_where = $_where . " WHERE contact_fullname LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' OR contact_province LIKE '%$search%' OR contact_staff LIKE '%$search%'
+                                                OR contact_tel LIKE '%$search%' OR contact_email LIKE '%$search%' OR contact_detail LIKE '%$search%' OR contact_company	 LIKE '%$search%' OR contact_type LIKE '%$search%'";
                                             }
                                             if ($contact_type != "") {
                                                 if (empty($_where)) {
@@ -149,7 +157,10 @@
                                         
 
                                     $query_search = mysqli_query($conn, $_sql .$_where); 
+
                                 // print_r($query_search);
+                                // print_r($_sql);
+                                // print_r($_where);
                                 ?>
 
                         <section class="content">
@@ -274,9 +285,9 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                        <tr id="myTable">
+                                        <tr >
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_type"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_position"];?></td>
@@ -336,11 +347,33 @@
     <?php include ("../ino/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->
 
-    <!-- highlight -->
-    <script src="code/dist/js/highlight.js"></script>
+      <!-- highlight -->
+      <script src="code/dist/js/highlight.js"></script>
 
     <script>
-    $("#myTable tr").highlight();
+    //<!-- Fillter -->
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        // <!-- Fillter -->
+        // <!-- Copy -->
+        $(document).on('click', '.btncoppy', function() {
+            var copyText = $(this).attr("name");
+            console.log(copyText);
+            var el = $('<input style="position: absolute; bottom: -120%" type="text" value="' +
+                copyText + '"/>').appendTo('body');
+            el[0].select();
+            document.execCommand("copy");
+            el.remove();
+        });
+    });
+
+    
+    $("#myTable tr").highlight("<?php echo $search;?>");
     </script>
     <!-- highlight -->
 
@@ -435,7 +468,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="project_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="contact.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Type<span class="text-danger">*</span></label>

@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INO | Account</title>
 
+    <!-- highlight -->
+    <style>
+    .highlight {
+        background-color: #FFFF88;
+    }
+    </style>
+    <!-- highlight -->
+
+
 
     <!----------------------------- start header ------------------------------->
     <?php include("../ino/templated/head.php"); ?>
@@ -120,8 +129,8 @@
                             if ($search != $search_backup || $position != $position_backup || $team != $team_backup || $role  != $role_backup)
 
                                 if (!empty($search)) {
-                                    $_where = $_where . " WHERE fullname  LIKE '%$search%' OR position LIKE '%$search%' OR team LIKE '%$search%' 
-                                                OR email LIKE '%$search%' OR role LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
+                                    $_where = $_where . " WHERE username LIKE '%$search%' OR fullname LIKE '%$search%' OR email LIKE '%$search%' 
+                                                OR tel LIKE '%$search%' OR user_staff LIKE '%$search%' OR role LIKE '%$search%' OR team LIKE '%$search%' OR position LIKE '%$search%'";
                                 }
                             if ($position != "") {
                                 if (empty($_where)) {
@@ -264,9 +273,9 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                            <tr id="myTable">
+                                            <tr >
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["username"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["fullname"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["team"]; ?></td>
@@ -423,13 +432,38 @@
     <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
-    <!-- highlight -->
-    <script src="code/dist/js/highlight.js"></script>
+       <!-- highlight -->
+       <script src="code/dist/js/highlight.js"></script>
 
-    <script>
-        $("#myTable tr").highlight();
-    </script>
-    <!-- highlight -->
+    
+
+        <script>
+        //<!-- Fillter -->
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            // <!-- Fillter -->
+            // <!-- Copy -->
+            $(document).on('click', '.btncoppy', function() {
+                var copyText = $(this).attr("name");
+                console.log(copyText);
+                var el = $('<input style="position: absolute; bottom: -120%" type="text" value="' +
+                    copyText + '"/>').appendTo('body');
+                el[0].select();
+                document.execCommand("copy");
+                el.remove();
+            });
+        });
+
+
+        $("#myTable tr").highlight("<?php echo $search;?>");
+        </script>
+        <!-- highlight -->
+
 
 
 

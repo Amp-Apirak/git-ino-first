@@ -637,7 +637,7 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>

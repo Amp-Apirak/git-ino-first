@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INO | Document</title>
 
+     <!-- highlight -->
+     <style>
+    .highlight {
+        background-color: #FFFF88;
+    }
+    </style>
+    <!-- highlight -->
+
 
     <!----------------------------- start header ------------------------------->
     <?php include ("../ino/templated/head.php");?>
@@ -115,13 +123,15 @@
                                             $doc_name_backup = $_POST['doc_name_backup'];
                                             $doc_status_backup = $_POST['doc_status_backup'];
 
-                                        // print_r($_sqlCount);
+                                        //print_r($query_search);
+                                        // print_r($_sql);
+                                        // print_r($_where);
 
                                             if ($search != $search_backup || $doc_type != $doc_type_backup || $doc_name != $doc_name_backup || $doc_status  != $doc_status_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR doc_type LIKE '%$search%' OR doc_name LIKE '%$search%' 
-                                                OR email LIKE '%$search%' OR doc_status LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
+                                                $_where = $_where . " WHERE folder_name  LIKE '%$search%' OR doc_staff LIKE '%$search%' OR project_name LIKE '%$search%' 
+                                                OR task_name LIKE '%$search%' OR doc_type LIKE '%$search%' OR doc_name LIKE '%$search%' OR 	doc_link LIKE '%$search%' OR doc_remark LIKE '%$search%' OR doc_status LIKE '%$search%' ";
                                             }
                                             if ($doc_type != "") {
                                                 if (empty($_where)) {
@@ -281,9 +291,9 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody>
+                                        <tbody id="myTable">
                                             <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                            <tr id="myTable">
+                                            <tr>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["task_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["folder_name"];?></td>
@@ -336,13 +346,37 @@
     <?php include ("../ino/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->
 
-    <!-- highlight -->
+         <!-- highlight -->
     <script src="code/dist/js/highlight.js"></script>
 
-    <script>
-    $("#myTable tr").highlight();
-    </script>
-    <!-- highlight -->
+    
+
+        <script>
+        //<!-- Fillter -->
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            // <!-- Fillter -->
+            // <!-- Copy -->
+            $(document).on('click', '.btncoppy', function() {
+                var copyText = $(this).attr("name");
+                console.log(copyText);
+                var el = $('<input style="position: absolute; bottom: -120%" type="text" value="' +
+                    copyText + '"/>').appendTo('body');
+                el[0].select();
+                document.execCommand("copy");
+                el.remove();
+            });
+        });
+
+
+        $("#myTable tr").highlight("<?php echo $search;?>");
+        </script>
+        <!-- highlight -->
 
 
 

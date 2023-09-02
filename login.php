@@ -110,7 +110,7 @@
 
     <div class="container-fluid login-wrapper">
         <div class="login-box">
-            <h1 class="text-center mb-5"><i class="fas fa-handshake text-primary"></i> Sale Service</h1>
+            <h1 class="text-center mb-5"><i class="fas fa-handshake text-primary"></i> Sale Service Management</h1>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-12 login-box-info">
                     <h3 class="mb-4">Sign up</h3>

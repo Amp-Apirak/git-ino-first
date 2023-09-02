@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $menu = "pipeline"; ?>
+<?php $menu = "Contact"; ?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INO | Pipeline</title>
+    <title>INO | Contact</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -20,7 +20,7 @@
         /* การลบข้อมูล */
         if (isset($_GET['id'])) {
 
-            $result = $conn->query("DELETE FROM project INNER JOIN estime  WHERE project_id=" . $_GET['projecr_id']);
+            $result = $conn->query("DELETE FROM contact WHERE contact_id=" . $_GET['id']);
 
             if ($result) {
                 // <!-- sweetalert -->
@@ -31,7 +31,7 @@
                                 text: "Delect Infomation Complatrd.",
                                 type:"success"
                             }, function(){
-                                window.location = "pipeline.php";
+                                window.location = "contact.php";
                             })
                         },1000);
                     </script>';
@@ -45,7 +45,7 @@
                                 text: "Type again",
                                 type:"warning"
                             }, function(){
-                                window.location = "pipeline.php";
+                                window.location = "contact.php";
                             })
                         },1000);
                     </script>';
@@ -63,12 +63,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Pipeline Management</h1>
+                        <h1>Contact Management</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active">Pipeline Management</li>
+                            <li class="breadcrumb-item active">Contact Management</li>
                         </ol>
                     </div>
                 </div>
@@ -83,108 +83,65 @@
                         <!-- Start ค้นหาและ ดึงข้อมูล -->
                         <?php
                                     $search = "";
-                                    $project_name = "";
-                                    $project_product = "";
-                                    $project_brand = "";
-                                    $pip_staff = "";
-                                    $contact_fullname = "";
-                                    $contact_company = "";
+                                    $contact_position = "";
+                                    $contact_agency = "";
+                                    $contact_type = "";
 
                                     $search_backup = "";
-                                    $project_name_backup = "";
-                                    $project_product_backup = "";
-                                    $project_brand_backup = "";
-                                    $pip_staff_backup = "";
-                                    $contact_fullname_backup = "";
-                                    $contact_company_backup = "";
+                                    $contact_position_backup = "";
+                                    $contact_agency_backup = "";
+                                    $contact_type_backup = "";
                         
-                                    $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_project_product = "SELECT DISTINCT project_product FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_project_brand = "SELECT DISTINCT project_brand  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_pip_staff = "SELECT DISTINCT pip_staff  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_contact_fullname = "SELECT DISTINCT contact_fullname  FROM contact ";
-                                    $_sql_contact_company = "SELECT DISTINCT contact_company  FROM contact ";
+                                    $_sql_contact_position = "SELECT DISTINCT contact_position FROM contact";
+                                    $_sql_contact_agency = "SELECT DISTINCT contact_agency FROM contact";
+                                    $_sql_contact_type = "SELECT DISTINCT contact_type  FROM contact";
 
+                                    $query_contact_position = mysqli_query($conn, $_sql_contact_position);
+                                    $query_contact_agency = mysqli_query($conn, $_sql_contact_agency);
+                                    $query_contact_type = mysqli_query($conn, $_sql_contact_type);
 
-                                    $query_project_name = mysqli_query($conn, $_sql_project_name);
-                                    $query_project_product = mysqli_query($conn, $_sql_project_product);
-                                    $query_project_brand = mysqli_query($conn, $_sql_project_brand);
-                                    $query_pip_staff = mysqli_query($conn, $_sql_pip_staff);
-                                    $query_contact_fullname = mysqli_query($conn, $_sql_contact_fullname);
-                                    $query_contact_company = mysqli_query($conn, $_sql_contact_company);
-
-                                    //print_r($query_project_name);
-
-                                    $_sql = "SELECT * FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql = "SELECT * FROM contact ";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
 
                                             $search = $_POST['searchservice'];
-                                            $project_name = $_POST['project_name'];
-                                            $project_product = $_POST['project_product'];
-                                            $project_brand = $_POST['project_brand'];
-                                            $pip_staff = $_POST['pip_staff'];
-                                            $contact_fullname = $_POST['contact_fullname'];
-                                            $contact_company = $_POST['contact_company'];
+                                            $contact_position = $_POST['contact_position'];
+                                            $contact_agency = $_POST['contact_agency'];
+                                            $contact_type = $_POST['contact_type'];
 
                                             $search_backup = $_POST['search_backup'];
-                                            $project_name_backup = $_POST['project_name_backup'];
-                                            $project_product_backup = $_POST['project_product_backup'];
-                                            $project_brand_backup = $_POST['project_brand_backup'];
-                                            $pip_staff_backup = $_POST['pip_staff_backup'];
-                                            $contact_fullname_backup = $_POST['contact_fullname_backup'];
-                                            $contact_company_backup = $_POST['contact_company_backup'];
+                                            $contact_position_backup = $_POST['contact_position_backup'];
+                                            $contact_agency_backup = $_POST['contact_agency_backup'];
+                                            $contact_type_backup = $_POST['contact_type_backup'];
 
-                                        //print_r($_sqlCount);
+                                        // print_r($_sqlCount);
 
-                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_brand  != $project_brand_backup 
-                                            || $pip_staff  != $pip_staff_backup || $contact_fullname  != $contact_fullname_backup || $contact_company  != $contact_company_backup )
+                                            if ($search != $search_backup || $contact_position != $contact_position_backup || $contact_agency != $contact_agency_backup || $contact_type  != $contact_type_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE project_name  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
-                                                OR contact_fullname LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' OR contact_detail LIKE '%$search%' OR contact_company LIKE '%$search%' OR contact_type LIKE '%$search%' OR pip_staff LIKE '%$search%'";
+                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' 
+                                                OR email LIKE '%$search%' OR contact_type LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
                                             }
-                                            if ($project_name != "") {
+                                            if ($contact_position != "") {
                                                 if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_name = '$project_name' ";
+                                                    $_where = $_where . " WHERE contact_position = '$contact_position' ";
                                                 } else {
-                                                    $_where = $_where . " AND project_name = '$project_name'";
+                                                    $_where = $_where . " AND contact_position = '$contact_position'";
                                                 }
                                             }
-                                            if ($project_product != "") {
+                                            if ($contact_agency != "") {
                                                 if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_product = '$project_product' ";
+                                                    $_where = $_where . " WHERE contact_agency = '$contact_agency' ";
                                                 } else {
-                                                    $_where = $_where . " AND project_product = '$project_product'";
+                                                    $_where = $_where . " AND contact_agency = '$contact_agency'";
                                                 }
                                             }
-                                            if ($project_brand != "") {
+                                            if ($contact_type != "") {
                                                 if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_brand = '$project_brand' ";
+                                                    $_where = $_where . " WHERE contact_type = '$contact_type' ";
                                                 } else {
-                                                    $_where = $_where . " AND  project_brand = '$project_brand'"; 
-                                                }
-                                            }
-                                            if ($pip_staff != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE pip_staff = '$pip_staff' ";
-                                                } else {
-                                                    $_where = $_where . " AND  pip_staff = '$pip_staff'"; 
-                                                }
-                                            }
-                                            if ($contact_fullname != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE contact_fullname = '$contact_fullname' ";
-                                                } else {
-                                                    $_where = $_where . " AND  contact_fullname = '$contact_fullname'"; 
-                                                }
-                                            }
-                                            if ($contact_company != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE contact_company = '$contact_company' ";
-                                                } else {
-                                                    $_where = $_where . " AND  contact_company = '$contact_company'"; 
+                                                    $_where = $_where . " AND  contact_type = '$contact_type'"; 
                                                 }
                                             }
 
@@ -192,135 +149,8 @@
                                         
 
                                     $query_search = mysqli_query($conn, $_sql .$_where); 
-
-                                //print_r($query_search);
+                                // print_r($query_search);
                                 ?>
-
-                        <?php if ($_SESSION["role"] == "Administrator") { ?>
-                        <!-- Main content -->
-                        <section class="content">
-                            <div class="container-fluid">
-                                <!-- Small boxes (Stat box) -->
-                                <div class="row">
-
-                                    <div class="col-lg-3 col-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-info">
-
-                                            <!-- Qeury Count All Service -->
-                                            <?php 
-                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
-                                                                $result = mysqli_query($conn, $query1);
-                                                                $rs = mysqli_fetch_array($result);
-                                                                $a = $rs['AMP'];
-                                                        ?>
-
-                                            <div class="inner">
-                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
-
-                                                <p>Project Name</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-person-add"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-
-                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
-
-
-                                    <div class="col-lg-3 col-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-warning">
-
-                                            <!-- Qeury Count All Service -->
-                                            <?php 
-                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
-                                                                $result = mysqli_query($conn, $query1);
-                                                                $rs = mysqli_fetch_array($result);
-                                                                $a = $rs['AMP'];
-                                                        ?>
-
-                                            <div class="inner">
-                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
-
-                                                <p>Product/Solution</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-person-add"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-
-                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
-
-                                    <div class="col-lg-3 col-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-success">
-
-                                            <!-- Qeury Count All Service -->
-                                            <?php 
-                                                                $query2 = "SELECT SUM(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
-                                                                $result = mysqli_query($conn, $query1);
-                                                                $rs = mysqli_fetch_array($result);
-                                                                $a = $rs['AMP'];
-                                                        ?>
-
-                                            <div class="inner">
-                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
-
-                                                <p>Estimated Sales</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-person-add"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-
-                                    <!-- ------------------------------------------------------------------------------------------------------------------ -->
-
-                                    <div class="col-lg-3 col-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-danger">
-
-                                            <!-- Qeury Count All Service -->
-                                            <?php 
-                                                            
-                                                            $query = "SELECT SUM(`project_m`) as AMP FROM project ";
-                                                            $query1 = $query . $_where . "" . " ORDER BY project_id DESC ";
-                                                            $result = mysqli_query($conn, $query1);
-                                                            $ls = mysqli_fetch_array($result);   
-                                                            $a = $ls['AMP'];                               
-                                                        ?>
-
-                                            <div class="inner">
-                                                <h3><?php echo number_format( $a, 0 ) ; ?></h3>
-
-                                                <p>Estimated GP</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-pie-graph"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-
-                                <!-- ------------------------------------------------------------------------------------------------------------------ -->
-                            </div><!-- /.container-fluid -->
-                        </section>
-                        <!-- /.content -->
-                        <?php } ?>
 
                         <section class="content">
                             <div class="row">
@@ -333,24 +163,21 @@
                                             </h3>
                                         </div>
                                         <div class="card-body">
-                                            <form action="pipeline.php" method="POST">
+                                            <form action="contact.php" method="POST">
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-group ">
-                                                            <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>" placeholder="ค้นหา...">
+                                                            <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>"
+                                                                placeholder="ค้นหา...">
                                                             <input type="hidden" class="form-control " id="search_backup" name="search_backup" value="<?php echo $search; ?>">
-                                                            <input type="hidden" class="form-control " id="project_name_backup" name="project_name_backup" value="<?php echo $project_name; ?>">
-                                                            <input type="hidden" class="form-control " id="project_product_backup" name="project_product_backup" value="<?php echo $project_product; ?>">
-                                                            <input type="hidden" class="form-control " id="project_brand_backup" name="project_brand_backup" value="<?php echo $project_brand; ?>">
-                                                            <input type="hidden" class="form-control " id="pip_staff_backup" name="pip_staff_backup" value="<?php echo $pip_staff; ?>">
-                                                            <input type="hidden" class="form-control " id="contact_fullname_backup" name="contact_fullname_backup" value="<?php echo $contact_fullname; ?>">
-                                                            <input type="hidden" class="form-control " id="contact_company_backup" name="contact_company_backup" value="<?php echo $contact_company; ?>">
+                                                            <input type="hidden" class="form-control " id="contact_position_backup" name="contact_position_backup" value="<?php echo $contact_position; ?>">
+                                                            <input type="hidden" class="form-control " id="contact_agency_backup" name="contact_agency_backup" value="<?php echo $contact_agency; ?>">
+                                                            <input type="hidden" class="form-control " id="contact_type_backup" name="contact_type_backup" value="<?php echo $contact_type; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group ">
-                                                            <button type="submit" class="btn btn-primary" id="search"
-                                                                name="search">Search</button>
+                                                            <button type="submit" class="btn btn-primary" id="search" name="search">Search</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-5">
@@ -359,90 +186,47 @@
                                                 <div class="row">
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>Project</label>
-                                                            <select class="custom-select select2" name="project_name">
+                                                            <label>Position</label>
+                                                            <select class="custom-select select2" name="contact_position">
                                                                 <option value="">Select</option>
-                                                                <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
-                                                                <option value="<?php echo $r["project_name"]; ?>"
-                                                                    <?php if ($r['project_name'] == $project_name) : ?>
+                                                                <?php while ($r = mysqli_fetch_array($query_contact_position)) { ?>
+                                                                <option value="<?php echo $r["contact_position"]; ?>"
+                                                                    <?php if ($r['contact_position'] == $contact_position) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $r["project_name"]; ?></option>
+                                                                    <?php echo $r["contact_position"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>Product</label>
-                                                            <select class="custom-select select2"
-                                                                name="project_product">
+                                                            <label>Team</label>
+                                                            <select class="custom-select select2" name="contact_agency">
                                                                 <option value="">Select</option>
-                                                                <?php while ($rg = mysqli_fetch_array($query_project_product)) { ?>
-                                                                <option value="<?php echo $rg["project_product"]; ?>"
-                                                                    <?php if ($rg['project_product'] == $project_product) : ?>
+                                                                <?php while ($rg = mysqli_fetch_array($query_contact_agency)) { ?>
+                                                                <option value="<?php echo $rg["contact_agency"]; ?>"
+                                                                    <?php if ($rg['contact_agency'] == $contact_agency) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rg["project_product"]; ?></option>
+                                                                    <?php echo $rg["contact_agency"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>Brand</label>
-                                                            <select class="custom-select select2" name="project_brand">
+                                                            <label>Role</label>
+                                                            <select class="custom-select select2" name="contact_type">
                                                                 <option value="">Select</option>
-                                                                <?php while ($re = mysqli_fetch_array($query_project_brand)) { ?>
-                                                                <option value="<?php echo $re["project_brand"]; ?>"
-                                                                    <?php if ($re['project_brand'] == $project_brand) : ?>
+                                                                <?php while ($re = mysqli_fetch_array($query_contact_type)) { ?>
+                                                                <option value="<?php echo $re["contact_type"]; ?>"
+                                                                    <?php if ($re['contact_type'] == $contact_type) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $re["project_brand"]; ?></option>
+                                                                    <?php echo $re["contact_type"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Creater</label>
-                                                            <select class="custom-select select2" name="pip_staff">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rd = mysqli_fetch_array($query_pip_staff)) { ?>
-                                                                <option value="<?php echo $rd["pip_staff"]; ?>"
-                                                                    <?php if ($rd['pip_staff'] == $pip_staff) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rd["pip_staff"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Customer</label>
-                                                            <select class="custom-select select2" name="contact_fullname">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rf = mysqli_fetch_array($query_contact_fullname)) { ?>
-                                                                <option value="<?php echo $rf["contact_fullname"]; ?>"
-                                                                    <?php if ($rf['contact_fullname'] == $contact_fullname) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rf["contact_fullname"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Company</label>
-                                                            <select class="custom-select select2" name="contact_company">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rh = mysqli_fetch_array($query_contact_company)) { ?>
-                                                                <option value="<?php echo $rh["contact_company"]; ?>"
-                                                                    <?php if ($rh['contact_company'] == $contact_company) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rh["contact_company"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                
+
                                                 </div>
                                             </form>
                                         </div>
@@ -456,77 +240,326 @@
 
                         </section>
 
-                        <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="col-md-12 pb-3">
-                            <a href="pipeline_add.php" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
+                            <a href="contact_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
+                                data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
-                        <?php } ?>
 
 
-                        <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="card">
                             <div class="card-header">
                                 <div class="container-fluid">
-                                    <h3 class="card-title">Pipeline Management</h3>
+                                    <h3 class="card-title">Contact Management</h3>
                                 </div>
                             </div>
 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
+
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sale (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Sale (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Cost (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Gp (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Type</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Position</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Group</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action </th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr id="myTable">
-                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?></a></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?></td> 
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_sale"], 0 );?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_costn"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_cost"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_gp"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_gp2"], 0 ); ?> %</td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_ess"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_esc"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo number_format($res_search["pip_esp"], 0 ); ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_r"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_type"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_position"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_agency"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_date"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["pip_staff"]; ?></td>
-
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_staff"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_crt"]; ?></td>
+                                            
                                             <td>
-                                                <a href="pipeline_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="pipeline.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn1<?php echo $res_search["contact_id"]; ?>"> <i class="fas fa-pencil-alt"></i></a>
+
+
+                                                        <!----------------------------- start Modal Edit user ------------------------------->
+                                                        <?php
+                                                            if (isset($_POST['submit1'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+                                                                /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+                                                                $contact_fullname  = $_POST['contact_fullname'];
+                                                                $contact_position  = $_POST['contact_position'];
+                                                                $contact_agency = $_POST['contact_agency'];
+                                                                $contact_tel = $_POST['contact_tel'];
+                                                                $contact_email = $_POST['contact_email'];
+                                                                $contact_detail = $_POST['contact_detail'];
+                                                                $contact_company = $_POST['contact_company'];
+                                                                $contact_type = $_POST['contact_type'];
+                                                                $contact_staff = $_POST['contact_staff'];
+                                                                $contact_province = sha1($_POST['contact_province']);
+
+                                                                //print_r($_POST);
+                                                                //check duplicat
+                                                                $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel'";
+                                                                $result = $conn->query($sql);
+                                                                $num = mysqli_num_rows($result);
+
+                                                                // print_r($result); 
+                                                                // print_r($num);
+                                                                //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
+                                                                if ($num > 0) {
+                                                                    echo '<script>
+                                                                                setTimeout(function() {
+                                                                                    swal({
+                                                                                            title: "The data already exists in the system.!! ",  
+                                                                                            text: "Please check the information again.",
+                                                                                            type: "warning"
+                                                                                        }, function() {
+                                                                                            window.location = "#"; //หน้าที่ต้องการให้กระโดดไป
+                                                                                            });
+                                                                                            }, 1000);
+                                                                                        </script>';
+                                                                } else {
+                                                                    //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
+
+                                                                    //sql insert
+                                                                    $sql = "INSERT INTO `contact` ( `contact_fullname`,`contact_position`,`contact_agency`,
+                                                                                                `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_staff`,
+                                                                                                `contact_province`)
+                                                                                            VALUES ('$contact_fullname','$contact_position','$contact_agency','$contact_tel', '$contact_email',
+                                                                                                '$contact_detail', '$contact_company', '$contact_type', '$contact_staff', '$contact_province')";
+
+                                                                    $result = $conn->query($sql);
+                                                                    if ($result) {
+                                                                        echo '<script>
+                                                                                                        setTimeout(function() {
+                                                                                                        swal({
+                                                                                                                title: "Save data successfully",
+                                                                                                                text: "",
+                                                                                                                type: "success"
+                                                                                                            }, function() {
+                                                                                                                window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                                                                                });
+                                                                                                                }, 1000);
+                                                                                                            </script>';
+                                                                    } else {
+                                                                        echo '<script>
+                                                                                                        setTimeout(function() {
+                                                                                                        swal({
+                                                                                                                title: "Please check the information again.",
+                                                                                                                type: "error"
+                                                                                                        }, function() {
+                                                                                                                window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                                                                                });
+                                                                                                                }, 1000);
+                                                                                                            </script>';
+                                                                    }
+                                                                    $conn = null; //close connect db
+                                                                } //else chk dup
+
+                                                            } //isset 
+                                                            //devbanban.com
+                                                            ?>
+
+                                                            <div class="modal fade" id="editbtn1<?php echo $res_search["contact_id"]; ?>">
+                                                                <div class="modal-dialog editbtn1">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Add Customer</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="project_add.php" method="POST" enctype="multipart/form-data">
+                                                                                <div class="card-body">
+                                                                                    <div class="form-group">
+                                                                                        <label>Type<span class="text-danger">*</span></label>
+                                                                                        <select class="form-control select2" name="contact_type" required style="width: 100%;">
+                                                                                            <option selected="selected">Select</option>
+                                                                                            <option>Staff</option>
+                                                                                            <option>Customer</option>
+                                                                                            <option>Partner</option>
+                                                                                            <option>Sale</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="contact_fullname">Full Name<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="contact_fullname" class="form-control" id="contact_fullname" placeholder="" required>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="contact_position">Position<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder="" required>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="contact_company">Company<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="contact_company" class="form-control" id="contact_company" placeholder="" required>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label>Agency<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="contact_agency" class="form-control" id="contact_agency" placeholder="">
+
+
+                                                                                        <input type="hidden" name="contact_staff" class="form-control" value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
+
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <!-- textarea -->
+                                                                                    <div class="form-group">
+                                                                                        <label>Address</label>
+                                                                                        <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4" placeholder=""></textarea>
+                                                                                    </div>
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label>Province<span class="text-danger">*</span></label>
+                                                                                        <select class="form-control select2" name="contact_province" required style="width: 100%;">
+                                                                                            <option selected="selected">Select</option>
+                                                                                            <option>กรุงเทพมหานคร</option>
+                                                                                            <option>ปทุมธานี</option>
+                                                                                            <option>สมุทรปราการ</option>
+                                                                                            <option>อ่างทอง</option>
+                                                                                            <option>สมุทรสาคร</option>
+                                                                                            <option>สิงห์บุรี</option>
+                                                                                            <option>นนทบุรี</option>
+                                                                                            <option>ภูเก็ต</option>
+                                                                                            <option>สมุทรสงคราม</option>
+                                                                                            <option>นครราชสีมา</option>
+                                                                                            <option>เชียงใหม่</option>
+                                                                                            <option>กาญจนบุรี</option>
+                                                                                            <option>ตาก</option>
+                                                                                            <option>อุบลราชธานี</option>
+                                                                                            <option>สุราษฎร์ธานี</option>
+                                                                                            <option>ชัยภูมิ</option>
+                                                                                            <option>แม่ฮ่องสอน</option>
+                                                                                            <option>เพชรบูรณ์</option>
+                                                                                            <option>ลำปาง</option>
+                                                                                            <option>อุดรธานี</option>
+                                                                                            <option>เชียงราย</option>
+                                                                                            <option>น่าน</option>
+                                                                                            <option>เลย</option>
+                                                                                            <option>ขอนแก่น</option>
+                                                                                            <option>พิษณุโลก</option>
+                                                                                            <option>บุรีรัมย์</option>
+                                                                                            <option>นครศรีธรรมราช</option>
+                                                                                            <option>สกลนคร</option>
+                                                                                            <option>นครสวรรค์</option>
+                                                                                            <option>ศรีสะเกษ</option>
+                                                                                            <option>กำแพงเพชร</option>
+                                                                                            <option>ร้อยเอ็ด</option>
+                                                                                            <option>สุรินทร์</option>
+                                                                                            <option>อุตรดิตถ์</option>
+                                                                                            <option>สงขลา</option>
+                                                                                            <option>สระแก้ว</option>
+                                                                                            <option>กาฬสินธุ์</option>
+                                                                                            <option>อุทัยธานี</option>
+                                                                                            <option>สุโขทัย</option>
+                                                                                            <option>แพร่</option>
+                                                                                            <option>ประจวบคีรีขันธ์</option>
+                                                                                            <option>จันทบุรี</option>
+                                                                                            <option>พะเยา</option>
+                                                                                            <option>เพชรบุรี</option>
+                                                                                            <option>ลพบุรี</option>
+                                                                                            <option>ชุมพร</option>
+                                                                                            <option>นครพนม</option>
+                                                                                            <option>สุพรรณบุรี</option>
+                                                                                            <option>ฉะเชิงเทรา</option>
+                                                                                            <option>มหาสารคาม</option>
+                                                                                            <option>ราชบุรี</option>
+                                                                                            <option>ตรัง</option>
+                                                                                            <option>ปราจีนบุรี</option>
+                                                                                            <option>กระบี่</option>
+                                                                                            <option>พิจิตร</option>
+                                                                                            <option>ยะลา</option>
+                                                                                            <option>ลำพูน</option>
+                                                                                            <option>นราธิวาส</option>
+                                                                                            <option>ชลบุรี</option>
+                                                                                            <option>มุกดาหาร</option>
+                                                                                            <option>บึงกาฬ</option>
+                                                                                            <option>พังงา</option>
+                                                                                            <option>ยโสธร</option>
+                                                                                            <option>หนองบัวลำภู</option>
+                                                                                            <option>สระบุรี</option>
+                                                                                            <option>ระยอง</option>
+                                                                                            <option>พัทลุง</option>
+                                                                                            <option>ระนอง</option>
+                                                                                            <option>อำนาจเจริญ</option>
+                                                                                            <option>หนองคาย</option>
+                                                                                            <option>ตราด</option>
+                                                                                            <option>พระนครศรีอยุธยา</option>
+                                                                                            <option>สตูล</option>
+                                                                                            <option>ชัยนาท</option>
+                                                                                            <option>นครปฐม</option>
+                                                                                            <option>นครนายก</option>
+                                                                                            <option>ปัตตานี</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Phone Number</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                                                            </div>
+                                                                                            <input type="text" class="form-control" name="contact_tel" id="tel" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                                                                        </div>
+                                                                                        <!-- /.input group -->
+                                                                                    </div>
+
+                                                                                    <p>
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Email</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                                                            </div>
+                                                                                            <input type="email" class="form-control" name="contact_email" id="email" placeholder="Email" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- /.form-group -->
+
+                                                                                </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer justify-content-between">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            <button type="submit2" name="submit2" value="submit2" class="btn btn-success">Save</button>
+                                                                        </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <!-- /.modal-content -->
+                                                                </div>
+                                                                <!-- /.modal-dialog -->
+                                                            </div>
+                                                            <!-- /.modal -->
+                                                        <!----------------------------- end Modal Edit user --------------------------------->
+
+
+                                                <a href="contact.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i
+                                                        class="fas fa-trash"></i></a>
+
+
+
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -534,27 +567,18 @@
 
                                     <tfoot>
                                         <tr>
-                                        <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sale (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Sale (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Cost (Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% GP</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">% Potential</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Sale (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Cost (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Es.Gp (No Vat)</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
+                                        <th scope="col" class="text-nowrap text-center " height="" width="">Type</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Name</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Position</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Group</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Email</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action </th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -563,93 +587,12 @@
                         </div>
                         <!-- /.card -->
 
-
-                        <!-------------------------------- User Role ---------------------------------------------->
-                        <?php }else{ ?>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="container-fluid">
-                                    <h3 class="card-title">Project Management</h3>
-                                </div>
-                            </div>
-
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">ProjectName</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                        <tr id="myTable">
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_remark"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_up_status"]; ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_quarter"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_status"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_fullname"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_crt"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_staff"]; ?></td>
-                                        </tr>
-                                        <?php } ?>
-
-                                    </tbody>
-
-                                    <tfoot>
-                                        <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">ProjectName</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Product/Solution</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Brand</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Remark</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">UpdateStatus</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Quarter</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Customer</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Phone</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Contact Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Createdate</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <?php } ?>
-
                     </div>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
         </section>
         <!-- /.content -->
-
-
     </div>
     <!-- /.content-wrapper -->
 
@@ -669,62 +612,224 @@
 
 
 
-    <!----------------------------- start Modal Add user ------------------------------->
+  <!----------------------------- start Modal Add user ------------------------------->
+  <?php
+    if (isset($_POST['submit1'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+        /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+        $contact_fullname  = $_POST['contact_fullname'];
+        $contact_position  = $_POST['contact_position'];
+        $contact_agency = $_POST['contact_agency'];
+        $contact_tel = $_POST['contact_tel'];
+        $contact_email = $_POST['contact_email'];
+        $contact_detail = $_POST['contact_detail'];
+        $contact_company = $_POST['contact_company'];
+        $contact_type = $_POST['contact_type'];
+        $contact_staff = $_POST['contact_staff'];
+        $contact_province = sha1($_POST['contact_province']);
+
+        //print_r($_POST);
+        //check duplicat
+        $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel'";
+        $result = $conn->query($sql);
+        $num = mysqli_num_rows($result);
+
+        // print_r($result); 
+        // print_r($num);
+        //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
+        if ($num > 0) {
+            echo '<script>
+                        setTimeout(function() {
+                            swal({
+                                    title: "The data already exists in the system.!! ",  
+                                    text: "Please check the information again.",
+                                    type: "warning"
+                                }, function() {
+                                    window.location = "#"; //หน้าที่ต้องการให้กระโดดไป
+                                    });
+                                    }, 1000);
+                                </script>';
+        } else {
+            //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
+
+            //sql insert
+            $sql = "INSERT INTO `contact` ( `contact_fullname`,`contact_position`,`contact_agency`,
+                                        `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_staff`,
+                                        `contact_province`)
+                                    VALUES ('$contact_fullname','$contact_position','$contact_agency','$contact_tel', '$contact_email',
+                                        '$contact_detail', '$contact_company', '$contact_type', '$contact_staff', '$contact_province')";
+
+            $result = $conn->query($sql);
+            if ($result) {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Save data successfully",
+                                                        text: "",
+                                                        type: "success"
+                                                    }, function() {
+                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            } else {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Please check the information again.",
+                                                        type: "error"
+                                                }, function() {
+                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            }
+            $conn = null; //close connect db
+        } //else chk dup
+
+    } //isset 
+    //devbanban.com
+    ?>
+
     <div class="modal fade" id="editbtn">
         <div class="modal-dialog editbtn">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add User</h4>
+                    <h4 class="modal-title">Add Customer</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="pipeline_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="project_add.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
-                                    required>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="project_name">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="project_name" class="form-control" id="project_name"
-                                    placeholder="" required>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>Team<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_product" required
-                                    style="width: 100%;">
+                                <label>Type<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_type" required style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Innovation</option>
-                                    <option>Infrastructure</option>
-                                    <option>Projecting</option>
-                                    <option>Stock</option>
-                                    <option>Service Solution</option>
-                                    <option>Service bank</option>
+                                    <option>Staff</option>
+                                    <option>Customer</option>
+                                    <option>Partner</option>
+                                    <option>Sale</option>
                                 </select>
-
-                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
-                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                <input type="hidden" name="user_staff" class="form-control"
-                                    value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
-                                <label>Role<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_status" required
-                                    style="width: 100%;">
+                                <label for="contact_fullname">Full Name<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_fullname" class="form-control" id="contact_fullname" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_position">Position<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_company">Company<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_company" class="form-control" id="contact_company" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Agency<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_agency" class="form-control" id="contact_agency" placeholder="">
+
+
+                                <input type="hidden" name="contact_staff" class="form-control" value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
+
+                            </div>
+                            <!-- /.form-group -->
+
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4" placeholder=""></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Province<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_province" required style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Administrator</option>
-                                    <option>Engineer</option>
-                                    <option>Viewer</option>
+                                    <option>กรุงเทพมหานคร</option>
+                                    <option>ปทุมธานี</option>
+                                    <option>สมุทรปราการ</option>
+                                    <option>อ่างทอง</option>
+                                    <option>สมุทรสาคร</option>
+                                    <option>สิงห์บุรี</option>
+                                    <option>นนทบุรี</option>
+                                    <option>ภูเก็ต</option>
+                                    <option>สมุทรสงคราม</option>
+                                    <option>นครราชสีมา</option>
+                                    <option>เชียงใหม่</option>
+                                    <option>กาญจนบุรี</option>
+                                    <option>ตาก</option>
+                                    <option>อุบลราชธานี</option>
+                                    <option>สุราษฎร์ธานี</option>
+                                    <option>ชัยภูมิ</option>
+                                    <option>แม่ฮ่องสอน</option>
+                                    <option>เพชรบูรณ์</option>
+                                    <option>ลำปาง</option>
+                                    <option>อุดรธานี</option>
+                                    <option>เชียงราย</option>
+                                    <option>น่าน</option>
+                                    <option>เลย</option>
+                                    <option>ขอนแก่น</option>
+                                    <option>พิษณุโลก</option>
+                                    <option>บุรีรัมย์</option>
+                                    <option>นครศรีธรรมราช</option>
+                                    <option>สกลนคร</option>
+                                    <option>นครสวรรค์</option>
+                                    <option>ศรีสะเกษ</option>
+                                    <option>กำแพงเพชร</option>
+                                    <option>ร้อยเอ็ด</option>
+                                    <option>สุรินทร์</option>
+                                    <option>อุตรดิตถ์</option>
+                                    <option>สงขลา</option>
+                                    <option>สระแก้ว</option>
+                                    <option>กาฬสินธุ์</option>
+                                    <option>อุทัยธานี</option>
+                                    <option>สุโขทัย</option>
+                                    <option>แพร่</option>
+                                    <option>ประจวบคีรีขันธ์</option>
+                                    <option>จันทบุรี</option>
+                                    <option>พะเยา</option>
+                                    <option>เพชรบุรี</option>
+                                    <option>ลพบุรี</option>
+                                    <option>ชุมพร</option>
+                                    <option>นครพนม</option>
+                                    <option>สุพรรณบุรี</option>
+                                    <option>ฉะเชิงเทรา</option>
+                                    <option>มหาสารคาม</option>
+                                    <option>ราชบุรี</option>
+                                    <option>ตรัง</option>
+                                    <option>ปราจีนบุรี</option>
+                                    <option>กระบี่</option>
+                                    <option>พิจิตร</option>
+                                    <option>ยะลา</option>
+                                    <option>ลำพูน</option>
+                                    <option>นราธิวาส</option>
+                                    <option>ชลบุรี</option>
+                                    <option>มุกดาหาร</option>
+                                    <option>บึงกาฬ</option>
+                                    <option>พังงา</option>
+                                    <option>ยโสธร</option>
+                                    <option>หนองบัวลำภู</option>
+                                    <option>สระบุรี</option>
+                                    <option>ระยอง</option>
+                                    <option>พัทลุง</option>
+                                    <option>ระนอง</option>
+                                    <option>อำนาจเจริญ</option>
+                                    <option>หนองคาย</option>
+                                    <option>ตราด</option>
+                                    <option>พระนครศรีอยุธยา</option>
+                                    <option>สตูล</option>
+                                    <option>ชัยนาท</option>
+                                    <option>นครปฐม</option>
+                                    <option>นครนายก</option>
+                                    <option>ปัตตานี</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -735,8 +840,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="tel" id="tel"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                    <input type="text" class="form-control" name="contact_tel" id="tel" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -748,23 +852,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
-                                        required>
+                                    <input type="email" class="form-control" name="contact_email" id="email" placeholder="Email" required>
                                 </div>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
                             </div>
                             <!-- /.form-group -->
 
@@ -773,7 +862,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
+                    <button type="submit1" name="submit1" value="submit1" class="btn btn-success">Save</button>
                 </div>
                 </form>
             </div>
@@ -783,3 +872,7 @@
     </div>
     <!-- /.modal -->
     <!----------------------------- end Modal Add user --------------------------------->
+
+    
+
+

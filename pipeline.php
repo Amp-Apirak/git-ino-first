@@ -83,7 +83,7 @@
                         <!-- Start ค้นหาและ ดึงข้อมูล -->
                         <?php
                                     $search = "";
-                                    $project_name = "";
+                                    $status = "";
                                     $project_product = "";
                                     $project_brand = "";
                                     $pip_staff = "";
@@ -91,14 +91,14 @@
                                     $contact_company = "";
 
                                     $search_backup = "";
-                                    $project_name_backup = "";
+                                    $status_backup = "";
                                     $project_product_backup = "";
                                     $project_brand_backup = "";
                                     $pip_staff_backup = "";
                                     $contact_fullname_backup = "";
                                     $contact_company_backup = "";
                         
-                                    $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql_status = "SELECT DISTINCT status FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
                                     $_sql_project_product = "SELECT DISTINCT project_product FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
                                     $_sql_project_brand = "SELECT DISTINCT project_brand  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
                                     $_sql_pip_staff = "SELECT DISTINCT pip_staff  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
@@ -106,14 +106,14 @@
                                     $_sql_contact_company = "SELECT DISTINCT contact_company  FROM contact ";
 
 
-                                    $query_project_name = mysqli_query($conn, $_sql_project_name);
+                                    $query_status = mysqli_query($conn, $_sql_status);
                                     $query_project_product = mysqli_query($conn, $_sql_project_product);
                                     $query_project_brand = mysqli_query($conn, $_sql_project_brand);
                                     $query_pip_staff = mysqli_query($conn, $_sql_pip_staff);
                                     $query_contact_fullname = mysqli_query($conn, $_sql_contact_fullname);
                                     $query_contact_company = mysqli_query($conn, $_sql_contact_company);
 
-                                    //print_r($query_project_name);
+                                    //print_r($query_status);
 
                                     $_sql = "SELECT * FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
                                     $_where = "";
@@ -121,7 +121,7 @@
                                         if (isset($_POST['search'])) {
 
                                             $search = $_POST['searchservice'];
-                                            $project_name = $_POST['project_name'];
+                                            $status = $_POST['status'];
                                             $project_product = $_POST['project_product'];
                                             $project_brand = $_POST['project_brand'];
                                             $pip_staff = $_POST['pip_staff'];
@@ -129,7 +129,7 @@
                                             $contact_company = $_POST['contact_company'];
 
                                             $search_backup = $_POST['search_backup'];
-                                            $project_name_backup = $_POST['project_name_backup'];
+                                            $status_backup = $_POST['status_backup'];
                                             $project_product_backup = $_POST['project_product_backup'];
                                             $project_brand_backup = $_POST['project_brand_backup'];
                                             $pip_staff_backup = $_POST['pip_staff_backup'];
@@ -138,18 +138,18 @@
 
                                         //print_r($_sqlCount);
 
-                                            if ($search != $search_backup || $project_name != $project_name_backup || $project_product != $project_product_backup || $project_brand  != $project_brand_backup 
+                                            if ($search != $search_backup || $status != $status_backup || $project_product != $project_product_backup || $project_brand  != $project_brand_backup 
                                             || $pip_staff  != $pip_staff_backup || $contact_fullname  != $contact_fullname_backup || $contact_company  != $contact_company_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE project_name  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
+                                                $_where = $_where . " WHERE status  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
                                                 OR contact_fullname LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' OR contact_detail LIKE '%$search%' OR contact_company LIKE '%$search%' OR contact_type LIKE '%$search%' OR pip_staff LIKE '%$search%'";
                                             }
-                                            if ($project_name != "") {
+                                            if ($status != "") {
                                                 if (empty($_where)) {
-                                                    $_where = $_where . " WHERE project_name = '$project_name' ";
+                                                    $_where = $_where . " WHERE status = '$status' ";
                                                 } else {
-                                                    $_where = $_where . " AND project_name = '$project_name'";
+                                                    $_where = $_where . " AND status = '$status'";
                                                 }
                                             }
                                             if ($project_product != "") {
@@ -209,8 +209,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $query2 = "SELECT DISTINCT COUNT(`pip_id`) as AMP FROM pipeline ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -219,7 +219,7 @@
                                             <div class="inner">
                                                 <h3><?php echo number_format( $a, 0 ) ; ?></h3>
 
-                                                <p>Project Name</p>
+                                                <p>Project All</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion ion-person-add"></i>
@@ -238,8 +238,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT COUNT(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $query2 = "SELECT DISTINCT COUNT(project_product) as AMP FROM pipeline ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -266,8 +266,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT SUM(`project_m`) as AMP FROM project ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY project_id DESC ";
+                                                                $query2 = "SELECT SUM(`pip_gp`) as AMP FROM pipeline ";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -276,7 +276,7 @@
                                             <div class="inner">
                                                 <h3><?php echo number_format( $a, 0 ) ; ?></h3>
 
-                                                <p>Estimated Sales</p>
+                                                <p>Gross Profit (GP)</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion ion-person-add"></i>
@@ -295,8 +295,8 @@
                                             <!-- Qeury Count All Service -->
                                             <?php 
                                                             
-                                                            $query = "SELECT SUM(`project_m`) as AMP FROM project ";
-                                                            $query1 = $query . $_where . "" . " ORDER BY project_id DESC ";
+                                                            $query = "SELECT SUM(`pip_salen`) as AMP FROM pipeline ";
+                                                            $query1 = $query . $_where . "" . " ORDER BY pip_id DESC ";
                                                             $result = mysqli_query($conn, $query1);
                                                             $ls = mysqli_fetch_array($result);   
                                                             $a = $ls['AMP'];                               
@@ -305,7 +305,7 @@
                                             <div class="inner">
                                                 <h3><?php echo number_format( $a, 0 ) ; ?></h3>
 
-                                                <p>Estimated GP</p>
+                                                <p>Sale Summary</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion ion-pie-graph"></i>
@@ -339,7 +339,7 @@
                                                         <div class="form-group ">
                                                             <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>" placeholder="ค้นหา...">
                                                             <input type="hidden" class="form-control " id="search_backup" name="search_backup" value="<?php echo $search; ?>">
-                                                            <input type="hidden" class="form-control " id="project_name_backup" name="project_name_backup" value="<?php echo $project_name; ?>">
+                                                            <input type="hidden" class="form-control " id="status_backup" name="status_backup" value="<?php echo $status; ?>">
                                                             <input type="hidden" class="form-control " id="project_product_backup" name="project_product_backup" value="<?php echo $project_product; ?>">
                                                             <input type="hidden" class="form-control " id="project_brand_backup" name="project_brand_backup" value="<?php echo $project_brand; ?>">
                                                             <input type="hidden" class="form-control " id="pip_staff_backup" name="pip_staff_backup" value="<?php echo $pip_staff; ?>">
@@ -359,14 +359,14 @@
                                                 <div class="row">
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>Project</label>
-                                                            <select class="custom-select select2" name="project_name">
+                                                            <label>Status</label>
+                                                            <select class="custom-select select2" name="status">
                                                                 <option value="">Select</option>
-                                                                <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
-                                                                <option value="<?php echo $r["project_name"]; ?>"
-                                                                    <?php if ($r['project_name'] == $project_name) : ?>
+                                                                <?php while ($r = mysqli_fetch_array($query_status)) { ?>
+                                                                <option value="<?php echo $r["status"]; ?>"
+                                                                    <?php if ($r['status'] == $status) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $r["project_name"]; ?></option>
+                                                                    <?php echo $r["status"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>

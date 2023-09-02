@@ -107,8 +107,8 @@
                                                     <img src="../ino/img/pit.png" width=“60px” height='50' alt="User Image">
                                                     <!-- class="img-circle elevation-2" -->
                                                 </i> Point IT
-                                                <small class="float-right">Date:
-                                                    <?php echo $res_search["pip_date"]; ?></small>
+                                                <small><span class='badge badge-secondary float-right'>Create Date :
+                                                    <?php echo $res_search["pip_date"]; ?></span></small>
                                             </h4>
                                         </div>
                                         <!-- /.col -->

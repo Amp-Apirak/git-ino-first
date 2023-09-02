@@ -83,22 +83,22 @@
                         <!-- Start ค้นหาและ ดึงข้อมูล -->
                         <?php
                                     $search = "";
-                                    $contact_position = "";
-                                    $contact_agency = "";
                                     $contact_type = "";
+                                    $contact_province = "";
+                                    $contact_staff = "";
 
                                     $search_backup = "";
-                                    $contact_position_backup = "";
-                                    $contact_agency_backup = "";
                                     $contact_type_backup = "";
+                                    $contact_province_backup = "";
+                                    $contact_staff_backup = "";
                         
-                                    $_sql_contact_position = "SELECT DISTINCT contact_position FROM contact";
-                                    $_sql_contact_agency = "SELECT DISTINCT contact_agency FROM contact";
-                                    $_sql_contact_type = "SELECT DISTINCT contact_type  FROM contact";
+                                    $_sql_contact_type = "SELECT DISTINCT contact_type FROM contact";
+                                    $_sql_contact_province = "SELECT DISTINCT contact_province FROM contact";
+                                    $_sql_contact_staff = "SELECT DISTINCT contact_staff  FROM contact";
 
-                                    $query_contact_position = mysqli_query($conn, $_sql_contact_position);
-                                    $query_contact_agency = mysqli_query($conn, $_sql_contact_agency);
                                     $query_contact_type = mysqli_query($conn, $_sql_contact_type);
+                                    $query_contact_province = mysqli_query($conn, $_sql_contact_province);
+                                    $query_contact_staff = mysqli_query($conn, $_sql_contact_staff);
 
                                     $_sql = "SELECT * FROM contact ";
                                     $_where = "";
@@ -106,42 +106,42 @@
                                         if (isset($_POST['search'])) {
 
                                             $search = $_POST['searchservice'];
-                                            $contact_position = $_POST['contact_position'];
-                                            $contact_agency = $_POST['contact_agency'];
                                             $contact_type = $_POST['contact_type'];
+                                            $contact_province = $_POST['contact_province'];
+                                            $contact_staff = $_POST['contact_staff'];
 
                                             $search_backup = $_POST['search_backup'];
-                                            $contact_position_backup = $_POST['contact_position_backup'];
-                                            $contact_agency_backup = $_POST['contact_agency_backup'];
                                             $contact_type_backup = $_POST['contact_type_backup'];
+                                            $contact_province_backup = $_POST['contact_province_backup'];
+                                            $contact_staff_backup = $_POST['contact_staff_backup'];
 
                                         // print_r($_sqlCount);
 
-                                            if ($search != $search_backup || $contact_position != $contact_position_backup || $contact_agency != $contact_agency_backup || $contact_type  != $contact_type_backup )
+                                            if ($search != $search_backup || $contact_type != $contact_type_backup || $contact_province != $contact_province_backup || $contact_staff  != $contact_staff_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' 
+                                                $_where = $_where . " WHERE fullname  LIKE '%$search%' OR contact_type LIKE '%$search%' OR contact_province LIKE '%$search%' 
                                                 OR email LIKE '%$search%' OR contact_type LIKE '%$search%' OR company LIKE '%$search%' OR tel LIKE '%$search%' OR username LIKE '%$search%'";
-                                            }
-                                            if ($contact_position != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE contact_position = '$contact_position' ";
-                                                } else {
-                                                    $_where = $_where . " AND contact_position = '$contact_position'";
-                                                }
-                                            }
-                                            if ($contact_agency != "") {
-                                                if (empty($_where)) {
-                                                    $_where = $_where . " WHERE contact_agency = '$contact_agency' ";
-                                                } else {
-                                                    $_where = $_where . " AND contact_agency = '$contact_agency'";
-                                                }
                                             }
                                             if ($contact_type != "") {
                                                 if (empty($_where)) {
                                                     $_where = $_where . " WHERE contact_type = '$contact_type' ";
                                                 } else {
-                                                    $_where = $_where . " AND  contact_type = '$contact_type'"; 
+                                                    $_where = $_where . " AND contact_type = '$contact_type'";
+                                                }
+                                            }
+                                            if ($contact_province != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE contact_province = '$contact_province' ";
+                                                } else {
+                                                    $_where = $_where . " AND contact_province = '$contact_province'";
+                                                }
+                                            }
+                                            if ($contact_staff != "") {
+                                                if (empty($_where)) {
+                                                    $_where = $_where . " WHERE contact_staff = '$contact_staff' ";
+                                                } else {
+                                                    $_where = $_where . " AND  contact_staff = '$contact_staff'"; 
                                                 }
                                             }
 
@@ -170,9 +170,9 @@
                                                             <input type="text" class="form-control " id="searchservice" name="searchservice" value="<?php echo $search; ?>"
                                                                 placeholder="ค้นหา...">
                                                             <input type="hidden" class="form-control " id="search_backup" name="search_backup" value="<?php echo $search; ?>">
-                                                            <input type="hidden" class="form-control " id="contact_position_backup" name="contact_position_backup" value="<?php echo $contact_position; ?>">
-                                                            <input type="hidden" class="form-control " id="contact_agency_backup" name="contact_agency_backup" value="<?php echo $contact_agency; ?>">
                                                             <input type="hidden" class="form-control " id="contact_type_backup" name="contact_type_backup" value="<?php echo $contact_type; ?>">
+                                                            <input type="hidden" class="form-control " id="contact_province_backup" name="contact_province_backup" value="<?php echo $contact_province; ?>">
+                                                            <input type="hidden" class="form-control " id="contact_staff_backup" name="contact_staff_backup" value="<?php echo $contact_staff; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -186,42 +186,42 @@
                                                 <div class="row">
                                                     <div class="col-sm-2">
                                                         <div class="form-group">
-                                                            <label>Position</label>
-                                                            <select class="custom-select select2" name="contact_position">
-                                                                <option value="">Select</option>
-                                                                <?php while ($r = mysqli_fetch_array($query_contact_position)) { ?>
-                                                                <option value="<?php echo $r["contact_position"]; ?>"
-                                                                    <?php if ($r['contact_position'] == $contact_position) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $r["contact_position"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Team</label>
-                                                            <select class="custom-select select2" name="contact_agency">
-                                                                <option value="">Select</option>
-                                                                <?php while ($rg = mysqli_fetch_array($query_contact_agency)) { ?>
-                                                                <option value="<?php echo $rg["contact_agency"]; ?>"
-                                                                    <?php if ($rg['contact_agency'] == $contact_agency) : ?>
-                                                                    selected="selected" <?php endif; ?>>
-                                                                    <?php echo $rg["contact_agency"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="form-group">
-                                                            <label>Role</label>
+                                                            <label>Type</label>
                                                             <select class="custom-select select2" name="contact_type">
                                                                 <option value="">Select</option>
-                                                                <?php while ($re = mysqli_fetch_array($query_contact_type)) { ?>
-                                                                <option value="<?php echo $re["contact_type"]; ?>"
-                                                                    <?php if ($re['contact_type'] == $contact_type) : ?>
+                                                                <?php while ($r = mysqli_fetch_array($query_contact_type)) { ?>
+                                                                <option value="<?php echo $r["contact_type"]; ?>"
+                                                                    <?php if ($r['contact_type'] == $contact_type) : ?>
                                                                     selected="selected" <?php endif; ?>>
-                                                                    <?php echo $re["contact_type"]; ?></option>
+                                                                    <?php echo $r["contact_type"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label>Province</label>
+                                                            <select class="custom-select select2" name="contact_province">
+                                                                <option value="">Select</option>
+                                                                <?php while ($rg = mysqli_fetch_array($query_contact_province)) { ?>
+                                                                <option value="<?php echo $rg["contact_province"]; ?>"
+                                                                    <?php if ($rg['contact_province'] == $contact_province) : ?>
+                                                                    selected="selected" <?php endif; ?>>
+                                                                    <?php echo $rg["contact_province"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label>Crate by</label>
+                                                            <select class="custom-select select2" name="contact_staff">
+                                                                <option value="">Select</option>
+                                                                <?php while ($re = mysqli_fetch_array($query_contact_staff)) { ?>
+                                                                <option value="<?php echo $re["contact_staff"]; ?>"
+                                                                    <?php if ($re['contact_staff'] == $contact_staff) : ?>
+                                                                    selected="selected" <?php endif; ?>>
+                                                                    <?php echo $re["contact_staff"]; ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
@@ -290,114 +290,8 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_crt"]; ?></td>
                                             
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg<?php echo $res_search["contact_id"]; ?>"> <i class="fas fa-pencil-alt"></i></a>
-
-
-                                                        <!----------------------------- start Modal Edit user ------------------------------->
-                                                        <div class="modal fade" id="modal-lg<?php echo $res_search["contact_id"]; ?>">
-                                                            <div class="modal-dialog modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Add User</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form action="contact_edit.php" method="POST" enctype="multipart/form-data">
-                                                                            <div class="card-body">
-                                                                                <div class="form-group">
-                                                                                    <label for="fullname">Full Name<span class="text-danger">*</span></label><input type="text" name="fullname" class="form-control" id="fullname" placeholder="" value="<?php echo $res_search["fullname"]; ?>" required>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="contact_position">Position<span class="text-danger">*</span></label>
-                                                                                    <input type="text" name="contact_position" class="form-control" id="contact_position" placeholder="" value="<?php echo $res_search["contact_position"]; ?>"
-                                                                                        required>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label>Team<span class="text-danger">*</span></label> 
-                                                                                    <select class="form-control select2" name="contact_agency" value="<?php echo $res_search["contact_agency"]; ?>" required style="width: 100%;"> 
-                                                                                        <option selected="selected"><?php echo $res_search["contact_agency"]; ?></option>
-                                                                                        <option>Innovation</option>
-                                                                                        <option>Infrastructure</option>
-                                                                                        <option>Contacting</option>
-                                                                                        <option>Stock</option>
-                                                                                        <option>Service Solution</option>
-                                                                                        <option>Service bank</option>
-                                                                                    </select>
-
-                                                                                    <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>" 
-                                                                                        class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                                                                    <input type="hidden" name="contact_staff" class="form-control"  value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-                                                                                        <input type="hidden" name="id" class="form-control"value="<?php echo $res_search["contact_id"]; ?>" placeholder="">
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label>Role<span class="text-danger">*</span></label>
-                                                                                    <select class="form-control select2" name="contact_type" value="<?php echo $res_search["contact_type"]; ?>" required style="width: 100%;">
-                                                                                        <option selected="selected"><?php echo $res_search["contact_type"]; ?></option>
-                                                                                        <option>Administrator</option>
-                                                                                        <option>Engineer</option>
-                                                                                        <option>Viewer</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Phone Number</label>
-                                                                                    <div class="input-group">
-                                                                                        <div class="input-group-prepend">
-                                                                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                                                        </div>
-                                                                                        <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $res_search["tel"]; ?>"
-                                                                                            data-inputmask='"mask": "(999) 999-9999"' data-mask required>
-                                                                                    </div>
-                                                                                    <!-- /.input group -->
-                                                                                </div>
-
-                                                                                <p>
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Email</label>
-                                                                                    <div class="input-group">
-                                                                                        <div class="input-group-prepend">
-                                                                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                                                        </div>
-                                                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $res_search["email"]; ?>"
-                                                                                            required>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Username</label>
-                                                                                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" value="<?php echo $res_search["username"]; ?>"
-                                                                                        placeholder="">
-                                                                                </div>
-                                                                                <!-- /.form-group -->
-
-                                                                            </div>
-
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-between">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                        <button type="submit" name="submit" value="submit" class="btn btn-success">Save</button>
-                                                                    </div>
-                                                                    </form>
-                                                                </div>
-                                                                <!-- /.modal-content -->
-                                                            </div>
-                                                            <!-- /.modal-dialog -->
-                                                        </div>
-                                                        <!----------------------------- end Modal Edit user --------------------------------->
-
-
-                                                <a href="contact.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i
-                                                        class="fas fa-trash"></i></a>
+                                            <a href="contact_edit.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm swalDefaultSuccess"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="contact.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
 
 
 
@@ -466,7 +360,7 @@
         $contact_company = $_POST['contact_company'];
         $contact_type = $_POST['contact_type'];
         $contact_staff = $_POST['contact_staff'];
-        $contact_province = sha1($_POST['contact_province']);
+        $contact_province = $_POST['contact_province'];
 
         //print_r($_POST);
         //check duplicat
@@ -508,7 +402,7 @@
                                                         text: "",
                                                         type: "success"
                                                     }, function() {
-                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        window.location = "contact.php"; //หน้าที่ต้องการให้กระโดดไป
                                                         });
                                                         }, 1000);
                                                     </script>';
@@ -519,7 +413,7 @@
                                                         title: "Please check the information again.",
                                                         type: "error"
                                                 }, function() {
-                                                        window.location = "project_add.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        window.location = "contact.php"; //หน้าที่ต้องการให้กระโดดไป
                                                         });
                                                         }, 1000);
                                                     </script>';
@@ -594,10 +488,83 @@
                                 <label>Province<span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="contact_province" required style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Staff</option>
-                                    <option>Customer</option>
-                                    <option>Partner</option>
-                                    <option>Sale</option>
+                                    <option>กรุงเทพมหานคร</option>
+                                    <option>ปทุมธานี</option>
+                                    <option>สมุทรปราการ</option>
+                                    <option>อ่างทอง</option>
+                                    <option>สมุทรสาคร</option>
+                                    <option>สิงห์บุรี</option>
+                                    <option>นนทบุรี</option>
+                                    <option>ภูเก็ต</option>
+                                    <option>สมุทรสงคราม</option>
+                                    <option>นครราชสีมา</option>
+                                    <option>เชียงใหม่</option>
+                                    <option>กาญจนบุรี</option>
+                                    <option>ตาก</option>
+                                    <option>อุบลราชธานี</option>
+                                    <option>สุราษฎร์ธานี</option>
+                                    <option>ชัยภูมิ</option>
+                                    <option>แม่ฮ่องสอน</option>
+                                    <option>เพชรบูรณ์</option>
+                                    <option>ลำปาง</option>
+                                    <option>อุดรธานี</option>
+                                    <option>เชียงราย</option>
+                                    <option>น่าน</option>
+                                    <option>เลย</option>
+                                    <option>ขอนแก่น</option>
+                                    <option>พิษณุโลก</option>
+                                    <option>บุรีรัมย์</option>
+                                    <option>นครศรีธรรมราช</option>
+                                    <option>สกลนคร</option>
+                                    <option>นครสวรรค์</option>
+                                    <option>ศรีสะเกษ</option>
+                                    <option>กำแพงเพชร</option>
+                                    <option>ร้อยเอ็ด</option>
+                                    <option>สุรินทร์</option>
+                                    <option>อุตรดิตถ์</option>
+                                    <option>สงขลา</option>
+                                    <option>สระแก้ว</option>
+                                    <option>กาฬสินธุ์</option>
+                                    <option>อุทัยธานี</option>
+                                    <option>สุโขทัย</option>
+                                    <option>แพร่</option>
+                                    <option>ประจวบคีรีขันธ์</option>
+                                    <option>จันทบุรี</option>
+                                    <option>พะเยา</option>
+                                    <option>เพชรบุรี</option>
+                                    <option>ลพบุรี</option>
+                                    <option>ชุมพร</option>
+                                    <option>นครพนม</option>
+                                    <option>สุพรรณบุรี</option>
+                                    <option>ฉะเชิงเทรา</option>
+                                    <option>มหาสารคาม</option>
+                                    <option>ราชบุรี</option>
+                                    <option>ตรัง</option>
+                                    <option>ปราจีนบุรี</option>
+                                    <option>กระบี่</option>
+                                    <option>พิจิตร</option>
+                                    <option>ยะลา</option>
+                                    <option>ลำพูน</option>
+                                    <option>นราธิวาส</option>
+                                    <option>ชลบุรี</option>
+                                    <option>มุกดาหาร</option>
+                                    <option>บึงกาฬ</option>
+                                    <option>พังงา</option>
+                                    <option>ยโสธร</option>
+                                    <option>หนองบัวลำภู</option>
+                                    <option>สระบุรี</option>
+                                    <option>ระยอง</option>
+                                    <option>พัทลุง</option>
+                                    <option>ระนอง</option>
+                                    <option>อำนาจเจริญ</option>
+                                    <option>หนองคาย</option>
+                                    <option>ตราด</option>
+                                    <option>พระนครศรีอยุธยา</option>
+                                    <option>สตูล</option>
+                                    <option>ชัยนาท</option>
+                                    <option>นครปฐม</option>
+                                    <option>นครนายก</option>
+                                    <option>ปัตตานี</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->

@@ -70,7 +70,7 @@
                             </li>
                             <?php } ?>
 
-
+<!-- 
                             <li class="nav-item">
                                 <a href="remind.php" class="nav-link <?php if($menu=="Remind"){echo "active";} ?>">
                                     <i class="nav-icon fa fa-bell"></i>
@@ -79,7 +79,7 @@
                                         <span class="right badge badge-danger">New</span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-item">
                                 <a href="pipeline.php" class="nav-link <?php if($menu=="pipeline"){echo "active";} ?>">

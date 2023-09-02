@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INO | Pipeline</title>
 
+    <!-- highlight -->
+    <style>
+    .highlight {
+        background-color: #FFFF88;
+    }
+    </style>
+    <!-- highlight -->
 
     <!----------------------------- start header ------------------------------->
     <?php include ("../ino/templated/head.php");?>
@@ -98,12 +105,12 @@
                                     $contact_fullname_backup = "";
                                     $contact_company_backup = "";
                         
-                                    $_sql_status = "SELECT DISTINCT status FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_project_product = "SELECT DISTINCT project_product FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_project_brand = "SELECT DISTINCT project_brand  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_pip_staff = "SELECT DISTINCT pip_staff  FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
-                                    $_sql_contact_fullname = "SELECT DISTINCT contact_fullname  FROM contact ";
-                                    $_sql_contact_company = "SELECT DISTINCT contact_company  FROM contact ";
+                                    $_sql_status = "SELECT DISTINCT status FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql_project_product = "SELECT DISTINCT project_product FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql_project_brand = "SELECT DISTINCT project_brand  FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql_pip_staff = "SELECT DISTINCT pip_staff  FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql_contact_fullname = "SELECT DISTINCT contact_fullname  FROM contact INNER JOIN pipeline On (contact.contact_id = pipeline.contact_id)";
+                                    $_sql_contact_company = "SELECT DISTINCT contact_company   FROM contact INNER JOIN pipeline On (contact.contact_id = pipeline.contact_id)";
 
 
                                     $query_status = mysqli_query($conn, $_sql_status);
@@ -115,7 +122,7 @@
 
                                     //print_r($query_status);
 
-                                    $_sql = "SELECT * FROM pipeline LEFT JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                    $_sql = "SELECT * FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
                                     $_where = "";
 
                                         if (isset($_POST['search'])) {
@@ -142,8 +149,8 @@
                                             || $pip_staff  != $pip_staff_backup || $contact_fullname  != $contact_fullname_backup || $contact_company  != $contact_company_backup )
                                         
                                             if (!empty($search)) {
-                                                $_where = $_where . " WHERE status  LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' 
-                                                OR contact_fullname LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' OR contact_detail LIKE '%$search%' OR contact_company LIKE '%$search%' OR contact_type LIKE '%$search%' OR pip_staff LIKE '%$search%'";
+                                                $_where = $_where . " WHERE project_name LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' OR pip_sale LIKE '%$search%' OR pip_salen LIKE '%$search%' OR pip_costn LIKE '%$search%' OR pip_cost LIKE '%$search%' OR pip_gp LIKE '%$search%' 
+                                                OR pip_p LIKE '%$search%' OR pip_r LIKE '%$search%' OR pip_staff LIKE '%$search%' OR status LIKE '%$search%' OR con_number LIKE '%$search%' ";
                                             }
                                             if ($status != "") {
                                                 if (empty($_where)) {
@@ -193,7 +200,9 @@
 
                                     $query_search = mysqli_query($conn, $_sql .$_where); 
 
-                                //print_r($query_search);
+                                print_r($query_search);
+                                print_r($_sql);
+                                print_r($_where);
                                 ?>
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
@@ -507,9 +516,9 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                        <tr id="myTable">
+                                        <tr>
                                         <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["con_number"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?></a></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
@@ -691,8 +700,32 @@
     <!-- highlight -->
     <script src="code/dist/js/highlight.js"></script>
 
+    
+
     <script>
-    $("#myTable tr").highlight();
+    //<!-- Fillter -->
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        // <!-- Fillter -->
+        // <!-- Copy -->
+        $(document).on('click', '.btncoppy', function() {
+            var copyText = $(this).attr("name");
+            console.log(copyText);
+            var el = $('<input style="position: absolute; bottom: -120%" type="text" value="' +
+                copyText + '"/>').appendTo('body');
+            el[0].select();
+            document.execCommand("copy");
+            el.remove();
+        });
+    });
+
+    
+    $("#myTable tr").highlight("<?php echo $search;?>");
     </script>
     <!-- highlight -->
 

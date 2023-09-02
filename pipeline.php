@@ -200,9 +200,9 @@
 
                                     $query_search = mysqli_query($conn, $_sql .$_where); 
 
-                                print_r($query_search);
-                                print_r($_sql);
-                                print_r($_where);
+                                // print_r($query_search);
+                                // print_r($_sql);
+                                // print_r($_where);
                                 ?>
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
@@ -218,8 +218,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT DISTINCT COUNT(`pip_id`) as AMP FROM pipeline ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
+                                                                $query2 = "SELECT DISTINCT COUNT(`pip_id`) as AMP FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pipeline.pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -247,8 +247,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT DISTINCT COUNT(project_product) as AMP FROM pipeline ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
+                                                                $query2 = "SELECT DISTINCT COUNT(project_product) as AMP FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pipeline.pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -275,8 +275,8 @@
 
                                             <!-- Qeury Count All Service -->
                                             <?php 
-                                                                $query2 = "SELECT SUM(`pip_gp`) as AMP FROM pipeline ";
-                                                                $query1 = $query2 . $_where . "" . " ORDER BY pip_id DESC ";
+                                                                $query2 = "SELECT DISTINCT SUM(`pip_gp`) as AMP FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                                                $query1 = $query2 . $_where . "" . " ORDER BY pipeline.pip_id DESC ";
                                                                 $result = mysqli_query($conn, $query1);
                                                                 $rs = mysqli_fetch_array($result);
                                                                 $a = $rs['AMP'];
@@ -304,8 +304,8 @@
                                             <!-- Qeury Count All Service -->
                                             <?php 
                                                             
-                                                            $query = "SELECT SUM(`pip_salen`) as AMP FROM pipeline ";
-                                                            $query1 = $query . $_where . "" . " ORDER BY pip_id DESC ";
+                                                            $query = "SELECT SUM(`pip_salen`) as AMP FROM pipeline INNER JOIN contact On (pipeline.contact_id = contact.contact_id)";
+                                                            $query1 = $query . $_where . "" . " ORDER BY pipeline.pip_id DESC ";
                                                             $result = mysqli_query($conn, $query1);
                                                             $ls = mysqli_fetch_array($result);   
                                                             $a = $ls['AMP'];                               

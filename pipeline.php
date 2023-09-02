@@ -150,7 +150,9 @@
                                         
                                             if (!empty($search)) {
                                                 $_where = $_where . " WHERE project_name LIKE '%$search%' OR project_product LIKE '%$search%' OR project_brand LIKE '%$search%' OR pip_sale LIKE '%$search%' OR pip_salen LIKE '%$search%' OR pip_costn LIKE '%$search%' OR pip_cost LIKE '%$search%' OR pip_gp LIKE '%$search%' 
-                                                OR pip_p LIKE '%$search%' OR pip_r LIKE '%$search%' OR pip_staff LIKE '%$search%' OR status LIKE '%$search%' OR con_number LIKE '%$search%' ";
+                                                OR pip_p LIKE '%$search%' OR pip_r LIKE '%$search%' OR pip_staff LIKE '%$search%' OR status LIKE '%$search%' OR con_number LIKE '%$search%'
+                                                OR contact_fullname LIKE '%$search%' OR contact_position LIKE '%$search%' OR contact_agency LIKE '%$search%' OR contact_tel LIKE '%$search%' OR contact_email LIKE '%$search%'
+                                                OR contact_detail LIKE '%$search%' OR contact_company LIKE '%$search%' OR contact_type LIKE '%$search%' OR contact_staff LIKE '%$search%' OR contact_province LIKE '%$search%' ";
                                             }
                                             if ($status != "") {
                                                 if (empty($_where)) {

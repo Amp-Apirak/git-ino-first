@@ -385,7 +385,7 @@
                         <?php
                         $_sql = "SELECT * FROM pip_file 
                                 INNER JOIN pip_folder
-                                ON pip_file.type_id = pip_folder.type_id
+                                ON pip_file.t_name = pip_folder.t_name
                                 INNER JOIN pipeline
                                 ON pip_file.pip_id = pipeline.pip_id
                                 WHERE pip_file.pip_id=" . $_GET['id'];

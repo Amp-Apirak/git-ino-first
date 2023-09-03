@@ -471,7 +471,7 @@
                                                         ?>
                                                     </td>
 
-                                                    <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_r"]; ?></td>
+                                                    <td scope="col" class=" " height="" width=""><?php echo $res_search1["file_r"]; ?></td>
 
                                                     <td scope="col" class="text-nowrap text-center " height="" width="">
                                                         <?php

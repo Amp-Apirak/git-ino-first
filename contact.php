@@ -252,8 +252,7 @@
                         </section>
 
                         <div class="col-md-12 pb-3">
-                            <a href="contact_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal"
-                                data-target="#editbtn"> Add <i class=""></i></a>
+                            <a href="contact_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
 
 
@@ -301,11 +300,8 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_crt"]; ?></td>
                                             
                                             <td>
-                                            <a href="contact_edit.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm swalDefaultSuccess"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="contact_edit.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm swalDefaultSuccess"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="contact.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
-
-
-
                                             </td>
                                         </tr>
                                         <?php } ?>

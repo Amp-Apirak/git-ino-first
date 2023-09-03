@@ -295,17 +295,56 @@
                                             <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                             <tr>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["task_name"]; ?></td>
+                                                <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["task_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["folder_name"];?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_type"];?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><a target ="_blank" href="file/<?php echo $res_search["folder_name"]; ?>/<?php echo $res_search["file_upfile"];?>"><?php echo $res_search["doc_name"];?>  &nbsp;  <i class="nav-icon fa fa-folder-open"></i></a></td>
+                                                <td scope="col" class="text-nowrap text-center " height="" width="">
+                                                <?php
+                                                    if($res_search["doc_type"] =='Wiating for approve'){
+                                                        echo "<span class='badge badge-secondary'>{$res_search["doc_type"]}</span>";
+                                                    }elseif($res_search["doc_type"] =='Word'){
+                                                        echo "<span class='badge badge-info'>{$res_search["doc_type"]}</span>";
+                                                    }elseif($res_search["doc_type"] =='Excel'){
+                                                        echo "<span class='badge badge-warning'>{$res_search["doc_type"]}</span>";
+                                                    }elseif($res_search["doc_type"] =='Presentation'){
+                                                        echo "<span class='badge badge-success'>{$res_search["doc_type"]}</span>";
+                                                    }elseif($res_search["doc_type"] =='PDF'){
+                                                        echo "<span class='badge badge-danger'>{$res_search["doc_type"]}</span>";
+                                                    }elseif($res_search["doc_type"] =='Images'){
+                                                        echo "<span class='badge badge-primary'>{$res_search["doc_type"]}</span>";
+                                                    }
+                                                ?>
+                                                </td>
+
+                                                <td scope="col" class="text-nowrap " height="" width="">
+                                                    <?php
+                                                    if($res_search["file_upfile"] ==""){
+                                                        echo "<i class='badge badge-danger nav-icon fa fa-folder-open'>&nbsp;ไม่มีเอกสารแนบ</i></a></i>";
+                                                    }elseif($res_search["file_upfile"]){
+                                                        echo "<a target ='_blank' href='file/{$res_search["folder_name"]}/{$res_search["file_upfile"]}'>{$res_search["doc_name"]} &nbsp; <i class='badge badge-success nav-icon fa fa-folder-open'>&nbsp;Doc</i></a></i>" ;
+                                                    
+                                                    }
+                                                ?>
+                                                </td>
+
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_remark"]; ?></td>
-                                                <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_status"]; ?></td>
+
+                                                <td scope="col" class="text-nowrap text-center " height="" width="">
+                                                    <?php
+                                                        if($res_search["doc_status"] =='Process'){
+                                                            echo "<span class='badge badge-warning'>{$res_search["doc_status"]}</span>";
+                                                        }elseif($res_search["doc_status"] =='Complated'){
+                                                            echo "<span class='badge badge-success'>{$res_search["doc_status"]}</span>";
+                                                        }elseif($res_search["doc_status"] =='Wait Approve'){
+                                                            echo "<span class='badge badge-primary'>{$res_search["doc_status"]}</span>";
+                                                        }
+                                                    ?>
+                                            
+                                                </td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_link"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_crt"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["doc_staff"]; ?></td>
                                                 <td>
-                                                    <a href="doc_edit.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-info btn-sm "> <i class="fas fa-pencil-alt"></i></a>
+                                                    <!-- <a href="doc_edit.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-info btn-sm "> <i class="fas fa-pencil-alt"></i></a> -->
                                                     <a href="document.php?id=<?php echo $res_search["doc_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>

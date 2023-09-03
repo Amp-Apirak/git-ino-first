@@ -152,7 +152,7 @@
                                         <div class="card-body">
                                             <?php
                                             $project_name = "";
-                                            $_sql_project_name = "SELECT DISTINCT project_name FROM project";
+                                            $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline";
                                             $query_project_name = mysqli_query($conn, $_sql_project_name);
                                             ?>
 

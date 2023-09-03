@@ -61,12 +61,13 @@
                                     <form action="doc_add1.php" method="POST" enctype="multipart/form-data">
 
                                         <div class="card-body">
+                                            <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
                                             <?php
-                                            $project_name = "";
-                                            $_sql_project_name = "SELECT DISTINCT project_name FROM project";
-                                            $query_project_name = mysqli_query($conn, $_sql_project_name);
+                                                $project_name = "";
+                                                $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline";
+                                                $query_project_name = mysqli_query($conn, $_sql_project_name);
                                             ?>
-
+                                            <!-- แสดงที่ดึงข้อมูลโปรเจคมาจาก Pipeline -->
                                             <div class="form-group">
                                                 <label>Project name</label>
                                                 <select class="custom-select select2" name="project_name">
@@ -77,8 +78,9 @@
                                                 </select>
                                                 <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                             </div>
-                                            <!-- /.form-group -->
+                                            <!-- Dropdown List Project -->
 
+                                            <!-- ดึงข้อมูล task_project มาจาก task_project -->
                                             <?php
                                             $task_name = "";
                                             $_sql_task_name = "SELECT DISTINCT task_name FROM task_project";
@@ -94,8 +96,10 @@
                                                     <?php } ?>
                                                 </select>
                                             </div>
-                                            <!-- /.form-group -->
+                                            <!-- Dropdown List Task Project -->
 
+
+                                            <!-- ดึงข้อมูล Folder มาจาก folder_doc -->
                                             <?php
                                             $folder_name = "";
                                             $_sql_folder_name = "SELECT DISTINCT folder_name FROM folder_doc";
@@ -113,16 +117,17 @@
                                                             <?php } ?>
                                                         </select>
                                                     </div>
-                                                    <!-- /.form-group-->
+                                                     <!-- Dropdown List Folder -->
                                                 </div>
                                                 <div class="col col-2">
                                                     <div class="form-group">
                                                         <label>Add <i class="nav-icon fas fa-plus style=" color: #1f5d09;></i></label><br>
                                                         <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn"> <i class="fas fa-pencil-alt"></i></a>
                                                     </div>
-                                                    <!-- /.form-group-->
+                                                    <<!-- Add Folder -->
                                                 </div>
                                             </div>
+
 
                                             <div class="form-group">
                                                 <label>Type <span class="text-danger">*</span></label>

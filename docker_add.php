@@ -92,10 +92,10 @@
                                                 <div class="col col-10">
                                                     <div class="form-group">
                                                         <label>Folder <span class="text-danger">*</span></label>
-                                                        <select class="custom-select select2 " width="" name="type_id">
+                                                        <select class="custom-select select2 " width="" name="t_name">
                                                             <option selected="selected"></option>
                                                             <?php while ($r = mysqli_fetch_array($query_t_name)) { ?>
-                                                                <option value="<?php echo $r["type_id"]; ?>"<?php if ($r['t_name'] == $t_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["t_name"]; ?></option>
+                                                                <option value="<?php echo $r["t_name"]; ?>"<?php if ($r['t_name'] == $t_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["t_name"]; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>

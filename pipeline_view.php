@@ -380,10 +380,10 @@
                 <div class="row">
                     <div class="col-12">
                         <!-- Start ค้นหาและ ดึงข้อมูล -->
+
+                        
                         <?php
                         $_sql = "SELECT * FROM pip_file 
-                                INNER JOIN pip_docker
-                                ON pip_file.docker_id = pip_docker.docker_id
                                 INNER JOIN pip_folder
                                 ON pip_file.type_id = pip_folder.type_id
                                 INNER JOIN pipeline
@@ -415,11 +415,28 @@
                         ?>
 
 
+                        <!-- ดึงไอดี Pip_id docker_add.php เพื่อส่งค่าไปยังหน้า -->
+                        <?php
+                            if (isset($_GET['id'])) {
+                                $_sql = "SELECT * FROM pipeline WHERE pip_id=" . $_GET['id'];
+                                $query_search = mysqli_query($conn, $_sql);
+                                // print_r($_sql);
+                                // print_r($query_search);
+                                 while ($res_search = mysqli_fetch_array($query_search)) {
+                         ?>
+
+
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
                             <div class="col-md-12 pb-3">
-                                <a href="project_add.php" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
+                                <a href="docker_add.php?id=<?php echo $res_search["pip_id"]; ?>" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
                             </div><br>
+
                         <?php } ?>
+                        <?php } ?>
+                        <?php } ?>
+
+
+
 
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
@@ -436,8 +453,6 @@
 
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Task Project</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
@@ -512,8 +527,6 @@
 
                                         <tfoot>
                                             <tr>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Task Project</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>

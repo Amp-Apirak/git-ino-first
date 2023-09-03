@@ -530,7 +530,7 @@
                                                     if($res_search["status"] =='Wiating for approve'){
                                                         echo "<span class='badge badge-secondary'>{$res_search["status"]}</span>";
                                                     }elseif($res_search["status"] =='On Process'){
-                                                        echo "<span class='badge badge-info'>{$res_search["status"]}</span>";
+                                                        echo "<span class='badge badge-danger'>{$res_search["status"]}</span>";
                                                     }elseif($res_search["status"] =='On-Hold'){
                                                         echo "<span class='badge badge-warning'>{$res_search["status"]}</span>";
                                                     }elseif($res_search["status"] =='Done'){

@@ -58,10 +58,7 @@
                                         <h3 class="card-title">Document descriptions</h3>
                                     </div>
 
-                                    <form action="docker_add1.php<?php echo $res_search["pip_id"]; ?>" method="POST" enctype="multipart/form-data">
-
-                                        <div class="card-body">
-                                            <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
+                                    <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
                                             <!-- ดึงไอดี Pip_id docker_add.php เพื่อส่งค่าไปยังหน้า -->
                                             <?php
                                                 if (isset($_GET['id'])) {
@@ -72,15 +69,14 @@
                                                     while ($res_search = mysqli_fetch_array($query_search)) {
                                             ?>
                                             <!-- แสดงที่ดึงข้อมูลโปรเจคมาจาก Pipeline -->
-                                            
+
+                                    <form action="docker_add1.php?id=<?php echo $res_search["pip_id"]; ?>" method="POST" enctype="multipart/form-data">
+                                        <div class="card-body">
                                             <div class="form-group">
                                                  <input type="hidden" name="pip_id" value="<?php echo $res_search["pip_id"]; ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                                 <input type="hidden" name="file_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
                                             </div>
                                             <!-- Dropdown List Project -->
-
-                                            
-
                                             <!-- ดึงข้อมูล Folder มาจาก folder_doc -->
                                             <?php
                                             $t_name = "";
@@ -157,12 +153,12 @@
                                             <!-- textarea -->
                                             <div class="form-group">
                                                 <label>Document descriptions</label>
-                                                <textarea class="form-control" name="doc_remark" id="doc_remark" rows="6" placeholder="remark "></textarea>
+                                                <textarea class="form-control" name="file_r" id="file_r" rows="6" placeholder="remark "></textarea>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Link Form Drive</label>
-                                                <input type="text" name="file_r" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive">
+                                                <input type="text" name="file_link" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive">
                                             </div>
                                             <!-- /.form-group -->
 

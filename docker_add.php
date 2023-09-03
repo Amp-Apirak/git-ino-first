@@ -58,7 +58,7 @@
                                         <h3 class="card-title">Document descriptions</h3>
                                     </div>
 
-                                    <form action="doc_add1.php" method="POST" enctype="multipart/form-data">
+                                    <form action="docker_add1.php<?php echo $res_search["pip_id"]; ?>" method="POST" enctype="multipart/form-data">
 
                                         <div class="card-body">
                                             <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
@@ -92,10 +92,10 @@
                                                 <div class="col col-10">
                                                     <div class="form-group">
                                                         <label>Folder <span class="text-danger">*</span></label>
-                                                        <select class="custom-select select2 " width="" name="t_name">
+                                                        <select class="custom-select select2 " width="" name="type_id">
                                                             <option selected="selected"></option>
                                                             <?php while ($r = mysqli_fetch_array($query_t_name)) { ?>
-                                                                <option value="<?php echo $r["t_name"]; ?>" <?php if ($r['t_name'] == $t_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["t_name"]; ?></option>
+                                                                <option value="<?php echo $r["type_id"]; ?>"<?php if ($r['t_name'] == $t_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["t_name"]; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -113,7 +113,7 @@
 
                                             <div class="form-group">
                                                 <label>Type <span class="text-danger">*</span></label>
-                                                <select class="form-control select2" name="doc_type" style="width: 100%;">
+                                                <select class="form-control select2" name="file_type" style="width: 100%;">
                                                     <option selected="selected"></option>
                                                     <option>Word</option>
                                                     <option>Excel</option>
@@ -127,7 +127,7 @@
 
                                             <div class="form-group">
                                                 <label>Status<span class="text-danger">*</span></label>
-                                                <select class="form-control select2" name="doc_status" style="width: 100%;">
+                                                <select class="form-control select2" name="file_status" style="width: 100%;">
                                                     <option selected="selected"></option>
                                                     <option>Complated</option>
                                                     <option>Wait Approve</option>
@@ -138,7 +138,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Document Name<span class="text-danger">*</span></label>
-                                                <input type="text" name="doc_name" class="form-control" id="exampleInputEmail1" placeholder="Document Name" required>
+                                                <input type="text" name="file_name" class="form-control" id="exampleInputEmail1" placeholder="Document Name" required>
                                             </div>
                                             <!-- /.form-group -->
 
@@ -162,7 +162,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Link Form Drive</label>
-                                                <input type="text" name="doc_link" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive">
+                                                <input type="text" name="file_r" class="form-control" id="exampleInputEmail1" placeholder="Link Google Drive">
                                             </div>
                                             <!-- /.form-group -->
 

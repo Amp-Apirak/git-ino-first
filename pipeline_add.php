@@ -375,9 +375,9 @@
                                                         style="background-color:#F8F8FF" placeholder="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Cost (No Vat)<span class="text-danger">*</span></label>
+                                                    <label>Cost (No Vat)</label>
                                                     <input type="int" name="pip_costn" id="pip_costn" required class="form-control" onkeyup="sum();"
-                                                        placeholder="ระบุราคาต้นทุนโครงการ" required>
+                                                        placeholder="ระบุราคาต้นทุนโครงการ" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cost (Vat)</label>

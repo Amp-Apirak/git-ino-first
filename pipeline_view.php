@@ -466,7 +466,7 @@
                                                         if ($res_search1["file_upfile"] == "") {
                                                             echo "<i class='badge badge-danger nav-icon fa fa-folder-open'>&nbsp;ไม่มีเอกสารแนบ</i></a></i>";
                                                         } elseif ($res_search1["file_upfile"]) {
-                                                            echo "<a target ='_blank' href='docker/{$res_search1["file_upfile"]}'>{$res_search1["file_name"]} &nbsp; <i class='badge badge-success nav-icon fa fa-folder-open'>&nbsp;Doc</i></a></i>";
+                                                            echo "<a target ='_blank' href='docker/{$res_search1["t_name"]}/{$res_search1["file_upfile"]}'>{$res_search1["file_name"]} &nbsp; <i class='badge badge-success nav-icon fa fa-folder-open'>&nbsp;Doc</i></a></i>";
                                                         }
                                                         ?>
                                                     </td>
@@ -485,7 +485,7 @@
                                                         ?>
 
                                                     </td>
-                                                    <td scope="col" class="" height="" width=""><?php echo $res_search1["file_link"]; ?></td>
+                                                    <td scope="col" class="" height="" width=""><a href="<?php echo $res_search1["file_link"]; ?>" target="_blank"><?php echo $res_search1["file_link"]; ?></a></td>
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_date"]; ?></td>
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_staff"]; ?></td>
                                                     <td>

@@ -124,9 +124,9 @@
                                                         <label>Add <i class="nav-icon fas fa-plus style=" color: #1f5d09;></i></label><br>
                                                         <a href="#" class="btn btn-info btn-sm " data-toggle="modal" data-target="#editbtn"> <i class="fas fa-pencil-alt"></i></a>
                                                     </div>
-                                                    <<!-- Add Folder -->
+                                                    <!-- Add Folder -->
                                                 </div>
-                                            </div>
+                                            </div>  
 
 
                                             <div class="form-group">

@@ -16,44 +16,6 @@
     <?php include ("../ino/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
-    <?php
-        /* การลบข้อมูล */
-        if (isset($_GET['id'])) {
-
-            $result = $conn->query("DELETE FROM project INNER JOIN estime  WHERE project_id=" . $_GET['projecr_id']);
-
-            if ($result) {
-                // <!-- sweetalert -->
-                echo '<script>
-                        setTimeout(function(){
-                            swal({
-                                title: "Successfully!",
-                                text: "Delect Infomation Complatrd.",
-                                type:"success"
-                            }, function(){
-                                window.location = "project.php";
-                            })
-                        },1000);
-                    </script>';
-                // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-            } else {
-                // <!-- sweetalert -->
-                echo '<script>
-                        setTimeout(function(){
-                            swal({
-                                title: "Can Not Successfully!",
-                                text: "Type again",
-                                type:"warning"
-                            }, function(){
-                                window.location = "project.php";
-                            })
-                        },1000);
-                    </script>';
-            //     echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
-            }
-        }
-        /* การลบข้อมูล */
-    ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -96,7 +58,7 @@
                                     $project_staff_backup = "";
 
                         
-                                    $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline ";
+                                    $_sql_project_name = "SELECT DISTINCT project_id FROM project ";
                                     $_sql_project_m = "SELECT DISTINCT project_m FROM project ";
                                     $_sql_project_status = "SELECT DISTINCT project_status  FROM project ";
                                     $_sql_project_staff = "SELECT DISTINCT project_staff  FROM project ";
@@ -425,42 +387,95 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">No.</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Task Amount</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Completed Task</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Prograss</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Progress</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
-                                        <tr id="myTable">
-                                            <td scope="col" class="text-nowrap  " height="" width="">1</td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="project_view.php?id=<?php echo $res_search["project_id"]; ?>"><?php echo $res_search["pip_name"]; ?></a></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_brand"];?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_price"];?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_qty"];?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_sales_novat"]; ?></td>
-
+                                        <?php
+                                        $i = 1;
+                                        $stat = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                                        $where = "";
+                                        if($_SESSION['login_type'] == 2){
+                                        $where = " where manager_id = '{$_SESSION['login_id']}' ";
+                                        }elseif($_SESSION['login_type'] == 3){
+                                        $where = " where concat('[',REPLACE(user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+                                        }
+                                        $qry = $conn->query("SELECT * FROM project_list $where order by name asc");
+                                        while($row= $qry->fetch_assoc()):
+                                        $prog= 0;
+                                        $tprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']}")->num_rows;
+                                        $cprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']} and status = 3")->num_rows;
+                                        $prog = $tprog > 0 ? ($cprog/$tprog) * 100 : 0;
+                                        $prog = $prog > 0 ?  number_format($prog,2) : $prog;
+                                        $prod = $conn->query("SELECT * FROM user_productivity where project_id = {$row['id']}")->num_rows;
+                                        if($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['start_date'])):
+                                        if($prod  > 0  || $cprog > 0)
+                                        $row['status'] = 2;
+                                        else
+                                        $row['status'] = 1;
+                                        elseif($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['end_date'])):
+                                        $row['status'] = 4;
+                                        endif;
+                                        ?>
+                                        <tr>
                                             <td>
-                                                <a href="project_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="project.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                <?php echo $i++ ?>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    <?php echo ucwords($row['name']) ?>
+                                                </a>
+                                                <br>
+                                                <small>
+                                                    Due: <?php echo date("Y-m-d",strtotime($row['end_date'])) ?>
+                                                </small>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $prog ?>%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    <?php echo $prog ?>% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <?php
+                                                    if($stat[$row['status']] =='Pending'){
+                                                    echo "<span class='badge badge-secondary'>{$stat[$row['status']]}</span>";
+                                                    }elseif($stat[$row['status']] =='Started'){
+                                                    echo "<span class='badge badge-primary'>{$stat[$row['status']]}</span>";
+                                                    }elseif($stat[$row['status']] =='On-Progress'){
+                                                    echo "<span class='badge badge-info'>{$stat[$row['status']]}</span>";
+                                                    }elseif($stat[$row['status']] =='On-Hold'){
+                                                    echo "<span class='badge badge-warning'>{$stat[$row['status']]}</span>";
+                                                    }elseif($stat[$row['status']] =='Over Due'){
+                                                    echo "<span class='badge badge-danger'>{$stat[$row['status']]}</span>";
+                                                    }elseif($stat[$row['status']] =='Done'){
+                                                    echo "<span class='badge badge-success'>{$stat[$row['status']]}</span>";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="./index.php?page=view_project&id=<?php echo $row['id'] ?>">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
                                             </td>
                                         </tr>
-                                        <?php } ?>
-                                    </tbody>
+                                        <?php endwhile; ?>
+                                    </tbody>  
 
                                     <tfoot>
                                         <tr>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">No.</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project Name</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Task Amount</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Completed Task</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Prograss</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Progress</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Status</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>

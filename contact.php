@@ -293,7 +293,7 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_agency"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_staff"]; ?></td>

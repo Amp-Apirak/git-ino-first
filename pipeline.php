@@ -735,6 +735,7 @@
 
 
     <!----------------------------- start Modal Add user ------------------------------->
+    
     <div class="modal fade" id="editbtn">
         <div class="modal-dialog editbtn">
             <div class="modal-content">
@@ -774,10 +775,8 @@
                                     <option>Service bank</option>
                                 </select>
 
-                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
-                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                <input type="hidden" name="user_staff" class="form-control"
-                                    value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
+                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                <input type="hidden" name="user_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
 
                             </div>
                             <!-- /.form-group -->

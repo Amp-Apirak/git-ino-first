@@ -93,7 +93,7 @@
 
 
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="project.php" class="nav-link <?php if($menu=="project"){echo "active";} ?>">
                                     <i class="nav-icon fa fa-star"></i>
                                     <p>
@@ -101,7 +101,7 @@
                                         
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-item">
                                 <a href="service.php" class="nav-link <?php if($menu=="service"){echo "active";} ?>">

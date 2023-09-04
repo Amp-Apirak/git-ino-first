@@ -485,7 +485,7 @@
                                                         ?>
 
                                                     </td>
-                                                    <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_link"]; ?></td>
+                                                    <td scope="col" class="" height="" width=""><?php echo $res_search1["file_link"]; ?></td>
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_date"]; ?></td>
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_staff"]; ?></td>
                                                     <td>

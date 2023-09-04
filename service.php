@@ -29,7 +29,7 @@
         /* การลบข้อมูล */
         if (isset($_GET['id'])) {
 
-            $result = $conn->query("DELETE FROM project INNER JOIN estime  WHERE cat_id=" . $_GET['projecr_id']);
+            $result = $conn->query("DELETE FROM category WHERE cat_id=" . $_GET['id']);
 
             if ($result) {
                 // <!-- sweetalert -->
@@ -40,7 +40,7 @@
                                 text: "Delect Infomation Complatrd.",
                                 type:"success"
                             }, function(){
-                                window.location = "project.php";
+                                window.location = "service.php";
                             })
                         },1000);
                     </script>';
@@ -54,7 +54,7 @@
                                 text: "Type again",
                                 type:"warning"
                             }, function(){
-                                window.location = "project.php";
+                                window.location = "service.php";
                             })
                         },1000);
                     </script>';
@@ -293,7 +293,7 @@
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="col-md-12 pb-3">
-                            <a href="category_add.php" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
+                            <a href="service.php" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
                         <?php } ?>
 
@@ -311,13 +311,13 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Site Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Service</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Category</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Subcat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Problome</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Service/Problome</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Case</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Resolve</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Site Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create By</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
@@ -327,20 +327,21 @@
                                     <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["site"];?> <button type="button" name="<?php echo $res_search["site"]; ?>"class="btn btn-sm btn-outline-info  btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><a href="#?id=<?php echo $res_search["cat_id"]; ?>"><?php echo $res_search["cat_scat"]; ?></a> <button type="button" name="<?php echo $res_search["cat_scat"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["cat_sub"];?> <button type="button" name="<?php echo $res_search["cat_sub"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["cat_item"];?> <button type="button" name="<?php echo $res_search["cat_item"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+                                            
+                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="#?id=<?php echo $res_search["cat_id"]; ?>"><?php echo $res_search["cat_scat"]; ?></a> <button type="button" name="<?php echo $res_search["cat_scat"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_sub"];?> <button type="button" name="<?php echo $res_search["cat_sub"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_item"];?> <button type="button" name="<?php echo $res_search["cat_item"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["problem"];?> <button type="button" name="<?php echo $res_search["problem"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_case"]; ?> <button type="button" name="<?php echo $res_search["cat_case"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_resovle"]; ?> <button type="button" name="<?php echo $res_search["cat_resovle"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cate_staff"]; ?> </td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cate_crt"]; ?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["site"];?> <button type="button" name="<?php echo $res_search["site"]; ?>"class="btn btn-sm btn-outline-info  btncoppy"><small>Copy</small></button></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_staff"]; ?> </td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_crt"]; ?></td>
 
                                             <td>
                                                 <a href="service_copy.php?id=<?php echo $res_search["cat_id"]; ?>" class="btn btn-success btn-sm "><i class="fas fa-copy"></i></a>
-                                                <a href="service_edit.php" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal-lg"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="service.php?id=" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                <a href="service_edit.php?id=<?php echo $res_search["cat_id"]; ?>" class="btn btn-info btn-sm "><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="service.php?id=<?php echo $res_search["cat_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -348,13 +349,13 @@
 
                                     <tfoot>
                                         <tr>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Site Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Service</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Category</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Subcat</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Problome</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Service/Problome</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Case</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Resolve</th>
+                                            <th scope="col" class="text-nowrap text-center " height="" width="">Site Name</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create By</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Action</th>
@@ -497,103 +498,148 @@
 
 
     <!----------------------------- start Modal Add user ------------------------------->
+    <!-- เพิ่มข้อมูล -->
+    <?php
+    if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+    $cat_scat  = $_POST['cat_scat']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+    $cat_sub = $_POST['cat_sub'];
+    $cat_item = $_POST['cat_item'];
+    $problem = $_POST['problem'];
+    $site = $_POST['site'];
+    $cat_case = $_POST['cat_case'];
+    $cat_resovle = $_POST['cat_resovle'];
+    $cat_staff = $_POST['cat_staff'];
+    $cat_type = $_POST['cat_type'];
+
+
+    // print_r($_POST);
+    $sql =  "INSERT INTO `category` (`cat_id`, `cat_scat`,`cat_sub`, `cat_item`, `problem`, `site`, `cat_resovle`, `cat_case`, `cat_staff`, `cat_type`) 
+    VALUES (NULL, '$cat_scat', '$cat_sub', '$cat_item', '$problem', '$site', '$cat_resovle', '$cat_case', '$cat_staff', '$cat_type')";
+    $result = $conn->query($sql);
+
+    //  print_r($sql);
+    if ($result) {
+    // <!-- sweetalert -->
+    echo '<script>
+            setTimeout(function(){
+                swal({
+                    title: "Save Successfully!",
+                    text: "Thank You . ",
+                    type:"success"
+                }, function(){
+                    window.location = "service.php";
+                })
+            },1000);
+        </script>';
+    // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+    } else {
+    // <!-- sweetalert -->
+    echo '<script>
+            setTimeout(function(){
+                swal({
+                    title: "Can Not Save Successfully!",
+                    text: "Checking Your Data",
+                    type:"warning"
+                }, function(){
+                    window.location = "service.php";
+                })
+            },1000);
+        </script>';
+    // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
+    }
+    }
+    // echo '<pre>';
+    // print_r($_POST);
+    // print_r($_FILES);
+    // echo '</pre>';
+    ?>
+
+
+
     <div class="modal fade" id="editbtn">
         <div class="modal-dialog editbtn">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add User</h4>
+                    <h4 class="modal-title">Add Pattern Service</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="project_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="service.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
-                                    required>
-                            </div>
-                            <!-- /.form-group -->
 
-                            <div class="form-group">
-                                <label for="site">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="site" class="form-control" id="site"
-                                    placeholder="" required>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>Team<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_product" required
-                                    style="width: 100%;">
+                                <label>Type<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="cat_type" required style="width: 100%;">
                                     <option selected="selected">Select</option>
-                                    <option>Innovation</option>
-                                    <option>Infrastructure</option>
-                                    <option>Projecting</option>
-                                    <option>Stock</option>
-                                    <option>Service Solution</option>
-                                    <option>Service bank</option>
-                                </select>
-
-                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>"
-                                    class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                <input type="hidden" name="user_staff" class="form-control"
-                                    value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>Role<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_status" required
-                                    style="width: 100%;">
-                                    <option selected="selected">Select</option>
-                                    <option>Administrator</option>
-                                    <option>Engineer</option>
-                                    <option>Viewer</option>
+                                    <option>Incident</option>
+                                    <option>Service</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
-
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Phone Number</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" name="tel" id="tel"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-
-                            <p>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
-                                        required>
-                                </div>
+                                <label for="cat_scat">Service Category<span class="text-danger">*</span></label>
+                                <input type="text" name="cat_scat" class="form-control" id="cat_scat" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
+                                <label for="cat_sub">Category<span class="text-danger">*</span></label>
+                                <input type="text" name="cat_sub" class="form-control" id="cat_sub" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+                            
+                            <div class="form-group">
+                                <label for="cat_item">Sub Category<span class="text-danger">*</span></label>
+                                <input type="text" name="cat_item" class="form-control" id="cat_item" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                             <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
+                             <?php
+                                $contact_fullname = "";
+                                $_sql_contact = "SELECT DISTINCT * FROM contact";
+                                $query_contact = mysqli_query($conn, $_sql_contact);
+                             ?>
+                             <!-- แสดงที่ดึงข้อมูลโปรเจคมาจาก Pipeline -->
+                            <div class="form-group">
+                                 <label>Site/Customer <span class="text-danger"><small>*Contact Required*</small></span></label>
+                                    <select class="custom-select select2" name="site">
+                                        <option selected="selected"></option>
+                                            <?php while ($r = mysqli_fetch_array($query_contact)) { ?>
+                                                <option value="<?php echo $r["contact_fullname"]; ?> (<?php echo $r["contact_company"]; ?>)" <?php if ($r['contact_fullname'] == $contact_fullname) : ?> selected="selected" <?php endif; ?>><?php echo $r["contact_fullname"]; ?> (<?php echo $r["contact_company"]; ?>)</option>
+                                            <?php } ?>
+                                    </select>
+                            </div>
+                             <!-- Dropdown List Project -->
+
+
+                            <div class="form-group">
+                                <label for="problem">Service/Problome<span class="text-danger">*</span></label>
+                                <input type="text" name="problem" class="form-control" id="problem" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
+                                <label for="cat_case">Case</label>
+                                <input type="text" name="cat_case" class="form-control" id="cat_case" placeholder="" required>
                             </div>
                             <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="cat_resovle">Resolve</label>
+                                <input type="text" name="cat_resovle" class="form-control" id="cat_resovle" placeholder="" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                           
+                            <input type="hidden" name="cat_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
+
+                            
+
+                    
+
 
                         </div>
 

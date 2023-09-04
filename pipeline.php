@@ -521,7 +521,7 @@
                                     <tbody id="myTable">
                                         <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                         <tr>
-                                        <td scope="col" class="text-nowrap text-center " height="" width="">
+                                        <td scope="col" class="text-nowrap " height="" width="">
                                         <?php
                                                     if($res_search["con_number"] ==''){
                                                         echo "<i class='badge badge-danger nav-icon '>&nbsp; ไม่ระบุเลขที่สัญญา</i></a></i>";

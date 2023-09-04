@@ -78,7 +78,7 @@
                             $date_end = $_POST['date_end'];
                             $con_number = $_POST['con_number'];
 
-                            print_r($_POST);
+                            //print_r($_POST);
 
 
                             $sql =  "INSERT INTO `pipeline` (`pip_id`, `project_product`,`project_name`, `project_brand`, `pip_vat`, `pip_salen`, `pip_sale`, `pip_costn`, `pip_cost`,`pip_gp`, `pip_gp2`, `pip_p`, `contact_id`, `pip_r`, `pip_staff`,`pip_ess`, `pip_esc`, `pip_esp`, `status`, `date_start`, `date_end`, `con_number`) 

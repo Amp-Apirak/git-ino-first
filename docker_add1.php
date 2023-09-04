@@ -80,11 +80,12 @@ if (!isset($_SESSION["id"])) {
 
 
 
-            $sql =  "INSERT INTO `pip_file` ( `t_name`, `file_name`, `file_staff`,`file_type`, `file_link`, `file_r`, `file_status	`, `pip_id`, `file_upfile`) 
-                            VALUES ( '$t_name', '$file_name', '$file_staff', '$file_type', '$file_link', '$file_r', '$file_status	', '$pip_id', '$file_upfile')";
+            $sql =  "INSERT INTO `pip_file` ( `t_name`, `file_name`, `file_staff`,`file_type`, `file_link`, `file_r`, `file_status`, `pip_id`, `file_upfile`) 
+                            VALUES ( '$t_name', '$file_name', '$file_staff', '$file_type', '$file_link', '$file_r', '$file_status', '$pip_id', '$file_upfile')";
+
             $result = $conn->query($sql);
 
-            print_r($sql);
+            //print_r($sql);
 
             if ($result) {
                 // <!-- sweetalert -->

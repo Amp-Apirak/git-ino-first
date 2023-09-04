@@ -186,18 +186,16 @@
                                             <div class="row">
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Date Start Project<span
-                                                                class="text-danger">*</span></label>
+                                                        <label>Date Start Project</label>
                                                         <input type="date" name="date_start" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" required>
+                                                            id="exampleInputEmail1" placeholder="" >
                                                     </div>
                                                 </div>
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Date End Project<span
-                                                                class="text-danger">*</span></label>
+                                                        <label>Date End Project</label>
                                                         <input type="date" name="date_end" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" required>
+                                                            id="exampleInputEmail1" placeholder="" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,7 +374,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cost (No Vat)</label>
-                                                    <input type="int" name="pip_costn" id="pip_costn" required class="form-control" onkeyup="sum();"
+                                                    <input type="int" name="pip_costn" id="pip_costn"  class="form-control" onkeyup="sum();"
                                                         placeholder="ระบุราคาต้นทุนโครงการ" >
                                                 </div>
                                                 <div class="form-group">

@@ -531,8 +531,8 @@
                                                 ?>
                                         </td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?></a></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_product"]; ?></td>
-                                            <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["project_brand"];?></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
+                                            <td scope="col" class="text-nowrap text-center  " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap text-center " height="" width="">
                                                 <?php
                                                     if($res_search["status"] =='Wiating for approve'){

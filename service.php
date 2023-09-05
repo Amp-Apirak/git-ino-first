@@ -177,7 +177,8 @@
                                         }
                                         
 
-                                    $query_search = mysqli_query($conn, $_sql .$_where); 
+                                        $_sql = $_sql . $_where . "" . " ORDER BY cat_id desc ";
+                                        $query_search = mysqli_query($conn, $_sql);
 
                                  //print_r($query_search);
                                  //print_r($_where);

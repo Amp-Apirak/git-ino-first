@@ -189,14 +189,14 @@
                                             <div class="row">
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Date Start Project<span class="text-danger">*</span></label>
-                                                            <input type="date" name="date_start" class="form-control" id="exampleInputEmail1" placeholder="" value="<?= $r->date_start; ?>" required>
+                                                        <label>Date Start Project</label>
+                                                            <input type="date" name="date_start" class="form-control" id="exampleInputEmail1" placeholder="" value="<?= $r->date_start; ?>" >
                                                     </div>
                                                 </div>
                                                 <div class="col col-6">
                                                     <div class="form-group">
-                                                        <label>Date End Project<span class="text-danger">*</span></label>
-                                                            <input type="date" name="date_end" class="form-control" id="exampleInputEmail1" placeholder="" value="<?= $r->date_end; ?>" required>
+                                                        <label>Date End Project</label>
+                                                            <input type="date" name="date_end" class="form-control" id="exampleInputEmail1" placeholder="" value="<?= $r->date_end; ?>" >
                                                     </div>
                                                 </div>
                                             </div>

@@ -156,7 +156,8 @@
                                         }
                                         
 
-                                    $query_search = mysqli_query($conn, $_sql .$_where); 
+                                        $_sql = $_sql . $_where . "" . " ORDER BY contact_id desc ";
+                                        $query_search = mysqli_query($conn, $_sql);
 
                                 // print_r($query_search);
                                 // print_r($_sql);
@@ -393,7 +394,7 @@
 
         //print_r($_POST);
         //check duplicat
-        $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel'";
+        $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel' ";
         $result = $conn->query($sql);
         $num = mysqli_num_rows($result);
 

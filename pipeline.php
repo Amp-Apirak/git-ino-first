@@ -200,7 +200,7 @@
                                         }
                                         
                                     $_sql = $_sql . $_where . "" . " ORDER BY pipeline.pip_id desc ";
-                                    $query_search = mysqli_query($conn, $_sql); 
+                                    $query_search = mysqli_query($conn, $_sql ); 
 
                                 // print_r($query_search);
                                 // print_r($_sql);

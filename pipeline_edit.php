@@ -224,7 +224,7 @@
                                                 <div class="form-group">
                                                     <?php   
                                                     $contact_fullname = "";
-                                                    $_sql_contact_fullname = "SELECT DISTINCT * FROM contact";
+                                                    $_sql_contact_fullname = "SELECT DISTINCT * FROM contact ORDER BY contact_id desc";
                                                     $query_contact_fullname = mysqli_query($conn, $_sql_contact_fullname);
 
                                                     $rss = $conn->query("SELECT * FROM contact WHERE contact_id=" . $_GET['id_c']);

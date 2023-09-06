@@ -485,12 +485,12 @@
                                                         ?>
 
                                                     </td>
-                                                    <td scope="col" class="" height="" width=""><a href="<?php echo $res_search1["file_link"]; ?>" target="_blank"><?php echo $res_search1["file_link"]; ?></a>
+                                                    <td scope="col" class="" height="" width="">
                                                     <?php
                                                         if ($res_search1["file_link"] == "") {
                                                             echo "<i class='badge badge-danger nav-icon fa fa-folder-open'>&nbsp;ไม่มี Link แนบ</i></a></i>";
                                                         } elseif ($res_search1["file_link"]) {
-                                                            echo "<a target ='_blank' href='{$res_search1["file_upfile"]}'>{$res_search1["file_name"]}</a></i>";
+                                                            echo "<a target ='_blank' href='{$res_search1["file_link"]}'>{$res_search1["file_link"]}</a></i>";
                                                         }
                                                         ?>
                                                     </td>

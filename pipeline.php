@@ -27,7 +27,7 @@
         /* การลบข้อมูล */
         if (isset($_GET['id'])) {
 
-            $result = $conn->query("DELETE FROM project INNER JOIN estime  WHERE project_id=" . $_GET['projecr_id']);
+            $result = $conn->query("DELETE FROM pipeline WHERE pip_id=" . $_GET['id']);
 
             if ($result) {
                 // <!-- sweetalert -->
@@ -548,7 +548,7 @@
                                                 ?>
                                             </td>
                                             
-                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?> |<span class='badge badge-primary'><?php echo $res_search["contact_fullname"]; ?></span> | <span class='badge badge-warning'><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?> บาท</span></a></td>
+                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?> |<span class='badge badge-primary'>Customer : <?php echo $res_search["contact_fullname"]; ?></span> | <span class='badge badge-warning'><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?> บาท</span></a></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center  " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>

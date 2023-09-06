@@ -301,6 +301,7 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_crt"]; ?></td>
                                             
                                             <td>
+                                                 <a href="contact_copy.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-success btn-sm "><i class="fas fa-copy"></i></a>
                                                 <a href="contact_edit.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm swalDefaultSuccess"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="contact.php?id=<?php echo $res_search["contact_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                             </td>

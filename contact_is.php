@@ -65,6 +65,28 @@
                             $contact_date = $_POST['contact_date'];
                             $contact_team = $_POST['contact_team'];
 
+                             // print_r($_POST);
+                            //check duplicat
+                            $sql = "SELECT * From contact WHERE contact_tel = '$contact_tel' OR contact_email = '$contact_email'";
+                            //$stmt->bindParam(':username', $username , PDO::PARAM_STR);
+                            $result = $conn->query($sql);
+                            $num = mysqli_num_rows($result);
+                            //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
+                            if($num > 0){
+                                echo '<script>
+                                            setTimeout(function() {
+                                            swal({
+                                                title: "Username or email ซ้ำ มีผู้ใช้งานอยู่ในระบบแล้ว !! ",  
+                                                text: "กรุณาสมัครใหม่อีกครั้ง",
+                                                type: "warning"
+                                            }, function() {
+                                                window.location = "contact_copy.php?id='.$_GET['id'].'"; //หน้าที่ต้องการให้กระโดดไป
+                                            });
+                                            }, 1000);
+                                    </script>';
+                            }else{ 
+
+
                             // print_r($_POST);
                             $sql =  "INSERT INTO `tb_contact` (`contact_id`, `contact_group`,`contact_name`, `contact_position`, `contact_phone`, `contact_email`, `contact_address`, `contact_company`, `contact_date`, `contact_team`) 
                             VALUES (NULL, '$contact_group', '$contact_name', '$contact_position', '$contact_phone', '$contact_email', '$contact_address', '$contact_company', '$contact_date', '$contact_team')";
@@ -101,6 +123,7 @@
                                 // echo "<script>alert('ยินดีตอนรับ Admin เข้าสู่ระบบ'); window.location='../index.php'</script>";
                             }
                         }
+                    }
                         // echo '<pre>';
                         // print_r($_POST);
                         // print_r($_FILES);
@@ -113,6 +136,7 @@
                             <div class="col-md-12">
                                 <div class="card card-warning">
                                     <div class="card-header">
+                                        
                                         <h3 class="card-title">Custormer Descriptions</h3>
                                     </div>
                                     <div class="card-body">

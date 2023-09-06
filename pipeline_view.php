@@ -424,11 +424,11 @@
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document status</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Link</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Action
                                                 </th>
                                             </tr>
@@ -471,7 +471,7 @@
                                                         ?>
                                                     </td>
 
-                                                    <td scope="col" class=" " height="" width=""><?php echo $res_search1["file_r"]; ?></td>
+                                                    
 
                                                     <td scope="col" class="text-nowrap text-center " height="" width="">
                                                         <?php
@@ -485,9 +485,19 @@
                                                         ?>
 
                                                     </td>
-                                                    <td scope="col" class="" height="" width=""><a href="<?php echo $res_search1["file_link"]; ?>" target="_blank"><?php echo $res_search1["file_link"]; ?></a></td>
+                                                    <td scope="col" class="" height="" width=""><a href="<?php echo $res_search1["file_link"]; ?>" target="_blank"><?php echo $res_search1["file_link"]; ?></a>
+                                                    <?php
+                                                        if ($res_search1["file_link"] == "") {
+                                                            echo "<i class='badge badge-danger nav-icon fa fa-folder-open'>&nbsp;ไม่มี Link แนบ</i></a></i>";
+                                                        } elseif ($res_search1["file_link"]) {
+                                                            echo "<a target ='_blank' href='{$res_search1["file_upfile"]}'>{$res_search1["file_name"]}</a></i>";
+                                                        }
+                                                        ?>
+                                                    </td>
+
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_date"]; ?></td>
                                                     <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search1["file_staff"]; ?></td>
+                                                    <td scope="col" class="text-nowrap " height="" width=""><?php echo $res_search1["file_r"]; ?></td>
                                                     <td>
                                                         <!-- <a href="doc_edit.php?id=<?php echo $res_search1["doc_id"]; ?>" class="btn btn-info btn-sm "> <i class="fas fa-pencil-alt"></i></a> -->
                                                         <a href="document.php?id=<?php echo $res_search1["file_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
@@ -498,14 +508,14 @@
 
                                         <tfoot>
                                             <tr>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
+                                             <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document status</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Link</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Create Date</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
+                                                <th scope="col" class="text-nowrap text-center " height="" width="">Document Detail</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Action
                                             </tr>
                                         </tfoot>

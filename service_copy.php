@@ -160,7 +160,7 @@
                              <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
                              <?php
                                 $contact_fullname = "";
-                                $_sql_contact = "SELECT DISTINCT * FROM contact ORDER BY pipeline.pip_id desc";
+                                $_sql_contact = "SELECT DISTINCT * FROM contact ";
                                 $query_contact = mysqli_query($conn, $_sql_contact);
                              ?>
                              <!-- แสดงที่ดึงข้อมูลโปรเจคมาจาก Pipeline -->

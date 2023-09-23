@@ -548,7 +548,7 @@
                                                 ?>
                                             </td>
                                             
-                                            <td scope="col" class="text-nowrap  " height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?> |<span class='badge badge-primary'>Customer : <?php echo $res_search["contact_fullname"]; ?></span> | <span class='badge badge-warning'><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?> บาท</span></a></td>
+                                            <td scope="col" class="" height="" width=""><a href="pipeline_view.php?id=<?php echo $res_search["pip_id"]; ?>"><?php echo $res_search["project_name"]; ?> |<span class='badge badge-primary'>Customer : <?php echo $res_search["contact_fullname"]; ?></span> | <span class='badge badge-warning'><?php echo number_format( $res_search["pip_salen"], 0 ) ; ?> บาท</span></a></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_product"]; ?></td>
                                             <td scope="col" class="text-nowrap text-center  " height="" width=""><?php echo $res_search["project_brand"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>

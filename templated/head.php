@@ -93,8 +93,9 @@
 
 
 </head>
-    <div class="wrapper">
         <link rel="icon" type="image/x-icon" href="../ino/img/favicon.ico">
+    <div class="wrapper">
+        
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->

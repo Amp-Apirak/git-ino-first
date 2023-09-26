@@ -61,24 +61,12 @@
                                     <form action="doc_add1.php" method="POST" enctype="multipart/form-data">
 
                                         <div class="card-body">
-                                            <!-- ดึงข้อมูลโปรเจคมาจาก Pipeline -->
-                                            <?php
-                                                $project_name = "";
-                                                $_sql_project_name = "SELECT DISTINCT project_name FROM pipeline";
-                                                $query_project_name = mysqli_query($conn, $_sql_project_name);
-                                            ?>
-                                            <!-- แสดงที่ดึงข้อมูลโปรเจคมาจาก Pipeline -->
+                                        
                                             <div class="form-group">
-                                                <label>Project name</label>
-                                                <select class="custom-select select2" name="project_name">
-                                                    <option selected="selected"></option>
-                                                    <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
-                                                        <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                                <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                                                <label for="exampleInputEmail1">Project name</label>
+                                                <input type="text" name="project_name" class="form-control" id="exampleInputEmail1" placeholder="Project name" >
                                             </div>
-                                            <!-- Dropdown List Project -->
+                                            <!-- /.form-group -->
 
                                             <!-- ดึงข้อมูล task_project มาจาก task_project -->
                                             <?php
@@ -86,18 +74,6 @@
                                             $_sql_task_name = "SELECT DISTINCT task_name FROM task_project";
                                             $query_task_name = mysqli_query($conn, $_sql_task_name);
                                             ?>
-
-                                            <div class="form-group">
-                                                <label>Task Project</label>
-                                                <select class="custom-select select2" name="task_name">
-                                                    <option selected="selected"></option>
-                                                    <?php while ($r = mysqli_fetch_array($query_task_name)) { ?>
-                                                        <option value="<?php echo $r["task_name"]; ?>" <?php if ($r['task_name'] == $task_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["task_name"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <!-- Dropdown List Task Project -->
-
 
                                             <!-- ดึงข้อมูล Folder มาจาก folder_doc -->
                                             <?php

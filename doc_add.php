@@ -65,6 +65,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Project name</label>
                                                 <input type="text" name="project_name" class="form-control" id="exampleInputEmail1" placeholder="Project name" >
+                                                <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control" id="exampleInputEmail1" placeholder="Project name" >
                                             </div>
                                             <!-- /.form-group -->
 

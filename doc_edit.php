@@ -33,30 +33,37 @@
 
         $folder_name  = $_POST['folder_name']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
         $doc_staff = $_POST['doc_staff'];
-        $task_name = $_POST['task_name'];
         $doc_type = $_POST['doc_type'];
         $doc_name = $_POST['doc_name'];
         $doc_link = $_POST['doc_link'];
         $doc_remark = $_POST['doc_remark'];
         $doc_status = $_POST['doc_status'];
         $project_name = $_POST['project_name'];
+        $file_upfile2 = $_POST['file_upfile2'];
 
 
         $folder_name = $_POST['folder_name'];
 
+        // printf($imageFileType);
+        $file_upfile = $_FILES['file_upfile']['name'];
+
+
+        if($file_upfile !=''){
         $target_dir = "../ino/file/$folder_name/";
         $target_file = $target_dir . basename($_FILES["file_upfile"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // printf($imageFileType);
-        $file_upfile = $_FILES['file_upfile']['name'];
+       
         $file_tmp = $_FILES['file_upfile']['tmp_name'];
         move_uploaded_file($file_tmp, "../ino/file/$folder_name/$file_upfile");
 
+        }else {    
+            $file_upfile = $file_upfile2;
+        }
 
 
 
-        $sql =  "UPDATE `doc` SET `folder_name` = '$folder_name', `doc_staff` = '$doc_staff', `task_name` = '$task_name', 
+        $sql =  "UPDATE `doc` SET `folder_name` = '$folder_name', `doc_staff` = '$doc_staff',  
                             `doc_type` = '$doc_type', `doc_name` = '$doc_name', `doc_link` = '$doc_link', `doc_remark` = '$doc_remark', 
                             `file_upfile` = '$file_upfile', `doc_status` = '$doc_status' , `project_name` = '$project_name' WHERE doc_id=" . $_GET['id'];
         $result = $conn->query($sql);
@@ -157,31 +164,9 @@
                                             ?>
 
                                             <div class="form-group">
-                                                <label>Project name</label>
-                                                <select class="custom-select select2" name="project_name">
-                                                    <option selected="selected"><?= $rr->project_name; ?></option>
-                                                    <?php while ($r = mysqli_fetch_array($query_project_name)) { ?>
-                                                        <option value="<?php echo $r["project_name"]; ?>" <?php if ($r['project_name'] == $project_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["project_name"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                                <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                            </div>
-                                            <!-- /.form-group -->
-
-                                            <?php
-                                            $task_name = "";
-                                            $_sql_task_name = "SELECT DISTINCT task_name FROM task_project";
-                                            $query_task_name = mysqli_query($conn, $_sql_task_name);
-                                            ?>
-
-                                            <div class="form-group">
-                                                <label>Task Project</label>
-                                                <select class="custom-select select2" name="task_name">
-                                                    <option selected="selected"><?= $rr->task_name; ?></option>
-                                                    <?php while ($r = mysqli_fetch_array($query_task_name)) { ?>
-                                                        <option value="<?php echo $r["task_name"]; ?>" <?php if ($r['task_name'] == $task_name) : ?> selected="selected" <?php endif; ?>><?php echo $r["task_name"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <label for="exampleInputEmail1">Project name</label>
+                                                <input type="text" name="project_name" value="<?= $rr->project_name; ?>" class="form-control" id="exampleInputEmail1" placeholder="Project name" >
+                                                <input type="hidden" name="doc_staff" value="<?php echo ($_SESSION['fullname']); ?>" class="form-control" id="exampleInputEmail1" placeholder="Project name" >
                                             </div>
                                             <!-- /.form-group -->
 
@@ -244,7 +229,7 @@
                                                     <input type="file" class="custom-file-input" id="file_upfile" name="file_upfile" >
                                                     <label class="custom-file-label" for="file_upfile"><?= $rr->file_upfile; ?></label>
 
-                                                    <input type="hidden" class="form-control " id="file_upfile" name="file_upfile" value="<?= $rr->file_upfile; ?>">
+                                                    <input type="hidden" class="custom-file-input" id="file_upfile2"  value="<?= $rr->file_upfile; ?>" name="file_upfile2">
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->

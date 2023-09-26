@@ -20,7 +20,6 @@ if (!isset($_SESSION["id"])) {
 
         $folder_name  = $_POST['folder_name']; /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
         $doc_staff = $_POST['doc_staff'];
-        $task_name = $_POST['task_name'];
         $doc_type = $_POST['doc_type'];
         $doc_name = $_POST['doc_name'];
         $doc_link = $_POST['doc_link'];
@@ -80,8 +79,8 @@ if (!isset($_SESSION["id"])) {
 
 
 
-            $sql =  "INSERT INTO `doc` ( `folder_name`, `task_name`, `doc_staff`,`doc_type`, `doc_link`, `doc_name`, `doc_remark`, `doc_status`, `project_name`, `file_upfile`) 
-                            VALUES ( '$folder_name', '$task_name', '$doc_staff', '$doc_type', '$doc_link', '$doc_name', '$doc_remark', '$doc_status', '$project_name', '$file_upfile')";
+            $sql =  "INSERT INTO `doc` ( `folder_name`,  `doc_staff`,`doc_type`, `doc_link`, `doc_name`, `doc_remark`, `doc_status`, `project_name`, `file_upfile`) 
+                            VALUES ( '$folder_name', '$doc_staff', '$doc_type', '$doc_link', '$doc_name', '$doc_remark', '$doc_status', '$project_name', '$file_upfile')";
             $result = $conn->query($sql);
 
             //print_r($sql);

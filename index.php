@@ -47,22 +47,22 @@
                         <!-- small box -->
                             <div class="small-box bg-info">
                             <!-- Qeury All Ticket -->
+                                <!-- Qeury Count All Service -->
                                 <?php 
-                                    $query = "SELECT DISTINCT pip_id FROM pipeline ";
+                                    $query = "SELECT DISTINCT COUNT(`pip_id`) as AMP FROM pipeline ";
                                     $result = mysqli_query($conn, $query);
-                                    $row = mysqli_num_rows($result);                                 
+                                    $rs = mysqli_fetch_array($result);
+                                    $a = $rs['AMP'];
                                 ?>
 
-
-                                <div class="inner">
-                                    <h3><?php  echo $row; ?></h3>
-
-                                    <p>All Project</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-cog"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                    <div class="inner">
+                                        <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+                                        <p>Project All</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                <a href="pipeline.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     <!-- ./col -->
@@ -72,23 +72,22 @@
                         <div class="col-lg-3 col-6">
                         <!-- small box -->
                             <div class="small-box bg-success">
-                            <!-- Qeury Count All Knowledge -->
-                                <?php 
-                                    $query = "SELECT project_cate FROM tb_project WHERE `project_team` = 'Innovation' ";
-                                    $result = mysqli_query($conn, $query);
-                                    $row_ = mysqli_num_rows($result);                                  
-                                ?>
+                             <!-- Qeury Count All Service -->
+                             <?php 
+                                $query = "SELECT DISTINCT COUNT(project_product) as AMP FROM pipeline ";
+                                $result = mysqli_query($conn, $query);
+                                $rs = mysqli_fetch_array($result);
+                                $a = $rs['AMP'];
+                             ?>
 
                                 <div class="inner">
-                                    <h3><?php  echo $row_; ?></h3>
-                                    <p>Product</p>
+                                    <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+                                        <p>Product/Solution</p>
                                 </div>
-
                                 <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                                    <i class="ion ion-person-add"></i>
                                 </div>
-
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="pipeline.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     <!-- ./col -->
@@ -100,75 +99,49 @@
                         <div class="small-box bg-warning">
                             <!-- Qeury Count All Service -->
                             <?php 
-                                $query = "SELECT DISTINCT project_name FROM tb_project WHERE `project_team` = 'Innovation'";
+                                $query = "SELECT DISTINCT SUM(`pip_gp`) as AMP FROM pipeline";
                                 $result = mysqli_query($conn, $query);
-                                $rs = mysqli_num_rows($result);                                  
-                             ?>
-
+                                $rs = mysqli_fetch_array($result);
+                                $a = $rs['AMP'];
+                            ?>
                                 <div class="inner">
-                                    <h3><?php  echo $rs; ?></h3>
-                                    <p>Project</p>
+                                    <h3><?php echo number_format( $a, 0 ) ; ?></h3>
+                                    <p>Gross Profit (GP)</p>
                                 </div>
-
                                 <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="pipeline.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
 
                     <!-- ------------------------------------------------------------------------------------------------------------------ -->
 
-                    <?php if ($_SESSION["user_role"] == "Administrator") { ?>
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <!-- Qeury Count All Service -->
                             <?php 
-                                $query = "SELECT SUM(`project_cost`) as AMP FROM tb_project WHERE project_team = 'Innovation' ";
-                                $query1 = $query ."" . " ORDER BY project_id DESC ";
-                                $result = mysqli_query($conn, $query1);
-                                $ls = mysqli_fetch_array($result); 
+                                $query = "SELECT SUM(`pip_salen`) as AMP FROM pipeline";
+                                $result = mysqli_query($conn, $query);
+                                $ls = mysqli_fetch_array($result);   
                                 $a = $ls['AMP'];                               
-                             ?>
-
-
+                            ?>
                             <div class="inner">
                                 <h3><?php echo number_format( $a, 0 ) ; ?></h3>
-
-                                <p>Summary Price</p>
+                                <p>Sale Summary</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="pipeline.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                 </div>
 
-                <?php }else { ?>
-                        <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>********</h3>
-
-                                <p>Summary Price</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-                <?php } ?>
-                <!-- ------------------------------------------------------------------------------------------------------------------ -->
-
+                 <!-- ------------------------------------------------------------------------------------------------------------------ -->
 
                 <!-- Main content -->
                 <section class="content">
@@ -325,16 +298,16 @@ $(function() {
     //--------------------------------------------------------------------------------------------------------------------
 
     <?php 
-    $query ="SELECT `project_line`, COUNT(*) AS totalStatus
-    FROM tb_project WHERE `project_team` = 'Innovation'
-    GROUP BY project_line
-    ORDER BY project_line;";
+    $query ="SELECT `project_product`, COUNT(*) AS totalStatus
+    FROM pipeline 
+    GROUP BY project_product
+    ORDER BY project_product;";
    
     $result = mysqli_query($conn, $query);
     $label = array();
     $data = array();
     foreach($result as $key => $value){
-        $label[] = $value['project_line'];
+        $label[] = $value['project_product'];
         $data[] = $value['totalStatus'];
     }
 ?>
@@ -367,16 +340,16 @@ $(function() {
     //--------------------------------------------------------------------------------------------------------------------
 
     <?php 
-    $query ="SELECT `project_status`, COUNT(*) AS totalStatus
-    FROM tb_project WHERE `project_team` = 'Innovation'
-    GROUP BY project_status
-    ORDER BY project_status;";
+    $query ="SELECT `status`, COUNT(*) AS totalStatus
+    FROM pipeline
+    GROUP BY status
+    ORDER BY status;";
    
     $result = mysqli_query($conn, $query);
     $label = array();
     $data = array();
     foreach($result as $key => $value){
-        $label[] = $value['project_status'];
+        $label[] = $value['status'];
         $data[] = $value['totalStatus'];
     }
 ?>
@@ -408,20 +381,19 @@ $(function() {
     //--------------------------------------------------------------------------------------------------------------------
     //- Price Value -
     //--------------------------------------------------------------------------------------------------------------------
-    <?php if ($_SESSION["user_role"] == "Administrator") { ?>
 
     <?php 
-    $query ="SELECT `project_status`, SUM(project_cost) AS totalStatus FROM tb_project WHERE `project_team` = 'Innovation' GROUP BY project_status; ";
+    $query ="SELECT `status`, SUM(pip_salen) AS totalStatus FROM pipeline GROUP BY status; ";
    
     $result = mysqli_query($conn, $query);
     $label = array();
     $data = array();
     foreach($result as $key => $value){
-        $label[] = $value['project_status'];
+        $label[] = $value['status'];
         $data[] = $value['totalStatus'];
     }
     ?>
-    <?php } ?>
+
 
 
     //-------------
@@ -472,13 +444,13 @@ $(function() {
     //--------------------------------------------------------------------------------------------------------------------
 
     <?php 
-    $query ="SELECT `project_sub`, COUNT(*) AS totalStatus FROM tb_project WHERE `project_team` = 'Innovation' GROUP BY project_sub";
+    $query ="SELECT `project_product`, COUNT(*) AS totalStatus FROM pipeline GROUP BY project_product";
    
     $result = mysqli_query($conn, $query);
     $label = array();
     $data = array();
     foreach($result as $key => $value){
-        $label[] = $value['project_sub'];
+        $label[] = $value['project_product'];
         $data[] = $value['totalStatus'];
     }
 ?>

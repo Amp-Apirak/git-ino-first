@@ -48,7 +48,7 @@
                             <div class="small-box bg-info">
                             <!-- Qeury All Ticket -->
                                 <?php 
-                                    $query = "SELECT DISTINCT project_line FROM tb_project WHERE `project_team` = 'Innovation';";
+                                    $query = "SELECT DISTINCT pip_id FROM pipeline ";
                                     $result = mysqli_query($conn, $query);
                                     $row = mysqli_num_rows($result);                                 
                                 ?>
@@ -57,7 +57,7 @@
                                 <div class="inner">
                                     <h3><?php  echo $row; ?></h3>
 
-                                    <p>Line Product</p>
+                                    <p>All Project</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-cog"></i>

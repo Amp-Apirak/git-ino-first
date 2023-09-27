@@ -277,7 +277,6 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Task Project</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>
@@ -295,7 +294,6 @@
                                             <?php while ($res_search = mysqli_fetch_array($query_search)) { ?>
                                             <tr>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["project_name"]; ?></td>
-                                                <td scope="col" class="text-nowrap text-center " height="" width=""><?php echo $res_search["task_name"]; ?></td>
                                                 <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["folder_name"];?></td>
                                                 <td scope="col" class="text-nowrap text-center " height="" width="">
                                                 <?php
@@ -355,7 +353,6 @@
                                         <tfoot>
                                             <tr>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Project</th>
-                                                <th scope="col" class="text-nowrap text-center " height="" width="">Task Project</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Folder</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document type</th>
                                                 <th scope="col" class="text-nowrap text-center " height="" width="">Document Name</th>

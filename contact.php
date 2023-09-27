@@ -156,7 +156,7 @@
                                         }
                                         
 
-                                        $_sql = $_sql . $_where . "" . " ORDER BY contact_id desc ";
+                                        $_sql = $_sql . $_where . "" . " ORDER BY contact_id DESC ";
                                         $query_search = mysqli_query($conn, $_sql);
 
                                 // print_r($query_search);

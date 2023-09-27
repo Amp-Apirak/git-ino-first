@@ -276,7 +276,6 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Group</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>
@@ -294,7 +293,6 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_agency"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"];?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_email"]; ?></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_tel"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_company"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_detail"]; ?></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["contact_staff"]; ?></td>
@@ -317,7 +315,6 @@
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Group</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Email</th>
-                                            <th scope="col" class="text-nowrap text-center " height="" width="">Phone</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Company</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Address</th>
                                             <th scope="col" class="text-nowrap text-center " height="" width="">Creater</th>

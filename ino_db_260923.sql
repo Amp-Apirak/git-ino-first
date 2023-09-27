@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2023 at 11:44 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Sep 26, 2023 at 03:26 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `category` (
   `cat_id` int(11) NOT NULL,
-  `cat_scat` varchar(255) NOT NULL COMMENT 'Service Category',
-  `cat_sub` varchar(255) NOT NULL COMMENT 'Category',
-  `cat_item` varchar(255) NOT NULL COMMENT 'Sub Category',
-  `problem` varchar(255) NOT NULL COMMENT 'Problem',
-  `site` varchar(255) NOT NULL COMMENT 'โครงการ',
-  `cat_case` varchar(255) NOT NULL COMMENT 'สาเหตุ',
-  `cat_resovle` varchar(255) NOT NULL COMMENT 'วิธีการแก้ไข',
-  `cat_staff` varchar(255) NOT NULL COMMENT 'ผู้บันทึก',
+  `cat_scat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Service Category',
+  `cat_sub` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Category',
+  `cat_item` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Sub Category',
+  `problem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Problem',
+  `site` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'โครงการ',
+  `cat_case` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สาเหตุ',
+  `cat_resovle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'วิธีการแก้ไข',
+  `cat_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้บันทึก',
   `cat_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `cat_type` varchar(255) NOT NULL COMMENT 'ชนิดการบริการ'
+  `cat_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชนิดการบริการ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -48,7 +48,25 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`cat_id`, `cat_scat`, `cat_sub`, `cat_item`, `problem`, `site`, `cat_case`, `cat_resovle`, `cat_staff`, `cat_crt`, `cat_type`) VALUES
 (1, 'Platform (Lab)', 'Service Interface Program', 'Error ', 'ปัญหาไม่สามารถใช้งานระบบ LIS เนื่องจาก Service Interface Program ขึ้น Error ', 'โรงพยาบาลมิตรไมตรี (Lab)', 'Parameter Log ที่ส่งมาจากระบบ HIS ไม่ตรงกับ Service Interface ตัวรับ จึงทำให้เกิด Error (HL7)', 'ลบ Log Files HL7 ออก ทำการ Backup ข้อมูลไว้ Run Service Interface Programs สามารถใช้งานได้ปกติ', 'Apirak Bangpuk', '2023-09-04 03:25:25', ''),
 (3, 'Platform (LIS)', 'Design UX/UI Form/Page', 'Design', 'ขอบริการ Design UX/UI Form/Page เพิ่มเติม', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Design UX/UI Form/Page', 'ดำเนินการ Design UX/UI Form/Page เพิ่มเติม เรียบร้อย', 'Apirak bangpuk', '2023-09-04 03:26:55', 'Service'),
-(13, 'Platform (KYD)', 'Service Support', 'Configuration', 'แจ้งปัญหา ทำการส่งเคสไปยังหน่วยงาน EMS ไม่แจ้งเตือนที่หน้าจอ (Monitor Platform)', 'รองศาสตราจารย์ วิรุฬห์ ศรีบริรักษ์ (บริษัท เซนโกรท จำกัด - Zanegrowth Smart City Thailand)', 'ระบบยังไม่ได้รับการผูกกับ Platform Monitoring', 'ผูกหน่วยงาน EMS กับ Platform Monitoring สามารถใช้งานได้ปกติasdasdasdsd', 'Apirak bangpuk', '2023-09-04 04:17:03', 'Incident');
+(13, 'Platform (KYD)', 'Service Support', 'Configuration', 'แจ้งปัญหา ทำการส่งเคสไปยังหน่วยงาน EMS ไม่แจ้งเตือนที่หน้าจอ (Monitor Platform)', 'รองศาสตราจารย์ วิรุฬห์ ศรีบริรักษ์ (บริษัท เซนโกรท จำกัด - Zanegrowth Smart City Thailand)', 'ระบบยังไม่ได้รับการผูกกับ Platform Monitoring', 'ผูกหน่วยงาน EMS กับ Platform Monitoring สามารถใช้งานได้ปกติasdasdasdsd', 'Apirak bangpuk', '2023-09-04 04:17:03', 'Incident'),
+(16, 'Platform (KYD)', 'Document Report', 'Makeup Report', 'ขอบริการ จัดทำเอกสารส่งมอบงาน ดูแลสุขภาพแบบอัจฉริยะ (Smart Health Care) สำหรับผู้สูงอายุ', 'นายสิรวิชฐ์ อำไพวงษ์ (องค์การบริหารส่วนตำบลบ่อวิน)', 'ส่งมอบงานตามสัญญาจ้าง (TOR)', 'ดำเนินการจัดทำเอกสารส่งมอบงานเรียบร้อย', 'Apirak bangpuk', '2023-09-13 03:14:49', 'Service'),
+(17, 'Platform (LIS)', 'UX/UI', 'Developer', 'ขอบริการ แจ้ง Requirment เพิ่มเติม ในส่วนของระบบ LIS', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ให้ทางพี่ต้นดำเนินการแก้ไข ตัว Print barcode ให้สามารถออกได้', 'ดำเนินการประสานงานพี่ต้น Dev  Print barcode เรียบ้รอยแล้ว', 'Apirak bangpuk', '2023-09-15 12:55:50', 'Service'),
+(18, 'Platform (LIS)', 'Service Interface Programs', 'Error Code', 'แจ้งปัญหา Programs InterfaceResult ไม่สามารถกด Start ได้ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', '-', 'Restart เครื่อง Computer สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-09-18 03:41:13', 'Incident'),
+(19, 'Platform (LIS)', 'Printer', 'UAT/Tester', 'ขอบริการ Test Print Laos Font ของระบบ LIS เพื่อรองรับการ Print ภาษาลาว', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'UAT/Tester', 'ดำเนินการทดสอบจัดทำเอกสารแนบเรียบร้อย ', 'Apirak bangpuk', '2023-09-18 08:41:10', 'Service'),
+(20, 'Platform (LIS)', 'System', 'Training', 'Trainning  สรุปเนื้อหาก่อนการอบรมเจ้าหน้าที่ เกี่ยวกับระบบ Nexlab (LAOS LIMS) ,(Work Scope Training)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', '-', '-', 'Apirak bangpuk', '2023-09-26 01:39:13', 'Select'),
+(21, 'Platform (LIS)', 'Service Operation ', 'Trianning', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) ระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 01:51:31', 'Service'),
+(22, 'Platform (LIS)', 'Printer Sticker', 'Setup/Configuration', 'ขอบริการ Setup Printer Sticker สำหรับทดสอบการสั่งพิมพ์บาร์โค้ด (Barcode) ในระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ Setup Printer Sticker สำหรับทดสอบการสั่งพิมพ์บาร์โค้ด (Barcode) ในระบบ LIS  ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดช', 'ดำเนินการ Setup Printer Sticker เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 01:57:20', 'Service'),
+(23, 'Platform (LIS)', 'Printer', 'Setup/Configuration', 'ขอบริการ Setup Printer Brother สำหรับทดสอบการสั่งพิมพ์เอกสาร ในระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ Setup Printer Brother สำหรับทดสอบการสั่งพิมพ์เอกสาร ในระบบ LIS   ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดช', 'ดำเนินการ Setup Printer Sticker เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:06:32', 'Service'),
+(24, 'Platform (LIS)', 'Service Operation ', 'Training', 'ขอบริการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS  ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566 เวลา 08:00 - 17.00 โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโคร', 'ดำเนินการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:11:17', 'Service'),
+(25, 'Platform (LIS)', 'Service Operation ', 'Training', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) ระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:11:43', 'Service'),
+(26, 'Platform (LIS)', 'Service Interface Program', 'Error Code', 'แจ้งปัญหา Programs InterfaceResult ไม่สามารถกด Start ได้ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', '-', 'Restart เครื่อง Computer สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-09-26 02:15:36', 'Incident'),
+(27, 'Platform (Lab)', 'Service Interface Program', 'Error Setup/Configuration', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศล', 'ดำเนินการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:18:16', 'Service'),
+(28, 'Platform (LIS)', 'Service Interface Program', 'Error Code', 'แจ้งปัญหา Programs InterfaceResult ไม่สามารถกด Start ได้ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', '-', 'Restart เครื่อง Computer สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-09-26 02:19:35', 'Incident'),
+(29, 'Platform (LIS)', 'Service Operation ', 'Training', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) ระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:19:51', 'Service'),
+(30, 'Platform (LIS)', 'Document', 'ฺBorrow Document ', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS  ระหว่างวันที่ 22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ จัน', 'ดำเนินการ  จัดทำเอกสารยืม อุปกรณ์เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:31:10', 'Service'),
+(31, 'Platform (LIS)', 'Manaul  Document', 'System For Printing', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS  ระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโคร', 'ดำเนินการ จัดทำคู่มือการตั้งค่า (System For Printing) เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:35:27', 'Service'),
+(32, 'Platform (LIS)', 'Printer', 'UAT/Tester', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS  ระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  โครงการ : LAOS LIMS หัวข้อ : ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:43:14', 'Service'),
+(33, 'Platform (LIS)', 'Parameter', 'Editing', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS ประกอบด้วย Parameter ดังนี้ ', 'ดำเนินการ  แก้ไขค่า Parameter ในระบบ LIS เรียบร้อย', 'Apirak bangpuk', '2023-09-26 08:35:19', 'Service');
 
 -- --------------------------------------------------------
 
@@ -58,17 +76,17 @@ INSERT INTO `category` (`cat_id`, `cat_scat`, `cat_sub`, `cat_item`, `problem`, 
 
 CREATE TABLE `contact` (
   `contact_id` int(11) NOT NULL COMMENT 'รหัส',
-  `contact_fullname` varchar(255) NOT NULL COMMENT 'ชื่อ-สกุล',
-  `contact_position` varchar(255) NOT NULL COMMENT 'ตำแหน่ง',
-  `contact_agency` varchar(200) NOT NULL COMMENT 'หน่วยงาน',
-  `contact_tel` varchar(25) NOT NULL COMMENT '้เบอร',
-  `contact_email` varchar(50) NOT NULL COMMENT 'อิเมล',
-  `contact_detail` varchar(255) NOT NULL COMMENT 'รายละเอียดบริษัทและธุรกิจ',
-  `contact_company` varchar(255) NOT NULL COMMENT 'บริษัท',
-  `contact_type` varchar(255) NOT NULL COMMENT 'ลูกค้า,พนักงาน,หุ่นส่วน',
+  `contact_fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
+  `contact_position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง',
+  `contact_agency` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หน่วยงาน',
+  `contact_tel` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '้เบอร',
+  `contact_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'อิเมล',
+  `contact_detail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียดบริษัทและธุรกิจ',
+  `contact_company` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'บริษัท',
+  `contact_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ลูกค้า,พนักงาน,หุ่นส่วน',
   `contact_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `contact_staff` text NOT NULL COMMENT 'ผู้สร้าง',
-  `contact_province` varchar(255) NOT NULL COMMENT 'จังหวัด'
+  `contact_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `contact_province` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'จังหวัด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -83,7 +101,7 @@ INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `co
 (15, 'Pakorn Kulsupakorn', 'Customer', 'สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.)', '(086) 680-4500', 'pkuls@ipst.ac.th', 'เลขที่ 924 ถนนสุขุมวิท แขวงพระโขนง เขตคลองเตย กรุงเทพมหานคร 10110\r\nสถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.)', 'สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.)', 'Customer', '2023-09-02 11:30:03', 'Apirak bangpuk', 'd5d600b3ca994884c37c8fb8bdc5501ffd5e932f'),
 (16, 'รองศาสตราจารย์ วิรุฬห์ ศรีบริรักษ์', 'หัวหน้าโครงการความร่วมมือนวัตกรรมเมืองอัจฉริยะ กิน อยู่ ดี. Platform', 'มหาวิทยาลัยบูรพา', '(086) 139-8887', 'wiroon@eng.buu.ac.th', 'บริษัท เซนโกรท จำกัด\r\n15/133 หมู่ที่ 5\r\nตำบลห้วยกะปิ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20130\r\nเว็บไซต์: https://zanegrowth.com/\r\nKIN-YOO-DEE PLATFORM', 'บริษัท เซนโกรท จำกัด - Zanegrowth Smart City Thailand', 'Customer', '2023-09-04 02:35:26', 'Apirak bangpuk', 'ชลบุรี'),
 (17, 'คุณภานุวัฒน์ พรหมศิริ (ตั้ม)', 'Executive Director', 'มหาวิทยาลัยบูรพา', '(063) 249-2845', 'panuwat@zanegrowth.com', 'บริษัท เซนโกรท จำกัด\r\n15/133 หมู่ที่ 5\r\nตำบลห้วยกะปิ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20130\r\nเว็บไซต์: https://zanegrowth.com/\r\nKIN-YOO-DEE PLATFORM', 'บริษัท เซนโกรท จำกัด - Zanegrowth Smart City Thailand', 'Customer', '2023-09-04 02:35:26', 'Apirak bangpuk', 'ชลบุรี'),
-(18, 'คุณประพัฒน์ จันทร์เกื้อ', 'หัวหน้าโครงการ LIS (LAOS)', 'PROMs Company', '(081) 111-1111', 'Non1@zanegrowth.com', '', 'PROMs Company', 'Customer', '2023-09-04 02:40:51', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
+(18, 'คุณประพัฒน์ จันทร์เกื้อ', 'หัวหน้าโครงการ LIS (LAOS)', 'PROMs Company', '(081) 111-1111', 'Non1@zanegrowth.com', 'PROJECT MANAGEMENT OFFICE SERVICE COMPANY LIMITED', 'PROMs Company', 'Customer', '2023-09-22 02:49:50', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
 (19, 'คุณธีรชาติ ติยพงศ์พัฒนา', 'IT Service Manager', 'Service SolutionTeam', '(081) 983-8998', 'theerachart@pointit.co.th', '19 ซอย สุภาพงษ์ 1 แยก 6 แขวงหนองบอน เขต ประเวศ กรุงเทพมหานคร 10250', 'พอยท์ ไอที คอนซัลทิ่ง จำกัด', 'Staff', '2023-09-04 02:49:18', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
 (20, 'คุณผาณิต เผ่าพันธ์', 'Executive Director', 'พอยท์ ไอที คอนซัลทิ่ง จำกัด', '(086) 995-8396', 'Panit@pointit.co.th', '19 ซอย สุภาพงษ์ 1 แยก 6 แขวงหนองบอน เขต ประเวศ กรุงเทพมหานคร 10250', 'พอยท์ ไอที คอนซัลทิ่ง จำกัด', 'Staff', '2023-09-04 02:43:12', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
 (21, 'คุณบุลากร พัวพันธุ์', 'Executive Director', 'พอยท์ ไอที คอนซัลทิ่ง จำกัด', '(081) 360-2828', 'Bulakorn@pointit.co.th', '19 ซอย สุภาพงษ์ 1 แยก 6 แขวงหนองบอน เขต ประเวศ กรุงเทพมหานคร 10250', 'พอยท์ ไอที คอนซัลทิ่ง จำกัด', 'Staff', '2023-09-04 02:43:12', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
@@ -100,7 +118,9 @@ INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `co
 (32, 'นายถวิล โพธิบัวทอง', 'นายกเทศมนตรีเมืองมาบตาพุด', 'เทศมนตรีเมืองมาบตาพุด', '(063) 919-2828', 'admin@mtp.go.th', '9 ถนน เมืองใหม่มาบตาพุด ตำบล ห้วยโป่ง อำเภอเมืองระยอง ระยอง 21150', 'เทศมนตรีเมืองมาบตาพุด', 'Customer', '2023-09-04 07:07:41', 'Apirak bangpuk', 'ระยอง'),
 (33, 'พญ.ฤทัย วรรธนวินิจ', 'ผู้อำนวยการโรงพยาบาลอุดรธานี', 'โรงพยาบาลอุดรธานี', '(042) 243-364_', 'udh41000@gmail.com', 'เลขที่ 33 ถ.เพาะนิยม ต.หมากแข้ง อำเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000\r\n', 'โรงพยาบาลอุดรธานี', 'Customer', '2023-09-04 08:44:15', 'Apirak bangpuk', 'อุดรธานี'),
 (34, 'คุณตรีเทศ หะหวัง', 'เจ้าหน้าที่ส่วนบริการเสริมโทรศัพท์เคลื่อนที่ (สคส.)', 'บริษัท โทรคมนาคมแห่งชาติ จำกัด (มหาชน)', '(089) 482-2387', '1888@ntplc.co.th', '99 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพ 10210\r\n', 'บริษัท โทรคมนาคมแห่งชาติ จำกัด (มหาชน)', 'Customer', '2023-09-04 08:47:55', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
-(35, 'คุณสร้างรัฐ หัตถวงษ์', 'Chief Executive Officer', 'INSPIRE COMMUNICATIONS CO., LTD.', '(061) 515-2929', 'srangrath@inspirecomm.co.th', '', 'INSPIRE COMMUNICATIONS CO., LTD.', 'Customer', '2023-09-04 08:57:50', 'Apirak bangpuk', 'สมุทรปราการ');
+(35, 'คุณสร้างรัฐ หัตถวงษ์', 'Chief Executive Officer', 'INSPIRE COMMUNICATIONS CO., LTD.', '(061) 515-2929', 'srangrath@inspirecomm.co.th', '', 'INSPIRE COMMUNICATIONS CO., LTD.', 'Customer', '2023-09-04 08:57:50', 'Apirak bangpuk', 'สมุทรปราการ'),
+(36, 'คุณสถาพร ภาสุรเลิศสกุล', 'Assistant Medical', '-', '(089) 690-9716', 'satapornpa@gmail.com', '-', '-', 'Partner', '2023-09-22 06:57:02', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
+(37, 'อาจารย์ณรงค์', 'อาจารย์', 'ญานิศา', '(000) 000-0000', 'yanisa@pointit.co.th', '', 'มหาวิทยาลัยขอนแก่น', 'Customer', '2023-09-22 08:31:38', 'Panit', '5e10c1870d0fa97ede5923e385e8a12ce19fc4d3');
 
 -- --------------------------------------------------------
 
@@ -110,17 +130,17 @@ INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `co
 
 CREATE TABLE `doc` (
   `doc_id` int(11) NOT NULL COMMENT 'รหัส',
-  `folder_name` varchar(255) NOT NULL COMMENT 'เลือกโฟลเดอร์ที่ต้องการเก็บข้อมูล',
+  `folder_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เลือกโฟลเดอร์ที่ต้องการเก็บข้อมูล',
   `doc_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `doc_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
-  `project_name` varchar(255) NOT NULL COMMENT 'โปรเจค',
-  `task_name` varchar(255) NOT NULL,
-  `doc_type` varchar(45) NOT NULL COMMENT 'ประเภอเอกสาร',
-  `doc_name` varchar(100) NOT NULL COMMENT 'ชื่อเอกสาร',
-  `doc_link` varchar(200) NOT NULL COMMENT 'แนบลิงค์',
-  `doc_remark` varchar(200) NOT NULL COMMENT 'รายละเอียดเพิ่มเติม',
-  `doc_status` varchar(255) NOT NULL COMMENT 'สถานะเอกสาร',
-  `file_upfile` varchar(255) NOT NULL COMMENT 'ไฟล์อัพโหลด'
+  `doc_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'โปรเจค',
+  `task_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `doc_type` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ประเภอเอกสาร',
+  `doc_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อเอกสาร',
+  `doc_link` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แนบลิงค์',
+  `doc_remark` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียดเพิ่มเติม',
+  `doc_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะเอกสาร',
+  `file_upfile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไฟล์อัพโหลด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -131,10 +151,17 @@ CREATE TABLE `doc` (
 
 CREATE TABLE `folder_doc` (
   `folder_id` int(11) NOT NULL COMMENT 'รหัส',
-  `folder_name` varchar(255) NOT NULL COMMENT 'ชื่อโฟร์เดอร์',
+  `folder_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อโฟร์เดอร์',
   `folder_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `folder_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+  `folder_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `folder_doc`
+--
+
+INSERT INTO `folder_doc` (`folder_id`, `folder_name`, `folder_crt`, `folder_staff`) VALUES
+(18, 'Apirak-Point IT', '2023-09-26 13:26:12', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -144,28 +171,28 @@ CREATE TABLE `folder_doc` (
 
 CREATE TABLE `pipeline` (
   `pip_id` int(11) NOT NULL COMMENT 'เลขไอดีของ Project',
-  `project_name` varchar(255) NOT NULL COMMENT 'ชื่อโครงการ',
-  `project_product` varchar(255) NOT NULL COMMENT 'ชื่อผลิตภัณฑ์',
-  `project_brand` varchar(255) NOT NULL COMMENT 'แบรน์',
-  `pip_vat` varchar(255) NOT NULL COMMENT 'Vat',
+  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อโครงการ',
+  `project_product` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อผลิตภัณฑ์',
+  `project_brand` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แบรน์',
+  `pip_vat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Vat',
   `pip_salen` int(11) NOT NULL COMMENT 'ราคาขายไม่รวมภาษี Amount/Manaul',
   `pip_sale` int(11) NOT NULL COMMENT 'ราคาขายรวมภาษี',
   `pip_costn` int(11) NOT NULL COMMENT 'ราคาต้นทุนไม่รวมภาษี Amount/Manaul',
   `pip_cost` int(11) NOT NULL COMMENT 'ราคาทุนรวมภาษี',
   `pip_gp` int(11) NOT NULL COMMENT 'ผลกำไร',
   `pip_gp2` int(11) NOT NULL COMMENT 'ผลกำไร (%)',
-  `pip_p` varchar(255) NOT NULL COMMENT 'ประมาณการโครงการ  Dropdown/Manaul',
+  `pip_p` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ประมาณการโครงการ  Dropdown/Manaul',
   `contact_id` int(11) NOT NULL COMMENT 'Contact',
-  `pip_r` varchar(255) NOT NULL COMMENT 'เพิ่มเติม',
+  `pip_r` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เพิ่มเติม',
   `pip_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันเดือนปีที่สร้าง',
-  `pip_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง',
+  `pip_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
   `pip_ess` int(11) NOT NULL COMMENT 'ประมาณการขาย',
   `pip_esc` int(11) NOT NULL COMMENT 'ประมาณการต้นทุน',
   `pip_esp` int(11) NOT NULL COMMENT 'ประมาณผลกำไร',
   `date_start` date NOT NULL COMMENT 'วันเริ่มโครงการ',
   `date_end` date NOT NULL COMMENT 'วันสิ้นสุดโครงการ',
-  `status` varchar(255) NOT NULL COMMENT 'Win,Loss',
-  `con_number` varchar(255) NOT NULL COMMENT 'เลขที่สัญญา'
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Win,Loss',
+  `con_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เลขที่สัญญา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -188,13 +215,15 @@ INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_br
 (18, 'ดูแลอุปกรณ์และระบบงาน Smart Safety Zone 4.0 (จักรกริช พ้นภัย)', 'Smart Safety Zone', 'Smart Safety Zone', '7', 0, 0, 0, 0, 0, 0, '0', 20, 'ดูแลอุปกรณ์และระบบงาน Smart Safety Zone 4.0 (จักรกริช พ้นภัย) Contact :สำนักงานตำรวจแห่งชาติ', '2023-09-04 08:40:32', 'Apirak bangpuk', 0, 0, 0, '0000-00-00', '0000-00-00', 'On Process', ''),
 (19, 'จัดซื้อชุดกระเป๋า Health Set พร้อมระบบ Mobile Healthcare Screening', 'Health Set', 'KYD', '7', 270000, 288900, 0, 0, 0, 0, '0', 33, 'ชุดกระเป๋า Health Set พร้อมระบบ Mobile Healthcare Screening นำเสนอโดยทางบริษัท โรชฯ เป็นผู้แนะนำ เงื่อนไข : 1.บริษัทฯ มีการรับประกันอุปกรณ์เสียหายจากการใช้งานตามปกติ เป็นระยะเวลา 1 ปี  กรณีอุปกรณ์ไม่สามารถใช้งานได้จะดำเนินการซ่อมแซมหรือเปลี่ยนทดแทน ภายในไ', '2023-09-04 08:46:20', 'Apirak bangpuk', 0, 0, 0, '2023-02-18', '0000-00-00', 'Wiating for approve', 'QT-000000716'),
 (20, 'งานจ้างบำรุงรักษาระบบ Mobile Face Recognition', 'MA Mobile Face Recognition', 'Mobile Face Recognition', '7', 1177000, 1259390, 0, 0, 0, 0, '30', 34, '', '2023-09-04 08:51:46', 'Apirak bangpuk', 353100, 0, 0, '2023-06-01', '0000-00-00', 'On Process', 'A02/3160029760/2566'),
-(21, 'โครงการ VAM Stack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)', 'VAM Stack Platform', 'VAM Stack', '7', 980000, 1048600, 0, 0, 0, 0, '0', 35, 'เปิดบิล ธ.ค.65. รอชำระเงิน\r\nVAM On-premise – Advance Security and Surveillance SolutionFeatures\r\nVAMStack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)\r\nสมุทรปราการ', '2023-09-04 09:00:31', 'Apirak bangpuk', 0, 0, 0, '0000-00-00', '0000-00-00', 'Select', ''),
+(21, 'โครงการ VAM Stack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)', 'VAM Stack Platform', 'VAM Stack', '7', 980000, 1048600, 0, 0, 980000, 100, '100', 35, 'เปิดบิล ธ.ค.65. รอชำระเงิน\r\nVAM On-premise – Advance Security and Surveillance SolutionFeatures\r\nVAMStack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)\r\nสมุทรปราการ', '2023-09-13 02:45:58', 'Apirak bangpuk', 980000, 0, 980000, '0000-00-00', '0000-00-00', 'Done', ''),
 (22, 'โครงการ Smart City (อบจ.ชลบุรี)', 'Smart City', 'Smart City', '7', 1262600, 1350982, 0, 0, 0, 0, '10', 27, 'โครงการ Smart City (อบจ.ชลบุรี)   << พี่ปืน >>', '2023-09-04 09:03:42', 'Apirak bangpuk', 126260, 0, 0, '0000-00-00', '0000-00-00', 'Wiating for approve', ''),
 (23, 'โครงการสร้างแผนดูแลผู้สูงอายุที่อยู่บ้านเพียงลำพังด้วยอุปกรณ์ iOT ในการดูแลของ (อปท)', 'Data Analytics', 'Saijai Platform', '7', 5000000, 5350000, 0, 0, 0, 0, '10', 28, 'นำเสนอนโยบายดูแลประชาชนด้วย โครงการดูแลผู้สูงอายุที่อยู่บ้านเพียงลำพัง เป็นการนำเสนอให้กับทางคุณสุดารัตน์ เกยุราพันธ์ หัวพรรคไทยสร้างชาติ เพื่อนำไปเป็นแผนในการดูแลผู้สูงอายุ', '2023-09-04 09:27:49', 'Apirak bangpuk', 500000, 0, 0, '2023-03-12', '2023-12-30', 'Wiating for approve', ''),
 (24, 'ระบบแพลตฟอร์มจัดเก็บและวิเคราะห์ข้อมูลสุขภาพพร้อมเฝ้าระวังเหตุฉุกเฉิน เทศบาลตําบลโคกกลอย (จังหวัดพังงา)', 'Data Analytics', 'Saijai Platform', '7', 1000000, 1070000, 0, 0, 0, 0, '10', 27, 'พี่ปืนนำเสนอโครงการให้กับทางนายกเทศบาลตําบลโคกกลอย จังหวัดพังงา\r\n', '2023-09-04 09:30:35', 'Apirak bangpuk', 0, 0, 0, '2023-05-25', '2023-05-31', 'Wiating for approve', ''),
 (25, 'ระบบแพลตฟอร์มจัดเก็บและวิเคราะห์ข้อมูลสุขภาพพร้อมเฝ้าระวังเหตุฉุกเฉิน เทศบาลตําบลโคกกลอย (จังหวัดพังงา)', 'Data Analytics', 'Saijai Platform', '7', 1000000, 0, 0, 0, 0, 0, '10', 28, 'พี่นกเป็นผู้นำเสนอโครงการ งบประมาณประมาณ 1,000,000 บาท สัญญาเช่า Clound 3 Y ทางหน่วยงานยังติดปัญหาเรื่องการเชื่อมโยงข้อมูลไปยัง HDC ไม่อยากให้เจ้าหน้าที่ทำงานซ้ำซ้อน ทางหน้างานใช้ App อสม.', '2023-09-04 09:32:57', 'Apirak bangpuk', 0, 0, 0, '2023-05-09', '2023-05-31', 'Wiating for approve', ''),
 (26, 'โครงการพัฒนาความร่วมมือนวัตกรรมเมืองอัจฉริยะความร่วมมือระหว่างเกาหลีและไทยในด้านระบบชาญฉลาดสำหรับการรักษาความปลอดภัย', 'Global Fund Thai-Korea', 'Research Project', '7', 4500000, 4815000, 0, 0, 0, 0, '100', 29, 'โครงการพัฒนาความร่วมมือนวัตกรรมเมืองอัจฉริยะความร่วมมือระหว่างเกาหลีและไทยในด้านระบบชาญฉลาดสำหรับการรักษาความปลอดภัย ภายใต้แผนโครงการพัฒนาเครือข่ายความร่วมมือนานาชาติเพื่อการพัฒนา ววน. ของประเทศโปรแกรม 16 ปฏิรูประบบการอุดมศึกษา วิทยาศาสตร์ วิจัย และนวตกรร', '2023-09-04 09:35:23', 'Apirak bangpuk', 4500000, 0, 0, '2022-10-30', '2022-10-30', 'Done', 'C16F640358'),
-(27, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)', 'BCG-Covid-19 Home Isolation', 'Research Project', '7', 1000000, 1070000, 0, 0, 0, 0, '100', 16, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)  ดำเนินการ 24/7 Care Centre เพื่อการจัดเตรียมระบบติดตั้งโดเมน และ Technical Support ให้คำ', '2023-09-04 09:37:57', 'Apirak bangpuk', 1000000, 0, 0, '2021-12-01', '2022-11-30', 'Done', 'C10F640372');
+(27, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)', 'BCG-Covid-19 Home Isolation', 'Research Project', '7', 1000000, 1070000, 0, 0, 0, 0, '100', 16, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)  ดำเนินการ 24/7 Care Centre เพื่อการจัดเตรียมระบบติดตั้งโดเมน และ Technical Support ให้คำ', '2023-09-04 09:37:57', 'Apirak bangpuk', 1000000, 0, 0, '2021-12-01', '2022-11-30', 'Done', 'C10F640372'),
+(28, 'AI ตรวจวิเคราะห์คนตีกัน', 'AI', 'IBOC', '7', 150000, 0, 100000, 0, 0, 0, '10', 37, 'โอ๋ นัดอาจารย์มากรุงเทพวันที่ 6 ตุลาคม 2566', '2023-09-22 08:40:24', 'Panit', 0, 0, 0, '2023-10-06', '0000-00-00', 'Wiating for approve', 'IBOC-001'),
+(29, 'AI Dashboard - Live CCTV on Map', 'AI', 'IBOC', '0', 50000, 50000, 0, 0, 50000, 100, '100', 27, 'POINT IT\r\nแอม  ทำ UXUI\r\nขวัญ  ทำ Front End\r\nพีท  ควบคุมการเชื่อม AI ของระบบ\r\nนัท  ดูแลการติดตั้งระบบ', '2023-09-26 12:36:49', 'Apirak bangpuk', 50000, 0, 50000, '2023-09-15', '2023-09-30', 'On Process', 'IBOC-002');
 
 -- --------------------------------------------------------
 
@@ -205,15 +234,15 @@ INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_br
 CREATE TABLE `pip_file` (
   `file_id` int(11) NOT NULL COMMENT 'Key',
   `pip_id` int(11) NOT NULL COMMENT 'เชื่อมข้อมูลโครกการ',
-  `t_name` varchar(255) NOT NULL COMMENT 'โฟรเดอร์',
-  `file_type` varchar(11) NOT NULL COMMENT 'ชนิดไฟล์',
-  `file_name` varchar(255) NOT NULL COMMENT 'ชื่อไฟล์',
-  `file_upfile` varchar(255) NOT NULL COMMENT 'ไฟล์',
-  `file_link` varchar(255) NOT NULL COMMENT 'Link Google Drive',
-  `file_r` varchar(255) NOT NULL COMMENT 'คำอธิบาย',
-  `file_status` varchar(255) NOT NULL COMMENT 'สถานะ',
+  `t_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'โฟรเดอร์',
+  `file_type` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชนิดไฟล์',
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อไฟล์',
+  `file_upfile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไฟล์',
+  `file_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Link Google Drive',
+  `file_r` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'คำอธิบาย',
+  `file_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ',
   `file_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `file_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+  `file_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -245,9 +274,9 @@ INSERT INTO `pip_file` (`file_id`, `pip_id`, `t_name`, `file_type`, `file_name`,
 CREATE TABLE `pip_folder` (
   `type_id` int(11) NOT NULL,
   `pip_id` int(11) NOT NULL COMMENT 'Docker',
-  `t_name` varchar(255) NOT NULL COMMENT 'ชื่อโฟรเดอร์',
+  `t_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อโฟรเดอร์',
   `type_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
-  `type_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+  `type_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -278,8 +307,8 @@ INSERT INTO `pip_folder` (`type_id`, `pip_id`, `t_name`, `type_date`, `type_staf
 CREATE TABLE `pip_period` (
   `p_id` int(11) NOT NULL COMMENT 'เลขไอดีของ period',
   `pip_id` int(11) NOT NULL COMMENT 'เลขไอดีของ Project',
-  `pip_ps` varchar(255) NOT NULL COMMENT 'งวดชำระเงิน (เพิ่มได้มากกว่า 1 )',
-  `pip_month` varchar(255) NOT NULL COMMENT 'เดือน',
+  `pip_ps` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'งวดชำระเงิน (เพิ่มได้มากกว่า 1 )',
+  `pip_month` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เดือน',
   `pip_pst` int(11) NOT NULL COMMENT 'งวดชำระเงิน (%) Amount/Manaul',
   `pip_psw` int(11) NOT NULL COMMENT 'คำนวณราคาขายจาก %',
   `pip_pssum` int(11) NOT NULL COMMENT 'รวมกันต้องได้ 100 % และเท่ากับราคาขาย '
@@ -324,11 +353,11 @@ INSERT INTO `pip_period` (`p_id`, `pip_id`, `pip_ps`, `pip_month`, `pip_pst`, `p
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
   `pip_id` int(11) NOT NULL COMMENT 'เชื่อมกับโปรเจคเนม',
-  `project_m` varchar(255) NOT NULL COMMENT 'ผู้รับผิดชอบโครงการ',
-  `project_u` varchar(255) NOT NULL COMMENT 'ทีม',
-  `project_status` varchar(255) NOT NULL COMMENT 'สถานะ',
+  `project_m` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้รับผิดชอบโครงการ',
+  `project_u` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ทีม',
+  `project_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ',
   `project_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันสร้าง',
-  `project_staff` varchar(255) NOT NULL COMMENT 'ผู้สร้าง'
+  `project_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -350,12 +379,12 @@ CREATE TABLE `remind` (
   `task_id` int(11) NOT NULL COMMENT 'โปรเจคย่อย',
   `sub_id` int(11) NOT NULL COMMENT 'ชื่อเอกสาร',
   `remind_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `remind_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
-  `remind_name` varchar(100) NOT NULL COMMENT 'หัวข้อ',
-  `remind_detail` varchar(255) NOT NULL COMMENT 'รายละเอีดย',
-  `remind_file` varchar(100) NOT NULL COMMENT 'ไฟล์แนบ',
+  `remind_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `remind_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อ',
+  `remind_detail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอีดย',
+  `remind_file` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไฟล์แนบ',
   `remind_date` datetime NOT NULL COMMENT 'วันที่กำหนด',
-  `remind_status` varchar(100) NOT NULL COMMENT 'สถานะ'
+  `remind_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -367,9 +396,9 @@ CREATE TABLE `remind` (
 CREATE TABLE `resolve` (
   `resolve_id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL COMMENT 'เชื่อมกับ category',
-  `project_name` varchar(255) NOT NULL COMMENT 'โครงการ',
-  `case` varchar(255) NOT NULL COMMENT 'สาเหตุ',
-  `resovle` varchar(255) NOT NULL COMMENT 'วิธีการแก้ไข'
+  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'โครงการ',
+  `case` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สาเหตุ',
+  `resovle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'วิธีการแก้ไข'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -389,13 +418,13 @@ CREATE TABLE `sub_task` (
   `sub_id` int(11) NOT NULL COMMENT 'รหัส',
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
   `sub_crt` datetime NOT NULL COMMENT 'วันที่สร้าง',
-  `sub_staff` varchar(45) NOT NULL COMMENT 'ชื่อผู้สร้าง',
-  `sub_tpye` text NOT NULL COMMENT 'ประเภทเอกสาร',
-  `sub_name` text NOT NULL COMMENT 'หัวข้อชื่อ',
-  `sub_file` varchar(100) NOT NULL COMMENT 'เอกสาร',
-  `sub_link` varchar(100) NOT NULL COMMENT 'แนบลิงค์',
+  `sub_staff` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อผู้สร้าง',
+  `sub_tpye` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ประเภทเอกสาร',
+  `sub_name` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อชื่อ',
+  `sub_file` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เอกสาร',
+  `sub_link` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'แนบลิงค์',
   `sub_remark` int(200) NOT NULL COMMENT 'รายละเอียด',
-  `sub_status` varchar(45) NOT NULL COMMENT 'สถานะ'
+  `sub_status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -408,10 +437,10 @@ CREATE TABLE `task_project` (
   `task_id` int(11) NOT NULL COMMENT 'รหัส',
   `project_id` int(11) NOT NULL COMMENT 'โปรเจค',
   `task_crt` datetime NOT NULL COMMENT 'วันที่สรัาง',
-  `task_staff` text NOT NULL COMMENT 'ผู้สร้าง',
-  `task_name` varchar(200) NOT NULL COMMENT 'หัวข้อ',
-  `task_detail` varchar(200) NOT NULL COMMENT 'รายละเอียด',
-  `task_status` varchar(100) NOT NULL COMMENT 'สถานะ'
+  `task_staff` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `task_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'หัวข้อ',
+  `task_detail` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รายละเอียด',
+  `task_status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สถานะ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -429,16 +458,16 @@ INSERT INTO `task_project` (`task_id`, `project_id`, `task_crt`, `task_staff`, `
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL COMMENT 'รหัส',
-  `username` varchar(50) NOT NULL COMMENT 'ชื่อเข้าใช้งานระบบ',
-  `password` varchar(50) NOT NULL COMMENT 'รหัสผ่าน',
-  `fullname` varchar(100) NOT NULL COMMENT 'ชื่อ-สกุล',
-  `email` varchar(100) NOT NULL COMMENT 'อิเมล',
-  `tel` varchar(20) NOT NULL COMMENT 'เบอร์',
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อเข้าใช้งานระบบ',
+  `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รหัสผ่าน',
+  `fullname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อ-สกุล',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'อิเมล',
+  `tel` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'เบอร์',
   `user_crt` datetime NOT NULL COMMENT 'วันส้ราง',
-  `user_staff` varchar(100) NOT NULL COMMENT 'ผู้สร้าง',
-  `role` varchar(100) NOT NULL COMMENT 'บทบาท',
-  `team` varchar(100) NOT NULL COMMENT 'ทีม',
-  `position` varchar(100) NOT NULL COMMENT 'ตำแหน่ง'
+  `user_staff` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้สร้าง',
+  `role` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'บทบาท',
+  `team` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ทีม',
+  `position` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ตำแหน่ง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -448,7 +477,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `tel`, `user_crt`, `user_staff`, `role`, `team`, `position`) VALUES
 (1, 'admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Apirak bangpuk', 'apirak@gmail.com', '(089) 353-5555', '2023-06-04 11:53:19', 'phattraorn amornophakun', 'Administrator', 'Non Service', 'IT Service'),
 (2, 'Theerachart ', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Theerachart ', 'apirak@pointit.co.th', '(099) 999-9', '2023-06-04 11:53:19', 'phattraorn amornophakun', 'Administrator', 'Service Solution', 'Service Manager'),
-(3, 'phattraorn', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'phattraorn amornophakun', 'phattraorn.a@gmail.com', '(061) 952-2', '2023-06-04 11:53:19', 'apirak bangpuk', 'Administrator', 'Innovation', 'Product Sale');
+(3, 'phattraorn', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'phattraorn amornophakun', 'phattraorn.a@gmail.com', '(061) 952-2', '2023-06-04 11:53:19', 'apirak bangpuk', 'Administrator', 'Innovation', 'Product Sale'),
+(4, 'Panit', '5db2e175f6f4671127cb4beef3f0e84e4cb91e92', 'Panit', 'panit@pointit.co.th', '(086) 995-8396', '2023-09-22 11:53:19', 'Apirak bangpuk', 'Administrator', 'Innovation', 'Paophan');
 
 --
 -- Indexes for dumped tables
@@ -546,13 +576,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=36;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `doc`
@@ -564,13 +594,13 @@ ALTER TABLE `doc`
 -- AUTO_INCREMENT for table `folder_doc`
 --
 ALTER TABLE `folder_doc`
-  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=18;
+  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pipeline`
 --
 ALTER TABLE `pipeline`
-  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=28;
+  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pip_file`
@@ -624,7 +654,7 @@ ALTER TABLE `task_project`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

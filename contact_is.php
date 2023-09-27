@@ -133,7 +133,7 @@
                         <!-- เพิ่มข้อมูล -->
                         <div class="row">
                             <!-- /.col (left) -->
-                            <div class="col-md-12">
+                            <div class="col-md-8 mx-auto">
                                 <div class="card card-warning">
                                     <div class="card-header">
                                         

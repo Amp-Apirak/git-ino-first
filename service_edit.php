@@ -120,14 +120,14 @@
                       
                         <div class="row">
                             <!-- /.col (left) -->
-                            <div class="col-md-12">
+                            <div class="col-md-8 mx-auto">
                                 <div class="card card-warning">
                                     <div class="card-header">
                                         <h3 class="card-title">Contact Descriptions</h3>
                                     </div>
                                     <div class="card-body">
 
-                                    <form action="service.php" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
 
@@ -190,17 +190,20 @@
                             </div>
                             <!-- /.form-group -->
 
+                            <!-- textarea -->
                             <div class="form-group">
-                                <label for="cat_case">Case</label>
-                                <input type="text" name="cat_case" class="form-control" id="cat_case" value="<?= $r->cat_case; ?>" placeholder="" required>
+                                <label>Case</label>
+                                <textarea class="form-control" name="cat_case" id="cat_case" rows="3"
+                                placeholder=""><?= $r->cat_case; ?></textarea>
                             </div>
-                            <!-- /.form-group -->
 
+                            <!-- textarea -->
                             <div class="form-group">
-                                <label for="cat_resovle">Resolve</label>
-                                <input type="text" name="cat_resovle" class="form-control" id="cat_resovle" placeholder="" value="<?= $r->cat_resovle; ?>" required>
+                                <label>Resolve</label>
+                                <textarea class="form-control" name="cat_resovle" id="cat_resovle" rows="3"
+                                placeholder=""><?= $r->cat_resovle; ?></textarea>
                             </div>
-                            <!-- /.form-group -->
+
 
                            
                             <input type="hidden" name="cat_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>" placeholder="">

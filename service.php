@@ -333,8 +333,24 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_sub"];?> <button type="button" name="<?php echo $res_search["cat_sub"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_item"];?> <button type="button" name="<?php echo $res_search["cat_item"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["problem"];?> <button type="button" name="<?php echo $res_search["problem"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_case"]; ?> <button type="button" name="<?php echo $res_search["cat_case"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_resovle"]; ?> <button type="button" name="<?php echo $res_search["cat_resovle"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+                                            <td scope="col" class="text-nowrap  " height="" width="">
+                                                 
+                                                <?php $lam = explode(PHP_EOL, $res_search["cat_case"]);
+                                                    for ($i = 0; $i < count($lam); $i++) { ?>
+                                                    <?php echo $lam[$i]; ?></br>
+                                                <?php } ?>
+
+                                                <button type="button" name="<?php echo $res_search["cat_case"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+
+                                                <td scope="col" class="text-nowrap  " height="" width="">
+                                                 
+                                                 <?php $lam = explode(PHP_EOL, $res_search["cat_resovle"]);
+                                                     for ($i = 0; $i < count($lam); $i++) { ?>
+                                                     <?php echo $lam[$i]; ?></br>
+                                                 <?php } ?>
+ 
+                                                 <button type="button" name="<?php echo $res_search["cat_resovle"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
+
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["site"];?> <button type="button" name="<?php echo $res_search["site"]; ?>"class="btn btn-sm btn-outline-info  btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_staff"]; ?> </td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_crt"]; ?></td>
@@ -622,17 +638,21 @@
                             </div>
                             <!-- /.form-group -->
 
-                            <div class="form-group">
-                                <label for="cat_case">Case</label>
-                                <input type="text" name="cat_case" class="form-control" id="cat_case" placeholder="" required>
-                            </div>
-                            <!-- /.form-group -->
 
+                            <!-- textarea -->
                             <div class="form-group">
-                                <label for="cat_resovle">Resolve</label>
-                                <input type="text" name="cat_resovle" class="form-control" id="cat_resovle" placeholder="" required>
+                                <label>Case</label>
+                                <textarea class="form-control" name="cat_case" id="cat_case" rows="3"
+                                placeholder=""></textarea>
                             </div>
-                            <!-- /.form-group -->
+
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Resolve</label>
+                                <textarea class="form-control" name="cat_resovle" id="cat_resovle" rows="3"
+                                placeholder=""></textarea>
+                            </div>
+
 
                            
                             <input type="hidden" name="cat_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>" placeholder="">

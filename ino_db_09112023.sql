@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 03:26 PM
+-- Generation Time: Nov 09, 2023 at 03:09 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -32,10 +32,10 @@ CREATE TABLE `category` (
   `cat_scat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Service Category',
   `cat_sub` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Category',
   `cat_item` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Sub Category',
-  `problem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Problem',
+  `problem` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Problem',
   `site` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'โครงการ',
-  `cat_case` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สาเหตุ',
-  `cat_resovle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'วิธีการแก้ไข',
+  `cat_case` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สาเหตุ',
+  `cat_resovle` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'วิธีการแก้ไข',
   `cat_staff` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ผู้บันทึก',
   `cat_crt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'วันที่สร้าง',
   `cat_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชนิดการบริการ'
@@ -60,13 +60,44 @@ INSERT INTO `category` (`cat_id`, `cat_scat`, `cat_sub`, `cat_item`, `problem`, 
 (24, 'Platform (LIS)', 'Service Operation ', 'Training', 'ขอบริการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS  ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566 เวลา 08:00 - 17.00 โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโคร', 'ดำเนินการ เป็นผู้ช่วยในการจัดอบรบ (Support Training) ระบบ LIS เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:11:17', 'Service'),
 (25, 'Platform (LIS)', 'Service Operation ', 'Training', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) ระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:11:43', 'Service'),
 (26, 'Platform (LIS)', 'Service Interface Program', 'Error Code', 'แจ้งปัญหา Programs InterfaceResult ไม่สามารถกด Start ได้ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', '-', 'Restart เครื่อง Computer สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-09-26 02:15:36', 'Incident'),
-(27, 'Platform (Lab)', 'Service Interface Program', 'Error Setup/Configuration', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) ระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศล', 'ดำเนินการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:18:16', 'Service'),
+(27, 'Platform (Lab)', 'Service Interface Program', 'Error Setup/Configuration', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) \r\nระหว่างวันที่ 21 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) \r\nหัวข้อ : Training LIS Systems  \r\nหน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศล', 'ดำเนินการ ติดตั้งโปรแกรมเชื่อมต่อผลจากเครื่องวิเคราะห์ GeneXpert ไปยังระบบ LIS (Service Interface) เรียบร้อย', 'Apirak bangpuk', '2023-09-27 07:17:35', 'Service'),
 (28, 'Platform (LIS)', 'Service Interface Program', 'Error Code', 'แจ้งปัญหา Programs InterfaceResult ไม่สามารถกด Start ได้ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', '-', 'Restart เครื่อง Computer สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-09-26 02:19:35', 'Incident'),
-(29, 'Platform (LIS)', 'Service Operation ', 'Training', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) ระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:19:51', 'Service'),
-(30, 'Platform (LIS)', 'Document', 'ฺBorrow Document ', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS  ระหว่างวันที่ 22 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโครงการ : คุณประพัฒน์ จัน', 'ดำเนินการ  จัดทำเอกสารยืม อุปกรณ์เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:31:10', 'Service'),
-(31, 'Platform (LIS)', 'Manaul  Document', 'System For Printing', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS  ระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  โครงการ : Laos LIS (CHAI) หัวข้อ : Training LIS Systems  หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว ผู้รับผิดชอบโคร', 'ดำเนินการ จัดทำคู่มือการตั้งค่า (System For Printing) เรียบร้อย', 'Apirak bangpuk', '2023-09-26 02:35:27', 'Service'),
-(32, 'Platform (LIS)', 'Printer', 'UAT/Tester', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS  ระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  โครงการ : LAOS LIMS หัวข้อ : ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-26 02:43:14', 'Service'),
-(33, 'Platform (LIS)', 'Parameter', 'Editing', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS ประกอบด้วย Parameter ดังนี้ ', 'ดำเนินการ  แก้ไขค่า Parameter ในระบบ LIS เรียบร้อย', 'Apirak bangpuk', '2023-09-26 08:35:19', 'Service');
+(29, 'Platform (LIS)', 'Service Operation ', 'Training', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'Service Operation Onsite Support ลูกค้าระบบ NEXLAB (LIMS) \r\nระหว่างวันที่ 20-22 เดือน กันยายน พ.ศ. 2566  \r\nโครงการ : Laos LIS (CHAI) \r\nหัวข้อ : Training LIS Systems  \r\nหน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว \r\nผู้รับผิดชอบโครงการ : คุณประพัฒน์ ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-27 07:20:05', 'Service'),
+(30, 'Platform (LIS)', 'Document Report', 'Borrow Document ', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำเอกสารยืม อุปกรณ์สำหรับใช้งานทดสอบระบบ LIS  \r\nระหว่างวันที่ 22 เดือน กันยายน พ.ศ. 2566  \r\nโครงการ : Laos LIS (CHAI) \r\nหัวข้อ : Training LIS Systems  \r\nหน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว \r\nผู้รับผิดชอบโครงการ : คุณประพัฒน์ จัน', 'ดำเนินการ  จัดทำเอกสารยืม อุปกรณ์เรียบร้อย', 'Apirak bangpuk', '2023-10-30 02:40:05', 'Service'),
+(31, 'Platform (LIS)', 'Manaul', 'System For Printing', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ จัดทำคู่มือการตั้งค่า (System For Printing) สำหรับใช้งานทดสอบระบบ LIS \r\n ระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  \r\nโครงการ : Laos LIS (CHAI) \r\nหัวข้อ : Training LIS Systems \r\n หน่วยงาน :  Minitry of health (NCLE) ณ เวียงจันทร์ ประเทศลาว \r\nผู้รับผิดชอบโครง :', 'ดำเนินการ จัดทำคู่มือการตั้งค่า (System For Printing) เรียบร้อย', 'Apirak bangpuk', '2023-10-30 02:49:53', 'Service'),
+(32, 'Platform (LIS)', 'Printer', 'UAT/Tester', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ LIS  \r\nระหว่างวันที่ 25 เดือน กันยายน พ.ศ. 2566  \r\nโครงการ : LAOS LIMS \r\nหัวข้อ : ทดสอบการสั่งพิมพ์บาร์โค้ด ภาษาอังกฤษ - ลาวในระบบ', 'ดำเนินการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-09-27 07:18:21', 'Service'),
+(33, 'Platform (LIS)', 'Parameter', 'Editing', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ แก้ไขค่า Parameter ในระบบ LIS ประกอบด้วย Parameter ดังนี้ ', 'ดำเนินการ  แก้ไขค่า Parameter ในระบบ LIS เรียบร้อย', 'Apirak bangpuk', '2023-09-26 08:35:19', 'Service'),
+(34, 'Platform (KYD)', 'Emergency', 'Document Report', 'ขอบริการ ออกแบบสรุปรายงานงวดงานในรูปแบบวีดีโอ (Vedio Summary Report) โครงการเฝ้าระวังเหตุฉุกเฉินทางไกล, ', 'นายสิรวิชฐ์ อำไพวงษ์ (องค์การบริหารส่วนตำบลบ่อวิน)', 'ขอบริการ ออกแบบสรุปรายงานงวดงานในรูปแบบวีดีโอ (Vedio Summary Report) \r\nโครงการเฝ้าระวังเหตุทางไกล, \r\nโครงการ : โครงการ \"บ่อวิน สมาร์ท ซิตี้” ดูแลสุขภาพแบบอัจฉริยะ (Smart Health Care) สำหรับผู้สูงอายุ ประจำปีงบประมาณ 2566, \r\nหน่วยงาน :  องค์การบริหารส่วนตำบลบ่อวิน', 'ดำเนินการออกแบบสรุปรายงานงวดงานในรูปแบบวีดีโอ (Vedio Summary Report) เรียบร้อย', 'Apirak bangpuk', '2023-09-27 07:16:24', 'Service'),
+(35, 'Platform (LIS)', 'Printer Sticker', 'Setup/Configuration', 'แจ้งปัญหา Print Sticker ในระบบ LIS ตัวอักษรขาด/เอียง', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ระบบไม่จำรูปแบบการ Setup/Configuration ', 'ดำเนินการ\r\n1. Caribate Print Sticker , \r\n2. ปิดเปิดเครื่อง , \r\n3. Stop-Start เปิดโปรแกรม Nexlab Print Barcode , \r\n4. ทดสอบสั่ง Print Sticker Test ผ่าน Driver Print (ออก) , \r\n5. ทดสอบสั่ง Print Sticker ผ่านระบบ LIS สามารถใช้งานได้ปกติ ', 'Apirak bangpuk', '2023-09-27 07:17:55', 'Service'),
+(36, 'POINT IT', 'Database', 'Backup Database', 'ขอบริการ สำรองข้อมูล/โอนย้าย (Backup Database) โครงการทั้งหมดของ Point IT', 'คุณผาณิต เผ่าพันธ์ (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'เนื้อที่ใน Google Drive ไม่เพียงพอในการเก็บข้อมูล', 'ดำเนินการ สำรองข้อมูล/โอนย้าย (Backup Database) และย้ายไปยังพื้นที่ใช้งาน Cloud  One Drive เนื่องจากเนื้อที่เพียงพอในการเก็บข้อมูล ', 'Apirak bangpuk', '2023-09-27 03:44:04', 'Select'),
+(40, 'Platform (LIS)', 'Username/Password', 'Setup/Configuration', 'ขอบริการสร้าง User เข้าใช้งานระบบ LIS', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการสร้าง User เข้าใช้งานระบบ LIS \r\nโครงการ : บริษัท น้ำทองแล็บ เซ็นเตอร์ จำกัด (NextIT)\r\nUsername : LN1\r\nPassword : LN1\r\nLocation : โรงพยาบาลน่าน\r\nRole : Guest', 'ดำเนินการ สร้าง User เข้าใช้งานระบบ LIS เรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-09-29 05:28:59', 'Service'),
+(41, 'Platform (KYD)', 'Document Report', 'Editing', 'ขอบริการ แก้ไขวีดีโอ (Vedio Summary Report) โครงการเฝ้าระวังเหตุฉุกเฉินทางไกล', 'นายสิรวิชฐ์ อำไพวงษ์ (องค์การบริหารส่วนตำบลบ่อวิน)', 'ขอบริการแก้ไขวีดีโอ (Vedio Summary Report) โครงการเฝ้าระวังเหตุฉุกเฉินทางไกล  โครงการ : โครงการ \"บ่อวิน สมาร์ท ซิตี้” ดูแลสุขภาพแบบอัจฉริยะ (Smart Health Care) สำหรับผู้สูงอายุ ประจำปีงบประมาณ 2566 หน่วยงาน : องค์การบริหารส่วนตำบลบ่อวิน  ในส่วนของการใส่เสียงเพิ่มเติมการอธิบายใน วีดีโอ', 'ดำเนินการขอบริการ แก้ไขวีดีโอ (Vedio Summary Report) เรียบร้อย', 'Apirak bangpuk', '2023-09-29 05:43:48', 'Service'),
+(42, 'Platform (LIS)', 'Service Interface Program', 'Result', 'แจ้งปัญหา NexLab ไม่ Link แปลผล เข้าระบบ LIS', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'แจ้งปัญหา NexLab ไม่ Link แปลผล เข้าระบบ LIS\r\nโครงการ : ระบบ Nexlab \r\nลูกค้า : บริษัท น้ำทองแล็บ เซ็นเตอร์ จำกัด (NextIT) น่าน', 'ดำเนินการประสานงานพี่ต้น ตรวจสอบ และแก้ไขเรียบร้อยแล้วครับ \r\n- ดำเนินการ Restart Server  (Nexit At Pointit server)\r\n- ดำเนินการ Stop/Start Service Interface Programs ', 'Apirak bangpuk', '2023-10-02 05:16:17', 'Incident'),
+(43, 'Platform (KYD)', 'Database', 'Service Interface Program', 'แจ้งปัญหา การบันทึกผลการตรวจค่าสุขภาพ และแบบสอบถามเข้าระบบ กิน-อยู่-ดี (ม.มหิดล) ไม่เชื่อมต่อไปยัง Prower BI Dashboard ', 'อ.ชะนวนทอง ธนสุกาญจน์ (มหาวิทยาลัยมหิดล)', 'รบกวนตรวจสอบ : รบกวนพี่ตั้มดูเรื่องที่แจ้งเมื่อวานด้วยนะครับ ไม่แน่ใจว่าทำไมข้อมูลที่มีการทำแล้วไม่เข้า BI แต่เห็นข้อมูลการทำแบบสอบถามใน ระบบ กินอยู่ดี ไม่แน่ใจว่า ข้อมูลที่อยู่บน Server กินอยู่ดี มีการ duplicate ไปยังถัง Data ที่ พี่ตั้ม ให้พี่ตั้ม Point เชื่อมข้อมูลเข้า BI หรือป่าว ครับ\r\nโครงการ : โครงการนวัตกรรมบริการชุมชนเพื่อควบคุมการแพร่ระบาดเชื้อไวรัสโคโรน่า 2019 ย่านนวัตกรรมการแพทย์โยธี\r\nผู้รับผิดชอบโครงการ : รองศาสตราจารย์ ดร. ชะนวนทอง ธนสุกาญจน์\r\nAccounting  :  คุณผาณิต เผ่าพันธ์\r\n\r\nหมายเหตุ : ตรวจสอบทาง Prower BI มีการตั้งเวลาในการดึงข้อมูลจากถึง Database มา Update ปกติ พบข้อมูลล่าสุดช่วงเดือน : กุมพาพันธ์ 2023 ', 'ทีม Platform Kin Yoo Dee ดำเนินการตรวจสอบแก้ไข สามารถใช้งานได้ปกติครับ ', 'Apirak bangpuk', '2023-10-30 02:45:24', 'Service'),
+(44, 'Platform (LIS)', 'Service Interface Program', 'Result', ' แจ้งปัญหา Server Nexit Down ไม่สามารถแปลผล เชื่อมต่อระบบ LIS ได้', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'แจ้งปัญหา Server Nexit Down ไม่สามารถแปลผล เชื่อมต่อระบบ LIS ได้   โครงการ : ระบบ Nexlab  ลูกค้า : บริษัท น้ำทองแล็บ เซ็นเตอร์ จำกัด (NextIT) น่าน', 'ดำเนินการ Restart Server เรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-02 06:20:05', 'Incident'),
+(45, 'Uplevel', 'Database', 'Cleansing data', 'ขอบริการ จัดเรียงข้อมูล (Cleansing data) สำหรับนำเข้าระบบจัดเก็บลงฐานข้อมูล (Server Point)', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ จัดเรียงข้อมูล (Cleansing data) สำหรับนำเข้าระบบจัดเก็บลงฐานข้อมูล (Server Point)\r\nโครงการ : Uplevel \r\nลูกค้า : คุณอาทิตย์ (พี่เหน่ง)\r\nวันที่ 04/10/2023 ', 'ดำเนินการ จัดเรียงข้อมูล (Cleansing data) สำหรับนำเข้าระบบจัดเก็บลงฐานข้อมูล (Server Point)  เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-10-30 02:34:39', 'Service'),
+(46, 'Platform (KYD)', 'Database', 'Service Interface Program', 'แจ้งปัญหา บันทึกข้อมูลค่าสุขภาพ และแบบสอบถาม ไม่แสดงผลที่ Prower BI', 'อ.ชะนวนทอง ธนสุกาญจน์ (มหาวิทยาลัยมหิดล)', 'แจ้งปัญหา บันทึกข้อมูลค่าสุขภาพ และแบบสอบถาม ไม่แสดงผลที่ Prower BI\r\nวันที่ 03/10/2023 ', 'ให้ทางพี่ตั้ม (Dev) และพี่ตั้ม Point IT ตรวจสอบแก้ไขสามารถ แสดงผลหน้า Prower BI ปกติครับ', 'Apirak bangpuk', '2023-10-05 04:37:13', 'Incident'),
+(47, 'Platform (KYD)', 'Meeting Room', 'Issue', 'ประชุม สรุปปัญหาบันทึกข้อมูล ข้อมูลไม่แสดงผลใน Power BI', 'อ.ชะนวนทอง ธนสุกาญจน์ (มหาวิทยาลัยมหิดล)', 'ประชุม สรุปปัญหาบันทึกข้อมูล ข้อมูลไม่แสดงผลใน Power BI\r\nผู้เข้าร่วม\r\nวันที่ 03/10/2023 \r\nหัวข้อ\r\n', 'ดำเนินการประชุมสรุปได้ดังนี้ ', 'Apirak bangpuk', '2023-10-05 04:42:57', 'Select'),
+(48, 'Platform (LIS)', 'Server ', 'Move', 'ขอบริการ ย้ายที่ตั้ง Server ................ ในห้อง Server ..................', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ย้ายที่ตั้ง Server ................ ในห้อง Server ..................\r\nเนื่องจาก ........................................', 'ดำเนินการย้ายเรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-05 04:53:43', 'Select'),
+(49, 'Platform (KYD)', 'Emergency', 'UAT Project Summary', 'ออกปฏิบัติงานนอกสถานที่ รายงานสรุปโครงการ .......................... (Service Operation Onsite UAT Project Summary )', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ออกปฏิบัติงานนอกสถานที่ รายงานสรุปโครงการ .......................... (Service Operation Onsite UAT Project Summary )\r\nระหว่างวันที่ ....... เดือน .......... พ.ศ. 2566\r\nโครงการ : \r\nหัวข้อ : ..................................\r\nหน่วยงาน :  ..................................\r\nผู้รับผิดชอบโครงการ :  ..................................', 'นำเสนอรายงานสรุปโครกงาร ......................... เรียบร้อย', 'Apirak bangpuk', '2023-10-10 02:03:55', 'Service'),
+(50, 'Developer', 'Application', 'QC Device and report', 'ขอบริการ จัดทำ Application สำหรับ QC อุปกรณ์ AI Tracker เพื่อสรุปรายงานส่งมอบโครงการ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการจัดทำ Application สำหรับ QC อุปกรณ์ AI Tracker เพื่อสรุปรายงานส่งมอบโครงการ\r\nระหว่างวันที่ ....... เดือน .......... พ.ศ. 2566\r\nโครงการ :\r\nหัวข้อ : ..................................\r\nหน่วยงาน : ..................................\r\nผู้รับผิดชอบโครงการ : ..................................', 'ดำเนินการจัดทำ Application สำหรับ QC อุปกรณ์ AI Tracker เรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-30 02:40:18', 'Service'),
+(51, 'Developer', 'Application', 'QC Device and report', 'ขอบริการ ปรับเพิ่มเติม Application สำหรับ QC อุปกรณ์ AI Tracker เพื่อสรุปรายงานส่งมอบโครงการ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ปรับเพิ่มเติม Application สำหรับ QC อุปกรณ์ AI Tracker เพื่อสรุปรายงานส่งมอบโครงการ ระหว่างวันที่ ....... เดือน .......... พ.ศ. 2566โครงการ :หัวข้อ : ..................................หน่วยงาน : ..................................ผู้รับผิดชอบโครงการ : ..................................', 'ดำเนินการปรับเพิ่มเติม Application สำหรับ QC อุปกรณ์ AI Tracker เรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-20 01:43:49', 'Service'),
+(52, 'Application', 'Database', 'Edit/Update', 'ขอบริการ อัพเดทรายชื่อผู้รับบริการ (Update) เข้า Application Appsheet เพื่อใช้ในการทำเอกสารส่งมอบงาน QC อุปกรณ์', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ อัพเดทรายชื่อผู้รับบริการ (Update) เข้า Application Appsheet เพื่อใช้ในการทำเอกสารส่งมอบงาน QC อุปกรณ์\r\n\r\nเนื่องจากทาง.............ส่งรายชื่อมาให้เพื่อวางแผนการลงพื้นที่การ QC อุปกรณ์ ', 'ดำเนินการ อัพเดทรายชื่อผู้รับบริการ (Update) เข้า Application Appsheet เพื่อใช้ในการทำเอกสารส่งมอบงาน QC อุปกรณ์ เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-10-20 01:56:03', 'Select'),
+(53, 'Emergency', 'Onsite Service', 'QC Device and report', 'ขอบริการ ลงพื้นที่เพื่อปฏิบัติงาน QC อุปกรณ์ (Onsite Service)', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ลงพื้นที่เพื่อปฏิบัติงาน QC อุปกรณ์ (Onsite Service)\r\nระหว่างวันที่ 19-20 เดือน ตุลาคม 2566 \r\n\r\nโครงการ : โครงการติดตั้งการใช้งานอุปกรณ์ตรวจจับการล้มแบบอัตโนมัติพร้อมกดปุ่มขอความช่วยเหลือในผู้สูงอายุ\r\nหน่วยงาน : \r\nผู้รับผิดชอบ : ', 'ดำเนินการลงพื้นที่เพื่อปฏิบัติงาน QC อุปกรณ์ (Onsite Service) เรียบร้อย', 'Apirak bangpuk', '2023-10-20 04:23:02', 'Service'),
+(54, 'Platform (KYD)', 'Emergency', 'Document Report', 'ขอบริการ ร่างสรุปรายงานการ QC อุปกรณ์ สำหรับสรุปการดำเนินงานการลงพื้นที่เพื่อปฏิบัติงาน (Onsite Service) ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ร่างสรุปรายงานการ QC อุปกรณ์ สำหรับสรุปการดำเนินงานการลงพื้นที่เพื่อปฏิบัติงาน (Onsite Service) ', 'ดำเนินการ ร่างสรุปรายงานการ QC อุปกรณ์ สำหรับสรุปการดำเนินงานการลงพื้นที่เพื่อปฏิบัติงาน (Onsite Service)  เรียบร้อย', 'Apirak bangpuk', '2023-10-20 04:28:27', 'Service'),
+(55, 'Emergency', 'Information ', 'Keep Data', 'ขอบริการ รวบรวมจัดเก็บข้อมูล (Keep Data) จากการลงพื้นที่เพื่อปฏิบัติงาน การ QC อุปกรณ์ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ รวบรวมจัดเก็บข้อมูล (Keep Data) จากการลงพื้นที่เพื่อปฏิบัติงาน การ QC อุปกรณ์   โดยประกอบด้วย   การจัดเก็บรูปถาพ  ข้อมูลผู้รับบริการ Update  ข้อมูลแบบประเมิน   ข้อมูลเจ้าหน้าที่ และอื่นๆ เข้าไปยัง Clond Point   เพื่อนำไปใช้งาน ประกอบการจัดทำเอกสารส่งมอบ การปฏิบัติงาน   วันที่ 19/10/2566  โครงการ : โครงการติดตั้งการใช้งานอุปกรณ์ตรวจจับการล้มแบบอัตโนมัติพร้อมกดปุ่มขอความช่วยเหลือในผู้สูงอายุ   ', 'ดำเนินการรวบรวมจัดเก็บข้อมูล (Keep Data) เรียบร้อย', 'Apirak bangpuk', '2023-10-20 04:34:59', 'Service'),
+(56, 'Device', 'UAT/Demo', 'Setup/Configuration', 'ขอบริการ จัดเตรียมอุปกรณ์ AI Tracker และ Platform สำหรับ UAT โครงการ ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ จัดเตรียมอุปกรณ์ AI Tracker และ Platform (ยืม) สำหรับ UAT โครงการ \r\nจำนวน 1 ชุด \r\n\r\nโครกงาร : โครงการติดตั้งการใช้งานอุปกรณ์ตรวจจับการล้มแบบอัตโนมัติพร้อมกดปุ่มขอความช่วยเหลือในผู้สูงอายุ\r\nหน่วยงาน : UTI\r\nผู้รับผิดชอบ : คุณทอม\r\nระยะเวลายืม : 01/11/2556 - 15/11/2566', 'ดำเนินการ ขอบริการ จัดเตรียมอุปกรณ์ AI Tracker และ Platform (ยืม) สำหรับ UAT โครงการ  ', 'Apirak bangpuk', '2023-10-20 04:40:59', 'Select'),
+(57, 'Platform (LIS)', 'Meeting Room', 'Document Report', 'ประชุม สรุปการจัดส่งงาน PMS งวดงานแรก (Phase 1)', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ประชุม สรุปการจัดส่งงาน PMS งวดงานแรก (Phase 1)\r\nประกอบด้วย 3 หัวข้อ\r\n1. Analyzer \r\n2. Notification\r\n3. Dashboard\r\n4. Isue\r\nวันที่  27/10/2023', 'ดำเนินการสรุปการจัดส่งงาน PMS งวดงานแรก (Phase 1)เรียบร้อย', 'Apirak bangpuk', '2023-10-30 02:13:51', 'Service'),
+(58, 'Platform (LIS)', 'Design UX/UI Form/Page', 'Editing', 'ขอบริการ แก้ไขหน้า UX/UI ในระบบ PMS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ แก้ไขหน้า UX/UI ในระบบ PMS \r\n1. แก้ไขหน้า Analyzer\r\n2. แก้ไขหน้า .....................................', 'ดำเนินการ แก้ไข UX/UI ในระบบ PMS ในระบบเรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-30 02:31:11', 'Service'),
+(59, 'Platform (LIS)', 'Design UX/UI Form/Page', 'Update/Insert', 'ขอบริการ เพิ่มเติมหน้า UX/UI ในระบบ PMS ', 'คุณประพัฒน์ จันทร์เกื้อ (PROMs Company)', 'ขอบริการ เพิ่มเติมหน้า UX/UI ในระบบ PMS \r\n1. เพิ่มหน้า Computer สำหรับเก็บข้อมูลเครื่อง Computer เพิ่มเชื่อมต่อกับเครื่องตรวจวิเคราะห์', 'ดำเนินการ เพิ่มเติมหน้า UX/UI ในระบบ PMS ในระบบเรียบร้อยแล้ว ', 'Apirak bangpuk', '2023-10-30 02:35:33', 'Service'),
+(60, 'Platform (KYD)', 'Document Report', 'Presentation', 'ขอบริการ ออกแบบแผนนำเสนอ Product Innovation สำหรับนำเสนอลูกค้า', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ออกแบบแผนนำเสนอ Product Innovation สำหรับนำเสนอลูกค้า\r\nรวบรวม Product ตาม Requiement ของลูกค้า สรุปเนื้อหน้าประกอบด้วย \r\n1.  ภาพรวม\r\n2. ขั้นตอน (Flow)\r\n3. อ้างอิง (ภาพ)', 'ดำเนินการออกแบบแผนนำเสนอ Product Innovation เรียบร้อย', 'Apirak bangpuk', '2023-10-30 02:45:04', 'Service'),
+(61, 'Platform (LIS)', 'Document Report', 'Export/Import data', 'ขอบริการ ดึงรายงานในระบบ LIS ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ดึงรายงานในระบบ LIS เพื่อนำมาใช้ในการออกแบบพัฒนาระบบ Dev ให้ทางพี่เบียร์ โดยมีหัวข้อดังนี้ \r\n1. รายงาน Organization\r\n2. รายงาน Analyzer\r\n3. รายงาน Laboratory', 'ดำเนินการ ดึงรายงานในระบบ LIS เรียบร้อยแล้ว', 'Apirak bangpuk', '2023-10-30 02:49:13', 'Service'),
+(62, 'Platform (KYD)', 'Document Report', 'Presentation', 'ขอบริการ ออกแบบแผนนำเสนอ 24x7 Care Center สำหรับ ส่งมอบโครงการ', 'รองศาสตราจารย์ วิรุฬห์ ศรีบริรักษ์ (บริษัท เซนโกรท จำกัด - Zanegrowth Smart City Thailand)', 'ขอบริการ ออกแบบแผนนำเสนอ 24x7 Care Center สำหรับ ส่งมอบโครงการ\r\nประกอบด้วย \r\n\r\n1. ขั้นตอนระบบการทำงาน ของ Partner\r\n2. ภาพอ้างอิง การดำเนินงาน\r\n3. สรุปความพึงพอใจในการให้บริการ', ' ดำเนินการออกแบบแผนนำเสนอ 24x7 Care Center สำหรับ ส่งมอบโครงการเรียบร้อยแล้ว', 'Apirak bangpuk', '2023-10-30 02:56:52', 'Service'),
+(63, 'Point it', 'Document Report', 'Presentation', 'ขอบริการ ออกแบบแผนนำเสนอ Solution Point Product สำหรับจัดแสดงที่บูท', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'สำหรับออกงานจัดบูท ', 'ขอบริการ ออกแบบแผนนำเสนอ Solution Point Product สำหรับจัดแสดงที่บูท', 'Apirak bangpuk', '2023-11-03 02:29:03', 'Service'),
+(64, 'Device', 'UAT/Demo', 'Setup/Configuration', 'ขอบริการ ทดสอบฟักง์ชั่นการใช้งานระบบ PMS Demo (Tester/UAT)', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ทดสอบฟักง์ชั่นการใช้งานระบบ PMS Demo (Tester/UAT)', 'ดำเนินการ ทดสอบฟักง์ชั่นการใช้งานระบบ PMS Demo (Tester/UAT) เรียบร้อย ', 'Apirak bangpuk', '2023-11-03 02:00:24', 'Select'),
+(65, 'Platform (LIS)', 'Single Test', 'Setup/Configuration', ' แจ้งปัญหาระบบ Nexlab ยกเลิกการใช้งาน Single test แล้วยังแสดงให้เลือก', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ไม่ได้ Un Active', 'ดำเนินการ Setup/Configuration Not Active Single Test สามารถใช้งานได้ปกติ', 'Apirak bangpuk', '2023-11-03 02:06:36', 'Incident'),
+(66, 'Point it', 'Document Report', 'Presentation', 'ขอบริการ จัดทำสรุปรายงานการทดสอบระบบ PMS (Tester/ Uat Report)', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'สรุปรายงาน', ' ดำเนินการ จัดทำสรุปรายงานการทดสอบระบบ PMS (Tester/ Uat Report) เรียบร้อย ', 'Apirak bangpuk', '2023-11-03 02:30:08', 'Service'),
+(67, 'Event', 'Booth', 'Stand by', 'ขอบริการ ลงพื้นที่ Stand by นำเสนอ Solution pointit product ', 'คุณภัทราอร อมรโอภาคุณ  (พอยท์ ไอที คอนซัลทิ่ง จำกัด)', 'ขอบริการ ลงพื้นที่ Stand by นำเสนอ Solution pointit product ', 'ดำเนินการ ลงพื้นที่ Stand by นำเสนอ Solution pointit product  เรียบร้อย', 'Apirak bangpuk', '2023-11-03 04:04:46', 'Service');
 
 -- --------------------------------------------------------
 
@@ -120,7 +151,8 @@ INSERT INTO `contact` (`contact_id`, `contact_fullname`, `contact_position`, `co
 (34, 'คุณตรีเทศ หะหวัง', 'เจ้าหน้าที่ส่วนบริการเสริมโทรศัพท์เคลื่อนที่ (สคส.)', 'บริษัท โทรคมนาคมแห่งชาติ จำกัด (มหาชน)', '(089) 482-2387', '1888@ntplc.co.th', '99 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพ 10210\r\n', 'บริษัท โทรคมนาคมแห่งชาติ จำกัด (มหาชน)', 'Customer', '2023-09-04 08:47:55', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
 (35, 'คุณสร้างรัฐ หัตถวงษ์', 'Chief Executive Officer', 'INSPIRE COMMUNICATIONS CO., LTD.', '(061) 515-2929', 'srangrath@inspirecomm.co.th', '', 'INSPIRE COMMUNICATIONS CO., LTD.', 'Customer', '2023-09-04 08:57:50', 'Apirak bangpuk', 'สมุทรปราการ'),
 (36, 'คุณสถาพร ภาสุรเลิศสกุล', 'Assistant Medical', '-', '(089) 690-9716', 'satapornpa@gmail.com', '-', '-', 'Partner', '2023-09-22 06:57:02', 'Apirak bangpuk', 'กรุงเทพมหานคร'),
-(37, 'อาจารย์ณรงค์', 'อาจารย์', 'ญานิศา', '(000) 000-0000', 'yanisa@pointit.co.th', '', 'มหาวิทยาลัยขอนแก่น', 'Customer', '2023-09-22 08:31:38', 'Panit', '5e10c1870d0fa97ede5923e385e8a12ce19fc4d3');
+(37, 'อาจารย์ณรงค์', 'อาจารย์', 'ญานิศา', '(000) 000-0000', 'yanisa@pointit.co.th', '', 'มหาวิทยาลัยขอนแก่น', 'Customer', '2023-09-22 08:31:38', 'Panit', '5e10c1870d0fa97ede5923e385e8a12ce19fc4d3'),
+(38, 'พี่ต้น', 'Technical Support Print ', 'Zebra Technologies', '(082) 789-6152', 'Zebra@zebra.com', ' ZEBRA Thailand Official', 'Zebra Technologies', 'Partner', '2023-09-27 02:12:38', 'Apirak bangpuk', 'กรุงเทพมหานคร');
 
 -- --------------------------------------------------------
 
@@ -143,6 +175,16 @@ CREATE TABLE `doc` (
   `file_upfile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ไฟล์อัพโหลด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `doc`
+--
+
+INSERT INTO `doc` (`doc_id`, `folder_name`, `doc_crt`, `doc_staff`, `project_name`, `task_name`, `doc_type`, `doc_name`, `doc_link`, `doc_remark`, `doc_status`, `file_upfile`) VALUES
+(38, 'Apirak-Point IT', '2023-09-27 03:29:56', 'Apirak bangpuk', 'POINT IT', '', 'Word', 'แบบฟอร์ม_PointIT_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_(พี่เพชร)', 'https://drive.google.com/drive/u/0/folders/1uhc9Ya4rkBitWT99RXJnuVlDZsm2xTjm', 'แบบฟอร์ม_PointIT_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_(พี่เพชร)', 'Complated', 'แบบฟอร์ม_Pointit_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_พี่เพรช.xlsx'),
+(39, 'Apirak-Point IT', '2023-09-27 03:37:34', 'Apirak bangpuk', 'POINT IT', '', 'Word', 'แบบฟอร์ม_PointIT_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_(พี่ซีน)', 'https://drive.google.com/drive/u/0/folders/1uhc9Ya4rkBitWT99RXJnuVlDZsm2xTjm', 'แบบฟอร์ม_PointIT_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_(พี่ซีน)', 'Complated', 'แบบฟอร์ม_Pointit_เบิกค่าเดินทางออกปฏิบติงานนอกสถานที่_(พี่ซีน).xlsx'),
+(40, 'Apirak-LAOS LIS', '2023-10-02 02:25:46', 'Apirak bangpuk', 'โครงการ LAOS LIS (Nexlab)', '', 'PDF', 'รายงานการปฏิบัติงานนอกสถานที่ (Onsite LAOS LISM 200923)', 'https://docs.google.com/document/d/1Yxst7E0R6OUL1WtNvPfjGBXQ_UPmLeVo7mXBm37JcMU/edit', 'รายงานการปฏิบัติงานนอกสถานที่ (Onsite LAOS LISM 200923)', 'Complated', 'Onsite_Laos(Chai)_22092556.pdf'),
+(41, 'Apirak-Point IT', '2023-10-20 09:43:11', 'Apirak bangpuk', 'การจ้างพัฒนาระบบการจัดซื้อจัดจ้าง กบข. ', '', 'PDF', '01 - กบข. Project Man-days', '', 'บนเมฆ', 'Complated', '01 - กบข. Project Man-days.pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +203,8 @@ CREATE TABLE `folder_doc` (
 --
 
 INSERT INTO `folder_doc` (`folder_id`, `folder_name`, `folder_crt`, `folder_staff`) VALUES
-(18, 'Apirak-Point IT', '2023-09-26 13:26:12', 'Apirak bangpuk');
+(18, 'Apirak-Point IT', '2023-09-26 13:26:12', 'Apirak bangpuk'),
+(19, 'Apirak-LAOS LIS', '2023-10-02 02:08:16', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -214,7 +257,7 @@ INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_br
 (17, 'เช่าใช้อุปกรณ์เพื่อจัดตั้งศูนย์ปฏิบัติการชั่วคราว (ศปก.สตม.)  APEC 2022 (เก็บเงินเรียบร้อยแล้ว)', 'Rent office equipment', 'Rent office equipment', '7', 1044133, 1117222, 0, 0, 0, 0, '100', 30, 'Contact : ศปก.สตม.', '2023-09-04 08:37:53', 'Apirak bangpuk', 1044133, 0, 0, '0000-00-00', '0000-00-00', 'Done', ''),
 (18, 'ดูแลอุปกรณ์และระบบงาน Smart Safety Zone 4.0 (จักรกริช พ้นภัย)', 'Smart Safety Zone', 'Smart Safety Zone', '7', 0, 0, 0, 0, 0, 0, '0', 20, 'ดูแลอุปกรณ์และระบบงาน Smart Safety Zone 4.0 (จักรกริช พ้นภัย) Contact :สำนักงานตำรวจแห่งชาติ', '2023-09-04 08:40:32', 'Apirak bangpuk', 0, 0, 0, '0000-00-00', '0000-00-00', 'On Process', ''),
 (19, 'จัดซื้อชุดกระเป๋า Health Set พร้อมระบบ Mobile Healthcare Screening', 'Health Set', 'KYD', '7', 270000, 288900, 0, 0, 0, 0, '0', 33, 'ชุดกระเป๋า Health Set พร้อมระบบ Mobile Healthcare Screening นำเสนอโดยทางบริษัท โรชฯ เป็นผู้แนะนำ เงื่อนไข : 1.บริษัทฯ มีการรับประกันอุปกรณ์เสียหายจากการใช้งานตามปกติ เป็นระยะเวลา 1 ปี  กรณีอุปกรณ์ไม่สามารถใช้งานได้จะดำเนินการซ่อมแซมหรือเปลี่ยนทดแทน ภายในไ', '2023-09-04 08:46:20', 'Apirak bangpuk', 0, 0, 0, '2023-02-18', '0000-00-00', 'Wiating for approve', 'QT-000000716'),
-(20, 'งานจ้างบำรุงรักษาระบบ Mobile Face Recognition', 'MA Mobile Face Recognition', 'Mobile Face Recognition', '7', 1177000, 1259390, 0, 0, 0, 0, '30', 34, '', '2023-09-04 08:51:46', 'Apirak bangpuk', 353100, 0, 0, '2023-06-01', '0000-00-00', 'On Process', 'A02/3160029760/2566'),
+(20, 'งานจ้างบำรุงรักษาระบบ Mobile Face Recognition', 'MA Mobile Face Recognition', 'Mobile Face Recognition', '7', 1100000, 1177000, 591745, 633166, 508256, 46, '100', 34, '', '2023-10-11 10:11:56', 'Apirak bangpuk', 1100000, 591744, 508256, '2023-06-01', '0000-00-00', 'On Process', 'A02/3160029760/2566'),
 (21, 'โครงการ VAM Stack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)', 'VAM Stack Platform', 'VAM Stack', '7', 980000, 1048600, 0, 0, 980000, 100, '100', 35, 'เปิดบิล ธ.ค.65. รอชำระเงิน\r\nVAM On-premise – Advance Security and Surveillance SolutionFeatures\r\nVAMStack Platform AI Surveillance Samutprakarn (เทศบาลเมืองสมุทรปราการ)\r\nสมุทรปราการ', '2023-09-13 02:45:58', 'Apirak bangpuk', 980000, 0, 980000, '0000-00-00', '0000-00-00', 'Done', ''),
 (22, 'โครงการ Smart City (อบจ.ชลบุรี)', 'Smart City', 'Smart City', '7', 1262600, 1350982, 0, 0, 0, 0, '10', 27, 'โครงการ Smart City (อบจ.ชลบุรี)   << พี่ปืน >>', '2023-09-04 09:03:42', 'Apirak bangpuk', 126260, 0, 0, '0000-00-00', '0000-00-00', 'Wiating for approve', ''),
 (23, 'โครงการสร้างแผนดูแลผู้สูงอายุที่อยู่บ้านเพียงลำพังด้วยอุปกรณ์ iOT ในการดูแลของ (อปท)', 'Data Analytics', 'Saijai Platform', '7', 5000000, 5350000, 0, 0, 0, 0, '10', 28, 'นำเสนอนโยบายดูแลประชาชนด้วย โครงการดูแลผู้สูงอายุที่อยู่บ้านเพียงลำพัง เป็นการนำเสนอให้กับทางคุณสุดารัตน์ เกยุราพันธ์ หัวพรรคไทยสร้างชาติ เพื่อนำไปเป็นแผนในการดูแลผู้สูงอายุ', '2023-09-04 09:27:49', 'Apirak bangpuk', 500000, 0, 0, '2023-03-12', '2023-12-30', 'Wiating for approve', ''),
@@ -223,7 +266,8 @@ INSERT INTO `pipeline` (`pip_id`, `project_name`, `project_product`, `project_br
 (26, 'โครงการพัฒนาความร่วมมือนวัตกรรมเมืองอัจฉริยะความร่วมมือระหว่างเกาหลีและไทยในด้านระบบชาญฉลาดสำหรับการรักษาความปลอดภัย', 'Global Fund Thai-Korea', 'Research Project', '7', 4500000, 4815000, 0, 0, 0, 0, '100', 29, 'โครงการพัฒนาความร่วมมือนวัตกรรมเมืองอัจฉริยะความร่วมมือระหว่างเกาหลีและไทยในด้านระบบชาญฉลาดสำหรับการรักษาความปลอดภัย ภายใต้แผนโครงการพัฒนาเครือข่ายความร่วมมือนานาชาติเพื่อการพัฒนา ววน. ของประเทศโปรแกรม 16 ปฏิรูประบบการอุดมศึกษา วิทยาศาสตร์ วิจัย และนวตกรร', '2023-09-04 09:35:23', 'Apirak bangpuk', 4500000, 0, 0, '2022-10-30', '2022-10-30', 'Done', 'C16F640358'),
 (27, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)', 'BCG-Covid-19 Home Isolation', 'Research Project', '7', 1000000, 1070000, 0, 0, 0, 0, '100', 16, 'ระบบแพลตฟอร์มเชิงรุกสำหรับบริหารระบบ Home Isolation (HI) Community  Isolation (CI) และ Factory Isolation (FI) สำหรับการดูแลผู้ป่วยติดเชื้อ”  (สัญญาเลขที่ C10F640372)  ดำเนินการ 24/7 Care Centre เพื่อการจัดเตรียมระบบติดตั้งโดเมน และ Technical Support ให้คำ', '2023-09-04 09:37:57', 'Apirak bangpuk', 1000000, 0, 0, '2021-12-01', '2022-11-30', 'Done', 'C10F640372'),
 (28, 'AI ตรวจวิเคราะห์คนตีกัน', 'AI', 'IBOC', '7', 150000, 0, 100000, 0, 0, 0, '10', 37, 'โอ๋ นัดอาจารย์มากรุงเทพวันที่ 6 ตุลาคม 2566', '2023-09-22 08:40:24', 'Panit', 0, 0, 0, '2023-10-06', '0000-00-00', 'Wiating for approve', 'IBOC-001'),
-(29, 'AI Dashboard - Live CCTV on Map', 'AI', 'IBOC', '0', 50000, 50000, 0, 0, 50000, 100, '100', 27, 'POINT IT\r\nแอม  ทำ UXUI\r\nขวัญ  ทำ Front End\r\nพีท  ควบคุมการเชื่อม AI ของระบบ\r\nนัท  ดูแลการติดตั้งระบบ', '2023-09-26 12:36:49', 'Apirak bangpuk', 50000, 0, 50000, '2023-09-15', '2023-09-30', 'On Process', 'IBOC-002');
+(29, 'AI Dashboard - Live CCTV on Map', 'AI', 'IBOC', '0', 50000, 50000, 0, 0, 50000, 100, '100', 27, 'POINT IT\r\nแอม  ทำ UXUI\r\nขวัญ  ทำ Front End\r\nพีท  ควบคุมการเชื่อม AI ของระบบ\r\nนัท  ดูแลการติดตั้งระบบ', '2023-09-26 12:36:49', 'Apirak bangpuk', 50000, 0, 50000, '2023-09-15', '2023-09-30', 'On Process', 'IBOC-002'),
+(30, 'โครงการการจ้างพัฒนาระบบการจัดซื้อจัดจ้าง กบข.', 'Systems Platform', 'ระบบการซื้อจัดจ้าง', '7', 467290, 500000, 0, 0, 467290, 100, '10', 30, '', '2023-10-20 10:01:56', 'Apirak bangpuk', 46729, 0, 46729, '2023-10-20', '2024-10-20', 'Wiating for approve', '');
 
 -- --------------------------------------------------------
 
@@ -263,7 +307,11 @@ INSERT INTO `pip_file` (`file_id`, `pip_id`, `t_name`, `file_type`, `file_name`,
 (11, 12, 'Z_Brochure', 'PDF', 'เอกสารสารคู่มือ (Brochure IBOC)', '2022-06-01_IBOC_Brochure.pdf', 'https://drive.google.com/drive/u/0/folders/1OMC5sxQfdYs-sjxhDuHM9RZkMqfdJrsV', 'เอกสารสารคู่มือ (Brochure IBOC)', 'Complated', '2023-09-04 06:25:16', 'Apirak bangpuk'),
 (12, 12, 'Z_Agenda', 'PDF', 'วาระการประชุมครั้งที่ 1 (Agenda)', '651027 วาระการประชุม.pdf', 'https://drive.google.com/drive/u/0/folders/1OMC5sxQfdYs-sjxhDuHM9RZkMqfdJrsV', 'วาระการประชุมครั้งที่ 1 (Agenda) ประจำวันที่  27-10-65', 'Complated', '2023-09-04 06:27:41', 'Apirak bangpuk'),
 (13, 12, 'Z_Agenda', 'PDF', 'หนังสือเชิญประชุมครั้งที่ 1 ', '651027 1514-หนังสือเชิญประชุม 27 ต.ค.2565.pdf', 'https://drive.google.com/drive/u/0/folders/1OMC5sxQfdYs-sjxhDuHM9RZkMqfdJrsV', 'หนังสือเชิญประชุมครั้งที่ 1  ประจำวันที่  27-10-65', 'Complated', '2023-09-04 06:29:27', 'Apirak bangpuk'),
-(14, 12, 'Z_Document', 'PDF', 'เอกสารขอเชิญเข้าร่วมงำนสัมมนำด้ำนกำรแพทย์และ AI สำธำรณสุขของประเทศไทย ', '(บริษัท พอยท์ไอที คอนซัลทิ่ง จำกัด) จดหมายเ.pdf', 'https://drive.google.com/drive/u/0/folders/1OMC5sxQfdYs-sjxhDuHM9RZkMqfdJrsV', 'เอกสารขอเชิญเข้าร่วมงำนสัมมนำด้ำนกำรแพทย์และ AI สำธำรณสุขของประเทศไทย ในงำนสัมมนำ Digital Healthcare Transformation Conference 2022', 'Complated', '2023-09-04 06:31:41', 'Apirak bangpuk');
+(14, 12, 'Z_Document', 'PDF', 'เอกสารขอเชิญเข้าร่วมงำนสัมมนำด้ำนกำรแพทย์และ AI สำธำรณสุขของประเทศไทย ', '(บริษัท พอยท์ไอที คอนซัลทิ่ง จำกัด) จดหมายเ.pdf', 'https://drive.google.com/drive/u/0/folders/1OMC5sxQfdYs-sjxhDuHM9RZkMqfdJrsV', 'เอกสารขอเชิญเข้าร่วมงำนสัมมนำด้ำนกำรแพทย์และ AI สำธำรณสุขของประเทศไทย ในงำนสัมมนำ Digital Healthcare Transformation Conference 2022', 'Complated', '2023-09-04 06:31:41', 'Apirak bangpuk'),
+(15, 30, 'Apirak-30-บภข', 'PDF', '01 - กบข. Project Man-days', '01 - กบข. Project Man-days.pdf', '', 'กบข.', 'Complated', '2023-10-20 10:03:48', 'Apirak bangpuk'),
+(16, 30, 'Apirak-30-บภข', 'PDF', '02 - Documento for attachment TOR', '02 - Documento for attachment TOR.pdf', '', '', 'Complated', '2023-10-20 10:08:47', 'Apirak bangpuk'),
+(17, 30, 'Apirak-30-บภข', 'PDF', '03 - Project Plan _1 Preplanning - Sheet1', '03 - Project Plan _1 Preplanning - Sheet1.pdf', '', '', 'Complated', '2023-10-20 10:09:17', 'Apirak bangpuk'),
+(18, 30, 'Apirak-30-บภข', 'PDF', '04 - Project Price', '04 - Project Price.pdf', '', '', 'Complated', '2023-10-20 10:09:50', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -296,7 +344,8 @@ INSERT INTO `pip_folder` (`type_id`, `pip_id`, `t_name`, `type_date`, `type_staf
 (10, 12, 'Z_User Manual', '2023-09-04 06:16:17', 'Apirak bangpuk'),
 (11, 12, 'Z_Brochure', '2023-09-04 06:24:09', 'Apirak bangpuk'),
 (12, 12, 'Z_Agenda', '2023-09-04 06:26:15', 'Apirak bangpuk'),
-(13, 12, 'Z_Document', '2023-09-04 06:31:15', 'Apirak bangpuk');
+(13, 12, 'Z_Document', '2023-09-04 06:31:15', 'Apirak bangpuk'),
+(14, 30, 'Apirak-30-บภข', '2023-10-20 10:03:20', 'Apirak bangpuk');
 
 -- --------------------------------------------------------
 
@@ -342,7 +391,8 @@ INSERT INTO `pip_period` (`p_id`, `pip_id`, `pip_ps`, `pip_month`, `pip_pst`, `p
 (38, 7, 'ชำระงวดที่ 1', 'January', 50, 728740, 0),
 (39, 7, 'ชำระงวดที่ 2', 'November', 50, 728740, 0),
 (40, 9, 'ชำระงวดที่ 1', 'January', 50, 91350, 0),
-(41, 9, 'ชำระงวดที่ 2', 'August', 50, 91350, 0);
+(41, 9, 'ชำระงวดที่ 2', 'August', 50, 91350, 0),
+(42, 20, 'ชำระงวดที่ 1', 'January', 8, 94160, 0);
 
 -- --------------------------------------------------------
 
@@ -478,7 +528,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `tel`, `u
 (1, 'admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Apirak bangpuk', 'apirak@gmail.com', '(089) 353-5555', '2023-06-04 11:53:19', 'phattraorn amornophakun', 'Administrator', 'Non Service', 'IT Service'),
 (2, 'Theerachart ', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Theerachart ', 'apirak@pointit.co.th', '(099) 999-9', '2023-06-04 11:53:19', 'phattraorn amornophakun', 'Administrator', 'Service Solution', 'Service Manager'),
 (3, 'phattraorn', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'phattraorn amornophakun', 'phattraorn.a@gmail.com', '(061) 952-2', '2023-06-04 11:53:19', 'apirak bangpuk', 'Administrator', 'Innovation', 'Product Sale'),
-(4, 'Panit', '5db2e175f6f4671127cb4beef3f0e84e4cb91e92', 'Panit', 'panit@pointit.co.th', '(086) 995-8396', '2023-09-22 11:53:19', 'Apirak bangpuk', 'Administrator', 'Innovation', 'Paophan');
+(4, 'Panit', '5db2e175f6f4671127cb4beef3f0e84e4cb91e92', 'คุณผาณิต เผ่าพันธ์', 'panit@pointit.co.th', '(086) 995-8396', '2023-09-28 11:53:19', 'Apirak bangpuk', 'Administrator', 'Innovation', 'DM'),
+(5, 'staff', '7c222fb2927d828af22f592134e8932480637c0d', 'staff', 'staff@gmail.com', '(083) 959-5811', '2023-11-01 11:53:19', 'Apirak bangpuk', 'Engineer', 'Service Solution', 'IT support');
 
 --
 -- Indexes for dumped tables
@@ -576,49 +627,49 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=38;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `doc`
 --
 ALTER TABLE `doc`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=38;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `folder_doc`
 --
 ALTER TABLE `folder_doc`
-  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=19;
+  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pipeline`
 --
 ALTER TABLE `pipeline`
-  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=30;
+  MODIFY `pip_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ Project', AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pip_file`
 --
 ALTER TABLE `pip_file`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Key', AUTO_INCREMENT=15;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Key', AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pip_folder`
 --
 ALTER TABLE `pip_folder`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pip_period`
 --
 ALTER TABLE `pip_period`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ period', AUTO_INCREMENT=42;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'เลขไอดีของ period', AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -654,7 +705,7 @@ ALTER TABLE `task_project`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัส', AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

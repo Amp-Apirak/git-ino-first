@@ -333,7 +333,7 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_sub"];?> <button type="button" name="<?php echo $res_search["cat_sub"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_item"];?> <button type="button" name="<?php echo $res_search["cat_item"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["problem"];?> <button type="button" name="<?php echo $res_search["problem"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap  " height="" width="">
+                                            <td scope="col" class="" height="" width="">
                                                  
                                                 <?php $lam = explode(PHP_EOL, $res_search["cat_case"]);
                                                     for ($i = 0; $i < count($lam); $i++) { ?>

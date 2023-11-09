@@ -45,6 +45,19 @@
     }
     </style>
 
+<!-- Tabel List ควากว้างคอลัม -->    
+<style type="text/css">
+td#mylayout_1{
+    display:block;
+    width:100px;
+    word-wrap:break-word;
+}
+td#mylayout_2{
+    display:block;
+    width:600px;
+    word-wrap:break-word;
+}
+</style>
 
 
 

@@ -317,7 +317,7 @@
 
 
                                 var result4 =
-                                    parseInt(txtFirstNumberValue) * (parseInt(txtp)/100) ;
+                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100))) ;
                                 if (!isNaN(result4)) {
                                     document.getElementById('pip_ess').value = result4;
                                 }

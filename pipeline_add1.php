@@ -272,7 +272,7 @@
 
                             <script type="text/javascript">
                             function sum() {
-                                var txtFirstNumberValue = document.getElementById('pip_salen').value;
+                                var txtFirstNumberValue = document.getElementById('pip_sale').value;
                                 var txtSecondNumberValue = document.getElementById('pip_vat').value;
                                 var txtfNumberValue = document.getElementById('pip_costn').value;
                                 var txtfiNumberValue = document.getElementById('pip_cost').value;
@@ -295,9 +295,9 @@
                                 
                                 
                                 var result =
-                                    (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100)) + parseInt(txtFirstNumberValue) ;
+                                    (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100));
                                 if (!isNaN(result)) {
-                                    document.getElementById('pip_sale').value = result;
+                                    document.getElementById('pip_salen').value = result;
                                 }
                                 var result1 =
                                     (parseInt(txtfNumberValue) * (parseInt(txtSecondNumberValue)/100)) + parseInt(txtfNumberValue) ;

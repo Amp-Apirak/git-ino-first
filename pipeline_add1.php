@@ -295,7 +295,7 @@
                                 
                                 
                                 var result =
-                                    (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100)-parseInt(txtFirstNumberValue));
+                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100)));
                                 if (!isNaN(result)) {
                                     document.getElementById('pip_salen').value = result;
                                 }

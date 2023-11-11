@@ -305,7 +305,7 @@
                                     document.getElementById('pip_cost').value = result1;
                                 }
                                 var resultt =
-                                    parseInt(txtFirstNumberValue) - parseInt(txtfNumberValue) ;
+                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100))) - parseInt(txtfNumberValue) ;
                                 if (!isNaN(resultt)) {
                                     document.getElementById('pip_gp').value = resultt;
                                 }

@@ -762,90 +762,25 @@
                 <div class="modal-body">
                     <form action="pipeline_add.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" name="fullname" class="form-control" id="fullname" placeholder=""
-                                    required>
-                            </div>
-                            <!-- /.form-group -->
+                            <div class="row">
 
-                            <div class="form-group">
-                                <label for="project_name">Position<span class="text-danger">*</span></label>
-                                <input type="text" name="project_name" class="form-control" id="project_name"
-                                    placeholder="" required>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>Team<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_product" required
-                                    style="width: 100%;">
-                                    <option selected="selected">Select</option>
-                                    <option>Innovation</option>
-                                    <option>Infrastructure</option>
-                                    <option>Projecting</option>
-                                    <option>Stock</option>
-                                    <option>Service Solution</option>
-                                    <option>Service bank</option>
-                                </select>
-
-                                <input type="hidden" name="user_crt" value="<?php echo $date; ?> <?php echo $time; ?>" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                                <input type="hidden" name="user_staff" class="form-control" value="<?php echo ($_SESSION['fullname']);?>" placeholder="">
-
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>Role<span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="project_status" required
-                                    style="width: 100%;">
-                                    <option selected="selected">Select</option>
-                                    <option>Administrator</option>
-                                    <option>Engineer</option>
-                                    <option>Viewer</option>
-                                </select>
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Phone Number</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <div class="col col-6">
+                                    <div class="form-group">
+                                        <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" required>
                                     </div>
-                                    <input type="text" class="form-control" name="tel" id="tel"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+                                <!-- /.form-group -->
                                 </div>
-                                <!-- /.input group -->
-                            </div>
 
-                            <p>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <div class="col col-6">
+                                    <div class="form-group">
+                                        <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" required>
                                     </div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
-                                        required>
+                                <!-- /.form-group -->
                                 </div>
+                                
                             </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
-                            </div>
-                            <!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputEmail1"
-                                    placeholder="">
-                            </div>
-                            <!-- /.form-group -->
-
                         </div>
 
                 </div>

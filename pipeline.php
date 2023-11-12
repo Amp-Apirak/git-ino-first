@@ -766,16 +766,16 @@
 
                                 <div class="col col-6">
                                     <div class="form-group">
-                                        <label for="fullname"><small>Add Business to Goverment (B to G)</small></label>
-                                        <a href="pipeline_add.php" class="btn btn-success btn-sm float-right" > Business to Goverment <i class=""></i></a>
+                                        <label for="text"><small>Add Business to Goverment (B to G)</small></label>
+                                        <a href="pipeline_add.php" class="btn btn-success btn-sm mx-auto" > Business to Goverment (B to G)<i class=""></i></a>
                                     </div>
                                 <!-- /.form-group -->
                                 </div>
 
                                 <div class="col col-6">
                                     <div class="form-group">
-                                        <label for="fullname"><small>Add Business to Business (B to B)</small></label>
-                                        <a href="pipeline_add1.php" class="btn btn-success btn-sm float-right" > Business to Business <i class=""></i></a>
+                                        <label for="text"><small>Add Business to Business (B to B)</small></label>
+                                        <a href="pipeline_add1.php" class="btn btn-success btn-sm mx-auto" > Business to Business (B to B) <i class=""></i></a>
                                     </div>
                                 <!-- /.form-group -->
                                 </div>

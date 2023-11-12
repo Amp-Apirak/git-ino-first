@@ -233,7 +233,7 @@
                                                 <p>Project All</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-business-outline"></i>
+                                                <i class="ion ion-building-fill"></i>
                                             </div>
                                             <a href="#" class="small-box-footer"></i></a>
                                         </div>

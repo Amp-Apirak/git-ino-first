@@ -766,20 +766,20 @@
 
                                 <div class="col col-6">
                                     <div class="form-group">
-                                        <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                        <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" required>
+                                        <label for="fullname">Add Business to Goverment (B to G)</label>
+                                        <a href="pipeline_add.php" class="btn btn-success btn-sm float-right" > Add <i class=""></i></a>
                                     </div>
                                 <!-- /.form-group -->
                                 </div>
 
                                 <div class="col col-6">
                                     <div class="form-group">
-                                        <label for="fullname">Full Name<span class="text-danger">*</span></label>
-                                        <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" required>
+                                        <label for="fullname">Add Business to Business (B to B)</label>
+                                        <a href="pipeline_add1.php" class="btn btn-success btn-sm float-right" > Add <i class=""></i></a>
                                     </div>
                                 <!-- /.form-group -->
                                 </div>
-                                
+
                             </div>
                         </div>
 

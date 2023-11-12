@@ -351,11 +351,11 @@
                                                     <label>Vat (%)<span class="text-danger">*</span></label>
                                                     <select class="form-control select2" name="pip_vat" id="pip_vat" onkeyup="sum();"
                                                         required style="width: 100%;">
-                                                        <option selected="selected">Select</option>
+                                                        <option value="7">7%</option>
                                                         <option value="0">0%</option>
                                                         <option value="3">3%</option>
                                                         <option value="5">5%</option>
-                                                        <option value="7">7%</option>
+                                                        
                                                     </select>
                                                 </div>
                                                 <!-- /.form-group -->

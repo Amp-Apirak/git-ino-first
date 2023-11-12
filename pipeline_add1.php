@@ -355,7 +355,7 @@
                                                         <option value="0">0%</option>
                                                         <option value="3">3%</option>
                                                         <option value="5">5%</option>
-                                                        <option value="7">7%</option>
+                                                        
                                                     </select>
                                                 </div>
                                                 <!-- /.form-group -->

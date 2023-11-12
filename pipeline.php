@@ -469,7 +469,7 @@
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="col-md-12 pb-3">
-                            <a href="pipeline_add.php" class="btn btn-success btn-sm float-right"> Add <i class=""></i></a>
+                            <a href="" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn" > Add <i class=""></i></a>
                         </div><br>
                         <?php } ?>
 
@@ -748,14 +748,13 @@
 
 
 
-
-    <!----------------------------- start Modal Add user ------------------------------->
+        <!----------------------------- start Modal Add Pipeline ------------------------------->
     
-    <div class="modal fade" id="editbtn">
+        <div class="modal fade" id="editbtn">
         <div class="modal-dialog editbtn">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add User</h4>
+                    <h4 class="modal-title">Select Business</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -861,4 +860,4 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <!----------------------------- end Modal Add user --------------------------------->
+    <!----------------------------- end Modal Add Pipeline --------------------------------->

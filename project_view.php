@@ -117,7 +117,7 @@
                                         <div class="col-sm-4 invoice-col">
                                             From
                                             <address>
-                                                <strong><?php echo $res_search["project_staff"]; ?></strong><br>
+                                                <strong>Point IT Consulting co. ltd.</strong><br>
                                                 19 ซอย สุภาพงษ์ 1 แยก 6 แขวง หนองบอน เขต ประเวศ <br>
                                                 กรุงเทพมหานคร 10250 <br>
 

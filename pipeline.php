@@ -233,7 +233,7 @@
                                                 <p>Project All</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-building-fill"></i>
+                                                <i class="fas fa-cog"></i>
                                             </div>
                                             <a href="#" class="small-box-footer"></i></a>
                                         </div>
@@ -262,7 +262,7 @@
                                                 <p>Product/Solution</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-person-add"></i>
+                                                <i class="fas fa-users"></i>
                                             </div>
                                             <a href="#" class="small-box-footer"></i></a>
                                         </div>
@@ -290,7 +290,7 @@
                                                 <p>Gross Profit (GP)</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-person-add"></i>
+                                                <i class="fas fa-thumbs-up"></i>
                                             </div>
                                             <a href="#" class="small-box-footer"></i></a>
                                         </div>

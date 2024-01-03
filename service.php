@@ -332,8 +332,15 @@
                                             <td scope="col" class="text-nowrap  " height="" width=""><a href="#?id=<?php echo $res_search["cat_id"]; ?>"><?php echo $res_search["cat_scat"]; ?></a> <button type="button" name="<?php echo $res_search["cat_scat"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_sub"];?> <button type="button" name="<?php echo $res_search["cat_sub"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
                                             <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["cat_item"];?> <button type="button" name="<?php echo $res_search["cat_item"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="text-nowrap  " height="" width=""><?php echo $res_search["problem"];?> <button type="button" name="<?php echo $res_search["problem"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button></td>
-                                            <td scope="col" class="" height="" width="">
+                                            <td scope="col" class="text-nowrap  " height="" width="" >
+                                                
+                                                <?php echo $res_search["problem"];?>
+                                                <button type="button" name="<?php echo $res_search["problem"]; ?>"class="btn btn-outline-info btn-sm btncoppy"><small>Copy</small></button>
+                                                
+                                            </td>
+                                            
+                                            
+                                            <td scope="col" class="" height="" width="" >
                                                  
                                                 <?php $lam = explode(PHP_EOL, $res_search["cat_case"]);
                                                     for ($i = 0; $i < count($lam); $i++) { ?>
@@ -632,7 +639,7 @@
                              <!-- Dropdown List Project -->
 
 
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label for="problem">Service/Problome<span class="text-danger">*</span></label>
                                 <input type="text" name="problem" class="form-control" id="problem" placeholder="" required>
                             </div>
@@ -640,7 +647,7 @@
 
 
                             <!-- textarea -->
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label>Case</label>
                                 <textarea class="form-control" name="cat_case" id="cat_case" rows="3"
                                 placeholder=""></textarea>

@@ -59,6 +59,25 @@ td#mylayout_2{
 }
 </style>
 
+<!-- ความกว้างของตารางแสดงผล -->
+<style type="text/css">
+.mylayout_1{
+    display:block;
+    width:100px;
+    word-wrap:break-word;
+}
+td#mylayout_2{
+    display:block;
+    width:600px;
+    word-wrap:break-word;
+}
+td#mylayout_3{
+    display:block;
+    width:120px;
+    word-wrap:break-word;
+}
+</style>
+
 
 
 <!-- lightbox -->

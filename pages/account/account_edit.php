@@ -1,6 +1,6 @@
  <!-- Start Configrate  -->
  <?php
-     include("connection/connection.php"); 
+     include("../../connection/connection.php"); 
     ?>
  <!-- End Configrate  -->
 

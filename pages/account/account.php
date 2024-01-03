@@ -18,11 +18,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ino/templated/head.php"); ?>
+    <?php include("../../templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/menu.php"); ?>
+    <?php include("../../templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <?php
@@ -40,7 +40,7 @@
                                 text: "Delect Infomation Complatrd.",
                                 type:"success"
                             }, function(){
-                                window.location = "account.php";
+                                window.location = "../account/account.php";
                             })
                         },1000);
                     </script>';
@@ -54,7 +54,7 @@
                                 text: "Type again",
                                 type:"warning"
                             }, function(){
-                                window.location = "account.php";
+                                window.location = "../account/account.php";
                             })
                         },1000);
                     </script>';
@@ -84,6 +84,7 @@
             </div><!-- /.container-fluid -->
         </section>
 
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -109,22 +110,28 @@
                         $query_team = mysqli_query($conn, $_sql_team);
                         $query_role = mysqli_query($conn, $_sql_role);
 
-                        $_sql = "SELECT * FROM user";
-                        $_where = "";
-
+                        $_role = $_SESSION["team"];
+                        if($_role='Innovation'){
+                            $_sql = "SELECT * FROM user  "; 
+                            // WHERE team = 'Innovation'
+                            $_where = "";
+                        }else {
+                            $_sql = "SELECT * FROM user";
+                            $_where = "";
+                        }
+                
                         if (isset($_POST['search'])) {
 
                             $search = $_POST['searchservice'];
                             $position = $_POST['position'];
                             $team = $_POST['team'];
                             $role = $_POST['role'];
-
                             $search_backup = $_POST['search_backup'];
                             $position_backup = $_POST['position_backup'];
                             $team_backup = $_POST['team_backup'];
                             $role_backup = $_POST['role_backup'];
 
-                            // print_r($_sqlCount);
+
 
                             if ($search != $search_backup || $position != $position_backup || $team != $team_backup || $role  != $role_backup)
 
@@ -157,7 +164,8 @@
 
 
                         $query_search = mysqli_query($conn, $_sql . $_where);
-                        // print_r($query_search);
+                        print_r($_where);
+                        print_r($query_search);
                         ?>
 
                         <section class="content">
@@ -171,7 +179,7 @@
                                             </h3>
                                         </div>
                                         <div class="card-body">
-                                            <form action="account.php" method="POST">
+                                            <form action="../account/account.php" method="POST">
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-group ">
@@ -242,7 +250,7 @@
                         </section>
 
                         <div class="col-md-12 pb-3">
-                            <a href="account_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
+                            <a href="../account/account_add.php" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn"> Add <i class=""></i></a>
                         </div><br>
 
 
@@ -300,7 +308,7 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="account_edit.php" method="POST" enctype="multipart/form-data">
+                                                                    <form action="../account/account_edit.php" method="POST" enctype="multipart/form-data">
                                                                         <div class="card-body">
                                                                             <div class="form-group">
                                                                                 <label for="fullname">Full Name<span class="text-danger">*</span></label>
@@ -389,7 +397,7 @@
                                                     <!----------------------------- end Modal Edit user --------------------------------->
 
 
-                                                    <a href="account.php?id=<?php echo $res_search["id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
+                                                    <a href="../account/account.php?id=<?php echo $res_search["id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
 
 
 
@@ -424,12 +432,14 @@
                 <!-- /.row -->
         </section>
         <!-- /.content -->
+
+
     </div>
     <!-- /.content-wrapper -->
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/footer.php"); ?>
+    <?php include("../../templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
        <!-- highlight -->
@@ -479,7 +489,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="account_add.php" method="POST" enctype="multipart/form-data">
+                    <form action="../account/account_add.php" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="fullname">Full Name<span class="text-danger">*</span></label>

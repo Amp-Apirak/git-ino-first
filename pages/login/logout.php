@@ -19,7 +19,7 @@
                   text: "Thank YOU. ",
                   type:"success"
               }, function(){
-                  window.location = "login.php";
+                  window.location = "../../pages/login/login.php";
               })
           },1000);
           </script>';

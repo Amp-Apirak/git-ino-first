@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
 
-        include("connection/connection.php"); // เชื่อมต่อฐานข้อมูล
+        include("../../connection/connection.php"); // เชื่อมต่อฐานข้อมูล
 
               
     //ประกาศตัวแปรรับค่าจากฟอร์ม
@@ -47,7 +47,7 @@
                             text: "Welcome to login Sale Service. ",
                             type: "success"
                         }, function() {
-                            window.location = "../ino/index.php"; //หน้าที่ต้องการให้กระโดดไป
+                            window.location = "../../pages/home/index.php"; //หน้าที่ต้องการให้กระโดดไป
                     });
                     }, 1000);
         </script>';

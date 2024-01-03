@@ -127,7 +127,7 @@ td#mylayout_2{
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
                     </a>
@@ -147,10 +147,10 @@ td#mylayout_2{
                             </div>
                         </form>
                     </div>
-                </li>
+                </li> -->
 
 
-                <!-- Notifications Dropdown Menu -->
+                <!-- Notifications Dropdown Menu
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
@@ -181,7 +181,7 @@ td#mylayout_2{
                             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
 
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">

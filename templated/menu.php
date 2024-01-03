@@ -59,7 +59,7 @@
                             </li>
 
 
-                            <?php if ($_SESSION["role"] == "Administrator") { ?>
+                            <!-- <?php if ($_SESSION["role"] == "Administrator") { ?>
                             <li class="nav-item">
                                 <a href="account.php" class="nav-link <?php if($menu=="account"){echo "active";} ?>">
                                     <i class="nav-icon fas fa-user"></i>
@@ -68,9 +68,9 @@
                                     </p>
                                 </a>
                             </li>
-                            <?php } ?>
+                            <?php } ?> -->
 
-<!-- 
+                            <!-- 
                             <li class="nav-item">
                                 <a href="remind.php" class="nav-link <?php if($menu=="Remind"){echo "active";} ?>">
                                     <i class="nav-icon fa fa-bell"></i>
@@ -103,14 +103,14 @@
                                 </a>
                             </li> -->
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="service.php" class="nav-link <?php if($menu=="service"){echo "active";} ?>">
                                     <i class="nav-icon fa fa-desktop"></i>
                                     <p>
                                         Service Job
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-item">
                                 <a href="document.php" class="nav-link <?php if($menu=="document"){echo "active";} ?>">

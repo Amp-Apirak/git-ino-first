@@ -469,7 +469,7 @@
 
                         <?php if ($_SESSION["role"] == "Administrator") { ?>
                         <div class="col-md-12 pb-3">
-                            <a href="" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#editbtn" > Add <i class=""></i></a>
+                            <a href="pipeline_add1.php" class="btn btn-success btn-sm float-right"  > Add <i class=""></i></a>
                         </div><br>
                         <?php } ?>
 
@@ -574,7 +574,7 @@
 
                                             <td>
                                                 <a href="pipeline_copy.php?id=<?php echo $res_search["pip_id"]; ?>&id_c=<?php echo $res_search["contact_id"]; ?>" class="btn btn-success btn-sm "><i class="fas fa-copy"></i></a>
-                                                <a href="pipeline_edit.php?id=<?php echo $res_search["pip_id"]; ?>&id_c=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm " ><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="pipeline_edit2.php?id=<?php echo $res_search["pip_id"]; ?>&id_c=<?php echo $res_search["contact_id"]; ?>" class="btn btn-info btn-sm " ><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="pipeline.php?id=<?php echo $res_search["pip_id"]; ?>" class="btn btn-danger btn-sm swalDefaultSuccess"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

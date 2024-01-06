@@ -47,7 +47,7 @@
                             text: "Welcome to login Sale Service. ",
                             type: "success"
                         }, function() {
-                            window.location = "../ino/index.php"; //หน้าที่ต้องการให้กระโดดไป
+                            window.location = "../ISS.Sales.Direk/index.php"; //หน้าที่ต้องการให้กระโดดไป
                     });
                     }, 1000);
         </script>';

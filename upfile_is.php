@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ino/templated/head.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/menu.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
     <!----------------------------- start Time ------------------------------->
     <?php
@@ -73,7 +73,7 @@ if(isset($_POST['submit'])){
         $filesize = $_FILES['upfile']['size'][$i];
         $filetype = $_FILES['upfile']['type'][$i];
 
-        $dir = "../ino/image/";
+        $dir = "../ISS.Sales.Direk/image/";
         $fileimage = $dir . basename($_FILES["upfile"]["name"][$i]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($fileimage,PATHINFO_EXTENSION));
@@ -257,7 +257,7 @@ if(isset($_POST['submit'])){
     <!-- /.content-wrapper -->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/footer.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

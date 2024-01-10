@@ -2,7 +2,7 @@
 
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link bg-dark bg-primary bg-danger">
-        <img src="../ino/img/inoo.png" alt="INO Managemant" class="brand-image img-circle elevation-3"
+        <img src="../ISS.Sales.Direk/img/inoo.png" alt="INO Managemant" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">INO Management</span>
     </a>
@@ -30,7 +30,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="../ino/img/002.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="../ISS.Sales.Direk/img/002.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="profile.php" class=""><?php echo ($_SESSION['username']);?></a><br>

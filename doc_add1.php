@@ -29,7 +29,7 @@ if (!isset($_SESSION["id"])) {
 
         $folder_name = $_POST['folder_name'];
 
-        $target_dir = "../ino/file/$folder_name/";
+        $target_dir = "../ISS.Sales.Direk/file/$folder_name/";
         $target_file = $target_dir . basename($_FILES["file_upfile"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -74,7 +74,7 @@ if (!isset($_SESSION["id"])) {
 
             $file_upfile = $_FILES['file_upfile']['name'];
             $file_tmp = $_FILES['file_upfile']['tmp_name'];
-            move_uploaded_file($file_tmp, "../ino/file/$folder_name/$file_upfile");
+            move_uploaded_file($file_tmp, "../ISS.Sales.Direk/file/$folder_name/$file_upfile");
 
 
 

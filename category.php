@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include ("../its/templated/head.php");?>
+    <?php include ("../ISS.Sales.Direk/templated/head.php");?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../its/templated/menu.php");?>
+    <?php include ("../ISS.Sales.Direk/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
 
@@ -558,5 +558,5 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../its/templated/footer.php");?>
+    <?php include ("../ISS.Sales.Direk/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->

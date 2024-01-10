@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ino/templated/head.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/menu.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!----------------------------- start Time ------------------------------->
@@ -31,7 +31,7 @@
     if (isset($_POST['submit'])) {
         $test_d = $_POST['test_d'];
 
-        $target_dir = "../ino/file/$test_d/";
+        $target_dir = "../ISS.Sales.Direk/file/$test_d/";
         $target_file = $target_dir . basename($_FILES["file_upfile"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -54,7 +54,7 @@
         $file_upfile = $_FILES['file_upfile']['name'];
         $file_tmp = $_FILES['file_upfile']['tmp_name'];
 
-        move_uploaded_file($file_tmp, "../ino/file/$test_d/$file_upfile");
+        move_uploaded_file($file_tmp, "../ISS.Sales.Direk/file/$test_d/$file_upfile");
     }
 }
 
@@ -156,7 +156,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/footer.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ino/templated/head.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/menu.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!----------------------------- start Time ------------------------------->
@@ -55,7 +55,7 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            <img class="profile-user-img img-fluid img-circle" src="../ino/img/pitt.png"
+                                            <img class="profile-user-img img-fluid img-circle" src="../ISS.Sales.Direk/img/pitt.png"
                                                 alt="User profile picture">
                                         </div>
 
@@ -434,7 +434,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ino/templated/footer.php"); ?>
+    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

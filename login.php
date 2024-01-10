@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-12 login-box-info align-center">
                     <h3 class="mb-4">Sign up</h3>
-                    <p class="text-center"><a href="#" class="btn btn-light">Register here</a></p>
+                    <p class="text-center"><a href="regis.php" class="btn btn-light">Register here</a></p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-12 login-box-form p-4">
                     <h3 class="mb-2">Login</h3>

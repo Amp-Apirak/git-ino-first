@@ -35,6 +35,7 @@
         $_SESSION['position'] = $row['position'];
         $_SESSION['role'] = $row['role'];
         $_SESSION['team'] = $row['team'];
+        $_SESSION['tel'] = $row['tel'];
 
         //เช็คว่ามีตัวแปร session อะไรบ้าง
         // print_r($result);

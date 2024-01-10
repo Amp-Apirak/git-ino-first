@@ -17,11 +17,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include ("../ISS.Sales.Direk/templated/head.php");?>
+    <?php include ("../ino/templated/head.php");?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../ISS.Sales.Direk/templated/menu.php");?>
+    <?php include ("../ino/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
     <!----------------------------- Del ------------------------------->
@@ -476,7 +476,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../ISS.Sales.Direk/templated/footer.php");?>
+    <?php include ("../ino/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

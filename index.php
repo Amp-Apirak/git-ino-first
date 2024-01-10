@@ -10,11 +10,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-        <?php include ("../ISS.Sales.Direk/templated/head.php");?>
+        <?php include ("../ino/templated/head.php");?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-        <?php include ("../ISS.Sales.Direk/templated/menu.php");?>
+        <?php include ("../ino/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
 
@@ -275,11 +275,11 @@
 
 
     <!-- jQuery -->
-    <script src="../ISS.Sales.Direk/code/plugins/jquery/jquery.min.js"></script>
+    <script src="../ino/code/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../ISS.Sales.Direk/code/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../ino/code/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="../ISS.Sales.Direk/code/plugins/chart.js/Chart.min.js"></script>
+    <script src="../ino/code/plugins/chart.js/Chart.min.js"></script>
     <!-- AdminLTE App -->
 
 
@@ -516,5 +516,5 @@ $(function() {
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../ISS.Sales.Direk/templated/footer.php");?>
+    <?php include ("../ino/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->

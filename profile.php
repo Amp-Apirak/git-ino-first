@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
+    <?php include("../ino/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
+    <?php include("../ino/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!----------------------------- start Time ------------------------------->
@@ -55,13 +55,13 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            <img class="profile-user-img img-fluid img-circle" src="../ISS.Sales.Direk/img/pitt.png"
+                                            <img class="profile-user-img img-fluid img-circle" src="../ino/img/002.png"
                                                 alt="User profile picture">
                                         </div>
 
-                                        <h3 class="profile-username text-center"><?php echo ($_SESSION['user_name']);?> <?php echo ($_SESSION['user_lastname']);?></h3>
+                                        <h3 class="profile-username text-center"><?php echo ($_SESSION['fullname']);?></h3>
 
-                                        <p class="text-muted text-center"><?php echo ($_SESSION['user_position']);?></p>
+                                        <p class="text-muted text-center"><?php echo ($_SESSION['position']);?></p>
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
@@ -434,7 +434,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
+    <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

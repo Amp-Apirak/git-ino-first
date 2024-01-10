@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
+    <?php include("../ino/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
+    <?php include("../ino/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
     <!----------------------------- start Time ------------------------------->
     <?php
@@ -71,7 +71,7 @@
                             $file_upfile = $_FILES['file_upfile']['name'];
                             $file_tmp = $_FILES['file_upfile']['tmp_name'];
                     
-                            move_uploaded_file($file_tmp, "../ISS.Sales.Direk/file/$file_upfile");
+                            move_uploaded_file($file_tmp, "../ino/file/$file_upfile");
 
   
     
@@ -265,7 +265,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
+    <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

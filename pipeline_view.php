@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/head.php"); ?>
+    <?php include("../ino/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/menu.php"); ?>
+    <?php include("../ino/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
 
@@ -91,7 +91,7 @@
                                         <div class="col-12">
                                             <h4>
                                                 <i class="image">
-                                                    <img src="../ISS.Sales.Direk/img/pit.png" width=“60px” height='50' alt="User Image">
+                                                    <img src="../ino/img/pit.png" width=“60px” height='50' alt="User Image">
                                                     <!-- class="img-circle elevation-2" -->
                                                 </i> Point IT
                                                 <small><span class='badge badge-secondary float-right'>Create Date :
@@ -609,12 +609,12 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../ISS.Sales.Direk/templated/footer.php"); ?>
+    <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- Ekko Lightbox -->
-    <script src="../ISS.Sales.Direk/code/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-    <script src="../ISS.Sales.Direk/code/plugins/filterizr/jquery.filterizr.min.js"></script>
+    <script src="../ino/code/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <script src="../ino/code/plugins/filterizr/jquery.filterizr.min.js"></script>
 
     <script>
         $(function() {
@@ -635,7 +635,7 @@
         })
     </script>
 
-    <script src="../ISS.Sales.Direk/code/dist/js/lightbox.min.js"></script>
+    <script src="../ino/code/dist/js/lightbox.min.js"></script>
 
 
     <!-- highlight -->

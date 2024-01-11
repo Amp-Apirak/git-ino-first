@@ -43,6 +43,13 @@
             </div><!-- /.container-fluid -->
         </section>
 
+        <?php
+            /* แสดงข้อมูล */
+            $rs = $conn->query("SELECT * FROM user WHERE id=" . $_SESSION['id']);
+            /* ประกาศตัวแปลเก็บค่า เชื่อมต่อฐานข้อมูล อ่าน/เขียนค่าข้อมูล เรียกตารางออกมา โดยมีเงื่อนไข = การรับค่า Get ID มาจาก Form ที่มีการเขึยน form_edit-a.php?id_p=<?=$sr->id_p;?> */
+            $r = $rs->fetch_object();
+        ?>
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -50,42 +57,40 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-md-6 mx-auto">
-
                                 <!-- Profile Image -->
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            <img class="profile-user-img img-fluid img-circle" src="../ino/img/002.png"
-                                                alt="User profile picture">
+                                            <img class="profile-user-img img-fluid img-circle" src="../ino/img/002.png" alt="User profile picture">
                                         </div>
 
-                                        <h3 class="profile-username text-center"><?php echo ($_SESSION['fullname']);?></h3>
+                                        <h3 class="profile-username text-center"><?= $r->fullname; ?></h3>
 
-                                        <p class="text-muted text-center"><?php echo ($_SESSION['email']);?></p>
+                                        <p class="text-muted text-center"><?php echo ($_SESSION['email']); ?><?= $r->email; ?></p>
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b>Full Name :</b>&nbsp;&nbsp;&nbsp;<a class="float-right"><?php echo ($_SESSION['fullname']);?></a>
+                                                <b>Full Name :</b>&nbsp;&nbsp;&nbsp;<a class="float-right"><?= $r->fullname; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Position :</b>&nbsp;&nbsp;&nbsp;<a class="float-right"><?php echo ($_SESSION['position']);?></a>
+                                                <b>Position :</b>&nbsp;&nbsp;&nbsp;<a class="float-right"><?= $r->position; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Number :</b> <a class="float-right"><?php echo ($_SESSION['tel']);?></a>
+                                                <b>Number :</b> <a class="float-right"><?= $r->tel; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Team :</b> <a class="float-right"><?php echo ($_SESSION['team']);?></a>
+                                                <b>Team :</b> <a class="float-right"><?= $r->team; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Account Login :</b> <a class="float-right"><?php echo ($_SESSION['username']);?></a>
+                                                <b>Account Login :</b> <a class="float-right"><?= $r->username; ?></a>
                                             </li>
                                             <li class="list-group-item">
                                                 <b>Password :</b> <a class="float-right">**********</a>
                                             </li>
                                         </ul>
 
-                                        <a href="profile_edit.php?id=<?php echo ($_SESSION['id']);?>" class="btn btn-primary btn-block"><b>Edit Information</b></a>
-                                        <a href="profile_editp.php?id=<?php echo ($_SESSION['id']);?>" class="btn btn-danger btn-block"><b>Edit Password</b></a>
+                                        <a href="profile_edit.php?id=<?= $r->id; ?>" class="btn btn-primary btn-block"><b>Edit Information</b></a>
+                                        <a href="profile_editp.php?id=<?= $r->id; ?>" class="btn btn-danger btn-block"><b>Edit Password</b></a>
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
@@ -111,6 +116,6 @@
     <script src="code/dist/js/highlight.js"></script>
 
     <script>
-    $("#myTable tr").highlight();
+        $("#myTable tr").highlight();
     </script>
     <!-- highlight -->

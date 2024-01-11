@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $menu = "Update Profiles"; ?>
+<?php $menu = "Update Password"; ?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INO | Update Profiles</title>
+    <title>INO | Update Password</title>
 
 
     <!----------------------------- start header ------------------------------->
@@ -31,12 +31,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Update Profiles</h1>
+                        <h1>Update Password</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active">Update Profiles</li>
+                            <li class="breadcrumb-item active">Update Password</li>
                         </ol>
                     </div>
                 </div>
@@ -65,18 +65,13 @@
 
                         if (isset($_POST['submit'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
 
-                            $fullname  = $_POST['fullname'];
-                            $position  = $_POST['position'];
-                            $tel = $_POST['tel'];
-                            $email = $_POST['email'];
-                            $username = $_POST['username'];
-                            $team = $_POST['team'];
-
+                            $password = sha1($_POST['password']);
                             // print_r($_POST);
 
 
-                            $sql =  "UPDATE `user` SET `fullname` = '$fullname', `position` = '$position', `tel` = '$tel', `email` = '$email',`username` = '$username', `team` = '$team' WHERE id=" . $_GET['id'];
-                            $result = $conn->query($sql);
+                            $sql =  "INSERT INTO `user` (`password`) 
+                                VALUES ('$password')";
+                                $result = $conn->query($sql);
 
                             //  print_r($sql);
                             if ($result) {
@@ -131,76 +126,12 @@
                                         <form action="#" method="POST" enctype="multipart/form-data">
 
                                             <div class="form-group">
-                                                <label for="fullname">Full Name<span class="text-danger">*</span></label>
+                                                <label for="fullname">Password<span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                                     </div>
-                                                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="" value="<?= $r->fullname; ?>" required>
-                                                </div>
-                                            </div>
-                                            <!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Phone Number</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="tel" id="tel" data-inputmask='"mask": "(999) 999-9999"' data-mask value="<?= $r->tel; ?>" required>
-                                                </div>
-                                                <!-- /.input group -->
-                                            </div>
-
-                                            <p>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                    </div>
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?= $r->email; ?>" required>
-                                                </div>
-                                            </div>
-                                            <!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label for="position">Position<span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-star"></i></span>
-                                                    </div>
-                                                    <input type="text" name="position" class="form-control" id="position" placeholder="" value="<?= $r->position; ?>" required>
-                                                </div>
-                                            </div>
-                                            <!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label>Team<span class="text-danger">*</span></label>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-users"></i></span>
-                                                    <select class="form-control select2" name="team" required style="width: 100%;">
-                                                        <option value="<?= $r->team; ?>"><?= $r->team; ?></option>
-                                                        <option>Innovation</option>
-                                                        <option>Service Solution</option>
-                                                        <option>Service bank</option>
-                                                        <option>Infrastructure</option>
-                                                        <option>Sale</option>
-                                                        <option>Accounting</option>
-                                                        <option>Stock</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /.form-group -->
-
-
-                                            <div class="form-group">
-                                                <label for="username">User Account<span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                                    </div>
-                                                    <input type="text" name="username" class="form-control" id="username" placeholder="" value="<?= $r->username; ?>" required>
+                                                    <input type="password" name="password" class="form-control" id="password" placeholder=""  required>
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->

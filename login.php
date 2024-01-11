@@ -37,9 +37,8 @@
         <div class="login-box">
             <h1 class="text-center mb-5"><i class="fas fa-handshake text-primary"></i> Point IT Sales Management</h1>
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-12 login-box-info align-center">
-                    <h3 class="mb-4">Sign up</h3>
-                    <p class="text-center"><a href="regis.php" class="btn btn-light">Register here</a></p>
+                <div class="col-md-6 col-sm-6 col-12 login-box-info">
+                    <img src="../ino/img/cp.jpg" width="100%" height="100%"></img>
                 </div>
                 <div class="col-md-6 col-sm-6 col-12 login-box-form p-4">
                     <h3 class="mb-2">Login</h3>
@@ -65,9 +64,9 @@
 
                         <div class="form-group">
                             <button class="btn btn-theme btn-block p-2 mb-1">Login</button>
-                            <a href="#">
+                            <!-- <a href="#">
                                 <small class="text-theme"><strong>Forgot password?</strong></small>
-                            </a>
+                            </a> -->
                         </div>
                     </form>
                 </div>

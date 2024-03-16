@@ -66,7 +66,7 @@
 
                                         <h3 class="profile-username text-center"><?= $r->fullname; ?></h3>
 
-                                        <p class="text-muted text-center"><?php echo ($_SESSION['email']); ?><?= $r->email; ?></p>
+                                        <p class="text-muted text-center"><?= $r->email; ?></p>
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">

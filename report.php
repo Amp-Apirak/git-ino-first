@@ -17,11 +17,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../its/templated/head.php"); ?>
+    <?php include("../ino/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../its/templated/menu.php"); ?>
+    <?php include("../ino/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
 
@@ -284,7 +284,7 @@
                                             <tr id="myTable">
                                                 <td><?php echo $res_search["report_date"]; ?></td>
                                                 <td><?php echo $res_search["report_type"]; ?></td>
-                                                <td><a href="../its/Report/<?php echo $res_search["upfile_one"]; ?>"><?php echo $res_search["report_name"]; ?></a></td>
+                                                <td><a href="../ino/Report/<?php echo $res_search["upfile_one"]; ?>"><?php echo $res_search["report_name"]; ?></a></td>
                                                 <td><?php echo $res_search["report_staff"]; ?></td>                                     
                                                 <td>
 
@@ -303,8 +303,8 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <p>ชือรายงาน : <?php echo $res_search["report_name"]; ?></p>
-                                                                    <p>ไฟล์นำเสนอ : <a href="../its/Report/<?php echo $res_search["upfile_one"]; ?>"><?php echo $res_search["upfile_one"]; ?></a></p>
-                                                                    <p>ไฟล์ข้อมูล : <a href="../its/Report/<?php echo $res_search["upfile"]; ?>"><?php echo $res_search["upfile"]; ?></a></p>
+                                                                    <p>ไฟล์นำเสนอ : <a href="../ino/Report/<?php echo $res_search["upfile_one"]; ?>"><?php echo $res_search["upfile_one"]; ?></a></p>
+                                                                    <p>ไฟล์ข้อมูล : <a href="../ino/Report/<?php echo $res_search["upfile"]; ?>"><?php echo $res_search["upfile"]; ?></a></p>
                                                                     <p>ลิงค์ไดร์ : <a href="<?php echo $res_search["report_link"]; ?>"><?php echo $res_search["report_link"]; ?></a></p>
                                                                     <p>ผู้สร้าง : <?php echo $res_search["report_staff"]; ?></p>
                                                                     <p>วันที่ : <?php echo $res_search["report_date"]; ?></p>
@@ -364,7 +364,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../its/templated/footer.php"); ?>
+    <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

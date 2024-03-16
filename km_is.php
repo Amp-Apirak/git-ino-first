@@ -9,11 +9,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include("../its/templated/head.php"); ?>
+    <?php include("../ino/templated/head.php"); ?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../its/templated/menu.php"); ?>
+    <?php include("../ino/templated/menu.php"); ?>
     <!----------------------------- end menu --------------------------------->
     <!----------------------------- start Time ------------------------------->
     <?php
@@ -66,7 +66,7 @@
 
                             $upfile = $_FILES['upfile']['name'];
                             $file_tmp = $_FILES['upfile']['tmp_name'];
-                            move_uploaded_file($file_tmp, "../its/Km/$upfile");
+                            move_uploaded_file($file_tmp, "../ino/Km/$upfile");
 
 
 
@@ -216,7 +216,7 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include("../its/templated/footer.php"); ?>
+    <?php include("../ino/templated/footer.php"); ?>
     <!----------------------------- end menu --------------------------------->
 
     <!-- highlight -->

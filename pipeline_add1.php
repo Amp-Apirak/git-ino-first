@@ -110,7 +110,7 @@
                                                 text: "Checking Your Data",
                                                 type:"warning"
                                             }, function(){
-                                                window.location = "pipeline_add.php";
+                                                window.location = "pipeline_add1.php";
                                             })
                                         },1000);
                                     </script>';
@@ -126,93 +126,9 @@
                         <div class="row">
                             <!-- /.col (left) -->
                             <div class="col-md-6">
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Pipeline descriptions</h3>
-                                    </div>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
-                                        <div class="card-body">
+                                 <!-- /.Customer descriptions ----------------------------------------------------------------------->
 
-                                            <div class="row">
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Contact Number</label>
-                                                        <input type="text" name="con_number" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="">
-                                                    </div>
-                                                </div>
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Status Project<span class="text-danger">*</span></label>
-                                                        <select class="form-control select2" name="status" id="status" required
-                                                            style="width: 100%;">
-                                                            <option selected="selected">Select</option>
-                                                            <option>Wiating for approve</option>
-                                                            <option>On Process</option>
-                                                            <option>On-Hold</option>
-                                                            <option>Done</option>
-                                                        </select>
-                                                    </div>
-                                                    <!-- /.form-group -->
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Project Name <span class="text-danger">*</span></label>
-                                                <input type="text" name="project_name" class="form-control"
-                                                    id="exampleInputEmail1" placeholder="" required>
-                                                <input type="hidden" name="pip_staff"
-                                                    value="<?php echo ($_SESSION['fullname']); ?>" class="form-control"
-                                                    id="exampleInputEmail1" placeholder="" required>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Product<span class="text-danger">*</span></label>
-                                                        <input type="text" name="project_product" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Brand<span class="text-danger">*</span></label>
-                                                        <input type="text" name="project_brand" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Date Start Project</label>
-                                                        <input type="date" name="date_start" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" >
-                                                    </div>
-                                                </div>
-                                                <div class="col col-6">
-                                                    <div class="form-group">
-                                                        <label>Date End Project</label>
-                                                        <input type="date" name="date_end" class="form-control"
-                                                            id="exampleInputEmail1" placeholder="" >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
-                                            examples and information about
-                                            the plugin.
-                                        </div>
-                                        <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-
-
-                                <!-- /.Customer descriptions ----------------------------------------------------------------------->
-
-                                <div class="card card-success">
+                                 <div class="card card-success">
                                     <div class="card-header">
                                         <h3 class="card-title">Customer descriptions</h3>
                                     </div>
@@ -257,13 +173,94 @@
 
                                     </div>
                                     <div class="card-footer">
-                                        Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
-                                        examples and information about
-                                        the plugin.
+                                    <small>ชื่อลูกค้า <a href="#"> </a> ของโครงการ (หากไม่มีในระบบกรุณากดปุ่ม Add (+) เพื่อเพิ่มชื่อ)</small>
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Pipeline descriptions</h3>
+                                    </div>
+                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                        <div class="card-body">
+
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Contact Number</label>
+                                                        <input type="text" name="con_number" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="เลขที่สัญญา">
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Status Project<span class="text-danger">*</span></label>
+                                                        <select class="form-control select2" name="status" id="status" required
+                                                            style="width: 100%;">
+                                                            <option selected="selected">Select</option>
+                                                            <option>Wiating for approve</option>
+                                                            <option>On Process</option>
+                                                            <option>On-Hold</option>
+                                                            <option>Done</option>
+                                                        </select>
+                                                    </div>
+                                                    <!-- /.form-group -->
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Project Name <span class="text-danger">*</span></label>
+                                                <input type="text" name="project_name" class="form-control"
+                                                    id="exampleInputEmail1" placeholder="ชื่อโครงการ" required>
+                                                <input type="hidden" name="pip_staff"
+                                                    value="<?php echo ($_SESSION['fullname']); ?>" class="form-control"
+                                                    id="exampleInputEmail1" placeholder="" required>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Product<span class="text-danger">*</span></label>
+                                                        <input type="text" name="project_product" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="ชื่อผลิตภัณฑ์" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Brand<span class="text-danger">*</span></label>
+                                                        <input type="text" name="project_brand" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="ยี่ห้อผลิตภัณฑ์" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Date Start Project</label>
+                                                        <input type="date" name="date_start" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" >
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group">
+                                                        <label>Date End Project</label>
+                                                        <input type="date" name="date_end" class="form-control"
+                                                            id="exampleInputEmail1" placeholder="" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            Visit <a href="https://getdatepicker.com/5-4/">tempusdominus </a> for more
+                                            examples and information about
+                                            the plugin.
+                                        </div>
+                                        <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+
                             </div>
                             <!-- /.col (right) -->
 
@@ -363,26 +360,26 @@
                                                 <div class="form-group">
                                                     <label>Sales (Vat)<span class="text-danger">*</span></label>
                                                     <input type="int" name="pip_sale" class="form-control" value="" onkeyup="sum();"
-                                                        id="pip_sale"  require >
+                                                        id="pip_sale" placeholder="ระบุราคาขายรวมภาษีมูลค่าเพิ่ม (Vat)" require >
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Sales (No Vat)<span class="text-danger">*</span></label>
                                                     <input type="int" name="pip_salen" id="pip_salen" readonly="readonly" onkeyup="sum();"  
-                                                        class="form-control"  style="background-color:#F8F8FF" placeholder="">      
+                                                        class="form-control"  style="background-color:#F8F8FF" placeholder="ราคาขายถอดภาษีมูลค่าเพิ่ม (No Vat)">      
                                                 </div>
                                                 
                                                 <div class="form-group">
                                                     <label>Cost (No Vat)</label>
                                                     <input type="int" name="pip_costn" id="pip_costn"  class="form-control" onkeyup="sum();"
-                                                        placeholder="ระบุราคาต้นทุนโครงการ" >
+                                                        placeholder="ระบุราคาต้นทุนโครงการไม่รวมภาษีมูลค่าเพิ่ม" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cost (Vat)</label>
                                                     <input type="int" name="pip_cost" class="form-control" value="" onkeyup="sum();"
                                                         id="pip_cost" 
                                                         
-                                                        style="background-color:#F8F8FF" placeholder="">
+                                                        style="background-color:#F8F8FF" placeholder="ราคาต้นทุนโครงการรวมภาษีมูลค่าเพิ่ม (Cost Vat)">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>GP (No Vat)</label>
@@ -497,10 +494,289 @@
                 <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-
-
     </div>
     <!-- /.content-wrapper -->
+
+
+    <!-- highlight -->
+    <script src="code/dist/js/highlight.js"></script>
+
+    <script>
+    $("#myTable tr").highlight();
+    </script>
+    <!-- highlight -->
+
+
+
+    <!----------------------------- start Modal Add user ------------------------------->
+    <?php
+    if (isset($_POST['submit1'])) { /* ถ้า POST มีการกด Submit ให้ทำส่วนล่าง */
+        /* ประกาศตัวแปลเก็บค่า  POST ที่รับมาจาก INPUT  */
+        $contact_fullname  = $_POST['contact_fullname'];
+        $contact_position  = $_POST['contact_position'];
+        $contact_agency = $_POST['contact_agency'];
+        $contact_tel = $_POST['contact_tel'];
+        $contact_email = $_POST['contact_email'];
+        $contact_detail = $_POST['contact_detail'];
+        $contact_company = $_POST['contact_company'];
+        $contact_type = $_POST['contact_type'];
+        $contact_staff = $_POST['contact_staff'];
+        $contact_province = sha1($_POST['contact_province']);
+
+        //print_r($_POST);
+        //check duplicat
+        $sql = "SELECT * From contact WHERE contact_fullname = '$contact_fullname' OR contact_email = '$contact_email' OR contact_tel = '$contact_tel'";
+        $result = $conn->query($sql);
+        $num = mysqli_num_rows($result);
+
+        // print_r($result); 
+        // print_r($num);
+        //ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
+        if ($num > 0) {
+            echo '<script>
+                        setTimeout(function() {
+                            swal({
+                                    title: "The data already exists in the system.!! ",  
+                                    text: "Please check the information again.",
+                                    type: "warning"
+                                }, function() {
+                                    window.location = "#"; //หน้าที่ต้องการให้กระโดดไป
+                                    });
+                                    }, 1000);
+                                </script>';
+        } else {
+            //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
+
+            //sql insert
+            $sql = "INSERT INTO `contact` ( `contact_fullname`,`contact_position`,`contact_agency`,
+                                        `contact_tel`, `contact_email`, `contact_detail`, `contact_company`, `contact_type`, `contact_staff`,
+                                        `contact_province`)
+                                    VALUES ('$contact_fullname','$contact_position','$contact_agency','$contact_tel', '$contact_email',
+                                        '$contact_detail', '$contact_company', '$contact_type', '$contact_staff', '$contact_province')";
+
+            $result = $conn->query($sql);
+            if ($result) {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Save data successfully",
+                                                        text: "",
+                                                        type: "success"
+                                                    }, function() {
+                                                        window.location = "pipeline_add1.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            } else {
+                echo '<script>
+                                                setTimeout(function() {
+                                                swal({
+                                                        title: "Please check the information again.",
+                                                        type: "error"
+                                                }, function() {
+                                                        window.location = "pipeline_add1.php"; //หน้าที่ต้องการให้กระโดดไป
+                                                        });
+                                                        }, 1000);
+                                                    </script>';
+            }
+            $conn = null; //close connect db
+        } //else chk dup
+
+    } //isset 
+    //devbanban.com
+    ?>
+
+    <div class="modal fade" id="editbtn">
+        <div class="modal-dialog editbtn">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Customer</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="pipeline_add1.php" method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Type<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_type" required style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>พนักงาน</option>
+                                    <option>ลูกค้า</option>
+                                    <option>พาร์ทเนอร์</option>
+                                    <option>อื่นๆ</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_fullname">Full Name<span class="text-danger">*</span></label>
+                                <input type="text" name="contact_fullname" class="form-control" id="contact_fullname"
+                                    placeholder="ชื่อลูกค้า" required>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_position">Position</label>
+                                <input type="text" name="contact_position" class="form-control" id="contact_position"
+                                    placeholder="ตำแหน่งทางบริษัท" >
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="contact_company">Company</label>
+                                <input type="text" name="contact_company" class="form-control" id="contact_company"
+                                    placeholder="ชื่อบริษัท" >
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Agency</label>
+                                <input type="text" name="contact_agency" class="form-control" id="contact_agency"
+                                    placeholder="หน่วยงานย่อย">
+
+
+                                <input type="hidden" name="contact_staff" class="form-control"
+                                    value="<?php echo ($_SESSION['fullname']); ?>" placeholder="">
+
+                            </div>
+                            <!-- /.form-group -->
+
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" name="contact_detail" id="contact_detail" rows="4"
+                                    placeholder="รายละเอียดที่อยู่"></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Province<span class="text-danger">*</span></label>
+                                <select class="form-control select2" name="contact_province" required
+                                    style="width: 100%;">
+                                    <option selected="selected">Select</option>
+                                    <option>กรุงเทพมหานคร</option>
+                                    <option>ปทุมธานี</option>
+                                    <option>สมุทรปราการ</option>
+                                    <option>อ่างทอง</option>
+                                    <option>สมุทรสาคร</option>
+                                    <option>สิงห์บุรี</option>
+                                    <option>นนทบุรี</option>
+                                    <option>ภูเก็ต</option>
+                                    <option>สมุทรสงคราม</option>
+                                    <option>นครราชสีมา</option>
+                                    <option>เชียงใหม่</option>
+                                    <option>กาญจนบุรี</option>
+                                    <option>ตาก</option>
+                                    <option>อุบลราชธานี</option>
+                                    <option>สุราษฎร์ธานี</option>
+                                    <option>ชัยภูมิ</option>
+                                    <option>แม่ฮ่องสอน</option>
+                                    <option>เพชรบูรณ์</option>
+                                    <option>ลำปาง</option>
+                                    <option>อุดรธานี</option>
+                                    <option>เชียงราย</option>
+                                    <option>น่าน</option>
+                                    <option>เลย</option>
+                                    <option>ขอนแก่น</option>
+                                    <option>พิษณุโลก</option>
+                                    <option>บุรีรัมย์</option>
+                                    <option>นครศรีธรรมราช</option>
+                                    <option>สกลนคร</option>
+                                    <option>นครสวรรค์</option>
+                                    <option>ศรีสะเกษ</option>
+                                    <option>กำแพงเพชร</option>
+                                    <option>ร้อยเอ็ด</option>
+                                    <option>สุรินทร์</option>
+                                    <option>อุตรดิตถ์</option>
+                                    <option>สงขลา</option>
+                                    <option>สระแก้ว</option>
+                                    <option>กาฬสินธุ์</option>
+                                    <option>อุทัยธานี</option>
+                                    <option>สุโขทัย</option>
+                                    <option>แพร่</option>
+                                    <option>ประจวบคีรีขันธ์</option>
+                                    <option>จันทบุรี</option>
+                                    <option>พะเยา</option>
+                                    <option>เพชรบุรี</option>
+                                    <option>ลพบุรี</option>
+                                    <option>ชุมพร</option>
+                                    <option>นครพนม</option>
+                                    <option>สุพรรณบุรี</option>
+                                    <option>ฉะเชิงเทรา</option>
+                                    <option>มหาสารคาม</option>
+                                    <option>ราชบุรี</option>
+                                    <option>ตรัง</option>
+                                    <option>ปราจีนบุรี</option>
+                                    <option>กระบี่</option>
+                                    <option>พิจิตร</option>
+                                    <option>ยะลา</option>
+                                    <option>ลำพูน</option>
+                                    <option>นราธิวาส</option>
+                                    <option>ชลบุรี</option>
+                                    <option>มุกดาหาร</option>
+                                    <option>บึงกาฬ</option>
+                                    <option>พังงา</option>
+                                    <option>ยโสธร</option>
+                                    <option>หนองบัวลำภู</option>
+                                    <option>สระบุรี</option>
+                                    <option>ระยอง</option>
+                                    <option>พัทลุง</option>
+                                    <option>ระนอง</option>
+                                    <option>อำนาจเจริญ</option>
+                                    <option>หนองคาย</option>
+                                    <option>ตราด</option>
+                                    <option>พระนครศรีอยุธยา</option>
+                                    <option>สตูล</option>
+                                    <option>ชัยนาท</option>
+                                    <option>นครปฐม</option>
+                                    <option>นครนายก</option>
+                                    <option>ปัตตานี</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="contact_tel" id="tel"
+                                        data-inputmask='"mask": "(999) 999-9999"' data-mask >
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+                            <p>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" name="contact_email" id="email"
+                                        placeholder="Email" >
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit1" name="submit1" value="submit1" class="btn btn-success">Save</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!----------------------------- end Modal Add user --------------------------------->
 
 
     <!----------------------------- start menu ------------------------------->

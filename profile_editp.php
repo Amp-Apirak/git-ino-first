@@ -69,8 +69,7 @@
                             // print_r($_POST);
 
 
-                            $sql =  "INSERT INTO `user` (`password`) 
-                                VALUES ('$password')";
+                            $sql =  "UPDATE `user` SET `password` = '$password'";
                                 $result = $conn->query($sql);
 
                             //  print_r($sql);

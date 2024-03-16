@@ -10,11 +10,11 @@
 
 
     <!----------------------------- start header ------------------------------->
-    <?php include ("../its/templated/head.php");?>
+    <?php include ("../ino/templated/head.php");?>
     <!----------------------------- end header --------------------------------->
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../its/templated/menu.php");?>
+    <?php include ("../ino/templated/menu.php");?>
     <!----------------------------- end menu --------------------------------->
 
 
@@ -178,5 +178,5 @@
 
 
     <!----------------------------- start menu ------------------------------->
-    <?php include ("../its/templated/footer.php");?>
+    <?php include ("../ino/templated/footer.php");?>
     <!----------------------------- end menu --------------------------------->

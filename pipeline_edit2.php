@@ -302,7 +302,7 @@
                                 
                                 
                                 var result =
-                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100)));
+                                    parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100)));
                                 if (!isNaN(result)) {
                                     document.getElementById('pip_salen').value = result;
                                 }
@@ -312,12 +312,12 @@
                                     document.getElementById('pip_cost').value = result1;
                                 }
                                 var resultt =
-                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100))) - parseInt(txtfNumberValue) ;
+                                    parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100))) - parseInt(txtfNumberValue) ;
                                 if (!isNaN(resultt)) {
                                     document.getElementById('pip_gp').value = resultt;
                                 }
                                 var result3 =
-                                    (parseInt(txtsNumberValue) / parseInt(txtFirstNumberValue))*100 ;
+                                    (parseInt(txtsNumberValue) / (parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100)))))*100;
                                 if (!isNaN(result3)) {
                                     document.getElementById('pip_gp2').value = result3;
                                 }

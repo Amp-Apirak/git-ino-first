@@ -255,79 +255,71 @@
 
                             <!-- /.Cost Project ----------------------------------------------------------------------->
 
+  
                             <script type="text/javascript">
-                                function sum() {
-                                    var txtFirstNumberValue = document.getElementById('pip_sale').value;
-                                    var txtSecondNumberValue = document.getElementById('pip_vat').value;
-                                    var txtfNumberValue = document.getElementById('pip_costn').value;
-                                    var txtfiNumberValue = document.getElementById('pip_cost').value;
-                                    var txtthdNumberValue = document.getElementById('pip_sale').value;
-                                    var txtsNumberValue = document.getElementById('pip_gp').value;
-                                    var txtseNumberValue = document.getElementById('pip_gp2').value;
+                            function sum() {
+                                var txtFirstNumberValue = document.getElementById('pip_sale').value;
+                                var txtSecondNumberValue = document.getElementById('pip_vat').value;
+                                var txtfNumberValue = document.getElementById('pip_costn').value;
+                                var txtfiNumberValue = document.getElementById('pip_cost').value;
+                                var txtthdNumberValue = document.getElementById('pip_sale').value;
+                                var txtsNumberValue = document.getElementById('pip_gp').value;
+                                var txtseNumberValue = document.getElementById('pip_gp2').value;
 
-                                    var txtp = document.getElementById('pip_p').value;
-                                    var txtess = document.getElementById('pip_ess').value;
-                                    var txtesc = document.getElementById('pip_esc').value;
-                                    var txtesp = document.getElementById('pip_esp').value;
-
-
+                                var txtp = document.getElementById('pip_p').value;
+                                var txtess = document.getElementById('pip_ess').value;
+                                var txtesc = document.getElementById('pip_esc').value;
+                                var txtesp = document.getElementById('pip_esp').value;
 
 
-                                    if (txtFirstNumberValue == "") {
-                                        txtthdNumberValue = 0;
-                                    }
-                                    if (txtfNumberValue == "") {
-                                        txtfiNumberValue = 0;
-                                    }
-                                    if (txtFirstNumberValue == "") {
-                                        txtsNumberValue = 0;
-                                    }
-                                    if (txtfNumberValue == "") {
-                                        txtsNumberValue = 0;
-                                    }
 
 
-                                    var result =
-                                        (parseInt(txtFirstNumberValue) - (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue) / 100)));
-                                    if (!isNaN(result)) {
-                                        document.getElementById('pip_salen').value = result;
-                                    }
-                                    var result1 =
-                                        (parseInt(txtfNumberValue) * (parseInt(txtSecondNumberValue) / 100)) + parseInt(txtfNumberValue);
-                                    if (!isNaN(result1)) {
-                                        document.getElementById('pip_cost').value = result1;
-                                    }
-                                    var resultt =
-                                        (parseInt(txtFirstNumberValue) - (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue) / 100))) - parseInt(txtfNumberValue);
-                                    if (!isNaN(resultt)) {
-                                        document.getElementById('pip_gp').value = resultt;
-                                    }
-                                    var result3 =
-                                        (parseInt(txtsNumberValue) / parseInt(txtFirstNumberValue)) * 100;
-                                    if (!isNaN(result3)) {
-                                        document.getElementById('pip_gp2').value = result3;
-                                    }
-
-
-                                    var result4 =
-                                        (parseInt(txtFirstNumberValue) - (parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue) / 100)));
-                                    if (!isNaN(result4)) {
-                                        document.getElementById('pip_ess').value = result4;
-                                    }
-                                    var result5 =
-                                        parseInt(txtfNumberValue) * (parseInt(txtp) / 100);
-                                    if (!isNaN(result5)) {
-                                        document.getElementById('pip_esc').value = result5;
-                                    }
-                                    var result6 =
-                                        parseInt(txtsNumberValue) * (parseInt(txtp) / 100);
-                                    if (!isNaN(result6)) {
-                                        document.getElementById('pip_esp').value = result6;
-                                    }
-
+                                if (txtFirstNumberValue == ""  ) { txtthdNumberValue=0; }
+                                if (txtfNumberValue == ""  ) { txtfiNumberValue=0; }
+                                if (txtFirstNumberValue == ""  ) { txtsNumberValue=0; }
+                                if (txtfNumberValue == ""  ) { txtsNumberValue=0; }
+                                
+                                
+                                var result =
+                                    parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100)));
+                                if (!isNaN(result)) {
+                                    document.getElementById('pip_salen').value = result;
                                 }
-                            </script>
+                                var result1 =
+                                    (parseInt(txtfNumberValue) * (parseInt(txtSecondNumberValue)/100)) + parseInt(txtfNumberValue) ;
+                                if (!isNaN(result1)) {
+                                    document.getElementById('pip_cost').value = result1;
+                                }
+                                var resultt =
+                                    parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100))) - parseInt(txtfNumberValue) ;
+                                if (!isNaN(resultt)) {
+                                    document.getElementById('pip_gp').value = resultt;
+                                }
+                                var result3 =
+                                    (parseInt(txtsNumberValue) / (parseInt(txtFirstNumberValue)-((parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue)/(parseInt(txtSecondNumberValue)+100)))))*100;
+                                if (!isNaN(result3)) {
+                                    document.getElementById('pip_gp2').value = result3;
+                                }
 
+
+                                var result4 =
+                                    (parseInt(txtFirstNumberValue)-(parseInt(txtFirstNumberValue) * (parseInt(txtSecondNumberValue)/100))) ;
+                                if (!isNaN(result4)) {
+                                    document.getElementById('pip_ess').value = result4;
+                                }
+                                var result5 =
+                                    parseInt(txtfNumberValue) * (parseInt(txtp)/100) ;
+                                if (!isNaN(result5)) {
+                                    document.getElementById('pip_esc').value = result5;
+                                }
+                                var result6 =
+                                    parseInt(txtsNumberValue) * (parseInt(txtp)/100) ;
+                                if (!isNaN(result6)) {
+                                    document.getElementById('pip_esp').value = result6;
+                                }
+
+                            }
+                            </script>
 
 
                             <!-- /.col (left) -->
